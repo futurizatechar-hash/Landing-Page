@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldIcon, LinkedinIcon, TwitterIcon, MailIcon, MapPinIcon } from 'lucide-react';
+import { ShieldIcon, MailIcon, MapPinIcon } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -19,12 +19,6 @@ const Footer = () => {
               Liderando la transformación digital en la industria de la seguridad privada en LATAM y España. Soluciones reales, tecnología avanzada.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-lg bg-slate-900 flex items-center justify-center text-slate-500 hover:text-cyan-400 border border-slate-800 hover:border-cyan-400 transition-all">
-                <LinkedinIcon className="w-5 h-5" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-lg bg-slate-900 flex items-center justify-center text-slate-500 hover:text-cyan-400 border border-slate-800 hover:border-cyan-400 transition-all">
-                <TwitterIcon className="w-5 h-5" />
-              </a>
               <a href="#" className="w-10 h-10 rounded-lg bg-slate-900 flex items-center justify-center text-slate-500 hover:text-cyan-400 border border-slate-800 hover:border-cyan-400 transition-all">
                 <MailIcon className="w-5 h-5" />
               </a>
