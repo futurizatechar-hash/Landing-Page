@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, Code, Building, UserCheck } from 'lucide-react';
+import { AwardIcon, CodeIcon, BuildingIcon, UserCheckIcon } from 'lucide-react';
 
 const Authority = () => {
   return (
@@ -24,7 +24,7 @@ const Authority = () => {
             <div className="grid md:grid-cols-2 gap-8">
               <div className="flex flex-col gap-4">
                 <div className="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center border border-cyan-500/20">
-                  <Building className="text-cyan-400 w-6 h-6" />
+                  <BuildingIcon className="text-cyan-400 w-6 h-6" />
                 </div>
                 <div>
                   <h4 className="text-lg font-bold text-white tracking-tight">15 Años de Campo</h4>
@@ -33,7 +33,7 @@ const Authority = () => {
               </div>
               <div className="flex flex-col gap-4">
                 <div className="w-12 h-12 bg-neon-green/10 rounded-xl flex items-center justify-center border border-neon-green/20">
-                  <Code className="text-neon-green w-6 h-6" />
+                  <CodeIcon className="text-neon-green w-6 h-6" />
                 </div>
                 <div>
                   <h4 className="text-lg font-bold text-white tracking-tight">7 Años de Desarrollo</h4>
@@ -52,7 +52,7 @@ const Authority = () => {
              <div className="relative z-10 glass-card bg-slate-950/80 p-10 border-slate-700">
                 <div className="flex items-center gap-4 mb-8">
                    <div className="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center overflow-hidden border-2 border-slate-700">
-                      <UserCheck className="w-10 h-10 text-slate-500" />
+                      <UserCheckIcon className="w-10 h-10 text-slate-500" />
                    </div>
                    <div>
                       <h4 className="text-xl font-bold text-white">Liderazgo Dual</h4>
@@ -63,7 +63,7 @@ const Authority = () => {
                   "Entendemos el operativo porque estuvimos allí. Desarrollamos la solución porque sabemos cómo optimizarla."
                 </blockquote>
                 <div className="flex gap-4">
-                   <Award className="text-neon-green w-6 h-6" />
+                   <AwardIcon className="text-neon-green w-6 h-6" />
                    <span className="text-slate-400 text-sm">Más de 25 Proyectos de Automatización Entregados</span>
                 </div>
              </div>

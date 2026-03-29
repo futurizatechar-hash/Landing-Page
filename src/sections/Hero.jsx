@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MousePointer2, ShieldCheck, Zap, ArrowRight } from 'lucide-react';
+import { MousePointer2Icon, ShieldCheckIcon, ZapIcon, ArrowRightIcon } from 'lucide-react';
 
 const Hero = () => {
   const containerVariants = {
@@ -61,7 +61,7 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-4"
           >
             <button className="btn-primary flex items-center justify-center gap-2 text-lg">
-              Empezar Ahora <ArrowRight className="w-5 h-5" />
+              Empezar Ahora <ArrowRightIcon className="w-5 h-5" />
             </button>
             <button className="btn-secondary flex items-center justify-center gap-2 text-lg">
               Ver Demo
@@ -123,7 +123,7 @@ const Hero = () => {
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
               className="absolute -top-6 -right-6 p-4 bg-slate-800 rounded-2xl border border-slate-700 shadow-xl"
             >
-              <ShieldCheck className="w-8 h-8 text-cyan-400" />
+              <ShieldCheckIcon className="w-8 h-8 text-cyan-400" />
             </motion.div>
 
             <motion.div 
@@ -131,7 +131,7 @@ const Hero = () => {
               transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
               className="absolute -bottom-10 -left-6 p-4 bg-slate-800 rounded-2xl border border-slate-700 shadow-xl flex items-center gap-3"
             >
-              <Zap className="w-6 h-6 text-neon-green" />
+              <ZapIcon className="w-6 h-6 text-neon-green" />
               <div className="flex flex-col">
                 <span className="text-xs font-bold text-white tracking-widest uppercase">Real-Time</span>
                 <span className="text-[10px] text-slate-400">Monitoring Active</span>

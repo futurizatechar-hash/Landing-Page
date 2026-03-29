@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Layout, ArrowUpRight, TrendingDown } from 'lucide-react';
+import { ShieldIcon, LayoutIcon, ArrowUpRightIcon, TrendingDownIcon } from 'lucide-react';
 
 const SuccessStories = () => {
   const cases = [
@@ -9,10 +9,10 @@ const SuccessStories = () => {
       subtitle: "Flagship Security SaaS",
       description: "Plataforma integral para empresas de seguridad privada que automatiza el control de rondas, asistencia y reportes de incidencias.",
       stats: [
-        { label: "Costos Operativos", value: "-25%", icon: <TrendingDown className="w-4 h-4 text-neon-green" /> },
-        { label: "Uptime de Cloud", value: "99.9%", icon: <ArrowUpRight className="w-4 h-4 text-cyan-400" /> }
+        { label: "Costos Operativos", value: "-25%", icon: <TrendingDownIcon className="w-4 h-4 text-neon-green" /> },
+        { label: "Uptime de Cloud", value: "99.9%", icon: <ArrowUpRightIcon className="w-4 h-4 text-cyan-400" /> }
       ],
-      icon: <Shield className="w-8 h-8 text-cyan-400" />,
+      icon: <ShieldIcon className="w-8 h-8 text-cyan-400" />,
       color: "from-cyan-500/20 to-cyan-500/5",
       borderColor: "border-cyan-500/20"
     },
@@ -21,10 +21,10 @@ const SuccessStories = () => {
       subtitle: "Custom Automation Case",
       description: "Solución de software a medida para la optimización de procesos logísticos y gestión de pedidos de alta demanda.",
       stats: [
-        { label: "Eficiencia Logística", value: "+40%", icon: <ArrowUpRight className="w-4 h-4 text-neon-green" /> },
-        { label: "Integración API", value: "100%", icon: <ArrowUpRight className="w-4 h-4 text-cyan-400" /> }
+        { label: "Eficiencia Logística", value: "+40%", icon: <ArrowUpRightIcon className="w-4 h-4 text-neon-green" /> },
+        { label: "Integración API", value: "100%", icon: <ArrowUpRightIcon className="w-4 h-4 text-cyan-400" /> }
       ],
-      icon: <Layout className="w-8 h-8 text-neon-green" />,
+      icon: <LayoutIcon className="w-8 h-8 text-neon-green" />,
       color: "from-neon-green/10 to-neon-green/5",
       borderColor: "border-neon-green/20"
     }
@@ -99,7 +99,7 @@ const SuccessStories = () => {
 
               {/* Decorative Arrow */}
               <div className="absolute bottom-8 right-8 text-slate-700 group-hover:text-cyan-400 transition-colors">
-                 <ArrowUpRight className="w-8 h-8" />
+                 <ArrowUpRightIcon className="w-8 h-8" />
               </div>
             </motion.div>
           ))}

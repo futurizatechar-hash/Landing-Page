@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Linkedin, Twitter, Mail, MapPin } from 'lucide-react';
+import { ShieldIcon, LinkedinIcon, TwitterIcon, MailIcon, MapPinIcon } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-2 space-y-8">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-neon-green rounded-xl flex items-center justify-center">
-                <Shield className="text-slate-950 w-6 h-6" />
+                <ShieldIcon className="text-slate-950 w-6 h-6" />
               </div>
               <span className="text-2xl font-display font-bold text-white tracking-tighter">
                 FUTURIZA
@@ -20,13 +20,13 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 rounded-lg bg-slate-900 flex items-center justify-center text-slate-500 hover:text-cyan-400 border border-slate-800 hover:border-cyan-400 transition-all">
-                <Linkedin className="w-5 h-5" />
+                <LinkedinIcon className="w-5 h-5" />
               </a>
               <a href="#" className="w-10 h-10 rounded-lg bg-slate-900 flex items-center justify-center text-slate-500 hover:text-cyan-400 border border-slate-800 hover:border-cyan-400 transition-all">
-                <Twitter className="w-5 h-5" />
+                <TwitterIcon className="w-5 h-5" />
               </a>
               <a href="#" className="w-10 h-10 rounded-lg bg-slate-900 flex items-center justify-center text-slate-500 hover:text-cyan-400 border border-slate-800 hover:border-cyan-400 transition-all">
-                <Mail className="w-5 h-5" />
+                <MailIcon className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -44,7 +44,7 @@ const Footer = () => {
           <div className="space-y-6">
             <h4 className="text-sm font-bold text-white uppercase tracking-widest">Ubicación</h4>
             <div className="flex gap-3 text-slate-500">
-               <MapPin className="w-5 h-5 text-cyan-400 shrink-0" />
+               <MapPinIcon className="w-5 h-5 text-cyan-400 shrink-0" />
                <p className="text-sm leading-relaxed">
                  Córdoba, Argentina<br />
                  Hub de Innovación Tecnológica

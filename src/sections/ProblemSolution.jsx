@@ -1,18 +1,18 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { XCircle, CheckCircle2, History, Cloud, Clipboard, Zap } from 'lucide-react';
+import { XCircleIcon, CheckCircle2Icon, HistoryIcon, CloudIcon, ClipboardIcon, ZapIcon } from 'lucide-react';
 
 const ProblemSolution = () => {
   const problems = [
-    { icon: <Clipboard className="w-5 h-5 text-red-500" />, text: "Planillas manuales y reportes en papel propensos a errores." },
-    { icon: <History className="w-5 h-5 text-red-500" />, text: "Falta de visibilidad en tiempo real de los patrullajes." },
-    { icon: <XCircle className="w-5 h-5 text-red-500" />, text: "Altos costos operativos por procesos ineficientes." },
+    { icon: <ClipboardIcon className="w-5 h-5 text-red-500" />, text: "Planillas manuales y reportes en papel propensos a errores." },
+    { icon: <HistoryIcon className="w-5 h-5 text-red-500" />, text: "Falta de visibilidad en tiempo real de los patrullajes." },
+    { icon: <XCircleIcon className="w-5 h-5 text-red-500" />, text: "Altos costos operativos por procesos ineficientes." },
   ];
 
   const solutions = [
-    { icon: <Cloud className="w-5 h-5 text-neon-green" />, text: "Gestión 100% en la nube con reportes automáticos." },
-    { icon: <Zap className="w-5 h-5 text-neon-green" />, text: "Monitoreo GPS y alertas instantáneas de incidencias." },
-    { icon: <CheckCircle2 className="w-5 h-5 text-neon-green" />, text: "Automatización que reduce costos hasta un 35%." },
+    { icon: <CloudIcon className="w-5 h-5 text-neon-green" />, text: "Gestión 100% en la nube con reportes automáticos." },
+    { icon: <ZapIcon className="w-5 h-5 text-neon-green" />, text: "Monitoreo GPS y alertas instantáneas de incidencias." },
+    { icon: <CheckCircle2Icon className="w-5 h-5 text-neon-green" />, text: "Automatización que reduce costos hasta un 35%." },
   ];
 
   return (

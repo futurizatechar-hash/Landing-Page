@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Menu, X, ArrowRight } from 'lucide-react';
+import { ShieldIcon, MenuIcon, XIcon, ArrowRightIcon } from 'lucide-react';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,7 +33,7 @@ const Navbar = () => {
           className="flex items-center gap-2"
         >
           <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-neon-green rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/20">
-            <Shield className="text-slate-950 w-6 h-6" />
+            <ShieldIcon className="text-slate-950 w-6 h-6" />
           </div>
           <span className="text-2xl font-display font-bold text-white tracking-tighter">
             FUTURIZA
@@ -59,7 +59,7 @@ const Navbar = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="btn-primary flex items-center gap-2 text-sm py-2 px-5"
           >
-            Auditoría Gratis <ArrowRight className="w-4 h-4" />
+            Auditoría Gratis <ArrowRightIcon className="w-4 h-4" />
           </motion.button>
         </div>
 
@@ -69,7 +69,7 @@ const Navbar = () => {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="text-white p-2"
           >
-            {isMobileMenuOpen ? <X /> : <Menu />}
+            {isMobileMenuOpen ? <XIcon /> : <MenuIcon />}
           </button>
         </div>
       </div>

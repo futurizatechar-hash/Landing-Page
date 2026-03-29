@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle, Mail, Building, User, Users } from 'lucide-react';
+import { SendIcon, CheckCircleIcon, MailIcon, BuildingIcon, UserIcon, UsersIcon } from 'lucide-react';
 
 const LeadForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -40,13 +40,13 @@ const LeadForm = () => {
              <div className="space-y-6">
                 <div className="flex items-center gap-4">
                    <div className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center">
-                      <CheckCircle className="w-4 h-4 text-neon-green" />
+                      <CheckCircleIcon className="w-4 h-4 text-neon-green" />
                    </div>
                    <span className="text-xs text-slate-300 font-bold tracking-widest uppercase">Diagnóstico ROI</span>
                 </div>
                 <div className="flex items-center gap-4">
                    <div className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center">
-                      <CheckCircle className="w-4 h-4 text-neon-green" />
+                      <CheckCircleIcon className="w-4 h-4 text-neon-green" />
                    </div>
                    <span className="text-xs text-slate-300 font-bold tracking-widest uppercase">Mapa de Automatización</span>
                 </div>
@@ -69,7 +69,7 @@ const LeadForm = () => {
                     <div className="space-y-2">
                       <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Nombre Completo</label>
                       <div className="relative">
-                        <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                        <UserIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                         <input 
                           required
                           type="text" 
@@ -84,7 +84,7 @@ const LeadForm = () => {
                     <div className="space-y-2">
                        <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Empresa / Razón Social</label>
                        <div className="relative">
-                          <Building className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                          <BuildingIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                           <input 
                             required
                             type="text" 
@@ -101,7 +101,7 @@ const LeadForm = () => {
                   <div className="space-y-2">
                      <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Email Corporativo</label>
                      <div className="relative">
-                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                        <MailIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                         <input 
                           required
                           type="email" 
@@ -117,7 +117,7 @@ const LeadForm = () => {
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Tamaño de Equipo / Flota</label>
                     <div className="relative">
-                       <Users className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                       <UsersIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                        <select 
                         required
                         name="teamSize"
@@ -138,7 +138,7 @@ const LeadForm = () => {
                     type="submit"
                     className="btn-primary w-full flex items-center justify-center gap-3 py-4 text-lg font-bold group"
                   >
-                    Enviar Solicitud <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    Enviar Solicitud <SendIcon className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </button>
                 </motion.form>
               ) : (
@@ -149,7 +149,7 @@ const LeadForm = () => {
                   className="h-full flex flex-col items-center justify-center text-center py-10"
                 >
                   <div className="w-20 h-20 bg-neon-green/10 rounded-full flex items-center justify-center mb-6">
-                    <CheckCircle className="text-neon-green w-10 h-10" />
+                    <CheckCircleIcon className="text-neon-green w-10 h-10" />
                   </div>
                   <h3 className="text-3xl font-bold mb-4">¡Solicitud Enviada!</h3>
                   <p className="text-slate-400 max-w-sm mb-8">
