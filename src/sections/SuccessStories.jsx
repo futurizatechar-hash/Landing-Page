@@ -5,7 +5,7 @@ import { ShieldIcon, LayoutIcon, ArrowUpRightIcon, TrendingDownIcon } from 'luci
 const SuccessStories = () => {
   const cases = [
     {
-      title: "GuardForce",
+      title: "GuardForceSegurity",
       subtitle: "Flagship Security SaaS",
       description: "Plataforma integral para empresas de seguridad privada que automatiza el control de rondas, asistencia y reportes de incidencias.",
       stats: [
@@ -15,18 +15,6 @@ const SuccessStories = () => {
       icon: <ShieldIcon className="w-8 h-8 text-cyan-400" />,
       color: "from-cyan-500/20 to-cyan-500/5",
       borderColor: "border-cyan-500/20"
-    },
-    {
-      title: "Alta Vianda",
-      subtitle: "Custom Automation Case",
-      description: "Solución de software a medida para la optimización de procesos logísticos y gestión de pedidos de alta demanda.",
-      stats: [
-        { label: "Eficiencia Logística", value: "+40%", icon: <ArrowUpRightIcon className="w-4 h-4 text-neon-green" /> },
-        { label: "Integración API", value: "100%", icon: <ArrowUpRightIcon className="w-4 h-4 text-cyan-400" /> }
-      ],
-      icon: <LayoutIcon className="w-8 h-8 text-neon-green" />,
-      color: "from-neon-green/10 to-neon-green/5",
-      borderColor: "border-neon-green/20"
     }
   ];
 
@@ -52,7 +40,7 @@ const SuccessStories = () => {
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 items-stretch">
+        <div className="max-w-3xl mx-auto">
           {cases.map((item, index) => (
             <motion.div
               key={index}
