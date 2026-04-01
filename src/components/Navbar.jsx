@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShieldIcon, MenuIcon, XIcon, ArrowRightIcon } from 'lucide-react';
+import iconLogo from '../assets/icon-logo.png';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,9 +33,11 @@ const Navbar = () => {
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-2"
         >
-          <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-neon-green rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/20">
-            <ShieldIcon className="text-slate-950 w-6 h-6" />
-          </div>
+          <img 
+            src={iconLogo} 
+            alt="Futuriza Logo" 
+            className="h-8 w-8 object-contain mr-2" 
+          />
           <span className="text-2xl font-display font-bold text-white tracking-tighter">
             FUTURIZA
           </span>

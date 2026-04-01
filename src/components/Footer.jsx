@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShieldIcon, MailIcon, MapPinIcon } from 'lucide-react';
+import iconLogo from '../assets/icon-logo.png';
 
 const Footer = () => {
   return (
@@ -8,9 +9,11 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2 space-y-8">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-neon-green rounded-xl flex items-center justify-center">
-                <ShieldIcon className="text-slate-950 w-6 h-6" />
-              </div>
+              <img 
+                src={iconLogo} 
+                alt="Futuriza Logo" 
+                className="h-8 w-8 object-contain mr-2" 
+              />
               <span className="text-2xl font-display font-bold text-white tracking-tighter">
                 FUTURIZA
               </span>
