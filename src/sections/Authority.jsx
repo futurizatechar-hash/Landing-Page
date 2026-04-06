@@ -27,7 +27,7 @@ const Authority = () => {
                   <BuildingIcon className="text-cyan-400 w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold text-white tracking-tight">15 Años de Campo</h4>
+                  <h3 className="text-lg font-bold text-white tracking-tight">15 Años de Campo</h3>
                   <p className="text-sm text-slate-400">Operaciones reales de seguridad privada.</p>
                 </div>
               </div>
@@ -36,7 +36,7 @@ const Authority = () => {
                   <CodeIcon className="text-neon-green w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold text-white tracking-tight">7 Años de Desarrollo</h4>
+                  <h3 className="text-lg font-bold text-white tracking-tight">7 Años de Desarrollo</h3>
                   <p className="text-sm text-slate-400">Ingeniería de software de alta performance.</p>
                 </div>
               </div>
@@ -55,7 +55,7 @@ const Authority = () => {
                       <UserCheckIcon className="w-10 h-10 text-slate-500" />
                    </div>
                    <div>
-                      <h4 className="text-xl font-bold text-white">Liderazgo Dual</h4>
+                      <h3 className="text-xl font-bold text-white">Liderazgo Dual</h3>
                       <p className="text-cyan-400 text-sm">Security Operations & Software Engineering</p>
                    </div>
                 </div>

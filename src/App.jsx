@@ -1,57 +1,37 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './sections/Hero';
-import ProblemSolution from './sections/ProblemSolution';
-import Authority from './sections/Authority';
-import SuccessStories from './sections/SuccessStories';
-import LeadForm from './sections/LeadForm';
-import Footer from './components/Footer';
-import CrmDashboard from './sections/CrmDashboard';
-import Login from './sections/Login';
-import { supabase } from './supabaseClient';
-import { useState, useEffect } from 'react';
 
-function LandingPage() {
+// Lazy loaded below-the-fold components
+const ProblemSolution = lazy(() => import('./sections/ProblemSolution'));
+const Authority = lazy(() => import('./sections/Authority'));
+const SuccessStories = lazy(() => import('./sections/SuccessStories'));
+const LeadForm = lazy(() => import('./sections/LeadForm'));
+const Footer = lazy(() => import('./components/Footer'));
+
+function App() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200">
       <Navbar />
       <main>
         <Hero />
-        <ProblemSolution />
-        <Authority />
-        <SuccessStories />
-        <LeadForm />
+        <Suspense fallback={<div className="h-40 flex items-center justify-center">Cargando...</div>}>
+          <ProblemSolution />
+        </Suspense>
+        <Suspense fallback={<div className="h-40 flex items-center justify-center">Cargando...</div>}>
+          <Authority />
+        </Suspense>
+        <Suspense fallback={<div className="h-40 flex items-center justify-center">Cargando...</div>}>
+          <SuccessStories />
+        </Suspense>
+        <Suspense fallback={<div className="h-40 flex items-center justify-center">Cargando...</div>}>
+          <LeadForm />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={<div className="h-40 bg-slate-900 border-t border-slate-800"></div>}>
+        <Footer />
+      </Suspense>
     </div>
-  );
-}
-
-function App() {
-  const [session, setSession] = useState(null);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/crm" element={session ? <CrmDashboard /> : <Login />} />
-      </Routes>
-    </Router>
   );
 }
 

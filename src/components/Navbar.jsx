@@ -22,7 +22,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav 
+    <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'bg-slate-950/80 backdrop-blur-md border-b border-slate-800 py-3' : 'bg-transparent py-5'
       }`}
@@ -37,6 +37,10 @@ const Navbar = () => {
             src={iconLogo} 
             alt="Futuriza Logo" 
             className="h-8 w-8 object-contain mr-2" 
+            width="32" 
+            height="32" 
+            loading="lazy" 
+            decoding="async"
           />
           <span className="text-2xl font-display font-bold text-white tracking-tighter">
             FUTURIZA
@@ -104,7 +108,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </header>
   );
 };
 

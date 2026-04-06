@@ -13,6 +13,10 @@ const Footer = () => {
                 src={iconLogo} 
                 alt="Futuriza Logo" 
                 className="h-8 w-8 object-contain mr-2" 
+                width="32" 
+                height="32" 
+                loading="lazy" 
+                decoding="async"
               />
               <span className="text-2xl font-display font-bold text-white tracking-tighter">
                 FUTURIZA
