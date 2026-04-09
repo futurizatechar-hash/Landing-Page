@@ -6,11 +6,11 @@ const SuccessStories = () => {
   const cases = [
     {
       title: "GuardForceSegurity",
-      subtitle: "Flagship Security SaaS",
+      subtitle: "Plataforma SaaS Principal",
       description: "Plataforma integral para empresas de seguridad privada que automatiza el control de rondas, asistencia y reportes de incidencias.",
       stats: [
         { label: "Costos Operativos", value: "-25%", icon: <TrendingDownIcon className="w-4 h-4 text-[#00e5ff]" /> },
-        { label: "Uptime de Cloud", value: "99.9%", icon: <ArrowUpRightIcon className="w-4 h-4 text-cyan-400" /> }
+        { label: "Disponibilidad en la Nube", value: "99.9%", icon: <ArrowUpRightIcon className="w-4 h-4 text-cyan-400" /> }
       ],
       icon: <ShieldIcon className="w-8 h-8 text-cyan-400" />,
       color: "from-cyan-500/20 to-cyan-500/5",
@@ -19,14 +19,14 @@ const SuccessStories = () => {
   ];
 
   return (
-    <section id="casos" className="py-24 scroll-mt-32 relative overflow-hidden">
+    <section id="casos" className="py-12 md:py-16 scroll-mt-20 relative overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-3xl md:text-5xl font-bold mb-4"
           >
             Nuestros <span className="text-gradient">Casos de Éxito</span>
           </motion.h2>
@@ -58,7 +58,7 @@ const SuccessStories = () => {
                     {item.icon}
                  </div>
                  <div className="px-3 py-1 bg-slate-800 rounded-full border border-slate-700 text-xs font-bold text-white tracking-widest uppercase mt-4">
-                    Case Study
+                    Caso de Éxito
                  </div>
               </div>
 

@@ -61,13 +61,14 @@ const Navbar = () => {
               {link.name}
             </motion.a>
           ))}
-          <motion.button
+          <motion.a
+            href="#contacto"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             className="btn-primary flex items-center gap-2 text-sm py-2 px-5"
           >
             Auditoría Gratis <ArrowRightIcon className="w-4 h-4" />
-          </motion.button>
+          </motion.a>
         </div>
 
         {/* Mobile Toggle */}
@@ -101,9 +102,9 @@ const Navbar = () => {
                   {link.name}
                 </a>
               ))}
-              <button className="btn-primary w-full text-center">
+              <a href="#contacto" onClick={() => setIsMobileMenuOpen(false)} className="btn-primary w-full flex items-center justify-center py-3">
                 Auditoría Gratis
-              </button>
+              </a>
             </div>
           </motion.div>
         )}

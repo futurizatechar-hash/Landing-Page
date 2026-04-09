@@ -4,7 +4,7 @@ import { AwardIcon, CodeIcon, BuildingIcon, UserCheckIcon } from 'lucide-react';
 
 const Authority = () => {
   return (
-    <section id="trayectoria" className="py-24 scroll-mt-32 bg-slate-900/50 backdrop-blur-sm border-y border-slate-800">
+    <section id="trayectoria" className="py-12 md:py-16 scroll-mt-20 bg-slate-900/50 backdrop-blur-sm border-y border-slate-800">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row gap-16 items-center">
           <motion.div 
@@ -13,7 +13,7 @@ const Authority = () => {
             viewport={{ once: true }}
             className="md:w-1/2"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">
               Donde la Experiencia <br />
               <span className="text-gradient">Encuentra la Innovación</span>
             </h2>
@@ -56,7 +56,7 @@ const Authority = () => {
                    </div>
                    <div>
                       <h3 className="text-xl font-bold text-white">Liderazgo Dual</h3>
-                      <p className="text-cyan-400 text-sm">Security Operations & Software Engineering</p>
+                      <p className="text-cyan-400 text-sm">Operaciones de Seguridad e Ingeniería de Software</p>
                    </div>
                 </div>
                 <blockquote className="text-xl text-slate-300 italic mb-8 border-l-4 border-cyan-500 pl-6 py-2">

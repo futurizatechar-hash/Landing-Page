@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { SendIcon, CheckCircleIcon, MailIcon, BuildingIcon, UserIcon, UsersIcon } from 'lucide-react';
+import { SendIcon, CheckCircleIcon, MailIcon, BuildingIcon, UserIcon, UsersIcon, PhoneIcon } from 'lucide-react';
+import { supabase } from '../supabaseClient';
 
 const LeadForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -8,13 +9,33 @@ const LeadForm = () => {
     name: '',
     company: '',
     email: '',
+    phone: '',
     teamSize: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Lead Captured:', formData);
-    setIsSubmitted(true);
+    try {
+      const { error } = await supabase
+        .from('leads_futuriza')
+        .insert([
+          {
+            nombre: formData.name.trim().toUpperCase(),
+            telefono: formData.phone.trim(),
+            empresa: formData.company.trim().toUpperCase(),
+            email: formData.email.trim().toLowerCase(),
+            estado_embudo: 'nuevo',
+            resumen_chat: `[Lead Web] Tamaño de equipo/flota: ${formData.teamSize}`
+          }
+        ]);
+
+      if (error) throw error;
+      
+      console.log('Lead almacenado exitosamente en leads_futuriza');
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error('Error guardando lead en Supabase:', err.message);
+    }
   };
 
   const handleChange = (e) => {
@@ -22,7 +43,7 @@ const LeadForm = () => {
   };
 
   return (
-    <section id="contacto" className="py-24 scroll-mt-32 relative overflow-hidden">
+    <section id="contacto" className="py-12 md:py-16 scroll-mt-20 relative overflow-hidden">
       {/* Background Decorative Element */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-500/5 blur-[120px] rounded-full -z-10" />
 
@@ -30,25 +51,31 @@ const LeadForm = () => {
         <div className="max-w-4xl mx-auto glass-card p-0 overflow-hidden border-slate-700 flex flex-col md:flex-row">
           {/* Form Info Panel */}
           <div className="md:w-1/3 bg-slate-950 p-10 flex flex-col justify-center border-r border-slate-800">
-             <h2 className="text-3xl font-bold mb-6 italic leading-tight uppercase tracking-tight">
+             <h2 className="text-2xl md:text-3xl font-bold mb-6 italic leading-tight uppercase tracking-tight">
                Agenda tu <br />
                <span className="text-cyan-400">Auditoría</span>
              </h2>
              <p className="text-slate-400 text-sm mb-10 leading-relaxed">
                Analizamos tus procesos actuales y detectamos fugas de eficiencia. Descubrí cómo la tecnología puede transformar tu margen operativo.
              </p>
-             <div className="space-y-6">
+             <div className="space-y-5">
                 <div className="flex items-center gap-4">
                    <div className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center">
                       <CheckCircleIcon className="w-4 h-4 text-[#00e5ff]" />
                    </div>
-                   <span className="text-xs text-slate-300 font-bold tracking-widest uppercase">Diagnóstico ROI</span>
+                   <span className="text-xs text-slate-300 font-bold tracking-widest uppercase">Análisis de Situación Actual</span>
                 </div>
                 <div className="flex items-center gap-4">
                    <div className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center">
                       <CheckCircleIcon className="w-4 h-4 text-[#00e5ff]" />
                    </div>
-                   <span className="text-xs text-slate-300 font-bold tracking-widest uppercase">Mapa de Automatización</span>
+                   <span className="text-xs text-slate-300 font-bold tracking-widest uppercase">Propuesta Tecnológica</span>
+                </div>
+                <div className="flex items-center gap-4">
+                   <div className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center">
+                      <CheckCircleIcon className="w-4 h-4 text-[#00e5ff]" />
+                   </div>
+                   <span className="text-xs text-slate-300 font-bold tracking-widest uppercase">Escenario Operativo Esperado</span>
                 </div>
              </div>
           </div>
@@ -98,20 +125,37 @@ const LeadForm = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-2">
-                     <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Email Corporativo</label>
-                     <div className="relative">
-                        <MailIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
-                        <input 
-                          required
-                          type="email" 
-                          name="email" 
-                          value={formData.email}
-                          onChange={handleChange}
-                          placeholder="ejemplo@empresa.com"
-                          className="w-full bg-slate-950/50 border border-slate-800 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 rounded-xl py-3 pl-12 pr-4 text-white placeholder-slate-600 transition-all outline-none" 
-                        />
-                     </div>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                       <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Email Corporativo</label>
+                       <div className="relative">
+                          <MailIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                          <input 
+                            required
+                            type="email" 
+                            name="email" 
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="ejemplo@empresa.com"
+                            className="w-full bg-slate-950/50 border border-slate-800 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 rounded-xl py-3 pl-12 pr-4 text-white placeholder-slate-600 transition-all outline-none" 
+                          />
+                       </div>
+                    </div>
+                    <div className="space-y-2">
+                       <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">WhatsApp (Con Cód. País)</label>
+                       <div className="relative">
+                          <PhoneIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                          <input 
+                            required
+                            type="tel" 
+                            name="phone" 
+                            value={formData.phone}
+                            onChange={handleChange}
+                            placeholder="Ej: +54 9... o +34..."
+                            className="w-full bg-slate-950/50 border border-slate-800 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 rounded-xl py-3 pl-12 pr-4 text-white placeholder-slate-600 transition-all outline-none" 
+                          />
+                       </div>
+                    </div>
                   </div>
 
                   <div className="space-y-2">
@@ -127,9 +171,10 @@ const LeadForm = () => {
                        >
                          <option value="" disabled className="bg-slate-950">Seleccionar tamaño...</option>
                          <option value="1-20" className="bg-slate-950">1 - 20 personas</option>
-                         <option value="21-100" className="bg-slate-950">21 - 100 personas</option>
-                         <option value="101-500" className="bg-slate-950">101 - 500 personas</option>
-                         <option value="500+" className="bg-slate-950">Más de 500 personas</option>
+                         <option value="21-50" className="bg-slate-950">21 - 50 personas</option>
+                         <option value="51-100" className="bg-slate-950">51 - 100 personas</option>
+                         <option value="101-250" className="bg-slate-950">101 - 250 personas</option>
+                         <option value="250+" className="bg-slate-950">Más de 250 personas</option>
                        </select>
                     </div>
                   </div>
@@ -153,7 +198,7 @@ const LeadForm = () => {
                   </div>
                   <h3 className="text-3xl font-bold mb-4">¡Solicitud Enviada!</h3>
                   <p className="text-slate-400 max-w-sm mb-8">
-                    Gracias por confiar en Futuriza. Un consultor senior se pondrá en contacto contigo en las próximas 24 horas.
+                    Gracias por confiar en Futuriza. Nos pondremos en contacto contigo dentro de las próximas 24 horas.
                   </p>
                   <button 
                     onClick={() => setIsSubmitted(false)}

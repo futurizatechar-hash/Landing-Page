@@ -19,72 +19,51 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center py-24 scroll-mt-32 overflow-hidden">
+    <section className="relative min-h-[100dvh] pt-32 pb-4 md:pb-8 flex items-center overflow-hidden">
       {/* Background Blobs */}
       <div className="absolute top-0 -left-20 w-[500px] h-[500px] bg-cyan-500/10 blur-[120px] rounded-full -z-10 animate-pulse" />
       <div className="absolute bottom-0 -right-20 w-[400px] h-[400px] bg-[#00e5ff]/5 blur-[100px] rounded-full -z-10" />
 
-      <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div className="w-full flex flex-col justify-center gap-16 md:gap-24">
+        <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           className="text-left"
         >
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 mb-6"
           >
             <span className="flex h-2 w-2 rounded-full bg-cyan-400 animate-ping" />
             <span className="text-xs font-semibold text-cyan-400 uppercase tracking-widest">
-              Futuriza Automation Hub
+              Centro de Automatización Futuriza
             </span>
           </motion.div>
 
-          <motion.h1 
+          <motion.h1
             variants={itemVariants}
-            className="text-5xl md:text-7xl font-display font-bold mb-6 leading-[1.1]"
+            className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 leading-tight tracking-tight"
           >
-            Automatización <br />
-            <span className="text-gradient">Inteligente para Seguridad</span>
+            Software y Automatización para <br />
+            <span className="text-gradient">Empresas de Seguridad Privada</span>
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             variants={itemVariants}
-            className="text-xl text-slate-400 mb-8 max-w-xl leading-relaxed"
+            className="text-lg md:text-xl text-slate-400 mb-8 max-w-xl leading-relaxed"
           >
-            Reducimos costos operativos y errores humanos en empresas de seguridad privada de LATAM y España mediante soluciones cloud de nueva generación.
+            Sistemas robustos para automatizar tu operativa. Desde libros de actas digitales y control de ausentismos, hasta captación automatizada de nuevos clientes/objetivos. Control total para reducir costos.
           </motion.p>
 
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <button className="btn-primary flex items-center justify-center gap-2 text-lg">
+            <a href="#contacto" className="btn-primary flex items-center justify-center gap-2 text-lg">
               Empezar Ahora <ArrowRightIcon className="w-5 h-5" />
-            </button>
-            <button className="btn-outline flex items-center justify-center gap-2 text-lg">
-              Ver Demo
-            </button>
-          </motion.div>
-
-          {/* Social Proof / Stats */}
-          <motion.div 
-            variants={itemVariants}
-            className="mt-12 flex flex-wrap gap-8 items-center text-slate-500 border-t border-slate-900 pt-8"
-          >
-            <div className="flex flex-col">
-              <span className="text-2xl font-bold text-white">15+</span>
-              <span className="text-xs uppercase tracking-widest">Años en Operaciones</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-2xl font-bold text-white">100%</span>
-              <span className="text-xs uppercase tracking-widest">Cloud Software</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-2xl font-bold text-white">99.9%</span>
-              <span className="text-xs uppercase tracking-widest">Uptime Garantizado</span>
-            </div>
+            </a>
           </motion.div>
         </motion.div>
 
@@ -98,47 +77,71 @@ const Hero = () => {
           <div className="relative z-10 p-4 bg-slate-900/40 rounded-3xl border border-slate-800 shadow-2xl backdrop-blur-xl group overflow-hidden">
             {/* Animated UI Mockup Interface */}
             <div className="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800">
-               <div className="h-8 bg-slate-900 border-b border-slate-800 px-4 flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-red-500/50" />
-                  <div className="w-2 h-2 rounded-full bg-yellow-500/50" />
-                  <div className="w-2 h-2 rounded-full bg-green-500/50" />
-               </div>
-               <div className="p-6 space-y-4">
-                  <div className="h-4 w-1/3 bg-slate-800 rounded animate-pulse" />
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="h-24 bg-cyan-950/30 border border-cyan-500/20 rounded-xl" />
-                    <div className="h-24 bg-[#00e5ff]/10 border border-[#00e5ff]/10 rounded-xl" />
-                    <div className="h-24 bg-slate-800/50 rounded-xl" />
-                  </div>
-                  <div className="h-32 bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-col justify-end">
-                    <div className="h-2 w-full bg-slate-800 mb-2 rounded" />
-                    <div className="h-2 w-2/3 bg-slate-800 rounded" />
-                  </div>
-               </div>
+              <div className="h-8 bg-slate-900 border-b border-slate-800 px-4 flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-red-500/50" />
+                <div className="w-2 h-2 rounded-full bg-yellow-500/50" />
+                <div className="w-2 h-2 rounded-full bg-green-500/50" />
+              </div>
+              <div className="p-6 space-y-4">
+                <div className="h-4 w-1/3 bg-slate-800 rounded animate-pulse" />
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="h-24 bg-cyan-950/30 border border-cyan-500/20 rounded-xl" />
+                  <div className="h-24 bg-[#00e5ff]/10 border border-[#00e5ff]/10 rounded-xl" />
+                  <div className="h-24 bg-slate-800/50 rounded-xl" />
+                </div>
+                <div className="h-32 bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-col justify-end">
+                  <div className="h-2 w-full bg-slate-800 mb-2 rounded" />
+                  <div className="h-2 w-2/3 bg-slate-800 rounded" />
+                </div>
+              </div>
             </div>
-            
+
             {/* Floating Elements */}
-            <motion.div 
-              animate={{ y: [0, -15, 0] }} 
+            <motion.div
+              animate={{ y: [0, -15, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
               className="absolute -top-6 -right-6 p-4 bg-slate-800 rounded-2xl border border-slate-700 shadow-xl"
             >
               <ShieldCheckIcon className="w-8 h-8 text-cyan-400" />
             </motion.div>
 
-            <motion.div 
-              animate={{ y: [0, 20, 0] }} 
+            <motion.div
+              animate={{ y: [0, 20, 0] }}
               transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
               className="absolute -bottom-10 -left-6 p-4 bg-slate-800 rounded-2xl border border-slate-700 shadow-xl flex items-center gap-3"
             >
               <ZapIcon className="w-6 h-6 text-[#00e5ff]" />
               <div className="flex flex-col">
-                <span className="text-xs font-bold text-white tracking-widest uppercase">Real-Time</span>
-                <span className="text-[10px] text-slate-400">Monitoring Active</span>
+                <span className="text-xs font-bold text-white tracking-widest uppercase">Tiempo Real</span>
+                <span className="text-[10px] text-slate-400">Monitoreo Activo</span>
               </div>
             </motion.div>
           </div>
         </motion.div>
+        </div>
+
+        {/* Full-width Social Proof / Stats placed beneath the 2 columns */}
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.8 }}
+            className="flex flex-col sm:flex-row justify-between gap-6 w-full text-slate-500 border-t border-slate-800 pt-6"
+          >
+            <div className="flex flex-col flex-1 text-center sm:text-left">
+              <span className="text-2xl font-bold text-white mb-1 tracking-tight">15+</span>
+              <span className="text-[10px] uppercase tracking-widest font-semibold">Años en <br className="hidden sm:block" /> Operaciones</span>
+            </div>
+            <div className="flex flex-col flex-1 text-center">
+              <span className="text-2xl font-bold text-white mb-1 tracking-tight">100%</span>
+              <span className="text-[10px] uppercase tracking-widest font-semibold">Software <br className="hidden sm:block" /> en la Nube</span>
+            </div>
+            <div className="flex flex-col flex-1 text-center sm:text-right">
+              <span className="text-2xl font-bold text-white mb-1 tracking-tight">99.9%</span>
+              <span className="text-[10px] uppercase tracking-widest font-semibold">Uptime <br className="hidden sm:block" /> Garantizado</span>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
