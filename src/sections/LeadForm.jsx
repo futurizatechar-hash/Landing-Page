@@ -22,7 +22,7 @@ const LeadForm = () => {
   };
 
   return (
-    <section id="contacto" className="py-24 relative overflow-hidden">
+    <section id="contacto" className="py-24 scroll-mt-32 relative overflow-hidden">
       {/* Background Decorative Element */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-500/5 blur-[120px] rounded-full -z-10" />
 
@@ -40,13 +40,13 @@ const LeadForm = () => {
              <div className="space-y-6">
                 <div className="flex items-center gap-4">
                    <div className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center">
-                      <CheckCircleIcon className="w-4 h-4 text-neon-green" />
+                      <CheckCircleIcon className="w-4 h-4 text-[#00e5ff]" />
                    </div>
                    <span className="text-xs text-slate-300 font-bold tracking-widest uppercase">Diagnóstico ROI</span>
                 </div>
                 <div className="flex items-center gap-4">
                    <div className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center">
-                      <CheckCircleIcon className="w-4 h-4 text-neon-green" />
+                      <CheckCircleIcon className="w-4 h-4 text-[#00e5ff]" />
                    </div>
                    <span className="text-xs text-slate-300 font-bold tracking-widest uppercase">Mapa de Automatización</span>
                 </div>
@@ -148,8 +148,8 @@ const LeadForm = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   className="h-full flex flex-col items-center justify-center text-center py-10"
                 >
-                  <div className="w-20 h-20 bg-neon-green/10 rounded-full flex items-center justify-center mb-6">
-                    <CheckCircleIcon className="text-neon-green w-10 h-10" />
+                  <div className="w-20 h-20 bg-[#00e5ff]/10 rounded-full flex items-center justify-center mb-6">
+                    <CheckCircleIcon className="text-[#00e5ff] w-10 h-10" />
                   </div>
                   <h3 className="text-3xl font-bold mb-4">¡Solicitud Enviada!</h3>
                   <p className="text-slate-400 max-w-sm mb-8">

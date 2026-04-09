@@ -16,7 +16,7 @@ const ProblemSolution = () => {
   ];
 
   return (
-    <section id="solucion" className="py-24 relative overflow-hidden">
+    <section id="solucion" className="py-24 scroll-mt-32 relative overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <motion.h2 
@@ -44,7 +44,7 @@ const ProblemSolution = () => {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="glass-card border-red-500/20 bg-red-500/5 group hover:bg-red-500/10 transition-colors"
+            className="glass-card group relative"
           >
             <h3 className="text-2xl font-bold mb-8 flex items-center gap-3 text-red-400">
               Gestión Tradicional
@@ -64,7 +64,7 @@ const ProblemSolution = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="glass-card border-neon-green/30 bg-neon-green/5 group hover:bg-neon-green/10 transition-colors"
+            className="glass-card group relative"
           >
             <h3 className="text-2xl font-bold mb-8 flex items-center gap-3 text-neon-green">
               Solución Futuriza

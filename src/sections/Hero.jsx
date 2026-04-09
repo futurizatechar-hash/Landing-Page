@@ -19,10 +19,10 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <section className="relative min-h-screen flex items-center py-24 scroll-mt-32 overflow-hidden">
       {/* Background Blobs */}
       <div className="absolute top-0 -left-20 w-[500px] h-[500px] bg-cyan-500/10 blur-[120px] rounded-full -z-10 animate-pulse" />
-      <div className="absolute bottom-0 -right-20 w-[400px] h-[400px] bg-neon-green/5 blur-[100px] rounded-full -z-10" />
+      <div className="absolute bottom-0 -right-20 w-[400px] h-[400px] bg-[#00e5ff]/5 blur-[100px] rounded-full -z-10" />
 
       <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
         <motion.div
@@ -63,7 +63,7 @@ const Hero = () => {
             <button className="btn-primary flex items-center justify-center gap-2 text-lg">
               Empezar Ahora <ArrowRightIcon className="w-5 h-5" />
             </button>
-            <button className="btn-secondary flex items-center justify-center gap-2 text-lg">
+            <button className="btn-outline flex items-center justify-center gap-2 text-lg">
               Ver Demo
             </button>
           </motion.div>
@@ -107,7 +107,7 @@ const Hero = () => {
                   <div className="h-4 w-1/3 bg-slate-800 rounded animate-pulse" />
                   <div className="grid grid-cols-3 gap-4">
                     <div className="h-24 bg-cyan-950/30 border border-cyan-500/20 rounded-xl" />
-                    <div className="h-24 bg-neon-green/10 border border-neon-green/10 rounded-xl" />
+                    <div className="h-24 bg-[#00e5ff]/10 border border-[#00e5ff]/10 rounded-xl" />
                     <div className="h-24 bg-slate-800/50 rounded-xl" />
                   </div>
                   <div className="h-32 bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-col justify-end">
@@ -131,7 +131,7 @@ const Hero = () => {
               transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
               className="absolute -bottom-10 -left-6 p-4 bg-slate-800 rounded-2xl border border-slate-700 shadow-xl flex items-center gap-3"
             >
-              <ZapIcon className="w-6 h-6 text-neon-green" />
+              <ZapIcon className="w-6 h-6 text-[#00e5ff]" />
               <div className="flex flex-col">
                 <span className="text-xs font-bold text-white tracking-widest uppercase">Real-Time</span>
                 <span className="text-[10px] text-slate-400">Monitoring Active</span>

@@ -4,7 +4,7 @@ import { AwardIcon, CodeIcon, BuildingIcon, UserCheckIcon } from 'lucide-react';
 
 const Authority = () => {
   return (
-    <section id="trayectoria" className="py-24 bg-slate-900/50 backdrop-blur-sm border-y border-slate-800">
+    <section id="trayectoria" className="py-24 scroll-mt-32 bg-slate-900/50 backdrop-blur-sm border-y border-slate-800">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row gap-16 items-center">
           <motion.div 
@@ -22,7 +22,7 @@ const Authority = () => {
             </p>
             
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 glass-card p-6">
                 <div className="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center border border-cyan-500/20">
                   <BuildingIcon className="text-cyan-400 w-6 h-6" />
                 </div>
@@ -31,9 +31,9 @@ const Authority = () => {
                   <p className="text-sm text-slate-400">Operaciones reales de seguridad privada.</p>
                 </div>
               </div>
-              <div className="flex flex-col gap-4">
-                <div className="w-12 h-12 bg-neon-green/10 rounded-xl flex items-center justify-center border border-neon-green/20">
-                  <CodeIcon className="text-neon-green w-6 h-6" />
+              <div className="flex flex-col gap-4 glass-card p-6">
+                <div className="w-12 h-12 bg-[#00e5ff]/10 rounded-xl flex items-center justify-center border border-[#00e5ff]/20">
+                  <CodeIcon className="text-[#00e5ff] w-6 h-6" />
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-white tracking-tight">7 Años de Desarrollo</h3>
@@ -63,12 +63,12 @@ const Authority = () => {
                   "Entendemos el operativo porque estuvimos allí. Desarrollamos la solución porque sabemos cómo optimizarla."
                 </blockquote>
                 <div className="flex gap-4">
-                   <AwardIcon className="text-neon-green w-6 h-6" />
+                   <AwardIcon className="text-[#00e5ff] w-6 h-6" />
                    <span className="text-slate-400 text-sm">Más de 25 Proyectos de Automatización Entregados</span>
                 </div>
              </div>
              {/* Decorative Frame */}
-             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-neon-green opacity-20 blur-2xl -z-10 translate-x-4 translate-y-4" />
+             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-[#0088ff] opacity-20 blur-2xl -z-10 translate-x-4 translate-y-4" />
           </motion.div>
         </div>
       </div>

@@ -9,7 +9,7 @@ const SuccessStories = () => {
       subtitle: "Flagship Security SaaS",
       description: "Plataforma integral para empresas de seguridad privada que automatiza el control de rondas, asistencia y reportes de incidencias.",
       stats: [
-        { label: "Costos Operativos", value: "-25%", icon: <TrendingDownIcon className="w-4 h-4 text-neon-green" /> },
+        { label: "Costos Operativos", value: "-25%", icon: <TrendingDownIcon className="w-4 h-4 text-[#00e5ff]" /> },
         { label: "Uptime de Cloud", value: "99.9%", icon: <ArrowUpRightIcon className="w-4 h-4 text-cyan-400" /> }
       ],
       icon: <ShieldIcon className="w-8 h-8 text-cyan-400" />,
@@ -19,7 +19,7 @@ const SuccessStories = () => {
   ];
 
   return (
-    <section id="casos" className="py-24 relative overflow-hidden">
+    <section id="casos" className="py-24 scroll-mt-32 relative overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <motion.h2 
