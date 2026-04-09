@@ -16,7 +16,7 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Solución', href: '#solucion' },
+    { name: 'Soluciones', href: '#soluciones' },
     { name: 'Trayectoria', href: '#trayectoria' },
     { name: 'Casos de Éxito', href: '#casos' },
   ];

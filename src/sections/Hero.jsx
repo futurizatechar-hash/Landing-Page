@@ -120,28 +120,7 @@ const Hero = () => {
         </motion.div>
         </div>
 
-        {/* Full-width Social Proof / Stats placed beneath the 2 columns */}
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.8 }}
-            className="flex flex-col sm:flex-row justify-between gap-6 w-full text-slate-500 border-t border-slate-800 pt-6"
-          >
-            <div className="flex flex-col flex-1 text-center sm:text-left">
-              <span className="text-2xl font-bold text-white mb-1 tracking-tight">15+</span>
-              <span className="text-[10px] uppercase tracking-widest font-semibold">Años en <br className="hidden sm:block" /> Operaciones</span>
-            </div>
-            <div className="flex flex-col flex-1 text-center">
-              <span className="text-2xl font-bold text-white mb-1 tracking-tight">100%</span>
-              <span className="text-[10px] uppercase tracking-widest font-semibold">Software <br className="hidden sm:block" /> en la Nube</span>
-            </div>
-            <div className="flex flex-col flex-1 text-center sm:text-right">
-              <span className="text-2xl font-bold text-white mb-1 tracking-tight">99.9%</span>
-              <span className="text-[10px] uppercase tracking-widest font-semibold">Uptime <br className="hidden sm:block" /> Garantizado</span>
-            </div>
-          </motion.div>
-        </div>
+
       </div>
     </section>
   );

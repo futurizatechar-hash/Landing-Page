@@ -5,7 +5,7 @@ import { CodeIcon, ZapIcon, MessageSquareIcon } from 'lucide-react';
 const ProblemSolution = () => {
 
   return (
-    <section id="solucion" className="pt-6 pb-12 md:pt-8 md:pb-16 scroll-mt-28 relative overflow-hidden">
+    <section id="soluciones" className="pt-6 pb-12 md:pt-8 md:pb-16 scroll-mt-28 relative overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <motion.h2 
