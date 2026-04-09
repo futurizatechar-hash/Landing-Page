@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://futuriza.com.ar/sitemap.xml
+Sitemap: https://futurizatech.com/sitemap.xml
