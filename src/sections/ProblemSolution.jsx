@@ -5,9 +5,9 @@ import { CodeIcon, ZapIcon, MessageSquareIcon } from 'lucide-react';
 const ProblemSolution = () => {
 
   return (
-    <section id="soluciones" className="pt-6 pb-12 md:pt-8 md:pb-16 scroll-mt-28 relative overflow-hidden">
+    <section className="pt-16 pb-12 md:pt-24 md:pb-16 relative overflow-hidden border-t border-slate-900">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div id="soluciones" className="text-center mb-16 scroll-mt-28 md:scroll-mt-32">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

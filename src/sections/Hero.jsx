@@ -19,7 +19,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-[100dvh] pt-32 pb-4 md:pb-8 flex items-center overflow-hidden">
+    <section className="relative min-h-[100dvh] pt-32 pb-24 md:pb-32 flex items-center overflow-hidden">
       {/* Background Blobs */}
       <div className="absolute top-0 -left-20 w-[500px] h-[500px] bg-cyan-500/10 blur-[120px] rounded-full -z-10 animate-pulse" />
       <div className="absolute bottom-0 -right-20 w-[400px] h-[400px] bg-[#00e5ff]/5 blur-[100px] rounded-full -z-10" />
