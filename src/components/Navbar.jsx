@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MenuIcon, XIcon, ArrowRightIcon } from 'lucide-react';
-import logoHorizontal from '../assets/texto-logo-horizontal.png';
+import logoHorizontal from '../assets/texto-logo-horizontal.webp';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);

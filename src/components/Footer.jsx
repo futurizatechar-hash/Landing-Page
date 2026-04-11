@@ -1,6 +1,6 @@
 import React from 'react';
 import { MailIcon, MapPinIcon } from 'lucide-react';
-import logoVertical from '../assets/texto-logo-vertical.png';
+import logoVertical from '../assets/texto-logo-vertical.webp';
 
 const Footer = () => {
   return (
