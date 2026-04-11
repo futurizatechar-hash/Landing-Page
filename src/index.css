@@ -1,21 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@300;400;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
   .glass-card {
-    @apply bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-[#00e5ff]/50 hover:shadow-glow-sm hover:bg-white/10 p-8;
+    @apply bg-white border border-slate-100 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:border-brand-cyan/30 p-8;
   }
   .text-gradient {
-    @apply bg-gradient-to-r from-[#00e5ff] to-blue-500 text-transparent bg-clip-text font-extrabold;
+    @apply bg-gradient-to-r from-brand-accent to-brand-cyan text-transparent bg-clip-text font-extrabold;
   }
   .btn-primary {
-    @apply bg-[#00e5ff] text-[#070b14] font-black py-4 px-8 rounded-xl transition-all duration-300 hover:bg-[#00c4cc] hover:shadow-glow flex items-center justify-center gap-2;
+    @apply bg-brand-accent text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 hover:bg-[#eb5a26] hover:shadow-glow-accent flex items-center justify-center gap-2;
   }
   .btn-secondary {
-    @apply bg-transparent border border-white/20 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 hover:border-[#00e5ff] hover:text-[#00e5ff] flex items-center justify-center gap-2;
+    @apply bg-transparent border-2 border-brand-dark/10 text-brand-dark font-bold py-4 px-8 rounded-xl transition-all duration-300 hover:border-brand-cyan hover:text-brand-cyan hover:bg-brand-cyan/5 flex items-center justify-center gap-2;
   }
-  .btn-outline {
-    @apply bg-transparent border border-white/20 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 hover:border-[#00e5ff] hover:text-[#00e5ff] flex items-center justify-center gap-2;
-  }
+}
+
+body {
+  @apply bg-white text-slate-600 font-sans;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-display text-brand-dark;
 }

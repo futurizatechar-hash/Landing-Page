@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldIcon, MenuIcon, XIcon, ArrowRightIcon } from 'lucide-react';
-import iconLogo from '../assets/icon-logo.png';
+import { MenuIcon, XIcon, ArrowRightIcon } from 'lucide-react';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,34 +16,33 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Soluciones', href: '#soluciones' },
-    { name: 'Trayectoria', href: '#trayectoria' },
-    { name: 'Casos de Éxito', href: '#casos' },
+    { name: 'Sobre Nosotros', href: '#sobre-nosotros' },
+    { name: 'Escalabilidad', href: '#escalabilidad' },
+    { name: 'Metodología', href: '#metodologia' },
   ];
 
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-[#070b14]/80 backdrop-blur-md border-b border-white/10 py-3' : 'bg-transparent py-5'
+        isScrolled ? 'bg-white/80 backdrop-blur-md border-b border-slate-100 py-3 shadow-sm' : 'bg-transparent py-5'
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex items-center gap-2"
+          className="flex items-center"
         >
-          <img 
-            src={iconLogo} 
-            alt="Futuriza Logo" 
-            className="h-8 w-8 object-contain mr-2" 
-            width="32" 
-            height="32" 
-            loading="lazy" 
-            decoding="async"
-          />
-          <span className="text-2xl font-display font-bold text-white tracking-tighter">
-            FUTURIZA
-          </span>
+          {/* Logo */}
+          <a href="#" className="flex items-center justify-center transition-transform hover:scale-105">
+            <img 
+              src="/texto-logo-horizontal.png" 
+              alt="Futuriza Logo" 
+              className="h-10 md:h-12 object-contain" 
+              loading="lazy" 
+              decoding="async"
+            />
+          </a>
         </motion.div>
 
         {/* Desktop Nav */}
@@ -56,7 +54,7 @@ const Navbar = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="text-slate-400 hover:text-white transition-colors text-sm font-medium"
+              className="text-slate-600 hover:text-brand-accent transition-colors text-sm font-bold"
             >
               {link.name}
             </motion.a>
@@ -65,9 +63,9 @@ const Navbar = () => {
             href="#contacto"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="btn-primary flex items-center gap-2 text-sm py-2 px-5"
+            className="btn-primary flex items-center gap-2 text-sm py-2 px-6 !rounded-lg shadow-md"
           >
-            Auditoría Gratis <ArrowRightIcon className="w-4 h-4" />
+            Agendar Diagnóstico <ArrowRightIcon className="w-4 h-4" />
           </motion.a>
         </div>
 
@@ -75,7 +73,7 @@ const Navbar = () => {
         <div className="md:hidden">
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-white p-2"
+            className="text-brand-dark p-2"
           >
             {isMobileMenuOpen ? <XIcon /> : <MenuIcon />}
           </button>
@@ -89,7 +87,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-slate-900 border-b border-slate-800 overflow-hidden"
+            className="md:hidden bg-white border-b border-slate-100 overflow-hidden shadow-lg"
           >
             <div className="flex flex-col p-6 gap-4">
               {navLinks.map((link) => (
@@ -97,13 +95,13 @@ const Navbar = () => {
                   key={link.name} 
                   href={link.href} 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-slate-300 hover:text-cyan-400 font-medium"
+                  className="text-slate-600 hover:text-brand-accent font-bold"
                 >
                   {link.name}
                 </a>
               ))}
-              <a href="#contacto" onClick={() => setIsMobileMenuOpen(false)} className="btn-primary w-full flex items-center justify-center py-3">
-                Auditoría Gratis
+              <a href="#contacto" onClick={() => setIsMobileMenuOpen(false)} className="btn-primary w-full flex items-center justify-center py-3 mt-2 shadow-md">
+                Agendar Diagnóstico
               </a>
             </div>
           </motion.div>
