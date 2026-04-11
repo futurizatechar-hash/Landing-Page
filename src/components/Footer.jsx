@@ -1,5 +1,6 @@
 import React from 'react';
 import { MailIcon, MapPinIcon } from 'lucide-react';
+import logoVertical from '../assets/texto-logo-vertical.png';
 
 const Footer = () => {
   return (
@@ -11,7 +12,7 @@ const Footer = () => {
                {/* Vertical Logo */}
                <div className="flex items-center justify-start">
                   <img 
-                    src="/texto-logo-vertical.png" 
+                    src={logoVertical} 
                     alt="Futuriza Logo Vertical" 
                     className="h-24 object-contain" 
                     loading="lazy" 

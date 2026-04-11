@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MenuIcon, XIcon, ArrowRightIcon } from 'lucide-react';
+import logoHorizontal from '../assets/texto-logo-horizontal.png';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,7 +37,7 @@ const Navbar = () => {
           {/* Logo */}
           <a href="#" className="flex items-center justify-center transition-transform hover:scale-105">
             <img 
-              src="/texto-logo-horizontal.png" 
+              src={logoHorizontal} 
               alt="Futuriza Logo" 
               className="h-10 md:h-12 object-contain" 
               loading="eager" 
