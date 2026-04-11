@@ -39,8 +39,8 @@ const Navbar = () => {
               src="/texto-logo-horizontal.png" 
               alt="Futuriza Logo" 
               className="h-10 md:h-12 object-contain" 
-              loading="lazy" 
-              decoding="async"
+              loading="eager" 
+              fetchpriority="high"
             />
           </a>
         </motion.div>
