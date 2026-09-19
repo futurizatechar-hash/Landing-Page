@@ -45,17 +45,40 @@ const Navbar = () => {
   const handleNavClick = (e, href) => {
     if (href.startsWith('#') && href.length > 1) {
       e.preventDefault();
-      const element = document.getElementById(href.substring(1));
-      if (element) {
-        // Reducimos el offset para que el título de la sección quede más cerca del header
-        const offsetPosition = element.getBoundingClientRect().top + window.pageYOffset - 15;
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      const targetId = href.substring(1);
+
+      const doScroll = () => {
+        const element = document.getElementById(targetId);
+        if (element) {
+          const headerOffset = 75;
+          const elementPosition = element.getBoundingClientRect().top;
+          const currentScroll = window.pageYOffset || window.scrollY || document.documentElement.scrollTop;
+          const offsetPosition = elementPosition + currentScroll - headerOffset;
+
+          try {
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          } catch {
+            window.scrollTo(0, offsetPosition);
+          }
+        }
+      };
+
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+        // Pequeño retardo para que termine la transición del menú móvil
+        // y el navegador móvil (Safari iOS / Chrome) no aborte el scroll suave
+        setTimeout(doScroll, 180);
+      } else {
+        doScroll();
       }
     } else if (href === '#' || href === '') {
       e.preventDefault();
+      if (isMobileMenuOpen) setIsMobileMenuOpen(false);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    if (isMobileMenuOpen) setIsMobileMenuOpen(false);
   };
 
   return (
@@ -140,9 +163,10 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.15, ease: "easeInOut" }}
             className="lg:hidden bg-white border-b border-slate-100 overflow-hidden shadow-lg"
           >
-            <div className="flex flex-col p-6 gap-4">
+            <div className="flex flex-col p-6 gap-3">
               {navLinks.map((link) => {
                 const isActive = activeSection === link.href.substring(1);
                 return (
@@ -150,15 +174,15 @@ const Navbar = () => {
                     key={link.name} 
                     href={link.href} 
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className={`font-bold transition-all duration-300 block py-1.5 ${
-                      isActive ? 'text-brand-accent scale-105 pl-3 border-l-4 border-brand-accent drop-shadow-sm' : 'text-slate-600 hover:text-brand-accent pl-1'
+                    className={`font-bold transition-all duration-200 block py-2.5 px-3 rounded-lg text-base ${
+                      isActive ? 'text-brand-accent bg-brand-accent/5 border-l-4 border-brand-accent font-extrabold' : 'text-slate-700 hover:text-brand-accent hover:bg-slate-50'
                     }`}
                   >
                     {link.name}
                   </a>
                 );
               })}
-              <a href="#contacto" onClick={(e) => handleNavClick(e, '#contacto')} className="btn-primary w-full flex items-center justify-center py-3 mt-2 shadow-md">
+              <a href="#contacto" onClick={(e) => handleNavClick(e, '#contacto')} className="btn-primary w-full flex items-center justify-center py-3.5 mt-2 shadow-md">
                 Solicitar Diagnóstico
               </a>
             </div>
