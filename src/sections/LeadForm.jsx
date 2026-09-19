@@ -1,10 +1,24 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircleIcon, CoffeeIcon, FileTextIcon, LaptopIcon, LifeBuoyIcon, SendIcon, BuildingIcon, UserIcon, MailIcon, PhoneIcon, UsersIcon } from 'lucide-react';
+import { 
+  CheckCircleIcon, 
+  SendIcon, 
+  BuildingIcon, 
+  UserIcon, 
+  MailIcon, 
+  PhoneIcon, 
+  UsersIcon, 
+  CalendarIcon, 
+  MessageCircleIcon,
+  Loader2Icon,
+  AlertCircleIcon
+} from 'lucide-react';
 import { supabase } from '../supabaseClient';
 
 const LeadForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -15,26 +29,95 @@ const LeadForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    const leadData = {
+      name: formData.name.trim(),
+      company: formData.company.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+      teamSize: formData.teamSize
+    };
+
+    let supabaseSuccess = false;
+    let emailSuccess = false;
+
+    // 1. Intento primario con Supabase (con timeout de 4 segundos para no bloquear si está pausado)
     try {
-      const { error } = await supabase
+      const supabasePromise = supabase
         .from('leads_futuriza')
         .insert([
           {
-            nombre: formData.name.trim().toUpperCase(),
-            telefono: formData.phone.trim(),
-            empresa: formData.company.trim().toUpperCase(),
-            email: formData.email.trim().toLowerCase(),
+            nombre: leadData.name.toUpperCase(),
+            telefono: leadData.phone,
+            empresa: leadData.company.toUpperCase(),
+            email: leadData.email.toLowerCase(),
             estado_embudo: 'nuevo',
-            resumen_chat: `[Lead Web] Tamaño de equipo/flota: ${formData.teamSize}`
+            resumen_chat: `[Lead Web] Tamaño de equipo/flota: ${leadData.teamSize}`
           }
         ]);
 
-      if (error) throw error;
-      
-      console.log('Lead almacenado exitosamente en leads_futuriza');
-      setIsSubmitted(true);
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Timeout en Supabase')), 4000)
+      );
+
+      const { error } = await Promise.race([supabasePromise, timeoutPromise]);
+      if (!error) {
+        supabaseSuccess = true;
+        console.log('Lead almacenado exitosamente en leads_futuriza');
+      } else {
+        console.warn('Supabase retornó error:', error.message);
+      }
     } catch (err) {
-      console.error('Error guardando lead en Supabase:', err.message);
+      console.warn('Fallo o timeout en Supabase:', err.message);
+    }
+
+    // 2. Doble respaldo por Email (FormSubmit hacia futuriza.tech.ar@gmail.com)
+    try {
+      const backupEndpoint = import.meta.env.VITE_BACKUP_EMAIL_ENDPOINT || 'https://formsubmit.co/ajax/futuriza.tech.ar@gmail.com';
+      const emailPromise = fetch(backupEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          "Nombre": leadData.name,
+          "Empresa": leadData.company,
+          "Email": leadData.email,
+          "WhatsApp": leadData.phone || 'No especificado',
+          "Tamaño de Equipo": leadData.teamSize,
+          "_subject": `Nuevo Lead Futuriza: ${leadData.company} (${leadData.name})`,
+          "_template": "table",
+          "_captcha": "false"
+        })
+      });
+
+      const emailTimeout = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Timeout en servicio de email')), 4500)
+      );
+
+      const response = await Promise.race([emailPromise, emailTimeout]);
+      if (response && response.ok) {
+        emailSuccess = true;
+        console.log('Respaldo de lead enviado por email con éxito');
+      } else {
+        console.warn('Respaldo por email no completado:', response?.status);
+      }
+    } catch (err) {
+      console.warn('Fallo al enviar correo de respaldo:', err.message);
+    }
+
+    setIsSubmitting(false);
+
+    // 3. Validación de entrega (si cualquiera de los dos tuvo éxito, el lead fue capturado)
+    if (supabaseSuccess || emailSuccess) {
+      setIsSubmitted(true);
+    } else {
+      setErrorMessage(
+        'Tuvimos una dificultad técnica momentánea para conectar con el servidor. Podés enviarnos tus datos ahora mismo por WhatsApp con un solo clic.'
+      );
     }
   };
 
@@ -42,89 +125,96 @@ const LeadForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const steps = [
-    {
-      icon: <CoffeeIcon className="w-8 h-8 text-brand-accent drop-shadow-sm" />,
-      title: "1. Entrevista de Descubrimiento",
-      desc: "Un café virtual para entender a fondo tus dolores operativos."
-    },
-    {
-      icon: <FileTextIcon className="w-8 h-8 text-brand-cyan drop-shadow-sm" />,
-      title: "2. Propuesta Objetiva",
-      desc: "Un plan de acción claro, con resultados medibles y sin letra chica."
-    },
-    {
-      icon: <LaptopIcon className="w-8 h-8 text-purple-500 drop-shadow-sm" />,
-      title: "3. Desarrollo Colaborativo",
-      desc: "Puertas abiertas. Ves crecer tu proyecto en tiempo real paso a paso."
-    },
-    {
-      icon: <LifeBuoyIcon className="w-8 h-8 text-blue-500 drop-shadow-sm" />,
-      title: "4. Soporte Incondicional",
-      desc: "No te entregamos código y desaparecemos. Te acompañamos siempre."
-    }
-  ];
-
   return (
-    <section id="metodologia" className="py-24 scroll-mt-20 relative overflow-hidden bg-slate-50 border-t border-slate-100">
+    <section id="contacto" className="py-20 md:py-28 scroll-mt-20 relative overflow-hidden bg-slate-50 border-t border-slate-100">
       {/* Background Decorative Element */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-cyan/5 blur-[150px] rounded-full -z-10" />
 
       <div className="container mx-auto px-6">
 
-        {/* Metodología */}
-        <div className="max-w-6xl mx-auto mb-20">
-          <div className="text-center mb-16">
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-5xl font-extrabold mb-4 text-brand-dark"
-            >
-              Nuestro Método: <span className="text-gradient">Transparencia Total</span>
-            </motion.h2>
-          </div>
+        {/* Encabezado del Bloque de Contacto */}
+        <div className="max-w-3xl mx-auto text-center mb-14">
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm mb-4"
+          >
+            <span className="text-xs font-bold text-brand-dark uppercase tracking-widest">
+              Contacto Directo
+            </span>
+          </motion.div>
 
-          <div className="grid md:grid-cols-4 gap-6">
-            {steps.map((step, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-white border border-slate-100 p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-shadow duration-300"
-              >
-                 <div className="w-16 h-16 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
-                    {step.icon}
-                 </div>
-                 <h4 className="text-xl font-extrabold text-brand-dark mb-3 leading-tight">{step.title}</h4>
-                 <p className="text-sm text-slate-600 font-medium leading-relaxed">{step.desc}</p>
-              </motion.div>
-            ))}
-          </div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-brand-dark mb-4 tracking-tight"
+          >
+            Hablemos de su Próximo <span className="text-gradient">Proyecto</span>
+          </motion.h2>
+
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-base sm:text-lg text-slate-600 leading-relaxed font-medium"
+          >
+            Coordinemos una conversación breve o envíenos sus datos. Evaluamos su caso y le respondemos en menos de 24 horas con una propuesta clara.
+          </motion.p>
         </div>
 
         {/* Formulario (Contacto / CTA) */}
-        <div id="contacto" className="max-w-5xl mx-auto bg-white rounded-3xl shadow-[0_20px_60px_rgb(0,0,0,0.08)] overflow-hidden border border-slate-100 flex flex-col md:flex-row scroll-mt-32">
+        <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-[0_20px_60px_rgb(0,0,0,0.08)] overflow-hidden border border-slate-100 flex flex-col md:flex-row">
           {/* Info Panel CTA */}
-          <div className="md:w-5/12 bg-brand-dark p-10 md:p-14 flex flex-col justify-center relative overflow-hidden">
+          <div className="md:w-5/12 bg-brand-dark p-10 md:p-12 flex flex-col justify-between relative overflow-hidden">
              {/* Decorative CTA bg */}
              <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-brand-dark via-brand-dark to-brand-accent/20 opacity-80" />
              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-cyan/20 blur-[80px] rounded-full" />
              
-             <div className="relative z-10">
-               <h2 className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight text-white tracking-tight">
-                 ¿Listo para llevar tu operatividad al <span className="text-brand-accent italic">próximo nivel?</span>
-               </h2>
-               <p className="text-white/80 text-base md:text-lg mb-0 leading-relaxed font-medium">
-                 Agendá una reunión sin cargo. Contanos tu desafío y descubrí cómo optimizamos tu empresa para escalar sin límites.
+             <div className="relative z-10 space-y-6">
+               <h3 className="text-2xl sm:text-3xl font-extrabold leading-tight text-white tracking-tight">
+                 ¿Listo para optimizar la gestión de su <span className="text-brand-accent italic">empresa?</span>
+               </h3>
+               <p className="text-white/80 text-sm sm:text-base leading-relaxed font-medium">
+                 Coordinamos una videollamada de 15 minutos sin compromiso. Analizamos la situación operativa de su negocio y le decimos con honestidad qué solución le conviene.
                </p>
+
+               <div className="space-y-3 pt-2">
+                 <p className="text-xs font-bold text-slate-300 uppercase tracking-widest">O contáctenos de forma directa:</p>
+                 <div className="flex flex-col gap-3">
+                   <a 
+                     href="https://calendly.com/futuriza-tech-ar" 
+                     target="_blank" 
+                     rel="noreferrer"
+                     className="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 py-3 px-5 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] text-sm"
+                   >
+                     <CalendarIcon size={18} className="text-brand-accent" />
+                     Agendar llamada por Calendly
+                   </a>
+                   <a 
+                     href="https://wa.me/5493518046223" 
+                     target="_blank" 
+                     rel="noreferrer"
+                     className="flex items-center justify-center gap-2 bg-[#25D366]/20 hover:bg-[#25D366]/30 text-white border border-[#25D366]/30 py-3 px-5 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] text-sm"
+                   >
+                     <MessageCircleIcon size={18} className="text-[#25D366]" />
+                     Consultar por WhatsApp
+                   </a>
+                 </div>
+               </div>
+             </div>
+
+             <div className="relative z-10 pt-8 border-t border-white/10 text-xs text-white/70 space-y-1.5 font-medium">
+               <p>✓ Diagnóstico inicial sin costo</p>
+               <p>✓ Presupuesto formal cerrado</p>
+               <p>✓ Respuesta en menos de 24 horas</p>
              </div>
           </div>
 
           {/* Form */}
-          <div className="md:w-7/12 p-10 md:p-14 relative bg-white">
+          <div className="md:w-7/12 p-10 md:p-12 relative bg-white">
             <AnimatePresence mode="wait">
               {!isSubmitted ? (
                 <motion.form 
@@ -146,7 +236,7 @@ const LeadForm = () => {
                           name="name" 
                           value={formData.name}
                           onChange={handleChange}
-                          placeholder="Tu nombre"
+                          placeholder="Ej: Carlos Gómez"
                           className="w-full bg-slate-50 border border-slate-200 focus:border-brand-accent focus:ring-1 focus:ring-brand-accent focus:bg-white rounded-xl py-3.5 pl-12 pr-4 text-brand-dark font-medium placeholder-slate-400 transition-all outline-none shadow-sm" 
                         />
                       </div>
@@ -161,7 +251,7 @@ const LeadForm = () => {
                             name="company" 
                             value={formData.company}
                             onChange={handleChange}
-                            placeholder="Nombre de la firma"
+                            placeholder="Nombre de su empresa"
                             className="w-full bg-slate-50 border border-slate-200 focus:border-brand-accent focus:ring-1 focus:ring-brand-accent focus:bg-white rounded-xl py-3.5 pl-12 pr-4 text-brand-dark font-medium placeholder-slate-400 transition-all outline-none shadow-sm" 
                           />
                        </div>
@@ -185,11 +275,12 @@ const LeadForm = () => {
                        </div>
                     </div>
                     <div className="space-y-2">
-                       <label className="text-xs font-extrabold text-slate-500 uppercase tracking-widest ml-1">WhatsApp</label>
+                       <label className="text-xs font-extrabold text-slate-500 uppercase tracking-widest ml-1">
+                         WhatsApp <span className="text-slate-400 font-normal lowercase tracking-normal text-[11px]">(opcional)</span>
+                       </label>
                        <div className="relative">
                           <PhoneIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
                           <input 
-                            required
                             type="tel" 
                             name="phone" 
                             value={formData.phone}
@@ -222,11 +313,47 @@ const LeadForm = () => {
                     </div>
                   </div>
 
+                  {errorMessage && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-sm space-y-3"
+                    >
+                      <div className="flex items-start gap-3">
+                        <AlertCircleIcon className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                        <p className="font-medium">{errorMessage}</p>
+                      </div>
+                      <a
+                        href={`https://wa.me/5493518046223?text=${encodeURIComponent(
+                          `Hola equipo de Futuriza, intenté agendar mi entrevista desde la web:\n- Nombre: ${formData.name}\n- Empresa: ${formData.company}\n- Email: ${formData.email}\n- Teléfono: ${formData.phone || 'No especificado'}\n- Equipo: ${formData.teamSize}`
+                        )}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold transition-all shadow-sm"
+                      >
+                        <MessageCircleIcon className="w-5 h-5" />
+                        Enviar consulta directa por WhatsApp
+                      </a>
+                    </motion.div>
+                  )}
+
                   <button 
                     type="submit"
-                    className="btn-primary w-full py-4 text-lg mt-6 shadow-lg shadow-brand-accent/20"
+                    disabled={isSubmitting}
+                    className={`btn-primary w-full py-4 text-lg mt-6 shadow-lg shadow-brand-accent/20 transition-all ${
+                      isSubmitting ? 'opacity-80 cursor-not-allowed scale-[0.99]' : 'hover:scale-[1.01]'
+                    }`}
                   >
-                    Agendar mi Entrevista Ahora <SendIcon className="w-5 h-5 ml-2" />
+                    {isSubmitting ? (
+                      <>
+                        <Loader2Icon className="w-5 h-5 animate-spin mr-2" />
+                        Enviando solicitud...
+                      </>
+                    ) : (
+                      <>
+                        Solicitar Diagnóstico sin Cargo <SendIcon className="w-5 h-5 ml-2" />
+                      </>
+                    )}
                   </button>
                 </motion.form>
               ) : (
@@ -236,18 +363,18 @@ const LeadForm = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   className="h-full flex flex-col items-center justify-center text-center py-10"
                 >
-                  <div className="w-24 h-24 bg-[#00e5ff]/10 rounded-full flex items-center justify-center mb-6 shadow-sm border border-[#00e5ff]/20">
-                    <CheckCircleIcon className="text-[#00e5ff] w-12 h-12" />
+                  <div className="w-20 h-20 bg-brand-cyan/10 rounded-full flex items-center justify-center mb-6 shadow-sm border border-brand-cyan/20">
+                    <CheckCircleIcon className="text-brand-cyan w-10 h-10" />
                   </div>
-                  <h3 className="text-3xl font-extrabold mb-4 text-brand-dark">¡Diagnóstico Solicitado!</h3>
-                  <p className="text-slate-600 max-w-sm mb-8 font-medium">
-                    Gracias por confiar en Futuriza. Nos pondremos en contacto contigo a la brevedad para agendar la reunión.
+                  <h3 className="text-2xl sm:text-3xl font-extrabold mb-3 text-brand-dark">¡Solicitud Recibida!</h3>
+                  <p className="text-slate-600 max-w-sm mb-8 font-medium text-sm leading-relaxed">
+                    Gracias por comunicarse con Futuriza. Un especialista de nuestro equipo se pondrá en contacto a la brevedad para coordinar la reunión.
                   </p>
                   <button 
                     onClick={() => setIsSubmitted(false)}
-                    className="text-brand-accent font-bold hover:underline"
+                    className="text-brand-accent font-bold hover:underline text-sm"
                   >
-                    Enviar otra consulta
+                    Enviar otra solicitud
                   </button>
                 </motion.div>
               )}

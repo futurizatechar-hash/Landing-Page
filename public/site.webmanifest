@@ -1,0 +1,17 @@
+{
+  "name": "FuturizaTech - Software a Medida y Agentes de IA",
+  "short_name": "Futuriza",
+  "description": "Desarrollamos software a medida, automatizaciones y agentes de IA para empresas B2B.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A192F",
+  "theme_color": "#0A192F",
+  "icons": [
+    {
+      "src": "/src/assets/favicon.webp",
+      "sizes": "192x192 512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ]
+}

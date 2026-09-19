@@ -13,22 +13,23 @@ const Footer = () => {
                <div className="flex items-center justify-start">
                   <img 
                     src={logoVertical} 
-                    alt="Futuriza Logo Vertical" 
+                    alt="FuturizaTech - Tu Socio Tecnológico B2B en Córdoba Argentina" 
                     className="h-24 object-contain" 
                     loading="lazy" 
                     decoding="async"
                   />
                </div>
             </div>
-            <p className="text-slate-600 max-w-sm leading-relaxed">
-              Tu socio tecnológico B2B. Llevamos soluciones corporativas, integraciones e Inteligencia Artificial de Córdoba para el mundo.
+            <p className="text-slate-600 max-w-sm leading-relaxed text-sm font-medium">
+              Ingeniería de software, sistemas de gestión a medida y automatizaciones para empresas. Soluciones robustas y medibles para Latinoamérica.
             </p>
             <div className="flex gap-4 mt-6">
               <a 
                 href="https://www.instagram.com/futurizatech" 
                 target="_blank" 
-                rel="noopener noreferrer"
+                rel="noopener noreferrer" 
                 title="Instagram"
+                aria-label="Instagram de FuturizaTech"
                 className="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center text-brand-dark hover:text-white hover:bg-brand-accent hover:border-brand-accent transition-all border border-slate-200"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
@@ -36,15 +37,17 @@ const Footer = () => {
               <a 
                 href="https://wa.me/5493518046223" 
                 target="_blank" 
-                rel="noopener noreferrer"
+                rel="noopener noreferrer" 
                 title="WhatsApp Directo"
+                aria-label="Contactar por WhatsApp"
                 className="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center text-brand-dark hover:text-white hover:bg-brand-accent hover:border-brand-accent transition-all border border-slate-200"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
               </a>
               <a 
-                href="mailto:info@futuriza.com" 
+                href="mailto:info@futurizatech.com" 
                 title="Email Corporativo"
+                aria-label="Enviar Email Corporativo"
                 className="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center text-brand-dark hover:text-white hover:bg-brand-accent hover:border-brand-accent transition-all border border-slate-200"
               >
                 <MailIcon className="w-5 h-5" />
@@ -53,26 +56,26 @@ const Footer = () => {
           </div>
 
           <div className="space-y-6">
-            <h4 className="text-sm font-bold text-brand-dark uppercase tracking-widest">Empresa</h4>
-            <ul className="space-y-4">
-              <li><a href="#soluciones" className="text-slate-600 hover:text-brand-accent font-semibold text-sm transition-colors">Servicios</a></li>
-              <li><a href="#sobre-nosotros" className="text-slate-600 hover:text-brand-accent font-semibold text-sm transition-colors">Sobre Nosotros</a></li>
-              <li><a href="#escalabilidad" className="text-slate-600 hover:text-brand-accent font-semibold text-sm transition-colors">Escalabilidad</a></li>
-              <li><a href="#metodologia" className="text-slate-600 hover:text-brand-accent font-semibold text-sm transition-colors">Metodología</a></li>
+            <h4 className="text-sm font-bold text-brand-dark uppercase tracking-widest">Navegación</h4>
+            <ul className="space-y-3">
+              <li><a href="#soluciones" className="text-slate-600 hover:text-brand-accent font-medium text-sm transition-colors">Servicios Principales</a></li>
+              <li><a href="#portfolio" className="text-slate-600 hover:text-brand-accent font-medium text-sm transition-colors">Sistemas en Producción</a></li>
+              <li><a href="#faq" className="text-slate-600 hover:text-brand-accent font-medium text-sm transition-colors">Preguntas Frecuentes</a></li>
+              <li><a href="#contacto" className="text-slate-600 hover:text-brand-accent font-medium text-sm transition-colors">Solicitar Diagnóstico</a></li>
             </ul>
           </div>
 
           <div className="space-y-6">
             <h4 className="text-sm font-bold text-brand-dark uppercase tracking-widest">Sede Central</h4>
             <div className="flex gap-3 text-slate-600">
-               <MapPinIcon className="w-5 h-5 text-brand-accent shrink-0" />
+               <MapPinIcon className="w-5 h-5 text-brand-accent shrink-0 mt-0.5" />
                <p className="text-sm leading-relaxed font-semibold">
                  Córdoba, Argentina<br />
-                 Hub Tecnológico para el mundo
+                 Atención remota para toda Latinoamérica
                </p>
             </div>
-            <p className="text-xs text-brand-cyan font-bold italic">
-               "Democratizando la eficiencia corporativa."
+            <p className="text-xs text-brand-accent font-bold">
+               Tecnología diseñada para la rentabilidad de su negocio.
             </p>
           </div>
         </div>

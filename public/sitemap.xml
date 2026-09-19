@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://futurizatech.com/</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-09-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://futurizatech.com/og-image.png</image:loc>
+      <image:title>Futuriza - Software a Medida, Automatizaciones y Agentes de IA</image:title>
+      <image:caption>Soluciones tecnológicas empresariales B2B por FuturizaTech Córdoba Argentina</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://futurizatech.com/texto-solo.webp</image:loc>
+      <image:title>Logo Oficial FuturizaTech</image:title>
+      <image:caption>Futuriza Tu Socio Tecnológico B2B</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://futurizatech.com/privacidad.html</loc>
-    <lastmod>2026-04-09</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-09-07T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
   </url>
   <url>
     <loc>https://futurizatech.com/terminos.html</loc>
-    <lastmod>2026-04-09</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-09-07T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

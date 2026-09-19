@@ -1,4 +1,29 @@
+# Robots.txt para FuturizaTech (https://futurizatech.com)
+# Configuración avanzada de rastreo e indexación para motores tradicionales y de Inteligencia Artificial
+
 User-agent: *
 Allow: /
+Disallow: /build_error.log
+Disallow: /vite_debug.log
 
+# Rastreadores principales de motores de búsqueda
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Bingbot
+User-agent: Applebot
+User-agent: DuckDuckBot
+User-agent: YandexBot
+Allow: /
+
+# Rastreadores de Inteligencia Artificial y Búsqueda Semántica (GEO)
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: ClaudeBot
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: Cohere-ai
+Allow: /
+
+# Ubicación del Sitemap Canónico
 Sitemap: https://futurizatech.com/sitemap.xml

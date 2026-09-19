@@ -37,10 +37,9 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Soluciones', href: '#soluciones' },
-    { name: 'Sobre Nosotros', href: '#sobre-nosotros' },
-    { name: 'Escalabilidad', href: '#escalabilidad' },
-    { name: 'Metodología', href: '#metodologia' },
+    { name: 'Servicios', href: '#soluciones' },
+    { name: 'Casos Reales', href: '#portfolio' },
+    { name: 'Preguntas Frecuentes', href: '#faq' },
   ];
 
   const handleNavClick = (e, href) => {
@@ -48,7 +47,8 @@ const Navbar = () => {
       e.preventDefault();
       const element = document.getElementById(href.substring(1));
       if (element) {
-        const offsetPosition = element.getBoundingClientRect().top + window.pageYOffset - 76;
+        // Reducimos el offset para que el título de la sección quede más cerca del header
+        const offsetPosition = element.getBoundingClientRect().top + window.pageYOffset - 15;
         window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
       }
     } else if (href === '#' || href === '') {
@@ -74,16 +74,16 @@ const Navbar = () => {
           <a href="#" onClick={(e) => handleNavClick(e, '#')} className="flex items-center justify-center transition-transform hover:scale-105">
             <img 
               src={logoHorizontal} 
-              alt="Futuriza Logo" 
+              alt="Futuriza - Software a Medida, Automatizaciones y Agentes de IA" 
               className="h-10 md:h-12 object-contain" 
               loading="eager" 
-              fetchpriority="high"
+              fetchPriority="high"
             />
           </a>
         </motion.div>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-6 xl:gap-8">
           {navLinks.map((link, i) => {
             const isActive = activeSection === link.href.substring(1);
             return (
@@ -94,7 +94,7 @@ const Navbar = () => {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className={`relative text-sm font-bold transition-all duration-300 ${
+                className={`relative text-sm font-bold whitespace-nowrap transition-all duration-300 ${
                   isActive ? 'text-brand-accent scale-105 drop-shadow-sm' : 'text-slate-600 hover:text-brand-accent'
                 }`}
               >
@@ -116,29 +116,31 @@ const Navbar = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="btn-primary flex items-center gap-2 text-sm py-2 px-6 !rounded-lg shadow-md"
           >
-            Agendar Diagnóstico <ArrowRightIcon className="w-4 h-4" />
+            Solicitar Diagnóstico <ArrowRightIcon className="w-4 h-4" />
           </motion.a>
         </div>
 
         {/* Mobile Toggle */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="text-brand-dark p-2"
+            aria-label="Abrir menú de navegación"
+            aria-expanded={isMobileMenuOpen}
           >
-            {isMobileMenuOpen ? <XIcon /> : <MenuIcon />}
+            {isMobileMenuOpen ? <XIcon size={24} /> : <MenuIcon size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Dropdown */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-slate-100 overflow-hidden shadow-lg"
+            className="lg:hidden bg-white border-b border-slate-100 overflow-hidden shadow-lg"
           >
             <div className="flex flex-col p-6 gap-4">
               {navLinks.map((link) => {
@@ -157,7 +159,7 @@ const Navbar = () => {
                 );
               })}
               <a href="#contacto" onClick={(e) => handleNavClick(e, '#contacto')} className="btn-primary w-full flex items-center justify-center py-3 mt-2 shadow-md">
-                Agendar Diagnóstico
+                Solicitar Diagnóstico
               </a>
             </div>
           </motion.div>

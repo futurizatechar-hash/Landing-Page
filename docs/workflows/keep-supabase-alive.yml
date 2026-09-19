@@ -1,0 +1,37 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    # Se ejecuta cada 2 días a las 11:00 UTC (8:00 AM Argentina)
+    - cron: '0 11 */2 * *'
+  workflow_dispatch: # Permite ejecución manual desde GitHub
+
+jobs:
+  ping-supabase:
+    name: Ping Supabase Postgres
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Query to Supabase via PostgREST
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL || 'https://hfiyrtnfhnzfcexmnubu.supabase.co' }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY || 'sb_publishable_VyCnuNBCv1s8ADixhllTJQ_CUrbTdHr' }}
+        run: |
+          echo "🚀 Ejecutando consulta activa a PostgreSQL en Supabase..."
+          
+          HTTP_STATUS=$(curl -s -o response.json -w "%{http_code}" \
+            -X GET "$SUPABASE_URL/rest/v1/leads_futuriza?select=id&limit=1" \
+            -H "apikey: $SUPABASE_ANON_KEY" \
+            -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
+            -H "Content-Type: application/json")
+          
+          echo "Código HTTP recibido: $HTTP_STATUS"
+          echo "Respuesta del servidor:"
+          cat response.json
+          echo ""
+
+          if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
+            echo "✅ Supabase está activo y la base de datos respondió correctamente."
+          else
+            echo "❌ Error al conectar con Supabase. Código HTTP: $HTTP_STATUS"
+            exit 1
+          fi

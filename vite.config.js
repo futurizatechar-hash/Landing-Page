@@ -6,9 +6,6 @@ export default defineConfig({
   plugins: [
     react(),
   ],
-  esbuild: {
-    jsxInject: `import React from 'react'`,
-  },
   build: {
     minify: 'terser',
     terserOptions: {
