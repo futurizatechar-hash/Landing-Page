@@ -9,7 +9,7 @@ export default {
       colors: {
         'brand-dark': '#0A192F', // Azul Futuriza
         'brand-light': '#FFFFFF', // Blanco Puro
-        'brand-accent': '#FF6B35', // Naranja Cordobés
+        'brand-accent': '#C2410C', // Naranja de Alto Contraste (WCAG AA 5.3:1)
         'brand-cyan': '#00E5FF', // Cian Eléctrico
       },
       boxShadow: {

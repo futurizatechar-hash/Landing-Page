@@ -98,7 +98,9 @@ const Navbar = () => {
             <img 
               src={logoHorizontal} 
               alt="Futuriza - Software a Medida, Automatizaciones y Agentes de IA" 
-              className="h-10 md:h-12 object-contain" 
+              className="h-10 md:h-12 w-auto object-contain" 
+              width="180"
+              height="48"
               loading="eager" 
               fetchPriority="high"
             />

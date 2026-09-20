@@ -9,12 +9,7 @@ const Hero = () => {
       <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-b from-brand-cyan/10 via-brand-accent/5 to-transparent blur-[140px] rounded-full -z-10 pointer-events-none" />
 
       <div className="container mx-auto px-6 max-w-5xl text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="space-y-6 md:space-y-8"
-        >
+        <div className="space-y-6 md:space-y-8">
           {/* Minimalist Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200/80 shadow-sm">
             <span className="flex h-2 w-2 rounded-full bg-brand-accent animate-pulse" />
@@ -64,7 +59,7 @@ const Hero = () => {
               <span>Financiacion propia con opciones de pago</span>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

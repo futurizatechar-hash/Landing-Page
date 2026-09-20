@@ -2,13 +2,16 @@
 
 > Tu Socio Tecnológico B2B. Transformamos la complejidad operativa de las empresas en eficiencia digital mediante software a medida, automatizaciones avanzadas y agentes de Inteligencia Artificial 24/7.
 
-- **Sitio Web Oficial**: https://futurizatech.com
-- **Sede Central**: Córdoba, Argentina (Hub Tecnológico para el mundo).
-- **Contacto Comercial / Diagnóstico**: https://calendly.com/futuriza-tech-ar
-- **WhatsApp Oficial**: +54 9 351 804 6223
-- **Email**: info@futuriza.com
-- **Instagram**: https://www.instagram.com/futurizatech
-- **GitHub**: https://github.com/futurizatechar-hash
+## Enlaces Principales
+- [Sitio Web Oficial](https://futurizatech.com)
+- [Soluciones y Servicios de Software](https://futurizatech.com/#soluciones)
+- [Portfolio y Casos Reales de Producción](https://futurizatech.com/#portfolio)
+- [Preguntas Frecuentes](https://futurizatech.com/#faq)
+- [Solicitar Diagnóstico sin Cargo](https://futurizatech.com/#contacto)
+- [Agendar llamada por Calendly](https://calendly.com/futuriza-tech-ar)
+- [WhatsApp Oficial](https://wa.me/5493518046223)
+- [Instagram](https://www.instagram.com/futurizatech)
+- [GitHub Oficial](https://github.com/futurizatechar-hash)
 
 ## Servicios Core
 

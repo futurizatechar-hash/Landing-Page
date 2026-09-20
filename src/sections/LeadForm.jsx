@@ -13,7 +13,7 @@ import {
   Loader2Icon,
   AlertCircleIcon
 } from 'lucide-react';
-import { supabase } from '../supabaseClient';
+import { getSupabase } from '../supabaseClient';
 
 const LeadForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -45,6 +45,7 @@ const LeadForm = () => {
 
     // 1. Intento primario con Supabase (con timeout de 4 segundos para no bloquear si está pausado)
     try {
+      const supabase = await getSupabase();
       const supabasePromise = supabase
         .from('leads_futuriza')
         .insert([
@@ -275,9 +276,9 @@ const LeadForm = () => {
                        </div>
                     </div>
                     <div className="space-y-2">
-                       <label className="text-xs font-extrabold text-slate-500 uppercase tracking-widest ml-1">
-                         WhatsApp <span className="text-slate-400 font-normal lowercase tracking-normal text-[11px]">(opcional)</span>
-                       </label>
+                        <label htmlFor="phone" className="text-xs font-extrabold text-slate-500 uppercase tracking-widest ml-1">
+                          WhatsApp <span className="text-slate-600 font-medium lowercase tracking-normal text-[11px]">(opcional)</span>
+                        </label>
                        <div className="relative">
                           <PhoneIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
                           <input 
@@ -293,12 +294,14 @@ const LeadForm = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-xs font-extrabold text-slate-500 uppercase tracking-widest ml-1">Tamaño de Equipo / Flota</label>
+                    <label htmlFor="teamSize" className="text-xs font-extrabold text-slate-500 uppercase tracking-widest ml-1">Tamaño de Equipo / Flota</label>
                     <div className="relative">
                        <UsersIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
                        <select 
+                        id="teamSize"
                         required
                         name="teamSize"
+                        aria-label="Tamaño de Equipo o Flota"
                         value={formData.teamSize}
                         onChange={handleChange}
                         className="w-full bg-slate-50 border border-slate-200 focus:border-brand-accent focus:ring-1 focus:ring-brand-accent focus:bg-white rounded-xl py-3.5 pl-12 pr-4 text-brand-dark font-medium appearance-none transition-all outline-none cursor-pointer shadow-sm"
