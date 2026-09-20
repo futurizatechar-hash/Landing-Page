@@ -32,43 +32,66 @@ const LeadForm = () => {
     setIsSubmitting(true);
     setErrorMessage(null);
 
+    const cleanPhone = formData.phone.trim();
+    const phoneValue = cleanPhone.length > 0 ? cleanPhone : null;
+
     const leadData = {
       name: formData.name.trim(),
       company: formData.company.trim(),
       email: formData.email.trim(),
-      phone: formData.phone.trim(),
+      phone: phoneValue,
       teamSize: formData.teamSize
     };
 
     let supabaseSuccess = false;
     let emailSuccess = false;
 
-    // 1. Intento primario con Supabase (con timeout de 4 segundos para no bloquear si está pausado)
+    // 1. Intento primario con Supabase (con timeout de 6 segundos)
     try {
       const supabase = await getSupabase();
-      const supabasePromise = supabase
-        .from('leads_futuriza')
-        .insert([
-          {
-            nombre: leadData.name.toUpperCase(),
-            telefono: leadData.phone,
-            empresa: leadData.company.toUpperCase(),
-            email: leadData.email.toLowerCase(),
-            estado_embudo: 'nuevo',
-            resumen_chat: `[Lead Web] Tamaño de equipo/flota: ${leadData.teamSize}`
-          }
-        ]);
+      const payload = {
+        nombre: leadData.name.toUpperCase(),
+        telefono: leadData.phone,
+        empresa: leadData.company.toUpperCase(),
+        email: leadData.email.toLowerCase(),
+        estado_embudo: 'nuevo',
+        resumen_chat: `[Lead Web] Tamaño de equipo/flota: ${leadData.teamSize}`
+      };
+
+      let supabaseOp;
+      if (leadData.phone) {
+        // Usamos upsert para evitar error 23505 si el teléfono ya existe en el CRM
+        supabaseOp = supabase
+          .from('leads_futuriza')
+          .upsert([payload], { onConflict: 'telefono' });
+      } else {
+        // Si no se proporcionó teléfono (null), insert directo
+        supabaseOp = supabase
+          .from('leads_futuriza')
+          .insert([payload]);
+      }
 
       const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error('Timeout en Supabase')), 4000)
+        setTimeout(() => reject(new Error('Timeout en Supabase')), 6000)
       );
 
-      const { error } = await Promise.race([supabasePromise, timeoutPromise]);
+      const { error } = await Promise.race([supabaseOp, timeoutPromise]);
       if (!error) {
         supabaseSuccess = true;
         console.log('Lead almacenado exitosamente en leads_futuriza');
       } else {
         console.warn('Supabase retornó error:', error.message);
+        // Si aún así ocurriera conflicto de clave, intentamos actualización
+        if (error.code === '23505' && leadData.phone) {
+          const { error: updateError } = await supabase
+            .from('leads_futuriza')
+            .update(payload)
+            .eq('telefono', leadData.phone);
+          if (!updateError) {
+            supabaseSuccess = true;
+            console.log('Lead actualizado exitosamente en leads_futuriza');
+          }
+        }
       }
     } catch (err) {
       console.warn('Fallo o timeout en Supabase:', err.message);
