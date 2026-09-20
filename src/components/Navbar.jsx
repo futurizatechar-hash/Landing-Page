@@ -151,9 +151,10 @@ const Navbar = () => {
                 {link.name}
                 {isActive && (
                   <m.div
-                    layoutId="desktop-nav-underline"
-                    className="absolute -bottom-1.5 left-0 right-0 h-[2.5px] bg-brand-accent rounded-t-full shadow-[0_2px_8px_rgba(255,87,34,0.5)]"
-                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    initial={{ opacity: 0, scaleX: 0.5 }}
+                    animate={{ opacity: 1, scaleX: 1 }}
+                    className="absolute -bottom-1.5 left-0 right-0 h-[2.5px] bg-brand-accent rounded-t-full shadow-[0_2px_8px_rgba(255,87,34,0.5)] origin-center"
+                    transition={{ duration: 0.2 }}
                   />
                 )}
               </m.a>

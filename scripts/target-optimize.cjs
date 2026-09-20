@@ -20,7 +20,7 @@ async function targetOptimize(inputPath, maxWidth, quality) {
 }
 
 async function main() {
-  await targetOptimize('public/logo-horizontal.webp', 280, 80);
+  await targetOptimize('public/logo-horizontal.webp', 180, 80);
   await targetOptimize('public/projects/spartan/spartan-app.webp', 230, 80);
   await targetOptimize('public/projects/spartan/spartan-web.webp', 600, 80);
 }
