@@ -14,7 +14,9 @@ const Footer = () => {
                   <img 
                     src={logoVertical} 
                     alt="FuturizaTech - Tu Socio Tecnológico B2B en Córdoba Argentina" 
-                    className="h-24 object-contain" 
+                    className="h-24 w-auto object-contain" 
+                    width="128"
+                    height="96"
                     loading="lazy" 
                     decoding="async"
                   />

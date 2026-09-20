@@ -8,32 +8,58 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
 
+  // Lightweight scroll listener — only checks scrollY, no layout queries
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-
-      // Accurate Scroll Spy
-      const scrollPosition = window.scrollY + 120; // safe scanning offset
-      const sections = document.querySelectorAll('section[id], div[id="contacto"]');
-      let current = '';
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const sectionTop = rect.top + window.scrollY;
-        const sectionHeight = section.offsetHeight;
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          current = section.getAttribute('id');
-        }
-      });
-      // Highlight end of page
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
-        current = 'contacto';
-      }
-      setActiveSection((prev) => current || prev);
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // IntersectionObserver-based scroll spy — zero layout thrashing
+  useEffect(() => {
+    const sectionIds = ['soluciones', 'portfolio', 'faq', 'contacto'];
+    const visibleSections = new Map();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.getAttribute('id');
+          if (entry.isIntersecting) {
+            visibleSections.set(id, entry.intersectionRatio);
+          } else {
+            visibleSections.delete(id);
+          }
+        });
+
+        // Pick the section with the highest visibility
+        let best = '';
+        let bestRatio = 0;
+        visibleSections.forEach((ratio, id) => {
+          if (ratio > bestRatio) {
+            bestRatio = ratio;
+            best = id;
+          }
+        });
+
+        if (best) {
+          setActiveSection(best);
+        }
+      },
+      {
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   const navLinks = [

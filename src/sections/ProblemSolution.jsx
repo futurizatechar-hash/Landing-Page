@@ -48,7 +48,7 @@ const ProblemSolution = () => {
 
         {/* Encabezado Conciso */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-3.5 py-1.5 rounded-full inline-block mb-3">
+          <span className="text-xs font-bold uppercase tracking-widest text-orange-800 bg-brand-accent/10 px-3.5 py-1.5 rounded-full inline-block mb-3">
             Servicios Principales
           </span>
           <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-brand-dark tracking-tight mb-3">
