@@ -1,14 +1,12 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 import { LazyMotion, domAnimation } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './sections/Hero';
-
-// Lazy load everything below the fold to eliminate unused JS on initial load
-const ProblemSolution = lazy(() => import('./sections/ProblemSolution'));
-const Portfolio = lazy(() => import('./sections/Portfolio'));
-const FAQ = lazy(() => import('./sections/FAQ'));
-const LeadForm = lazy(() => import('./sections/LeadForm'));
-const Footer = lazy(() => import('./components/Footer'));
+import ProblemSolution from './sections/ProblemSolution';
+import Portfolio from './sections/Portfolio';
+import FAQ from './sections/FAQ';
+import LeadForm from './sections/LeadForm';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -17,16 +15,12 @@ function App() {
         <Navbar />
         <main>
           <Hero />
-          <Suspense fallback={<div className="min-h-[100px]" />}>
-            <ProblemSolution />
-            <Portfolio />
-            <FAQ />
-            <LeadForm />
-          </Suspense>
+          <ProblemSolution />
+          <Portfolio />
+          <FAQ />
+          <LeadForm />
         </main>
-        <Suspense fallback={<div />}>
-          <Footer />
-        </Suspense>
+        <Footer />
       </div>
     </LazyMotion>
   );

@@ -81,9 +81,6 @@ try {
         ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(function(e) {
           window.addEventListener(e, hydrate, { passive: true, once: true });
         });
-        
-        // Fallback: load after 6 seconds if no interaction
-        setTimeout(hydrate, 6000);
       })();
     </script>`;
     
