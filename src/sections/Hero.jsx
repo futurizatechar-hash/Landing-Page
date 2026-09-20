@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowRightIcon, CheckCircle2Icon, ShieldCheckIcon, SparklesIcon } from 'lucide-react';
 
 const Hero = () => {

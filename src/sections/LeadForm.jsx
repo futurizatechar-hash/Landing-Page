@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { 
   CheckCircleIcon, 
   SendIcon, 
@@ -135,7 +135,7 @@ const LeadForm = () => {
 
         {/* Encabezado del Bloque de Contacto */}
         <div className="max-w-3xl mx-auto text-center mb-14">
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -144,18 +144,18 @@ const LeadForm = () => {
             <span className="text-xs font-bold text-brand-dark uppercase tracking-widest">
               Contacto Directo
             </span>
-          </motion.div>
+          </m.div>
 
-          <motion.h2 
+          <m.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-brand-dark mb-4 tracking-tight"
           >
             Hablemos de su Próximo <span className="text-gradient">Proyecto</span>
-          </motion.h2>
+          </m.h2>
 
-          <motion.p 
+          <m.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -163,7 +163,7 @@ const LeadForm = () => {
             className="text-base sm:text-lg text-slate-600 leading-relaxed font-medium"
           >
             Coordinemos una conversación breve o envíenos sus datos. Evaluamos su caso y le respondemos en menos de 24 horas con una propuesta clara.
-          </motion.p>
+          </m.p>
         </div>
 
         {/* Formulario (Contacto / CTA) */}
@@ -218,7 +218,7 @@ const LeadForm = () => {
           <div className="md:w-7/12 p-10 md:p-12 relative bg-white">
             <AnimatePresence mode="wait">
               {!isSubmitted ? (
-                <motion.form 
+                <m.form 
                   key="form"
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -317,7 +317,7 @@ const LeadForm = () => {
                   </div>
 
                   {errorMessage && (
-                    <motion.div 
+                    <m.div 
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-sm space-y-3"
@@ -337,7 +337,7 @@ const LeadForm = () => {
                         <MessageCircleIcon className="w-5 h-5" />
                         Enviar consulta directa por WhatsApp
                       </a>
-                    </motion.div>
+                    </m.div>
                   )}
 
                   <button 
@@ -358,9 +358,9 @@ const LeadForm = () => {
                       </>
                     )}
                   </button>
-                </motion.form>
+                </m.form>
               ) : (
-                <motion.div 
+                <m.div 
                   key="success"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -379,7 +379,7 @@ const LeadForm = () => {
                   >
                     Enviar otra solicitud
                   </button>
-                </motion.div>
+                </m.div>
               )}
             </AnimatePresence>
           </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { DatabaseIcon, ZapIcon, BotIcon, CheckCircle2Icon } from 'lucide-react';
 
 const ProblemSolution = () => {
@@ -62,7 +62,7 @@ const ProblemSolution = () => {
         {/* 3 Tarjetas Minimalistas */}
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8 items-stretch mb-10">
           {services.map((srv, idx) => (
-            <motion.div
+            <m.div
               key={idx}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -97,7 +97,7 @@ const ProblemSolution = () => {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 

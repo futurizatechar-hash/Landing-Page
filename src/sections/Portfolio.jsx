@@ -1,5 +1,5 @@
 import React, { useState, Suspense, lazy } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { PORTFOLIO_PROJECTS } from '../constants/projects';
 import { ExternalLink, Lock } from 'lucide-react';
 
@@ -31,7 +31,7 @@ export default function Portfolio() {
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {PORTFOLIO_PROJECTS.map((project, index) => (
-            <motion.div
+            <m.div
               key={project.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -114,7 +114,7 @@ export default function Portfolio() {
                   </span>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

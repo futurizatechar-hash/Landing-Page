@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { MenuIcon, XIcon, ArrowRightIcon } from 'lucide-react';
-import logoHorizontal from '../assets/texto-logo-horizontal.webp';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -114,7 +113,7 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center"
@@ -122,7 +121,7 @@ const Navbar = () => {
           {/* Logo */}
           <a href="#" onClick={(e) => handleNavClick(e, '#')} className="flex items-center justify-center transition-transform hover:scale-105">
             <img 
-              src={logoHorizontal} 
+              src="/logo-horizontal.webp" 
               alt="Futuriza - Software a Medida, Automatizaciones y Agentes de IA" 
               className="h-10 md:h-12 w-auto object-contain" 
               width="180"
@@ -131,14 +130,14 @@ const Navbar = () => {
               fetchPriority="high"
             />
           </a>
-        </motion.div>
+        </m.div>
 
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-6 xl:gap-8">
           {navLinks.map((link, i) => {
             const isActive = activeSection === link.href.substring(1);
             return (
-              <motion.a
+              <m.a
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
@@ -151,16 +150,16 @@ const Navbar = () => {
               >
                 {link.name}
                 {isActive && (
-                  <motion.div
+                  <m.div
                     layoutId="desktop-nav-underline"
                     className="absolute -bottom-1.5 left-0 right-0 h-[2.5px] bg-brand-accent rounded-t-full shadow-[0_2px_8px_rgba(255,87,34,0.5)]"
                     transition={{ type: "spring", stiffness: 350, damping: 30 }}
                   />
                 )}
-              </motion.a>
+              </m.a>
             );
           })}
-          <motion.a
+          <m.a
             href="#contacto"
             onClick={(e) => handleNavClick(e, '#contacto')}
             initial={{ opacity: 0, scale: 0.9 }}
@@ -168,7 +167,7 @@ const Navbar = () => {
             className="btn-primary flex items-center gap-2 text-sm py-2 px-6 !rounded-lg shadow-md"
           >
             Solicitar Diagnóstico <ArrowRightIcon className="w-4 h-4" />
-          </motion.a>
+          </m.a>
         </div>
 
         {/* Mobile Toggle */}
@@ -187,7 +186,7 @@ const Navbar = () => {
       {/* Mobile Menu Dropdown */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -214,7 +213,7 @@ const Navbar = () => {
                 Solicitar Diagnóstico
               </a>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </header>

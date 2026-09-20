@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { ChevronDown, HelpCircle, Sparkles } from 'lucide-react';
 
 const FAQ_DATA = [
@@ -44,16 +44,16 @@ export default function FAQ() {
 
       <div className="container mx-auto px-6 max-w-4xl relative z-10">
         <div className="text-center mb-16">
-          <motion.h2
+          <m.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-brand-dark mb-4 tracking-tight"
           >
             Preguntas <span className="text-gradient">Frecuentes</span>
-          </motion.h2>
+          </m.h2>
 
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -61,7 +61,7 @@ export default function FAQ() {
             className="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed font-medium"
           >
             Respuestas directas sobre cómo trabajamos, tiempos de entrega, presupuestos y garantías para su tranquilidad.
-          </motion.p>
+          </m.p>
         </div>
 
         {/* Accordion Container */}
@@ -69,7 +69,7 @@ export default function FAQ() {
           {FAQ_DATA.map((item, idx) => {
             const isOpen = openIndex === idx;
             return (
-              <motion.div
+              <m.div
                 key={idx}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -100,7 +100,7 @@ export default function FAQ() {
 
                 <AnimatePresence initial={false}>
                   {isOpen && (
-                    <motion.div
+                    <m.div
                       id={`faq-answer-${idx}`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
@@ -110,10 +110,10 @@ export default function FAQ() {
                       <div className="px-6 md:px-8 pb-6 pt-1 text-slate-600 leading-relaxed font-medium text-base border-t border-slate-200/50 mt-1">
                         {item.answer}
                       </div>
-                    </motion.div>
+                    </m.div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

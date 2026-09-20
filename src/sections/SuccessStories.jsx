@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { RocketIcon, TrendingUpIcon, ShieldCheckIcon } from 'lucide-react';
 
 const SuccessStories = () => {
@@ -31,35 +31,35 @@ const SuccessStories = () => {
     <section id="escalabilidad" className="py-24 scroll-mt-20 relative bg-white border-y border-slate-100/50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-20">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="inline-block px-4 py-1 bg-slate-50 border border-slate-200 rounded-full mb-6 font-bold text-xs uppercase tracking-widest text-slate-500 shadow-sm"
           >
             Escalabilidad Garantizada
-          </motion.div>
-          <motion.h2 
+          </m.div>
+          <m.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-3xl md:text-5xl font-extrabold mb-6 text-brand-dark tracking-tight"
           >
             Soluciones Ágiles para <span className="text-gradient">Cada Etapa</span>
-          </motion.h2>
-          <motion.p 
+          </m.h2>
+          <m.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-slate-600 max-w-2xl mx-auto text-lg leading-relaxed font-medium"
           >
             La tecnología no debe ser un club VIP. En Futuriza tenemos la capacidad para abarcar todo el espectro del mercado, desde proyectos de impacto inicial hasta arquitecturas corporativas robustas.
-          </motion.p>
+          </m.p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {levels.map((item, index) => (
-            <motion.div
+            <m.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -79,7 +79,7 @@ const SuccessStories = () => {
               <p className="text-slate-600 text-base leading-relaxed font-medium">
                 {item.description}
               </p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, Lock, Info } from 'lucide-react';
 
 export default function ProjectModal({ selectedProject, onClose }) {
@@ -12,7 +12,7 @@ export default function ProjectModal({ selectedProject, onClose }) {
     <>
       {/* Modal / Detalle del Proyecto */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -20,7 +20,7 @@ export default function ProjectModal({ selectedProject, onClose }) {
           className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
         />
         
-        <motion.div
+        <m.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -164,7 +164,7 @@ export default function ProjectModal({ selectedProject, onClose }) {
               </div>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Lightbox */}
@@ -174,7 +174,7 @@ export default function ProjectModal({ selectedProject, onClose }) {
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md p-4"
             onClick={() => setIsExpanded(false)}
           >
-            <motion.button 
+            <m.button 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -182,8 +182,8 @@ export default function ProjectModal({ selectedProject, onClose }) {
               className="absolute top-6 right-6 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors z-[110]"
             >
               <X size={24} />
-            </motion.button>
-            <motion.div
+            </m.button>
+            <m.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
@@ -199,7 +199,7 @@ export default function ProjectModal({ selectedProject, onClose }) {
                   setIsExpanded(false);
                 }}
               />
-            </motion.div>
+            </m.div>
           </div>
         )}
       </AnimatePresence>

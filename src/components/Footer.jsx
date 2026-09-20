@@ -1,6 +1,5 @@
 import React from 'react';
 import { MailIcon, MapPinIcon } from 'lucide-react';
-import logoVertical from '../assets/texto-logo-vertical.webp';
 
 const Footer = () => {
   return (
@@ -12,7 +11,7 @@ const Footer = () => {
                {/* Vertical Logo */}
                <div className="flex items-center justify-start">
                   <img 
-                    src={logoVertical} 
+                    src="/logo-vertical.webp" 
                     alt="FuturizaTech - Tu Socio Tecnológico B2B en Córdoba Argentina" 
                     className="h-24 w-auto object-contain" 
                     width="128"

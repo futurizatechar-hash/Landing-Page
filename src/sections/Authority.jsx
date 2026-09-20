@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { TargetIcon, LineChartIcon, MapPinIcon, BriefcaseIcon } from 'lucide-react';
 
 const Authority = () => {
@@ -11,7 +11,7 @@ const Authority = () => {
 
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row gap-16 items-center">
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -52,9 +52,9 @@ const Authority = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -72,7 +72,7 @@ const Authority = () => {
              </div>
              {/* Decorative Frame */}
              <div className="absolute inset-0 bg-gradient-to-tr from-brand-accent/20 to-brand-cyan/20 blur-3xl -z-10 translate-x-6 translate-y-6" />
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>
