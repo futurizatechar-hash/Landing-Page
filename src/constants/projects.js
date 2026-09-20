@@ -6,10 +6,10 @@ export const PORTFOLIO_PROJECTS = [
     status: "En Desarrollo",
     is_private: true,
     image: "/projects/spartan/spartan-app.webp",
-    description: "Aplicación móvil PWA para socios del gimnasio con interacción integral mediante IA, desde el completado guiado de la ficha médica inicial hasta la creación de planes de entrenamiento y nutrición personalizados. Cuenta con e-commerce integrado y pasarela de pagos para abonar membresías y productos, sistema de gamificación con puntos canjeables por premios, avisos de clases especiales y promociones exclusivas, videoteca de ejercicios, control de acceso por QR, registro de evolución física y rutinas interactivas con temporizador en sala en tiempo real, con continuidad operativa ante eventuales cortes de internet.",
+    description: "Aplicación móvil (PWA) exclusiva para socios del gimnasio, potenciada por IA. Ofrece una experiencia integral que abarca desde la creación asistida de la ficha médica inicial hasta la generación de planes de entrenamiento y nutrición personalizados. Incluye e-commerce con pasarela de pagos para membresías y productos, sistema de gamificación con canje de puntos, notificaciones de clases y promociones, videoteca técnica, control de acceso por código QR y registro de evolución física. Además, permite el seguimiento interactivo de rutinas en sala con temporizador en tiempo real y garantiza continuidad operativa incluso ante cortes de internet.",
     technologies: ["React 19", "Vite", "PWA", "TypeScript", "TailwindCSS", "Integración IA"],
     technical_highlights: [
-      "Arquitectura resiliente con Service Workers para seguir operando sin conexión ante eventuales cortes de internet hasta reconectarse.",
+      "Arquitectura resiliente basada en Service Workers, garantizando la operatividad de la aplicación incluso ante cortes temporales de conexión.",
       "Integración de IA para diagnóstico inicial, planes de entrenamiento y guías de nutrición personalizadas.",
       "Seguimiento interactivo de series y repeticiones con cronómetro de descanso en sala de musculación, videoteca técnica y pagos integrados."
     ],
@@ -46,7 +46,7 @@ export const PORTFOLIO_PROJECTS = [
       { url: "/projects/spartan/spartan-admin-grilla.webp", label: "Grilla Activa (Pública)" },
       { url: "/projects/spartan/spartan-admin-borrador.webp", label: "Borrador con IA (Sin Guardar)" }
     ],
-    description: "Gestor de contenido web inteligente desarrollado para Spartan Gym. Permite administrar, agregar o reestructurar secciones de su sitio web como la grilla de clases y horarios en tiempo real mediante dictado por voz o indicaciones escritas interpretadas por IA.",
+    description: "Gestor de contenido web inteligente desarrollado a medida. Permite al equipo administrativo actualizar, agregar o reestructurar secciones clave del sitio web, como la grilla de horarios y clases, en tiempo real. Todo esto operado de forma intuitiva mediante dictado por voz o instrucciones escritas que son interpretadas y ejecutadas por Inteligencia Artificial.",
     technologies: ["Next.js 16", "Google Gemini AI", "Whisper / Audio API", "TypeScript", "TailwindCSS"],
     technical_highlights: [
       "Interpretación de comandos de voz grabados en el navegador y prompts escritos para modificar horarios automáticamente.",
@@ -69,12 +69,12 @@ export const PORTFOLIO_PROJECTS = [
       { url: "/projects/inox/inox-catalogo.webp", label: "Catálogo Completo & Filtros" },
       { url: "/projects/inox/inox-login.webp", label: "Portal de Clientes & Login" }
     ],
-    description: "Plataforma integral de comercio electrónico para comercialización de productos. Cuenta con catálogo dinámico, gestión avanzada de carrito, autenticación completa (login, registro y recuperación de contraseña), pasarelas de pago integradas y conexión en tiempo real con los sistemas internos de la empresa (depósito, ventas, gerencia, etc.).",
+    description: "Plataforma integral de comercio electrónico diseñada para la comercialización masiva de productos. Incluye un catálogo dinámico, gestión avanzada del carrito de compras, sistema de autenticación completo (registro, login y recuperación de contraseña) y pasarelas de pago integradas. Se destaca por su sincronización bidireccional en tiempo real con los sistemas internos de la empresa, abarcando depósito, ventas y gerencia.",
     technologies: ["Next.js", "Prisma", "Zustand", "TailwindCSS"],
     technical_highlights: [
-      "Desarrollo fullstack integral con Next.js y base de datos gestionada mediante Prisma.",
+      "Desarrollo fullstack integral utilizando Next.js y base de datos relacional gestionada mediante Prisma.",
       "Manejo de estado global complejo utilizando Zustand para el carrito de compras.",
-      "Conexión y sincronización en tiempo real con los sistemas internos de la empresa (depósito, ventas y gerencia)."
+      "Conexión y sincronización en tiempo real con los sistemas operativos internos de la empresa."
     ],
     links: {
       live: "https://inox.futurizatech.com/",
@@ -94,7 +94,7 @@ export const PORTFOLIO_PROJECTS = [
       { url: "/projects/quadra/quadra-cocina-insumos.webp", label: "Visor de Insumos & Stock (Cocina)" },
       { url: "/projects/quadra/quadra-delivery.webp", label: "Rutas & Despacho (Delivery)" }
     ],
-    description: "Sistema de gestión integral a medida para negocio gastronómico. Desarrollamos plataformas y paneles específicos para cada sector operativo de la empresa: Recepción (pedidos y punto de venta), Cocina (monitor de comandas e insumos), Delivery (hoja de ruta de repartidores) y Gerencia (mando central, analíticas y finanzas en tiempo real).",
+    description: "Sistema ERP integral desarrollado a medida para el sector gastronómico. Cuenta con paneles específicos e interconectados para cada área operativa: Recepción (gestión de pedidos y punto de venta), Cocina (monitor digital de comandas y control de insumos), Delivery (hoja de ruta y despacho de repartidores) y Gerencia (centro de mando con analíticas y métricas financieras en tiempo real).",
     technologies: ["Next.js", "Supabase", "Radix UI", "Framer Motion"],
     technical_highlights: [
       "Ecosistema multi-panel sincronizado en tiempo real entre Recepción, Cocina, Repartidores y Gerencia.",
@@ -117,7 +117,7 @@ export const PORTFOLIO_PROJECTS = [
       { url: "/projects/quadra/quadra-store-carrito.webp", label: "Carrito de Compras" },
       { url: "/projects/quadra/quadra-store-checkout.webp", label: "Checkout & Envío WhatsApp" }
     ],
-    description: "Plataforma de e-commerce y catálogo virtual para pedidos online de clientes. Conexión en tiempo real con inventario y diseño optimizado para máxima conversión en smartphones.",
+    description: "Plataforma de e-commerce y catálogo virtual orientada a la recepción rápida de pedidos online. Mantiene una sincronización en tiempo real con el inventario central y presenta un diseño fuertemente optimizado para garantizar la máxima tasa de conversión en dispositivos móviles.",
     technologies: ["React", "Next.js", "TailwindCSS"],
     technical_highlights: [
       "Catálogo interactivo con carrito de compras integrado y checkout ágil.",
@@ -151,7 +151,7 @@ export const PORTFOLIO_PROJECTS = [
     type: "Gestión de Depósito & Stock",
     is_private: true,
     image: "/projects/masecor/masecor-almacen.webp",
-    description: "Panel de control web especializado en administración de inventarios y logística. Interfaz reactiva para que operarios gestionen entradas, salidas y stock masivo sin fricciones, con conexión en tiempo real con los sistemas internos de la empresa (depósito, ventas, gerencia, etc.).",
+    description: "Sistema de control logístico especializado en la administración ágil de inventarios. Presenta una interfaz altamente reactiva que permite a los operarios gestionar entradas, salidas y movimientos masivos de stock sin fricciones. Se integra y sincroniza en tiempo real con el resto del ecosistema corporativo (ventas y gerencia).",
     technologies: ["React", "Vite", "Zustand", "TailwindCSS"],
     technical_highlights: [
       "Sistema de inventario rápido con estado global gestionado por Zustand.",
@@ -233,11 +233,11 @@ export const PORTFOLIO_PROJECTS = [
       { url: "/projects/futuriza/futuriza-embudo.webp", label: "Embudo de Ventas (Pipeline)" },
       { url: "/projects/futuriza/futuriza-bandeja-ia.webp", label: "Bandeja IA (Inactiva)" }
     ],
-    description: "Plataforma CRM a medida para gestión de leads, proyectos y etapas de desarrollo, con IA conversacional integrada para responder consultas de clientes y automatizaciones operativas internas de FuturizaTech.",
+    description: "Plataforma CRM diseñada a medida para la gestión integral de prospectos (leads), seguimiento de proyectos y control de etapas de desarrollo. Incorpora Inteligencia Artificial conversacional para automatizar la atención a clientes, así como flujos operativos que agilizan los procesos internos de FuturizaTech.",
     technologies: ["React", "Next.js", "TailwindCSS", "IA Conversacional"],
     technical_highlights: [
       "Panel de control intuitivo con métricas de rendimiento y conversión en tiempo real.",
-      "Módulo de IA conversacional integrada para responder consultas de clientes y automatizaciones de seguimiento comercial."
+      "Módulo de IA conversacional para la resolución autónoma de consultas y automatización del seguimiento comercial."
     ],
     links: {
       live: null,
