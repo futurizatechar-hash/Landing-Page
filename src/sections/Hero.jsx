@@ -4,9 +4,12 @@ import { ArrowRightIcon, CheckCircle2Icon, ShieldCheckIcon, SparklesIcon } from 
 
 const Hero = () => {
   return (
-    <section className="relative pt-36 md:pt-44 pb-20 md:pb-28 overflow-hidden bg-white">
-      {/* Background Subtle Gradient Blobs */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-b from-brand-cyan/10 via-brand-accent/5 to-transparent blur-[140px] rounded-full -z-10 pointer-events-none" />
+    <section id="hero" className="relative pt-36 md:pt-44 pb-20 md:pb-28 overflow-hidden bg-white">
+      {/* Background decoration: Replaced expensive CSS blur with high-performance radial-gradient */}
+      <div 
+        className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full -z-10 pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, rgba(14, 165, 233, 0) 65%)' }}
+      ></div>
 
       <div className="container mx-auto px-6 max-w-5xl text-center">
         <div className="space-y-6 md:space-y-8">
