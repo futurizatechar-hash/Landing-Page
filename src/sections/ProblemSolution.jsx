@@ -43,11 +43,11 @@ const ProblemSolution = () => {
   ];
 
   return (
-    <section id="soluciones" className="py-16 md:py-20 bg-slate-50/70 border-y border-slate-100 scroll-mt-20">
+    <section id="soluciones" className="py-12 md:py-16 bg-slate-50/70 border-y border-slate-100 scroll-mt-20">
       <div className="container mx-auto px-6 max-w-6xl">
 
         {/* Encabezado Conciso */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="text-center max-w-2xl mx-auto mb-8 md:mb-10">
           <span className="text-xs font-bold uppercase tracking-widest text-orange-800 bg-brand-accent/10 px-3.5 py-1.5 rounded-full inline-block mb-3">
             Servicios Principales
           </span>
@@ -60,7 +60,7 @@ const ProblemSolution = () => {
         </div>
 
         {/* 3 Tarjetas Minimalistas */}
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 items-stretch mb-10">
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 items-stretch mb-8">
           {services.map((srv, idx) => (
             <m.div
               key={idx}

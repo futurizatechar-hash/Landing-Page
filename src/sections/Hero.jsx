@@ -4,7 +4,7 @@ import { ArrowRightIcon, CheckCircle2Icon, ShieldCheckIcon, SparklesIcon } from 
 
 const Hero = () => {
   return (
-    <section id="hero" className="relative pt-36 md:pt-44 pb-20 md:pb-28 overflow-hidden bg-white">
+    <section id="hero" className="relative pt-28 md:pt-32 pb-12 md:pb-16 overflow-hidden bg-white">
       {/* Background decoration: Replaced expensive CSS blur with high-performance radial-gradient */}
       <div 
         className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full -z-10 pointer-events-none"
@@ -12,7 +12,7 @@ const Hero = () => {
       ></div>
 
       <div className="container mx-auto px-6 max-w-5xl text-center">
-        <div className="space-y-6 md:space-y-8">
+        <div className="space-y-5 md:space-y-6">
           {/* Minimalist Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200/80 shadow-sm">
             <span className="flex h-2 w-2 rounded-full bg-brand-accent animate-pulse" />
@@ -48,7 +48,7 @@ const Hero = () => {
           </div>
 
           {/* Minimal Trust Line */}
-          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 pt-4 text-xs sm:text-sm text-slate-500 font-medium">
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 pt-2 text-xs sm:text-sm text-slate-500 font-medium">
             <div className="flex items-center gap-1.5">
               <CheckCircle2Icon className="w-4 h-4 text-emerald-500 shrink-0" />
               <span>Propiedad 100% de su empresa</span>

@@ -150,14 +150,14 @@ const LeadForm = () => {
   };
 
   return (
-    <section id="contacto" className="py-20 md:py-28 scroll-mt-20 relative overflow-hidden bg-slate-50 border-t border-slate-100">
+    <section id="contacto" className="pt-12 md:pt-16 pb-10 md:pb-12 scroll-mt-20 relative overflow-hidden bg-slate-50 border-t border-slate-100">
       {/* Background Decorative Element */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-cyan/5 blur-[150px] rounded-full -z-10" />
 
       <div className="container mx-auto px-6">
 
         {/* Encabezado del Bloque de Contacto */}
-        <div className="max-w-3xl mx-auto text-center mb-14">
+        <div className="max-w-3xl mx-auto text-center mb-8 md:mb-10">
           <m.div 
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -192,7 +192,7 @@ const LeadForm = () => {
         {/* Formulario (Contacto / CTA) */}
         <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-[0_20px_60px_rgb(0,0,0,0.08)] overflow-hidden border border-slate-100 flex flex-col md:flex-row">
           {/* Info Panel CTA */}
-          <div className="md:w-5/12 bg-brand-dark p-10 md:p-12 flex flex-col justify-between relative overflow-hidden">
+          <div className="md:w-5/12 bg-brand-dark p-8 md:p-10 flex flex-col justify-between relative overflow-hidden">
              {/* Decorative CTA bg */}
              <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-brand-dark via-brand-dark to-brand-accent/20 opacity-80" />
              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-cyan/20 blur-[80px] rounded-full" />
@@ -238,7 +238,7 @@ const LeadForm = () => {
           </div>
 
           {/* Form */}
-          <div className="md:w-7/12 p-10 md:p-12 relative bg-white">
+          <div className="md:w-7/12 p-8 md:p-10 relative bg-white">
             <AnimatePresence mode="wait">
               {!isSubmitted ? (
                 <m.form 
@@ -247,10 +247,10 @@ const LeadForm = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   onSubmit={handleSubmit}
-                  className="space-y-6"
+                  className="space-y-4 md:space-y-5"
                 >
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
+                  <div className="grid md:grid-cols-2 gap-4 md:gap-5">
+                    <div className="space-y-1.5">
                       <label className="text-xs font-extrabold text-slate-500 uppercase tracking-widest ml-1">Nombre Completo</label>
                       <div className="relative">
                         <UserIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -265,7 +265,7 @@ const LeadForm = () => {
                         />
                       </div>
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-1.5">
                        <label className="text-xs font-extrabold text-slate-500 uppercase tracking-widest ml-1">Empresa / Razón Social</label>
                        <div className="relative">
                           <BuildingIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -282,8 +282,8 @@ const LeadForm = () => {
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
+                  <div className="grid md:grid-cols-2 gap-4 md:gap-5">
+                    <div className="space-y-1.5">
                        <label className="text-xs font-extrabold text-slate-500 uppercase tracking-widest ml-1">Email Corporativo</label>
                        <div className="relative">
                           <MailIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -298,7 +298,7 @@ const LeadForm = () => {
                           />
                        </div>
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-1.5">
                         <label htmlFor="phone" className="text-xs font-extrabold text-slate-500 uppercase tracking-widest ml-1">
                           WhatsApp <span className="text-slate-600 font-medium lowercase tracking-normal text-[11px]">(opcional)</span>
                         </label>
@@ -316,7 +316,7 @@ const LeadForm = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     <label htmlFor="teamSize" className="text-xs font-extrabold text-slate-500 uppercase tracking-widest ml-1">Tamaño de Equipo / Flota</label>
                     <div className="relative">
                        <UsersIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -366,7 +366,7 @@ const LeadForm = () => {
                   <button 
                     type="submit"
                     disabled={isSubmitting}
-                    className={`btn-primary w-full py-4 text-lg mt-6 shadow-lg shadow-brand-accent/20 transition-all ${
+                    className={`btn-primary w-full py-3.5 md:py-4 text-lg mt-4 md:mt-5 shadow-lg shadow-brand-accent/20 transition-all ${
                       isSubmitting ? 'opacity-80 cursor-not-allowed scale-[0.99]' : 'hover:scale-[1.01]'
                     }`}
                   >

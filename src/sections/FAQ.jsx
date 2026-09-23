@@ -37,13 +37,24 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="py-20 md:py-24 scroll-mt-20 bg-white relative overflow-hidden border-t border-slate-100">
+    <section id="faq" className="py-12 md:py-16 scroll-mt-20 bg-white relative overflow-hidden border-t border-slate-100">
       {/* Background Decorative Blur */}
       <div className="absolute top-1/3 left-0 w-96 h-96 bg-brand-cyan/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-10 right-0 w-96 h-96 bg-brand-accent/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto px-6 max-w-4xl relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-12">
+          <m.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 shadow-sm mb-4"
+          >
+            <span className="text-xs font-bold text-brand-dark uppercase tracking-widest">
+              Dudas & Consultas
+            </span>
+          </m.div>
+
           <m.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -65,7 +76,7 @@ export default function FAQ() {
         </div>
 
         {/* Accordion Container */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           {FAQ_DATA.map((item, idx) => {
             const isOpen = openIndex === idx;
             return (

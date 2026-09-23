@@ -3,17 +3,17 @@ import { MailIcon, MapPinIcon } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-50 border-t border-slate-200 pt-20 pb-10">
+    <footer className="bg-slate-50 border-t border-slate-200 pt-10 md:pt-12 pb-8">
       <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-12 mb-16">
-          <div className="col-span-1 md:col-span-2 space-y-8">
+        <div className="grid md:grid-cols-4 gap-8 md:gap-10 mb-10 md:mb-12">
+          <div className="col-span-1 md:col-span-2 space-y-4 md:space-y-5">
             <div className="flex items-center gap-3">
                {/* Vertical Logo */}
                <div className="flex items-center justify-start">
                   <img 
                     src="/logo-vertical.webp" 
                     alt="FuturizaTech - Tu Socio Tecnológico B2B en Córdoba Argentina" 
-                    className="h-24 w-auto object-contain" 
+                    className="h-16 md:h-20 w-auto object-contain" 
                     width="128"
                     height="96"
                     loading="lazy" 
@@ -24,7 +24,7 @@ const Footer = () => {
             <p className="text-slate-600 max-w-sm leading-relaxed text-sm font-medium">
               Ingeniería de software, sistemas de gestión a medida y automatizaciones para empresas. Soluciones robustas y medibles para Latinoamérica.
             </p>
-            <div className="flex gap-4 mt-6">
+            <div className="flex gap-3 mt-4">
               <a 
                 href="https://www.instagram.com/futurizatech" 
                 target="_blank" 
@@ -56,9 +56,9 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-4">
             <h4 className="text-sm font-bold text-brand-dark uppercase tracking-widest">Navegación</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2.5">
               <li><a href="#soluciones" className="text-slate-600 hover:text-brand-accent font-medium text-sm transition-colors">Servicios Principales</a></li>
               <li><a href="#portfolio" className="text-slate-600 hover:text-brand-accent font-medium text-sm transition-colors">Sistemas en Producción</a></li>
               <li><a href="#faq" className="text-slate-600 hover:text-brand-accent font-medium text-sm transition-colors">Preguntas Frecuentes</a></li>
@@ -66,7 +66,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-4">
             <h4 className="text-sm font-bold text-brand-dark uppercase tracking-widest">Sede Central</h4>
             <div className="flex gap-3 text-slate-600">
                <MapPinIcon className="w-5 h-5 text-brand-accent shrink-0 mt-0.5" />

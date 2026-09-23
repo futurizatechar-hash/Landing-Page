@@ -9,12 +9,12 @@ export default function Portfolio() {
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
-    <section id="portfolio" className="py-16 md:py-24 scroll-mt-20 bg-slate-50 relative overflow-hidden">
+    <section id="portfolio" className="py-12 md:py-16 scroll-mt-20 bg-slate-50 relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-cyan/10 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm mb-4">
             <span className="text-xs font-bold text-brand-dark uppercase tracking-widest">
               Experiencia & Trayectoria
