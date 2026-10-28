@@ -17,10 +17,10 @@ Esta plataforma materializa el posicionamiento oficial de **FuturizaTech**:
 
 ```text
 .
-├── .github/workflows/
-│   └── keep-supabase-alive.yml    # Consulta programada cada 48h a PostgreSQL (PostgREST)
 ├── docs/
-│   └── SUPABASE_KEEP_ALIVE_SETUP.md
+│   ├── SUPABASE_KEEP_ALIVE_SETUP.md
+│   └── workflows/
+│       └── keep-supabase-alive.yml # Plantilla limpia para consulta programada cada 48h a Supabase
 ├── public/
 │   ├── projects/                  # Capturas .webp optimizadas de casos reales y motores propios
 │   ├── _headers                   # Cabeceras de seguridad HTTP y caché inmutable para Cloudflare

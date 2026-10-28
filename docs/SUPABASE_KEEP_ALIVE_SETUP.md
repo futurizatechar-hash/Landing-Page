@@ -10,11 +10,13 @@ Los proyectos de Supabase requieren actividad real sobre la base de datos Postgr
 
 ---
 
-## 2. Flujo Automatizado en GitHub Actions
+## 2. Plantilla Lista para GitHub Actions
 
-El repositorio incluye el flujo oficial ubicado en su ruta ejecutable estándar:
+El repositorio incluye la plantilla limpia (cero claves en texto plano) lista para activar en:
 
-- [`.github/workflows/keep-supabase-alive.yml`](../.github/workflows/keep-supabase-alive.yml)
+- [`docs/workflows/keep-supabase-alive.yml`](./workflows/keep-supabase-alive.yml)
+
+> **Nota sobre permisos de Token (`workflow` scope):** Si tu Personal Access Token de Git posee únicamente el permiso `repo` (sin `workflow`), GitHub bloquea por seguridad la creación directa de archivos dentro de `.github/workflows/` vía `git push`. Para dejarlo activo desde la interfaz web de GitHub en segundos, ingresá a **Actions → New workflow → set up a workflow yourself**, nombralo `keep-supabase-alive.yml` y pegá el contenido de `docs/workflows/keep-supabase-alive.yml`.
 
 ### Secretos Requeridos en GitHub (`Settings → Secrets and variables → Actions`)
 
@@ -29,7 +31,7 @@ El flujo corre automáticamente cada **48 horas** (`0 11 */2 * *`) y también ad
 
 ---
 
-## 3. Respaldo Externo Opcional (`cron-job.org`)
+## 3. Respaldo Externo Permanente (`cron-job.org`)
 
 Dado que GitHub Actions pausa tareas programadas si un repositorio supera 60 días sin nuevos commits, se recomienda mantener un monitor complementario gratuito en `cron-job.org` apuntando a:
 
