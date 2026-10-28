@@ -1,41 +1,58 @@
-# FuturizaTech (Futuriza)
+# FuturizaTech — Ingeniería de Software, Sistemas de Gestión a Medida & Automatización Comercial
 
-> Tu Socio Tecnológico B2B. Transformamos la complejidad operativa de las empresas en eficiencia digital mediante software a medida, automatizaciones avanzadas y agentes de Inteligencia Artificial 24/7.
+> **Resumen Ejecutivo:** FuturizaTech (comercialmente "Futuriza") convierte empresas medianas, pymes B2B, comercios consolidados y tiendas online en máquinas eficientes de captar clientes y operar con orden absoluto sin fricción manual. Sede en Córdoba, Argentina; operación 100% remota para toda Argentina y Latinoamérica.
 
-## Enlaces Principales
-- [Sitio Web Oficial](https://futurizatech.com)
-- [Soluciones y Servicios de Software](https://futurizatech.com/#soluciones)
-- [Portfolio y Casos Reales de Producción](https://futurizatech.com/#portfolio)
-- [Preguntas Frecuentes](https://futurizatech.com/#faq)
-- [Solicitar Diagnóstico sin Cargo](https://futurizatech.com/#contacto)
-- [Agendar llamada por Calendly](https://calendly.com/futuriza-tech-ar)
-- [WhatsApp Oficial](https://wa.me/5493518046223)
-- [Instagram](https://www.instagram.com/futurizatech)
-- [GitHub Oficial](https://github.com/futurizatechar-hash)
+## Límite de Identidad (Qué Somos y Qué NO Somos)
+- **NO somos una agencia de publicidad ni de marketing tradicional.** No vendemos creatividad publicitaria manual, manejo artesanal de redes ni servicios de community manager.
+- **Somos una empresa de ingeniería de software y automatización:** programamos e instalamos tanto el software propietario que ordena la operación interna (ERP, CRM, stock, paneles) como la maquinaria tecnológica (código, flujos con IA, APIs, monitores de precios y medición exacta) que automatiza la captación comercial.
 
-## Servicios Core
+## Los 3 Sellos de Confianza Oficiales
+1. **Propiedad 100% de tu empresa:** El código, las cuentas, los datos y los flujos instalados quedan a nombre del cliente. Cero licencias mensuales por empleado ni alquiler de software (en mantenimientos mensuales se abona ejecución técnica real, sin ataduras).
+2. **Garantías por contrato:** Alcance técnico formal por escrito, entregables medibles y presupuesto cerrado sin letra chica.
+3. **Implementación modular y financiación propia:** Empezás resolviendo un cuello de botella puntual y escalás a tu ritmo, con esquemas de pago por etapas adaptados a cada empresa.
 
-1. **Desarrollo de Software a Medida**:
-   - Sistemas de gestión interna (ERP, CRM, dashboards operativos).
-   - Aplicaciones web corporativas y progressive web apps (PWA).
-   - E-commerce avanzados e integraciones con pasarelas de pago y sistemas legados.
-   - Stack tecnológico: React, Next.js, Astro, TypeScript, Node.js, Python, Supabase, PostgreSQL, TailwindCSS.
+## Los 4 Pilares Oficiales de Servicio
 
-2. **Automatización de Procesos Empresariales**:
-   - Conexión e integración fluida entre herramientas (CRM, ERP, WhatsApp API, facturación, bases de datos).
-   - Eliminación de tareas manuales repetitivas para reducir costos fijos y errores humanos.
-   - Sincronización en tiempo real de inventarios, pedidos y reportes comerciales.
+### 1. Automatización & Herramientas de Marketing (Sistematizar Captación)
+- Automatización programática de carruseles e Instagram/LinkedIn Publishing API (`M-01`).
+- Producción de videos cortos con IA 9:16 (`M-02`) y anuncios animados por código (`M-03`).
+- Infraestructura de blog técnico SEO GitOps + multiplicación multicanal (`M-04`).
+- Auditoría y optimización técnica de pauta en Meta Ads y Google Ads (`M-05`).
+- Extracción automatizada de métricas de competidores (`M-06`) y monitor automatizado de precios y márgenes en e-commerce (`M-07`).
 
-3. **Agentes de Inteligencia Artificial 24/7**:
-   - Asistentes virtuales inteligentes integrados a WhatsApp y canales web.
-   - Calificación automática de prospectos (leads), soporte al cliente y agendamiento de citas.
-   - Procesamiento de lenguaje natural conectado a la base de conocimiento de la empresa.
+### 2. Plataformas Web & Conversión (Convertir Visitas en Clientes)
+- Auditoría y corrección de medición técnica en Google Tag Manager, API de conversiones y píxeles (`M-09`).
+- Salud técnica de indexación y SEO en Google Search Console (`M-10`).
+- Páginas de aterrizaje de alta conversión y sitios corporativos ultrarrápidos en Astro / Next.js + Cloudflare Pages (`M-11`).
+- Manuales de identidad visual interactivos / Brand Books web (`M-12`).
 
-4. **Desarrollo Web de Alto Rendimiento & SEO**:
-   - Sitios corporativos con arquitectura SSG/SSR (Astro, Next.js) con puntuaciones sobresalientes en Core Web Vitals (Lighthouse 100/100).
-   - Posicionamiento orgánico técnico en motores de búsqueda (SEO) y motores de IA (GEO).
+### 3. Sistemas de Gestión a Medida (Ordenar la Operación)
+- Desarrollo desde cero de ERPs, CRMs, sistemas de depósito/stock, puntos de venta multipanel, portales de clientes y tableros gerenciales en la nube (`M-13`).
+- Migración limpia de datos históricos desde planillas de Excel o sistemas obsoletos sin frenar la actividad diaria + capacitación integral al equipo (`M-14`).
 
-## Propuesta de Valor y Filosofía
-- **Foco en el ROI (Retorno de Inversión)**: Soluciones diseñadas por empresarios para empresarios. No vendemos código vacío; vendemos tranquilidad operativa y rentabilidad medible.
-- **Transparencia y Agilidad**: Entrevista de descubrimiento sin cargo, propuestas objetivas con alcances claros y desarrollo colaborativo con seguimiento continuo.
-- **Escalabilidad**: Capacidad técnica para atender desde startups y pymes en aceleración hasta grandes estructuras corporativas.
+### 4. Automatización Operativa & Asistentes IA (Escalar sin Fricción)
+- Integración de sistemas y bases de datos vía APIs en tiempo real + asistentes conversacionales 24/7 en WhatsApp y web conectados a catálogo/agenda (`M-16`).
+- Equipos de agentes autónomos de IA con puntos de control humano y oficinas virtuales 2D en tiempo real (`M-17`).
+- Servicios transversales de dirección: estudios de mercado cuantitativos (`M-08`) y modelos financieros paramétricos en Excel a 12 meses (`M-15`).
+
+## Plazos Oficiales de Entrega
+- **Auditorías técnicas puntuales:** 3 a 7 días hábiles (100% descontables si contratás la implementación dentro de los 30 días).
+- **Páginas web, automatizaciones e implementaciones modulares llave en mano:** 1 a 3 semanas operativas.
+- **Sistemas de gestión a medida (versión operativa funcional - MVP):** 4 a 8 semanas estructuradas por módulos prioritarios.
+- **Mantenimiento operativo recurrente:** Ciclos mensuales con calendario pactado y reporte ejecutivo al cierre.
+
+## Casos y Motores Reales en Producción
+- **Quadra Pizza ERP & Store:** Sistema gastronómico multipanel en tiempo real (Recepción, Cocina, Insumos, Delivery y Gerencia) + tienda móvil integrada.
+- **Spartan Gym Suite:** App PWA para socios con IA offline-first, web corporativa 3D interactiva y gestor administrativo operado por dictado de voz con IA.
+- **Masecor Web & Depósito:** Plataforma B2B en Astro (Lighthouse óptimo) + sistema de inventario y movimientos masivos de stock en tiempo real.
+- **Inox E-commerce:** Comercio electrónico industrial fullstack sincronizado bidireccionalmente con depósito, ventas y gerencia.
+- **GuardForce & Nairda Studio:** Plataforma corporativa B2B de seguridad privada + ecosistema de reservas y gestión PWA.
+- **FuturizaTech CRM & Motores Propios:** Embudo comercial propio con IA, motor programático de carruseles por API, suite de auditoría GTM/GSC/competencia y monitor automatizado de precios.
+
+## Contacto y Diagnóstico Inicial sin Cargo
+- **Sitio oficial:** https://futurizatech.com
+- **Agenda directa (Videollamada de 15 min sin cargo):** https://calendly.com/futuriza-tech-ar
+- **WhatsApp directo:** https://wa.me/5493518046223 (+54 9 351 804 6223)
+- **Correo corporativo:** info@futurizatech.com
+- **Ubicación:** Córdoba, Argentina (atención 100% remota en Argentina y Latinoamérica)
+- **Páginas legales:** https://futurizatech.com/privacidad · https://futurizatech.com/terminos

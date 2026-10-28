@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-dark: #0A192F;
+  --brand-deep: #060D1A;
+  --brand-surface: #0E223D;
+  --brand-accent: #C2410C;
+  --brand-glow: #FF6B35;
+  --brand-cyan: #00E5FF;
+  --brand-whatsapp: #25D366;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.25rem;
+    font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+    color: #334155;
+    background-color: #FFFFFF;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.025em;
+  }
+
+  ::selection {
+    background-color: rgba(255, 107, 53, 0.22);
+    color: #0A192F;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand-accent px-6 py-3.5 font-display text-sm font-bold text-white transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-glow focus-visible:ring-offset-2;
+  }
+
+  .btn-primary:hover {
+    background-color: #C93C06;
+    box-shadow: 0 0 25px rgba(255, 107, 53, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .btn-primary:disabled {
+    @apply cursor-not-allowed opacity-75;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .btn-secondary-dark {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/15 bg-white/[0.03] px-6 py-3.5 font-display text-sm font-bold text-white transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan;
+  }
+
+  .btn-secondary-dark:hover {
+    border-color: #00E5FF;
+    color: #00E5FF;
+    background-color: rgba(0, 229, 255, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary-light {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border-2 border-brand-dark/10 bg-white px-6 py-3.5 font-display text-sm font-bold text-brand-dark transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan;
+  }
+
+  .btn-secondary-light:hover {
+    border-color: #00E5FF;
+    background-color: rgba(0, 229, 255, 0.06);
+    transform: translateY(-1px);
+  }
+
+  .card-light {
+    @apply rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all duration-300;
+  }
+
+  .card-light:hover {
+    @apply -translate-y-1 shadow-md border-slate-300/90;
+  }
+
+  .card-dark {
+    @apply rounded-2xl border border-white/10 bg-brand-surface/80 backdrop-blur-sm transition-all duration-300;
+  }
+
+  .card-dark:hover {
+    @apply -translate-y-1 border-brand-cyan/35;
+  }
+}
+
+/* Trama arquitectónica sutil a 45° para fondos ejecutivos oscuros */
+.bg-arch-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Acordeón nativo accesible <details> sin parpadeo ni dependencias JS */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details[open] .faq-chevron {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

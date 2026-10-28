@@ -1,0 +1,116 @@
+---
+import Isotipo from '../brand/Isotipo.astro';
+import { TRUST_SEALS, IDEAL_PROFILES } from '../../data/site';
+---
+
+<section class="relative overflow-hidden bg-brand-deep bg-arch-grid pt-7 pb-10 sm:pt-14 sm:pb-16 lg:pt-20 lg:pb-20">
+  <!-- Halos de luz arquitectónica sutiles -->
+  <div
+    class="pointer-events-none absolute -top-28 left-1/2 h-[360px] w-[680px] -translate-x-1/2 rounded-full bg-brand-cyan/10 blur-[120px]"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="pointer-events-none absolute bottom-0 right-0 h-[280px] w-[420px] rounded-full bg-brand-glow/10 blur-[110px]"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <!-- Etiqueta superior compacta Mobile-First -->
+      <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-cyan/25 bg-brand-surface/80 px-3.5 py-1.5 backdrop-blur-sm sm:mb-6 sm:px-4">
+        <span class="h-2 w-2 rounded-full bg-brand-cyan" aria-hidden="true"></span>
+        <span class="font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-200 sm:hidden">
+          INGENIERÍA &amp; AUTOMATIZACIÓN · ARGENTINA &amp; LATAM
+        </span>
+        <span class="hidden font-mono text-xs font-semibold uppercase tracking-wider text-slate-200 sm:inline">
+          INGENIERÍA DE SOFTWARE &amp; AUTOMATIZACIÓN COMERCIAL · CÓRDOBA PARA TODA LATINOAMÉRICA
+        </span>
+      </div>
+
+      <!-- H1 directo al resultado económico y operativo -->
+      <h1 class="font-display text-[1.75rem] font-extrabold leading-[1.15] text-white sm:text-5xl sm:leading-[1.12] lg:text-[3.55rem]">
+        Convertimos tu empresa en una máquina eficiente de{' '}
+        <span class="text-brand-cyan">captar clientes</span> y{' '}
+        <span class="text-brand-glow">operar en orden.</span>
+      </h1>
+
+      <!-- Subtítulo persuasivo sin jerga técnica -->
+      <p class="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-slate-300 sm:mt-6 sm:text-lg sm:leading-relaxed">
+        Automatizamos tus herramientas de marketing para que generes prospectos todos los días —sin depender de agencias de humo— e instalamos tu propio software de gestión a medida para que tires las planillas de Excel a la basura y escales sin fricción manual.
+      </p>
+
+      <!-- Acciones primarias visibles sin scroll en 375x667 -->
+      <div class="mt-6 flex flex-col items-stretch justify-center gap-3 sm:mt-8 sm:flex-row sm:items-center sm:gap-4">
+        <a
+          href="#contacto"
+          data-cta-origin="hero_primary"
+          class="btn-primary !py-3.5 !text-sm sm:!px-7 sm:!py-4 sm:!text-base"
+        >
+          <span>Agendar Diagnóstico de 15 min sin Cargo</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4 shrink-0 sm:h-5 sm:w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </a>
+
+        <a
+          href="#casos"
+          class="btn-secondary-dark !py-3 !text-sm sm:!px-7 sm:!py-4 sm:!text-base"
+        >
+          <span>Ver Sistemas Funcionando</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Franja de los 3 Sellos de Confianza Oficiales -->
+    <div class="mt-9 grid gap-3.5 sm:mt-12 md:grid-cols-3 md:gap-5">
+      {
+        TRUST_SEALS.map((seal, index) => (
+          <div class="rounded-2xl border border-white/10 bg-brand-surface/75 p-4 backdrop-blur-sm sm:p-5">
+            <div class="flex items-start gap-3.5">
+              <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-brand-cyan/25 bg-brand-deep font-mono text-xs font-semibold text-brand-cyan">
+                0{index + 1}
+              </div>
+              <div>
+                <h2 class="font-display text-sm font-bold text-white sm:text-base">
+                  {seal.title}
+                </h2>
+                <p class="mt-1 text-xs leading-relaxed text-slate-300 sm:text-sm">
+                  {seal.shortDesc}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Cinta de perfil ideal (Auto-calificación instantánea) -->
+    <div class="mt-7 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 border-t border-white/10 pt-5 text-center">
+      <span class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+        <Isotipo variant="dark" class="h-4 w-4" />
+        Diseñado para:
+      </span>
+      {
+        IDEAL_PROFILES.map((profile, idx) => (
+          <>
+            <span class="text-xs font-semibold text-slate-200">{profile}</span>
+            {idx < IDEAL_PROFILES.length - 1 && (
+              <span class="hidden text-slate-600 sm:inline" aria-hidden="true">•</span>
+            )}
+          </>
+        ))
+      }
+    </div>
+  </div>
+</section>

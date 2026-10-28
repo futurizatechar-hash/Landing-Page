@@ -1,24 +1,26 @@
-# Logs
-logs
+# Dependencias y artefactos de compilación
+node_modules/
+dist/
+.astro/
+.output/
+
+# Variables de entorno y credenciales (NUNCA versionar secretos)
+.env
+.env.*
+!.env.example
+
+# Registros, diagnósticos y cachés locales
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
+build_error.log
+vite_debug.log
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
+# Archivos temporales de sistema operativo y editores
+.DS_Store
+Thumbs.db
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+.idea/

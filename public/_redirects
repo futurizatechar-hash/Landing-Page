@@ -1,1 +1,4 @@
-/* /index.html 200
+# Redirecciones permanentes 301 de rutas heredadas (cero comodines SPA para evitar Soft 404)
+/privacidad.html /privacidad 301
+/terminos.html /terminos 301
+/sitemap.xml /sitemap-index.xml 301

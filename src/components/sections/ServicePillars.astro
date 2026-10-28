@@ -1,0 +1,124 @@
+---
+import { SERVICE_PILLARS, PRECONFIGURED_SYSTEMS } from '../../data/pillars';
+---
+
+<section id="pilares" class="bg-slate-50 py-16 sm:py-20 lg:py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="inline-block rounded-full border border-slate-200 bg-white px-3.5 py-1 font-mono text-xs font-semibold uppercase tracking-wider text-brand-dark">
+        Catálogo Oficial Modular
+      </span>
+      <h2 class="mt-3 font-display text-2xl font-extrabold text-brand-dark sm:text-4xl">
+        Cuatro pilares técnicos para destrabar ventas y ordenar tu operación
+      </h2>
+      <p class="mt-3 text-base text-slate-600 sm:text-lg">
+        Elegí resolver primero el área que hoy te cuesta más dinero o tiempo. Todas las piezas se construyen listas para conectarse entre sí.
+      </p>
+    </div>
+
+    <!-- Grilla 2x2 de los 4 Pilares -->
+    <div class="mt-10 grid gap-6 lg:mt-14 lg:grid-cols-2 lg:gap-8">
+      {
+        SERVICE_PILLARS.map((pillar) => (
+          <article class="card-light flex flex-col justify-between p-6 sm:p-8">
+            <div>
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="inline-flex items-center gap-2">
+                  <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-dark font-mono text-xs font-bold text-brand-cyan">
+                    {pillar.number}
+                  </span>
+                  <span class="rounded-full bg-brand-accent/10 px-3 py-1 text-xs font-bold text-brand-accent">
+                    {pillar.roleBadge}
+                  </span>
+                </div>
+                <span class="font-mono text-xs font-semibold text-slate-400">
+                  {pillar.codeRange}
+                </span>
+              </div>
+
+              <h3 class="mt-4 font-display text-xl font-extrabold text-brand-dark sm:text-2xl">
+                {pillar.title}
+              </h3>
+
+              <p class="mt-2.5 text-sm font-medium leading-relaxed text-slate-600 sm:text-base">
+                {pillar.painSolved}
+              </p>
+
+              <div class="mt-5 border-t border-slate-100 pt-4">
+                <p class="font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                  Qué programamos e instalamos:
+                </p>
+                <ul class="mt-3 space-y-2.5 text-sm text-slate-700">
+                  {pillar.whatWeInstall.map((bullet) => (
+                    <li class="flex items-start gap-2.5">
+                      <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-accent" aria-hidden="true" />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-6 flex flex-col gap-3 border-t border-slate-100 pt-5 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <span class="inline-block rounded-md bg-brand-dark/5 px-2.5 py-1 font-mono text-[11px] font-semibold text-brand-dark">
+                  ⏱ {pillar.timeframeLabel}
+                </span>
+                <p class="mt-1 text-xs text-slate-500">{pillar.timeframeDetail}</p>
+              </div>
+
+              <a
+                href="#contacto"
+                data-select-pain={pillar.painSelectValue}
+                data-cta-origin={`pilar_${pillar.number}`}
+                class="inline-flex shrink-0 items-center gap-1.5 font-display text-xs font-bold text-brand-accent transition-colors hover:text-brand-dark sm:text-sm"
+              >
+                <span>{pillar.ctaLabel}</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <!-- Paquetes Integrados ("Sistemas") con Bonificación 15%-20% -->
+    <div class="mt-10 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:mt-12 sm:p-8">
+      <div class="flex flex-col justify-between gap-4 border-b border-slate-100 pb-5 lg:flex-row lg:items-center">
+        <div>
+          <span class="font-mono text-xs font-semibold uppercase tracking-wider text-brand-accent">
+            Paquetes Preconfigurados (“Sistemas”)
+          </span>
+          <h3 class="mt-1 font-display text-lg font-extrabold text-brand-dark sm:text-xl">
+            ¿Querés resolver un área completa de una sola vez? Accedés a un 15% a 20% de bonificación.
+          </h3>
+        </div>
+        <a
+          href="#contacto"
+          data-cta-origin="sistemas_paquetes"
+          class="btn-secondary-light shrink-0 !py-2.5 !px-4 !text-xs sm:!text-sm"
+        >
+          Consultar qué paquete aplica a mi empresa →
+        </a>
+      </div>
+
+      <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          PRECONFIGURED_SYSTEMS.map((sys) => (
+            <div class="rounded-xl border border-slate-100 bg-slate-50/70 p-4">
+              <span class="font-mono text-[11px] font-semibold text-brand-accent">
+                {sys.modules}
+              </span>
+              <h4 class="mt-1 font-display text-sm font-bold text-brand-dark">
+                {sys.name}
+              </h4>
+              <p class="mt-1.5 text-xs leading-relaxed text-slate-600">
+                {sys.summary}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

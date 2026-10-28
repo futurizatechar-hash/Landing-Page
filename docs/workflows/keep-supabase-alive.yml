@@ -2,36 +2,37 @@ name: Keep Supabase Alive
 
 on:
   schedule:
-    # Se ejecuta cada 2 días a las 11:00 UTC (8:00 AM Argentina)
+    # Se ejecuta cada 2 días a las 11:00 UTC (08:00 AM Argentina)
     - cron: '0 11 */2 * *'
-  workflow_dispatch: # Permite ejecución manual desde GitHub
+  workflow_dispatch:
 
 jobs:
   ping-supabase:
-    name: Ping Supabase Postgres
+    name: Consulta Activa a Supabase PostgreSQL
     runs-on: ubuntu-latest
     steps:
-      - name: Send Query to Supabase via PostgREST
+      - name: Consultar tabla leads_futuriza vía PostgREST
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL || 'https://hfiyrtnfhnzfcexmnubu.supabase.co' }}
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY || 'sb_publishable_VyCnuNBCv1s8ADixhllTJQ_CUrbTdHr' }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
-          echo "🚀 Ejecutando consulta activa a PostgreSQL en Supabase..."
-          
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ]; then
+            echo "⚠️ Secretos SUPABASE_URL o SUPABASE_ANON_KEY no configurados en GitHub Repository Secrets."
+            exit 1
+          fi
+
           HTTP_STATUS=$(curl -s -o response.json -w "%{http_code}" \
-            -X GET "$SUPABASE_URL/rest/v1/leads_futuriza?select=id&limit=1" \
-            -H "apikey: $SUPABASE_ANON_KEY" \
-            -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
+            -X GET "${SUPABASE_URL}/rest/v1/leads_futuriza?select=id&limit=1" \
+            -H "apikey: ${SUPABASE_ANON_KEY}" \
+            -H "Authorization: Bearer ${SUPABASE_ANON_KEY}" \
             -H "Content-Type: application/json")
-          
-          echo "Código HTTP recibido: $HTTP_STATUS"
-          echo "Respuesta del servidor:"
-          cat response.json
-          echo ""
+
+          echo "Código HTTP recibido de Supabase: ${HTTP_STATUS}"
 
           if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
-            echo "✅ Supabase está activo y la base de datos respondió correctamente."
+            echo "✅ Instancia de Supabase activa y respondiendo."
           else
-            echo "❌ Error al conectar con Supabase. Código HTTP: $HTTP_STATUS"
+            echo "❌ Error en consulta a Supabase. Código HTTP: ${HTTP_STATUS}"
+            cat response.json || true
             exit 1
           fi

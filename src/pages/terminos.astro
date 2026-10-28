@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import { SITE_CONFIG } from '../data/site';
+---
+
+<BaseLayout
+  title="Términos y Condiciones | FuturizaTech"
+  description="Términos y condiciones de uso del sitio web y lineamientos comerciales generales de FuturizaTech."
+  canonicalPath="/terminos"
+>
+  <Navbar />
+  <main id="contenido-principal" class="flex-1 bg-slate-50 py-14 sm:py-20">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div class="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm sm:p-11">
+        <a
+          href="/"
+          class="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-brand-accent hover:text-brand-dark"
+        >
+          ← Volver al inicio
+        </a>
+
+        <h1 class="mt-4 font-display text-2xl font-extrabold text-brand-dark sm:text-4xl">
+          Términos y Condiciones de Servicio
+        </h1>
+        <p class="mt-2 font-mono text-xs text-slate-500">
+          Última actualización: Octubre 2026
+        </p>
+
+        <div class="mt-8 space-y-6 text-sm leading-relaxed text-slate-700 sm:text-base">
+          <section class="space-y-2">
+            <h2 class="font-display text-lg font-bold text-brand-dark">
+              1. Titularidad del Sitio
+            </h2>
+            <p>
+              Este sitio web pertenece a <strong>FuturizaTech</strong> (CUIT {SITE_CONFIG.cuit}), con domicilio comercial en {SITE_CONFIG.legalAddress} y correo oficial <a href={`mailto:${SITE_CONFIG.email}`} class="font-semibold text-brand-accent underline">{SITE_CONFIG.email}</a>.
+            </p>
+          </section>
+
+          <section class="space-y-2">
+            <h2 class="font-display text-lg font-bold text-brand-dark">
+              2. Alcance de Nuestros Servicios
+            </h2>
+            <p>
+              La información publicada en esta plataforma tiene por finalidad presentar nuestros cuatro pilares de ingeniería empresarial: (1) Automatización y Herramientas de Marketing, (2) Plataformas Web y Conversión, (3) Sistemas de Gestión a Medida y (4) Automatización Operativa y Asistentes con Inteligencia Artificial. FuturizaTech no presta servicios manuales de agencia de publicidad tradicional ni de community manager.
+            </p>
+          </section>
+
+          <section class="space-y-2">
+            <h2 class="font-display text-lg font-bold text-brand-dark">
+              3. Carácter Consultivo del Diagnóstico Inicial
+            </h2>
+            <p>
+              El envío del formulario de contacto o el agendamiento de la videollamada inicial de 15 minutos sin cargo tiene carácter estrictamente consultivo y de relevamiento preliminar. Toda relación comercial formal de auditoría, implementación llave en mano, mantenimiento operativo mensual o desarrollo de software a medida se rige por su respectiva propuesta comercial aprobada y contrato escrito con alcance, entregables, plazos y presupuesto cerrado.
+            </p>
+          </section>
+
+          <section class="space-y-2">
+            <h2 class="font-display text-lg font-bold text-brand-dark">
+              4. Propiedad de los Entregables del Cliente vs. Propiedad del Sitio
+            </h2>
+            <p>
+              En los proyectos contratados por nuestros clientes, la titularidad del código específico desarrollado a medida, las bases de datos y las cuentas operativas se transfiere al 100% a la empresa contratante conforme a lo estipulado en cada contrato particular. Por su parte, la identidad visual, logotipos, textos institucionales y arquitectura de este dominio público (`futurizatech.com`) son propiedad intelectual exclusiva de FuturizaTech.
+            </p>
+          </section>
+
+          <section class="space-y-2">
+            <h2 class="font-display text-lg font-bold text-brand-dark">
+              5. Jurisdicción y Contacto
+            </h2>
+            <p>
+              Ante cualquier consulta legal o comercial podés escribirnos a <a href={`mailto:${SITE_CONFIG.email}`} class="font-semibold text-brand-accent underline">{SITE_CONFIG.email}</a>. Toda controversia derivada del uso de este sitio se somete a la legislación vigente de la República Argentina y a los tribunales ordinarios de la ciudad de Córdoba.
+            </p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+  <WhatsAppFloat />
+</BaseLayout>

@@ -1,0 +1,519 @@
+---
+import { PORTFOLIO_ITEMS, PORTFOLIO_FILTERS } from '../../data/portfolio';
+
+const counts = {
+  todos: PORTFOLIO_ITEMS.length,
+  gestion: PORTFOLIO_ITEMS.filter((i) => i.category === 'gestion').length,
+  web: PORTFOLIO_ITEMS.filter((i) => i.category === 'web').length,
+  marketing: PORTFOLIO_ITEMS.filter((i) => i.category === 'marketing').length,
+};
+
+const serializedItems = JSON.stringify(PORTFOLIO_ITEMS);
+---
+
+<section id="casos" class="bg-slate-50 py-16 sm:py-20 lg:py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="inline-block rounded-full border border-slate-200 bg-white px-3.5 py-1 font-mono text-xs font-semibold uppercase tracking-wider text-brand-dark">
+        Prueba Real en Producción
+      </span>
+      <h2 class="mt-3 font-display text-2xl font-extrabold text-brand-dark sm:text-4xl">
+        Sistemas y motores reales operando hoy en empresas reales
+      </h2>
+      <p class="mt-3 text-base text-slate-600 sm:text-lg">
+        No mostramos maquetas de fantasía. Explorá ERPs multipanel, plataformas comerciales y nuestros propios motores de automatización en funcionamiento.
+      </p>
+    </div>
+
+    <!-- Pestañas de Filtrado por Área de Negocio -->
+    <div
+      class="mt-8 flex flex-wrap items-center justify-center gap-2 sm:mt-10 sm:gap-3"
+      role="tablist"
+      aria-label="Filtrar casos por categoría"
+    >
+      {
+        PORTFOLIO_FILTERS.map((filter, idx) => {
+          const isActive = idx === 0;
+          const count = counts[filter.id as keyof typeof counts];
+          return (
+            <button
+              type="button"
+              role="tab"
+              aria-selected={isActive ? 'true' : 'false'}
+              data-portfolio-filter={filter.id}
+              class:list={[
+                'portfolio-filter-btn inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 font-display text-xs font-bold transition-all duration-200 sm:text-sm',
+                isActive
+                  ? 'border-brand-dark bg-brand-dark text-white shadow-sm'
+                  : 'border-slate-200 bg-white text-slate-600 hover:border-brand-dark/30 hover:text-brand-dark',
+              ]}
+            >
+              <span>{filter.label}</span>
+              <span
+                class:list={[
+                  'filter-count rounded-md px-1.5 py-0.5 font-mono text-[11px]',
+                  isActive ? 'bg-white/15 text-brand-cyan' : 'bg-slate-100 text-slate-500',
+                ]}
+              >
+                {count}
+              </span>
+            </button>
+          );
+        })
+      }
+    </div>
+
+    <!-- Grilla de Casos -->
+    <div id="portfolio-grid" class="mt-9 grid gap-6 sm:mt-12 md:grid-cols-2 lg:grid-cols-3">
+      {
+        PORTFOLIO_ITEMS.map((item) => (
+          <article
+            data-portfolio-card
+            data-category={item.category}
+            class="card-light group flex flex-col overflow-hidden"
+          >
+            <!-- Imagen Superior -->
+            <div
+              class="relative aspect-[16/10] w-full cursor-pointer overflow-hidden bg-brand-deep"
+              data-open-case={item.id}
+            >
+              <img
+                src={item.image}
+                alt={`${item.title} — ${item.typeBadge}`}
+                width="640"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+              <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-deep/75 via-transparent to-brand-deep/25" />
+
+              <div class="absolute left-3 right-3 top-3 flex flex-wrap items-center justify-between gap-1.5">
+                <span class="rounded-lg bg-brand-deep/90 px-2.5 py-1 font-mono text-[11px] font-semibold text-brand-cyan backdrop-blur-sm">
+                  {item.pillarBadge}
+                </span>
+
+                {item.statusBadge ? (
+                  <span class="rounded-lg bg-brand-accent/95 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wide text-white">
+                    {item.statusBadge}
+                  </span>
+                ) : item.isPrivate ? (
+                  <span class="rounded-lg bg-slate-900/85 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wide text-slate-200">
+                    Sistema Interno
+                  </span>
+                ) : (
+                  <span class="rounded-lg bg-emerald-600/95 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wide text-white">
+                    En Producción
+                  </span>
+                )}
+              </div>
+
+              {item.gallery && item.gallery.length > 1 && (
+                <div class="absolute bottom-2.5 right-3 rounded-md bg-brand-deep/85 px-2 py-0.5 font-mono text-[10px] font-semibold text-slate-200">
+                  {item.gallery.length} vistas
+                </div>
+              )}
+            </div>
+
+            <!-- Cuerpo Comercial de la Tarjeta -->
+            <div class="flex flex-1 flex-col justify-between p-5 sm:p-6">
+              <div>
+                <p class="font-mono text-[11px] font-semibold uppercase tracking-wider text-brand-accent">
+                  {item.sector}
+                </p>
+                <h3 class="mt-1 font-display text-lg font-extrabold text-brand-dark">
+                  {item.title}
+                </h3>
+
+                <div class="mt-3 space-y-2 text-xs leading-relaxed sm:text-sm">
+                  <p class="text-slate-600">
+                    <strong class="font-semibold text-slate-800">Problema eliminado:</strong>{' '}
+                    {item.painEliminated}
+                  </p>
+                  <p class="rounded-xl border border-slate-100 bg-slate-50 p-3 text-slate-700">
+                    <strong class="font-semibold text-brand-dark">Impacto real:</strong>{' '}
+                    {item.businessImpact}
+                  </p>
+                </div>
+              </div>
+
+              <div class="mt-5 flex items-center justify-between gap-3 border-t border-slate-100 pt-4">
+                <button
+                  type="button"
+                  data-open-case={item.id}
+                  class="inline-flex items-center gap-1.5 font-display text-xs font-bold text-brand-dark transition-colors hover:text-brand-accent sm:text-sm"
+                >
+                  <span>Ver detalle y capturas</span>
+                  <span aria-hidden="true">→</span>
+                </button>
+
+                {item.links.live && (
+                  <a
+                    href={item.links.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-2.5 py-1 font-mono text-[11px] font-semibold text-slate-600 transition-colors hover:border-brand-accent hover:text-brand-accent"
+                  >
+                    <span>{item.links.isDemo ? 'Ver Demo' : 'Visitar'}</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                )}
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Modal Ejecutivo de Caso + Lightbox -->
+<div
+  id="case-modal-backdrop"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-brand-deep/85 p-3 backdrop-blur-sm sm:p-6"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="case-modal-title"
+>
+  <div class="relative flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-white/15 bg-white shadow-2xl">
+    <!-- Cabecera Modal -->
+    <div class="flex items-start justify-between gap-4 border-b border-slate-200 bg-brand-dark px-5 py-4 text-white sm:px-7">
+      <div>
+        <div class="flex flex-wrap items-center gap-2">
+          <span
+            id="case-modal-pillar"
+            class="rounded-md bg-brand-surface px-2.5 py-0.5 font-mono text-[11px] font-semibold text-brand-cyan"
+          ></span>
+          <span id="case-modal-sector" class="font-mono text-xs text-slate-300"></span>
+        </div>
+        <h3 id="case-modal-title" class="mt-1 font-display text-lg font-extrabold sm:text-2xl"></h3>
+      </div>
+
+      <button
+        id="case-modal-close"
+        type="button"
+        aria-label="Cerrar ventana de caso"
+        class="rounded-xl border border-white/15 bg-white/10 p-2 text-slate-200 transition-colors hover:bg-brand-accent hover:text-white"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Cuerpo desplazable del Modal -->
+    <div class="overflow-y-auto p-5 sm:p-7">
+      <!-- Visor de Captura Activa -->
+      <div class="overflow-hidden rounded-xl border border-slate-200 bg-brand-deep">
+        <div class="relative aspect-[16/9] w-full">
+          <img
+            id="case-modal-image"
+            src=""
+            alt=""
+            class="h-full w-full cursor-zoom-in object-contain"
+          />
+          <span
+            id="case-modal-caption"
+            class="absolute bottom-2.5 left-3 rounded-md bg-brand-deep/90 px-2.5 py-1 font-mono text-[11px] text-slate-200"
+          ></span>
+        </div>
+      </div>
+
+      <!-- Miniaturas de Galería (si tiene múltiples vistas) -->
+      <div id="case-modal-thumbs" class="mt-3 hidden flex-wrap gap-2"></div>
+
+      <!-- Información Comercial y Técnica -->
+      <div class="mt-6 grid gap-6 lg:grid-cols-12">
+        <div class="space-y-4 lg:col-span-7">
+          <div>
+            <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-brand-accent">
+              Contexto &amp; Solución Instalada
+            </h4>
+            <p id="case-modal-desc" class="mt-1.5 text-sm leading-relaxed text-slate-700"></p>
+          </div>
+
+          <div>
+            <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-brand-dark">
+              Resultados Operativos y Comerciales
+            </h4>
+            <ul id="case-modal-outcomes" class="mt-2.5 space-y-2 text-sm text-slate-700"></ul>
+          </div>
+        </div>
+
+        <div class="space-y-4 rounded-xl border border-slate-200 bg-slate-50 p-4 sm:p-5 lg:col-span-5">
+          <div>
+            <p class="font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+              Problema Erradicado
+            </p>
+            <p id="case-modal-pain" class="mt-1 text-xs font-medium leading-relaxed text-slate-700 sm:text-sm"></p>
+          </div>
+
+          <div class="border-t border-slate-200 pt-3">
+            <p class="font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+              Ingeniería Subyacente
+            </p>
+            <div id="case-modal-tech" class="mt-2 flex flex-wrap gap-1.5"></div>
+          </div>
+
+          <div
+            id="case-modal-demo-note"
+            class="hidden rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs leading-relaxed text-amber-900"
+          ></div>
+
+          <div class="flex flex-col gap-2.5 border-t border-slate-200 pt-4">
+            <a
+              id="case-modal-cta"
+              href="#contacto"
+              class="btn-primary w-full justify-center !py-3 !text-xs sm:!text-sm"
+            >
+              Quiero algo similar en mi empresa →
+            </a>
+            <a
+              id="case-modal-live"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-secondary-light hidden w-full justify-center !py-2.5 !text-xs sm:!text-sm"
+            >
+              Abrir plataforma en nueva pestaña ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox Pantalla Completa -->
+<div
+  id="case-lightbox"
+  class="fixed inset-0 z-[60] hidden cursor-zoom-out items-center justify-center bg-black/95 p-4"
+  aria-hidden="true"
+>
+  <img id="case-lightbox-img" src="" alt="" class="max-h-[94vh] max-w-[96vw] rounded-lg object-contain" />
+</div>
+
+<script is:inline define:vars={{ serializedItems }}>
+  (function () {
+    const items = JSON.parse(serializedItems);
+    const itemsMap = new Map(items.map((item) => [item.id, item]));
+
+    // 1. Filtrado instantáneo por pestañas
+    const filterBtns = document.querySelectorAll('[data-portfolio-filter]');
+    const cards = document.querySelectorAll('[data-portfolio-card]');
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const selected = btn.getAttribute('data-portfolio-filter') || 'todos';
+
+        filterBtns.forEach((b) => {
+          const active = b === btn;
+          b.setAttribute('aria-selected', active ? 'true' : 'false');
+          b.className = active
+            ? 'portfolio-filter-btn inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 font-display text-xs font-bold transition-all duration-200 sm:text-sm border-brand-dark bg-brand-dark text-white shadow-sm'
+            : 'portfolio-filter-btn inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 font-display text-xs font-bold transition-all duration-200 sm:text-sm border-slate-200 bg-white text-slate-600 hover:border-brand-dark/30 hover:text-brand-dark';
+          const badge = b.querySelector('.filter-count');
+          if (badge) {
+            badge.className = active
+              ? 'filter-count rounded-md px-1.5 py-0.5 font-mono text-[11px] bg-white/15 text-brand-cyan'
+              : 'filter-count rounded-md px-1.5 py-0.5 font-mono text-[11px] bg-slate-100 text-slate-500';
+          }
+        });
+
+        cards.forEach((card) => {
+          const cat = card.getAttribute('data-category');
+          if (selected === 'todos' || cat === selected) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // 2. Modal Ejecutivo + Galería + Lightbox
+    const backdrop = document.getElementById('case-modal-backdrop');
+    const closeBtn = document.getElementById('case-modal-close');
+    const titleEl = document.getElementById('case-modal-title');
+    const pillarEl = document.getElementById('case-modal-pillar');
+    const sectorEl = document.getElementById('case-modal-sector');
+    const imgEl = document.getElementById('case-modal-image');
+    const captionEl = document.getElementById('case-modal-caption');
+    const thumbsEl = document.getElementById('case-modal-thumbs');
+    const descEl = document.getElementById('case-modal-desc');
+    const outcomesEl = document.getElementById('case-modal-outcomes');
+    const painEl = document.getElementById('case-modal-pain');
+    const techEl = document.getElementById('case-modal-tech');
+    const demoNoteEl = document.getElementById('case-modal-demo-note');
+    const ctaEl = document.getElementById('case-modal-cta');
+    const liveEl = document.getElementById('case-modal-live');
+    const lightbox = document.getElementById('case-lightbox');
+    const lightboxImg = document.getElementById('case-lightbox-img');
+
+    const closeModal = () => {
+      if (!backdrop) return;
+      backdrop.classList.add('hidden');
+      backdrop.classList.remove('flex');
+      document.body.style.overflow = '';
+    };
+
+    const setMainImage = (url, label) => {
+      if (!imgEl || !captionEl) return;
+      imgEl.src = url;
+      imgEl.alt = label;
+      captionEl.textContent = label;
+    };
+
+    const openModal = (id) => {
+      const item = itemsMap.get(id);
+      if (!item || !backdrop) return;
+
+      if (titleEl) titleEl.textContent = item.title;
+      if (pillarEl) pillarEl.textContent = item.pillarBadge;
+      if (sectorEl) sectorEl.textContent = item.sector;
+      if (descEl) descEl.textContent = item.description;
+      if (painEl) painEl.textContent = item.painEliminated;
+
+      const slides =
+        item.gallery && item.gallery.length > 0
+          ? item.gallery
+          : [{ url: item.image, label: item.typeBadge }];
+
+      setMainImage(slides[0].url, slides[0].label);
+
+      if (thumbsEl) {
+        thumbsEl.innerHTML = '';
+        if (slides.length > 1) {
+          thumbsEl.classList.remove('hidden');
+          thumbsEl.classList.add('flex');
+          slides.forEach((slide, idx) => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.textContent = slide.label;
+            b.className =
+              idx === 0
+                ? 'rounded-lg border border-brand-dark bg-brand-dark px-3 py-1.5 font-mono text-[11px] font-semibold text-white transition-colors'
+                : 'rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 font-mono text-[11px] font-semibold text-slate-600 hover:border-brand-dark/40 transition-colors';
+            b.addEventListener('click', () => {
+              setMainImage(slide.url, slide.label);
+              Array.from(thumbsEl.children).forEach((child) => {
+                child.className =
+                  child === b
+                    ? 'rounded-lg border border-brand-dark bg-brand-dark px-3 py-1.5 font-mono text-[11px] font-semibold text-white transition-colors'
+                    : 'rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 font-mono text-[11px] font-semibold text-slate-600 hover:border-brand-dark/40 transition-colors';
+              });
+            });
+            thumbsEl.appendChild(b);
+          });
+        } else {
+          thumbsEl.classList.add('hidden');
+          thumbsEl.classList.remove('flex');
+        }
+      }
+
+      if (outcomesEl) {
+        outcomesEl.innerHTML = '';
+        item.outcomes.forEach((out) => {
+          const li = document.createElement('li');
+          li.className = 'flex items-start gap-2.5';
+          li.innerHTML =
+            '<span class="mt-0.5 font-bold text-brand-accent" aria-hidden="true">✓</span><span></span>';
+          const span = li.querySelector('span:last-child');
+          if (span) span.textContent = out;
+          outcomesEl.appendChild(li);
+        });
+      }
+
+      if (techEl) {
+        techEl.innerHTML = '';
+        item.technologies.forEach((tech) => {
+          const badge = document.createElement('span');
+          badge.className =
+            'rounded-md border border-slate-200 bg-white px-2.5 py-1 font-mono text-[11px] font-medium text-slate-700';
+          badge.textContent = tech;
+          techEl.appendChild(badge);
+        });
+      }
+
+      if (demoNoteEl) {
+        if (item.links && item.links.isDemo && item.links.demoNote) {
+          demoNoteEl.textContent = item.links.demoNote;
+          demoNoteEl.classList.remove('hidden');
+        } else {
+          demoNoteEl.classList.add('hidden');
+        }
+      }
+
+      if (liveEl) {
+        if (item.links && item.links.live) {
+          liveEl.href = item.links.live;
+          liveEl.textContent = item.links.isDemo
+            ? 'Abrir entorno Demo interactivo ↗'
+            : 'Visitar plataforma en vivo ↗';
+          liveEl.classList.remove('hidden');
+          liveEl.classList.add('inline-flex');
+        } else {
+          liveEl.classList.add('hidden');
+          liveEl.classList.remove('inline-flex');
+        }
+      }
+
+      if (ctaEl) {
+        ctaEl.setAttribute('data-select-pain', item.painSelectValue);
+        ctaEl.setAttribute('data-cta-origin', 'modal_' + item.id);
+      }
+
+      backdrop.classList.remove('hidden');
+      backdrop.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+
+      if (typeof window.trackFuturizaEvent === 'function') {
+        window.trackFuturizaEvent('view_portfolio_case', {
+          case_id: item.id,
+          case_title: item.title,
+          case_category: item.category,
+        });
+      }
+    };
+
+    document.querySelectorAll('[data-open-case]').forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const id = trigger.getAttribute('data-open-case');
+        if (id) openModal(id);
+      });
+    });
+
+    closeBtn?.addEventListener('click', closeModal);
+    backdrop?.addEventListener('click', (e) => {
+      if (e.target === backdrop) closeModal();
+    });
+    ctaEl?.addEventListener('click', () => {
+      closeModal();
+    });
+
+    imgEl?.addEventListener('click', () => {
+      if (!lightbox || !lightboxImg || !imgEl.src) return;
+      lightboxImg.src = imgEl.src;
+      lightboxImg.alt = imgEl.alt;
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+    });
+
+    lightbox?.addEventListener('click', () => {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (lightbox && !lightbox.classList.contains('hidden')) {
+          lightbox.classList.add('hidden');
+          lightbox.classList.remove('flex');
+        } else {
+          closeModal();
+        }
+      }
+    });
+  })();
+</script>

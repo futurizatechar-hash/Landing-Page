@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/sections/Hero.astro';
+import PainMirror from '../components/sections/PainMirror.astro';
+import AntiAgencyComparison from '../components/sections/AntiAgencyComparison.astro';
+import ServicePillars from '../components/sections/ServicePillars.astro';
+import ModularMethod from '../components/sections/ModularMethod.astro';
+import PortfolioShowcase from '../components/sections/PortfolioShowcase.astro';
+import TrustAndFAQ from '../components/sections/TrustAndFAQ.astro';
+import ContactSection from '../components/sections/ContactSection.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+---
+
+<BaseLayout canonicalPath="/" includeFaqSchema={true}>
+  <Navbar />
+  <main id="contenido-principal" class="flex-1">
+    <Hero />
+    <PainMirror />
+    <AntiAgencyComparison />
+    <ServicePillars />
+    <ModularMethod />
+    <PortfolioShowcase />
+    <TrustAndFAQ />
+    <ContactSection />
+  </main>
+  <Footer />
+  <WhatsAppFloat />
+</BaseLayout>

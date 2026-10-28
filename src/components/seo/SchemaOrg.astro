@@ -1,0 +1,118 @@
+---
+import { SITE_CONFIG } from '../../data/site';
+import { SERVICE_PILLARS } from '../../data/pillars';
+import { FAQ_ITEMS } from '../../data/faq';
+
+interface Props {
+  includeFaq?: boolean;
+}
+
+const { includeFaq = true } = Astro.props;
+
+const graph: Record<string, unknown>[] = [
+  {
+    '@type': 'Organization',
+    '@id': `${SITE_CONFIG.url}/#organization`,
+    name: SITE_CONFIG.name,
+    alternateName: ['Futuriza', 'Futuriza Tech'],
+    url: `${SITE_CONFIG.url}/`,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE_CONFIG.url}/logo-horizontal-light.png`,
+      width: 500,
+      height: 104,
+      caption: 'FuturizaTech — Ingeniería de Software y Automatización Comercial',
+    },
+    image: `${SITE_CONFIG.url}/og-image.png?v=2026-2`,
+    description: SITE_CONFIG.description,
+    email: SITE_CONFIG.email,
+    telephone: SITE_CONFIG.phoneE164,
+    sameAs: [
+      SITE_CONFIG.instagramUrl,
+      SITE_CONFIG.githubUrl,
+      SITE_CONFIG.calendlyUrl,
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: SITE_CONFIG.phoneE164,
+      email: SITE_CONFIG.email,
+      contactType: 'sales',
+      areaServed: ['AR', 'CL', 'UY', 'PY', 'MX', 'CO', 'PE', 'ES'],
+      availableLanguage: ['es'],
+    },
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Córdoba',
+      addressRegion: 'Córdoba',
+      addressCountry: 'AR',
+    },
+  },
+  {
+    '@type': 'ProfessionalService',
+    '@id': `${SITE_CONFIG.url}/#service-hub`,
+    name: 'FuturizaTech — Sistemas de Gestión a Medida y Automatización Comercial',
+    url: `${SITE_CONFIG.url}/`,
+    telephone: SITE_CONFIG.phoneE164,
+    email: SITE_CONFIG.email,
+    priceRange: '$$',
+    image: `${SITE_CONFIG.url}/og-image.png?v=2026-2`,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Córdoba',
+      addressRegion: 'Córdoba',
+      addressCountry: 'AR',
+    },
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '18:00',
+    },
+  },
+  {
+    '@type': 'WebSite',
+    '@id': `${SITE_CONFIG.url}/#website`,
+    url: `${SITE_CONFIG.url}/`,
+    name: SITE_CONFIG.name,
+    description: SITE_CONFIG.description,
+    publisher: {
+      '@id': `${SITE_CONFIG.url}/#organization`,
+    },
+    inLanguage: 'es-AR',
+  },
+  {
+    '@type': 'ItemList',
+    '@id': `${SITE_CONFIG.url}/#services-list`,
+    name: 'Los 4 Pilares Oficiales de Servicio de FuturizaTech',
+    itemListElement: SERVICE_PILLARS.map((pillar, index) => ({
+      '@type': 'Service',
+      position: index + 1,
+      name: pillar.title,
+      description: `${pillar.painSolved} Plazo oficial: ${pillar.timeframeDetail}`,
+      provider: { '@id': `${SITE_CONFIG.url}/#organization` },
+    })),
+  },
+];
+
+if (includeFaq) {
+  graph.push({
+    '@type': 'FAQPage',
+    '@id': `${SITE_CONFIG.url}/#faq`,
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  });
+}
+
+const schemaPayload = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': graph,
+});
+---
+
+<script type="application/ld+json" set:html={schemaPayload} />
