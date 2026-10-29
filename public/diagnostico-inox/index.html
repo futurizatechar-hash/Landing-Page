@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnóstico & Paquete de Soluciones — INOX (inoxar.com.ar)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base: #0A0A0A;
+      --bg-surface: #121721;
+      --bg-elevated: #1A2232;
+      --text-primary: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+      --inox-yellow: #F8DC13;
+      --futuriza-cyan: #00F0FF;
+      --status-green: #10B981;
+      --status-amber: #F59E0B;
+      --status-red: #EF4444;
+      --border-subtle: rgba(255, 255, 255, 0.09);
+      --font-display: 'Outfit', sans-serif;
+      --font-sans: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { max-width: 100%; overflow-x: clip; }
+    html { scroll-behavior: smooth; background-color: var(--bg-base); color: var(--text-primary); font-family: var(--font-sans); line-height: 1.45; }
+    body {
+      background-color: var(--bg-base);
+      background-image:
+        radial-gradient(circle at 12% 8%, rgba(248, 220, 19, 0.07), transparent 32%),
+        radial-gradient(circle at 88% 15%, rgba(0, 240, 255, 0.05), transparent 35%);
+    }
+    img { max-width: 100%; height: auto; }
+    code, pre { font-family: var(--font-mono); word-break: break-word; overflow-wrap: anywhere; }
+
+    /* DUAL VIEW PANELS */
+    .how-owner-panel { display: block; }
+    .how-tech-panel { display: none; }
+    body.tech-mode .how-owner-panel { display: none; }
+    body.tech-mode .how-tech-panel { display: block; }
+    .card-force-tech .how-owner-panel { display: none !important; }
+    .card-force-tech .how-tech-panel { display: block !important; }
+    .card-force-owner .how-owner-panel { display: block !important; }
+    .card-force-owner .how-tech-panel { display: none !important; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* TOPBAR */
+    .topbar {
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle); padding: 10px 0;
+    }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .co-branding { display: flex; align-items: center; gap: 12px; }
+    .co-branding img.logo-inox { height: 32px; width: auto; }
+    .co-branding .divider { color: var(--text-muted); font-family: var(--font-mono); font-size: 13px; }
+    .co-branding img.logo-futuriza { height: 24px; width: auto; }
+
+    .nav-links { display: flex; align-items: center; gap: 18px; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 13px; font-weight: 700; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--inox-yellow); }
+
+    .mode-switch-wrapper {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--bg-surface); border: 1px solid rgba(248, 220, 19, 0.3);
+      padding: 4px; border-radius: 999px;
+    }
+    .mode-btn {
+      border: none; background: transparent; color: var(--text-muted);
+      font-family: var(--font-sans); font-size: 12px; font-weight: 700;
+      padding: 6px 12px; border-radius: 999px; cursor: pointer; transition: all 0.2s;
+    }
+    .mode-btn.active-owner { background: var(--inox-yellow); color: #0A0A0A; }
+    .mode-btn.active-tech { background: var(--futuriza-cyan); color: #0A0A0A; }
+
+    /* HERO */
+    .hero { padding: 34px 0 26px; border-bottom: 1px solid var(--border-subtle); }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 24px; align-items: center; }
+    .badge-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(248, 220, 19, 0.1); border: 1px solid rgba(248, 220, 19, 0.3);
+      color: var(--inox-yellow); font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+      padding: 5px 12px; border-radius: 999px; margin-bottom: 10px; text-transform: uppercase;
+    }
+    .hero h1 {
+      font-family: var(--font-display); font-size: clamp(25px, 3.4vw, 38px);
+      font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 10px;
+    }
+    .hero h1 .highlight-yellow { color: var(--inox-yellow); }
+    .hero-lead { font-size: 14.5px; color: var(--text-secondary); }
+
+    .kpi-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .kpi-box {
+      background: var(--bg-surface); border: 1px solid var(--border-subtle);
+      border-radius: 10px; padding: 11px 12px; min-width: 0; overflow: hidden;
+    }
+    .kpi-box .kpi-val { font-family: var(--font-mono); font-size: 13.5px; font-weight: 800; display: block; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .kpi-box .kpi-lbl { font-size: 11.5px; color: var(--text-muted); display: block; line-height: 1.3; }
+
+    /* SECCIONES */
+    section { padding: 42px 0; border-bottom: 1px solid var(--border-subtle); scroll-margin-top: 80px; }
+    .part-banner {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--bg-elevated); border: 1px solid rgba(255,255,255,0.14);
+      padding: 6px 14px; border-radius: 8px; font-family: var(--font-mono);
+      font-size: 11.5px; font-weight: 700; margin-bottom: 10px; max-width: 100%; flex-wrap: wrap;
+    }
+    .banner-red { color: #F87171; border-color: rgba(239, 68, 68, 0.35); background: rgba(239, 68, 68, 0.08); }
+    .banner-green { color: #34D399; border-color: rgba(16, 185, 129, 0.35); background: rgba(16, 185, 129, 0.08); }
+    .banner-cyan { color: var(--futuriza-cyan); border-color: rgba(0, 240, 255, 0.35); background: rgba(0, 240, 255, 0.08); }
+
+    .sec-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+    .sec-title { font-family: var(--font-display); font-size: clamp(20px, 2.6vw, 30px); font-weight: 800; word-break: break-word; }
+    .sec-sub { font-size: 13px; color: var(--text-muted); }
+
+    /* GRILLAS */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-bottom: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; margin-bottom: 20px; }
+
+    /* TARJETAS BASE */
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 12px;
+      min-width: 0;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+    .card:hover {
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    .card-head {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    @media (min-width: 981px) {
+      #paquete-diagnostico .grid-3 .card-head { min-height: 80px; }
+      #paquete-diagnostico .grid-2 .card-head { min-height: 72px; }
+      #paquete-soluciones .grid-3 .card-head { min-height: 76px; }
+    }
+
+    .card-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .badge-tag {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+      padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center;
+    }
+    .tag-red { background: rgba(239, 68, 68, 0.14); color: #F87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .tag-amber { background: rgba(245, 158, 11, 0.14); color: #FBBF24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .tag-green { background: rgba(16, 185, 129, 0.14); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .tag-cyan { background: rgba(0, 240, 255, 0.12); color: var(--futuriza-cyan); border: 1px solid rgba(0, 240, 255, 0.3); }
+
+    .mini-toggle {
+      background: transparent; border: 1px solid var(--border-subtle);
+      color: var(--text-muted); font-family: var(--font-mono); font-size: 10px;
+      padding: 3px 8px; border-radius: 6px; cursor: pointer; transition: all 0.2s;
+    }
+    .mini-toggle:hover { color: #FFF; border-color: var(--futuriza-cyan); background: rgba(0, 240, 255, 0.08); }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--text-primary);
+      margin-top: 0;
+    }
+
+    /* FILAS DE DIAGNÓSTICO */
+    .diag-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .d-row {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 9px 11px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      line-height: 1.42;
+    }
+    .d-row strong {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 3px;
+      letter-spacing: 0.03em;
+    }
+    .d-what strong { color: var(--inox-yellow); }
+    .d-scope strong { color: var(--text-secondary); }
+    .d-damage {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-left: 3px solid var(--status-red);
+    }
+    .d-damage strong { color: #F87171; }
+
+    /* ESTRUCTURA DE SOLUCIÓN */
+    .sol-box-owner {
+      background: rgba(16, 185, 129, 0.07);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 9px;
+      padding: 10px 12px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .sol-box-owner .lbl {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+      color: #34D399; text-transform: uppercase; display: block; margin-bottom: 5px;
+    }
+    .short-list { list-style: none; display: flex; flex-direction: column; gap: 5px; font-size: 12.5px; color: var(--text-primary); }
+
+    .sol-box-tech {
+      background: #080B10; border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 9px; padding: 10px 12px; font-family: var(--font-mono); font-size: 11px; color: #A5F3FC;
+      height: 100%;
+    }
+      color: #34D399; text-transform: uppercase; display: block; margin-bottom: 5px;
+    }
+    .short-list { list-style: none; display: flex; flex-direction: column; gap: 5px; font-size: 12.5px; color: var(--text-primary); }
+
+    .sol-box-tech {
+      background: #080B10; border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 9px; padding: 10px 12px; font-family: var(--font-mono); font-size: 11px; color: #A5F3FC;
+    }
+    .sol-box-tech .lbl {
+      font-size: 10px; font-weight: 700; color: var(--futuriza-cyan);
+      text-transform: uppercase; display: block; margin-bottom: 5px;
+    }
+
+    /* COMPLEMENTO SUB-HEADER */
+    .complement-divider {
+      display: flex; align-items: center; justify-content: space-between;
+      margin: 26px 0 14px; padding: 10px 14px; background: rgba(0, 240, 255, 0.06);
+      border: 1px solid rgba(0, 240, 255, 0.25); border-radius: 10px; flex-wrap: wrap; gap: 8px;
+    }
+    .complement-divider h3 { font-family: var(--font-display); font-size: 18px; color: var(--futuriza-cyan); }
+    .complement-divider span { font-size: 12.5px; color: var(--text-secondary); }
+
+    /* DEMOS */
+    .demo-box {
+      background: var(--bg-surface); border: 1px solid var(--border-subtle);
+      border-radius: 14px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .demo-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 8px; flex-wrap: wrap; }
+    .demo-head strong { font-size: 13.5px; }
+
+    .switch-pills { display: flex; gap: 4px; background: #0B0E14; padding: 3px; border-radius: 8px; border: 1px solid var(--border-subtle); }
+    .sw-btn {
+      border: none; background: transparent; color: var(--text-muted);
+      font-size: 10.5px; font-weight: 700; padding: 4px 9px; border-radius: 6px; cursor: pointer;
+    }
+    .sw-btn.active-red { background: rgba(239, 68, 68, 0.22); color: #F87171; }
+    .sw-btn.active-green { background: rgba(16, 185, 129, 0.22); color: #34D399; }
+
+    /* GOOGLE SHOPPING MOCK */
+    .google-mock {
+      background: #0D1117; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px; padding: 10px;
+    }
+    .g-search-bar {
+      display: flex; align-items: center; gap: 8px; background: #161B22;
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; padding: 5px 12px;
+      font-size: 11.5px; color: #FFF; margin-bottom: 10px;
+    }
+    .shopping-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .shop-card {
+      background: #161B22; border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px; padding: 7px; font-size: 10.5px; min-width: 0; overflow: hidden;
+    }
+    .shop-card.inox-winner { border: 2px solid var(--inox-yellow); background: rgba(248, 220, 19, 0.06); }
+    .shop-card img { width: 100%; height: 64px; object-fit: contain; background: #0A0D12; border-radius: 5px; margin-bottom: 5px; }
+    .shop-price { font-family: var(--font-mono); font-weight: 700; font-size: 11.5px; color: #FFF; display: block; }
+    .shop-store { font-size: 9.5px; color: var(--text-muted); }
+
+    /* FLOW STAGE PIXEL */
+    .flow-stage {
+      background: #0D1117; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px; padding: 10px; display: flex; flex-direction: column; gap: 8px; min-width: 0;
+    }
+    .flow-row {
+      display: flex; align-items: center; justify-content: space-between;
+      background: #161B22; padding: 8px 10px; border-radius: 7px; font-size: 11.5px; min-width: 0;
+    }
+
+    /* TABLA DEMO COMPETENCIA */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 4px 0;
+    }
+    .comp-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+    .comp-table th {
+      text-align: left; font-family: var(--font-mono); font-size: 9.5px; text-transform: uppercase;
+      color: var(--text-muted); padding: 6px; border-bottom: 1px solid var(--border-subtle);
+    }
+    .comp-table td { padding: 7px 6px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .pill-state {
+      display: inline-block; font-family: var(--font-mono); font-size: 9.5px; font-weight: 700;
+      padding: 2px 6px; border-radius: 999px;
+    }
+    .state-green { background: rgba(16, 185, 129, 0.15); color: #34D399; }
+    .state-red { background: rgba(239, 68, 68, 0.15); color: #F87171; }
+    .state-amber { background: rgba(245, 158, 11, 0.15); color: #FBBF24; }
+
+    /* SOLUCIONES INTEGRALES: 4 FASES Y 2 MODALIDADES */
+    .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 24px; }
+    .phase-card {
+      background: var(--bg-surface); border: 1px solid var(--border-subtle);
+      border-radius: 12px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;
+      min-width: 0; overflow: hidden;
+    }
+    .phase-num {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+      color: var(--futuriza-cyan); background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.25); border-radius: 6px; padding: 2px 7px; display: inline-block; margin-bottom: 8px;
+    }
+    .phase-title { font-family: var(--font-display); font-size: 14.5px; font-weight: 700; margin-bottom: 6px; }
+    .phase-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.45; }
+    .phase-tag { font-family: var(--font-mono); font-size: 9.5px; color: var(--text-muted); margin-top: 10px; }
+
+    .modality-card {
+      background: var(--bg-surface); border: 1px solid var(--border-subtle);
+      border-radius: 14px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px;
+      position: relative; overflow: hidden; min-width: 0;
+    }
+    .modality-card.card-service {
+      border-color: rgba(0, 240, 255, 0.35);
+      background: linear-gradient(180deg, rgba(0, 240, 255, 0.04) 0%, rgba(13, 17, 23, 0.95) 100%);
+    }
+    .modality-card.card-inhouse {
+      border-color: rgba(248, 220, 19, 0.35);
+      background: linear-gradient(180deg, rgba(248, 220, 19, 0.04) 0%, rgba(13, 17, 23, 0.95) 100%);
+    }
+    .modality-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-mono); font-size: 10.5px; font-weight: 700;
+      padding: 4px 10px; border-radius: 6px; text-transform: uppercase;
+    }
+    .badge-service { background: rgba(0, 240, 255, 0.12); color: var(--futuriza-cyan); border: 1px solid rgba(0, 240, 255, 0.3); }
+    .badge-inhouse { background: rgba(248, 220, 19, 0.12); color: var(--inox-yellow); border: 1px solid rgba(248, 220, 19, 0.3); }
+    .modality-title { font-family: var(--font-display); font-size: 19px; font-weight: 800; margin: 4px 0; }
+    .modality-subtitle { font-size: 13px; color: var(--text-secondary); line-height: 1.45; }
+    .modality-ul { list-style: none; display: flex; flex-direction: column; gap: 9px; font-size: 12.5px; margin: 10px 0; }
+    .modality-ul li { display: flex; align-items: flex-start; gap: 8px; }
+    .modality-ideal {
+      background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 12px; border-radius: 8px; font-size: 12px; color: var(--text-secondary);
+    }
+    .modality-ideal strong { color: #FFF; font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; display: block; margin-bottom: 2px; }
+
+    footer { padding: 24px 0; text-align: center; font-size: 12px; color: var(--text-muted); }
+
+    /* TABLET (<= 980px) */
+    @media (max-width: 980px) {
+      .nav-links { display: none; }
+      .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+      .kpi-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+      .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+      .grid-2 { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+      section { padding: 32px 0; }
+    }
+
+    /* MOBILE (<= 640px) */
+    @media (max-width: 640px) {
+      .container { padding: 0 14px; }
+
+      /* TOPBAR */
+      .topbar { padding: 8px 0; }
+      .topbar-inner { justify-content: center; gap: 10px; }
+      .co-branding { gap: 8px; }
+      .co-branding img.logo-inox { height: 26px; }
+      .co-branding img.logo-futuriza { height: 18px; }
+      .mode-switch-wrapper { width: 100%; max-width: 320px; margin: 0 auto; justify-content: center; }
+      .mode-btn { font-size: 11px; padding: 5px 12px; flex: 1; text-align: center; }
+
+      /* HERO */
+      .hero { padding: 22px 0 18px; }
+      .badge-pill { font-size: 10px; padding: 4px 10px; }
+      .hero h1 { font-size: 22px; line-height: 1.2; margin-bottom: 8px; }
+      .hero-lead { font-size: 13.5px; line-height: 1.4; }
+
+      /* KPI STRIP: 2 COLUMNAS (3 FILAS) */
+      .kpi-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .kpi-box { padding: 9px 10px; border-radius: 8px; }
+      .kpi-box .kpi-val { font-size: 12.5px; }
+      .kpi-box .kpi-lbl { font-size: 10.5px; }
+
+      /* SECCIONES Y ENCABEZADOS */
+      section { padding: 26px 0; }
+      .sec-head { margin-bottom: 14px; gap: 6px; }
+      .sec-title { font-size: 20px; line-height: 1.2; }
+      .sec-sub { font-size: 12px; }
+      .part-banner { font-size: 10.5px; padding: 5px 10px; }
+
+      /* GRILLAS: 1 COLUMNA */
+      .grid-4, .grid-3, .grid-2 { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+
+      /* TARJETAS */
+      .card { padding: 13px 12px; border-radius: 12px; }
+      .card-title { font-size: 15.5px; }
+      .diag-rows { gap: 6px; font-size: 12px; }
+      .d-row { padding: 6px 8px; }
+      .d-row strong { font-size: 10px; }
+      .sol-box-owner, .sol-box-tech { padding: 9px 10px; }
+      .short-list { font-size: 12px; gap: 4px; }
+
+      /* COMPLEMENTOS */
+      .complement-divider { padding: 8px 10px; margin: 20px 0 10px; flex-direction: column; align-items: flex-start; gap: 4px; }
+      .complement-divider h3 { font-size: 15px; }
+      .complement-divider span { font-size: 11.5px; }
+
+      /* DEMOS */
+      .demo-box { padding: 12px 10px; border-radius: 12px; min-width: 0; overflow: hidden; }
+      .demo-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .switch-pills { width: 100%; justify-content: stretch; }
+      .sw-btn { flex: 1; text-align: center; font-size: 10px; padding: 5px 6px; }
+      .shopping-row { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+      .shop-card { padding: 10px; text-align: left; min-width: 0; }
+      .shop-card img { width: 100%; height: 75px; object-fit: contain; margin-bottom: 6px; }
+      .flow-stage { gap: 6px; padding: 8px; }
+      .flow-row { padding: 7px 8px; font-size: 11px; flex-direction: column; align-items: flex-start; gap: 3px; }
+
+      /* TABLA COMPETENCIA */
+      .table-responsive { display: block; width: 100%; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .comp-table { min-width: 340px; width: 100%; font-size: 10.5px; }
+      .comp-table th, .comp-table td { padding: 6px 5px; }
+
+      /* MODALIDADES Y FASES */
+      .modality-card { padding: 16px 13px; border-radius: 12px; gap: 10px; }
+      .modality-title { font-size: 17px; }
+      .modality-subtitle { font-size: 12.5px; }
+      .modality-ul { font-size: 12px; gap: 7px; margin: 8px 0; }
+      .modality-ideal { padding: 8px 10px; font-size: 11.5px; }
+      .phase-card { padding: 12px 10px; }
+      .phase-title { font-size: 14px; }
+      .phase-desc { font-size: 11.5px; }
+    }
+
+    @media (max-width: 380px) {
+      .kpi-strip { grid-template-columns: minmax(0, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="co-branding">
+        <img src="./assets/logo_cropped.png" alt="INOX" class="logo-inox" />
+        <span class="divider">×</span>
+        <img src="./assets/logo-horizontal-dark.svg" alt="FuturizaTech" class="logo-futuriza" />
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#paquete-diagnostico">1. Diagnóstico</a></li>
+        <li><a href="#paquete-soluciones">2. Soluciones & Complementos</a></li>
+        <li><a href="#soluciones-integrales">3. Soluciones Integrales</a></li>
+      </ul>
+
+      <div class="mode-switch-wrapper">
+        <button id="btnOwnerMode" class="mode-btn active-owner" onclick="setGlobalMode('owner')">
+          💰 Modo Dueño
+        </button>
+        <button id="btnTechMode" class="mode-btn" onclick="setGlobalMode('tech')">
+          ⚙️ Modo Ingeniería
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="badge-pill">🔍 Radiografía de Tienda Nube y Campañas · inoxar.com.ar</div>
+        <h1>Diagnóstico de Situación Actual y <span class="highlight-yellow">Paquete de Soluciones</span></h1>
+        <p class="hero-lead">
+          Dividido en tres bloques claros: <strong>1) El diagnóstico de situación actual y perjuicios</strong>, <strong>2) Las soluciones directas y complementos</strong>, y <strong>3) La solución integral de análisis, creación y publicación de campañas</strong> (gestionado desde nuestra PC o instalado 100% en tu empresa).
+        </p>
+      </div>
+
+      <div class="kpi-strip">
+        <div class="kpi-box">
+          <span class="kpi-val" style="color:var(--status-red);">Shopping OFF</span>
+          <span class="kpi-lbl">Catálogo desconectado en Google</span>
+        </div>
+        <div class="kpi-box">
+          <span class="kpi-val" style="color:var(--status-red);">Catálogo Meta OFF</span>
+          <span class="kpi-lbl">Sin retargeting de carritos</span>
+        </div>
+        <div class="kpi-box">
+          <span class="kpi-val" style="color:var(--status-amber);">SEO Sin Datos</span>
+          <span class="kpi-lbl">Google no muestra precios gratis</span>
+        </div>
+        <div class="kpi-box">
+          <span class="kpi-val" style="color:var(--status-amber);">Píxel Básico</span>
+          <span class="kpi-lbl">Pierde ~35% de compras en iPhone</span>
+        </div>
+        <div class="kpi-box">
+          <span class="kpi-val" style="color:var(--status-red);">GA4 + GTM Vacíos</span>
+          <span class="kpi-lbl">Sin registro de visitas ni carritos</span>
+        </div>
+        <div class="kpi-box">
+          <span class="kpi-val" style="color:var(--futuriza-cyan);">Sin Radar Automático</span>
+          <span class="kpi-lbl">Monitoreo manual y esporádico</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       PAQUETE 1: EL DIAGNÓSTICO PURO (QUÉ SUCEDE, QUÉ ABARCA, PERJUICIO)
+       ===================================================================== -->
+  <section id="paquete-diagnostico">
+    <div class="container">
+      <div class="part-banner banner-red">🚨 PARTE 1 DE 2 · PAQUETE DE DIAGNÓSTICO (SITUACIÓN ACTUAL)</div>
+      <div class="sec-head">
+        <div>
+          <h2 class="sec-title">Qué sucede hoy en inoxar.com.ar, qué abarca y qué perjuicio genera</h2>
+        </div>
+        <span class="sec-sub">Los 5 problemas detectados al auditar tu tienda y tus campañas actuales.</span>
+      </div>
+
+      <!-- PRIMEROS 3 PROBLEMAS: TRÁFICO Y BÚSQUEDA -->
+      <div class="grid-3">
+        <!-- PROBLEMA 1: GOOGLE SHOPPING APAGADO -->
+        <div class="card" id="diag-1">
+          <div class="card-head">
+            <div class="card-top">
+              <span class="badge-tag tag-red">Problema 1 · Buscador de Google</span>
+              <button class="mini-toggle" onclick="toggleCard('diag-1')">⚙️ Ver detalle técnico</button>
+            </div>
+            <h3 class="card-title">Catálogo de productos desconectado de Google Shopping</h3>
+          </div>
+
+          <div class="diag-rows">
+            <div class="d-row d-what">
+              <strong>🔍 Qué sucede hoy</strong>
+              <span class="how-owner-panel">Tu Tienda Nube no le está pasando la lista de bachas, fotos y precios a Google Shopping. Tu vidriera de productos está apagada en el buscador principal donde los clientes comparan antes de comprar.</span>
+              <span class="how-tech-panel">En el código de <code>inoxar.com.ar</code> figura la etiqueta <code>AW-18191297327</code> pero con <code>has_preexisting_google_mc_catalog: false</code> (Google Merchant Center desconectado).</span>
+            </div>
+            <div class="d-row d-scope">
+              <strong>📌 Qué abarca</strong>
+              Afecta a todas las búsquedas calientes en Google (gente buscando <em>"bacha acero 304 75x43"</em>, <em>"mesada acero inoxidable"</em> o <em>"grifería Piazza"</em>).
+            </div>
+            <div class="d-row d-damage">
+              <strong>💸 Qué perjuicio te genera</strong>
+              El comprador que busca en Google ya tiene la tarjeta en la mano para comprar hoy. Al estar apagada tu vidriera, arriba aparecen competidores y revendedores, y vos perdés esa venta directa.
+            </div>
+          </div>
+        </div>
+
+        <!-- PROBLEMA 2: CATÁLOGO META DESCONECTADO Y SIN RETARGETING DPA -->
+        <div class="card" id="diag-2">
+          <div class="card-head">
+            <div class="card-top">
+              <span class="badge-tag tag-red">Problema 2 · Anuncios en Meta</span>
+              <button class="mini-toggle" onclick="toggleCard('diag-2')">⚙️ Ver detalle técnico</button>
+            </div>
+            <h3 class="card-title">Catálogo desconectado de Meta y sin retargeting de carritos</h3>
+          </div>
+
+          <div class="diag-rows">
+            <div class="d-row d-what">
+              <strong>🔍 Qué sucede hoy</strong>
+              <span class="how-owner-panel">Tu tienda no sincroniza el catálogo con Meta ni le avisa qué producto miró el comprador. Sin esta conexión, Meta no puede reconocer qué bacha le interesó al visitante ni activar anuncios automáticos.</span>
+              <span class="how-tech-panel">Píxel <code>1510436377767604</code> solo con <code>PageView</code>, sin vinculación al catálogo de Meta Commerce ni eventos <code>ViewContent</code> / <code>AddToCart</code> por SKU.</span>
+            </div>
+            <div class="d-row d-scope">
+              <strong>📌 Qué abarca</strong>
+              Toda la captación y publicidad que envíes desde Instagram y Facebook hacia el catálogo completo de productos de <code>inoxar.com.ar</code>.
+            </div>
+            <div class="d-row d-damage">
+              <strong>💸 Qué perjuicio te genera</strong>
+              Quien entra a tu tienda a mirar una bacha y sale sin comprar se pierde para siempre: tus anuncios no pueden perseguirlo con esa bacha específica, obligándote a gastar en anuncios genéricos manuales.
+            </div>
+          </div>
+        </div>
+
+        <!-- PROBLEMA 3: FICHAS INCOMPLETAS Y GOOGLE ORGÁNICO DESAPROVECHADO -->
+        <div class="card" id="diag-3">
+          <div class="card-head">
+            <div class="card-top">
+              <span class="badge-tag tag-amber">Problema 3 · Google Orgánico y Fichas</span>
+              <button class="mini-toggle" onclick="toggleCard('diag-3')">⚙️ Ver detalle técnico</button>
+            </div>
+            <h3 class="card-title">Fichas de catálogo incompletas y Google orgánico apagado</h3>
+          </div>
+
+          <div class="diag-rows">
+            <div class="d-row d-what">
+              <strong>🔍 Qué sucede hoy</strong>
+              <span class="how-owner-panel">Tus publicaciones en Tienda Nube tienen fichas técnicas incompletas (falta marca, códigos SKU limpios y medidas exactas), por lo que Google no muestra tus productos con precio ni stock gratis en las búsquedas.</span>
+              <span class="how-tech-panel">Atributos <code>brand: null</code>, descripciones sin formato técnico enriquecido y metadatos vacíos que impiden alimentar el <code>Schema.org/Product</code> nativo de Tienda Nube.</span>
+            </div>
+            <div class="d-row d-scope">
+              <strong>📌 Qué abarca</strong>
+              Las ~30 publicaciones y todas sus variantes de catálogo (modelos simples, dobles y kits con accesorios) en <code>inoxar.com.ar</code>.
+            </div>
+            <div class="d-row d-damage">
+              <strong>💸 Qué perjuicio te genera</strong>
+              Pérdida de tráfico caliente gratuito en el buscador orgánico. Cuando un cliente busca medidas exactas (ej. <em>"bacha 60x40 bacha simple 304"</em>), arriba aparecen competidores que sí tienen sus fichas estructuradas.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIGUIENTES 2 PROBLEMAS: CONTROL INTERNO Y MERCADO -->
+      <div class="grid-2">
+        <!-- PROBLEMA 4: MEDICIÓN ROTA (PÍXEL SIN CAPI + GA4 VACÍO) -->
+        <div class="card" id="diag-4">
+          <div class="card-head">
+            <div class="card-top">
+              <span class="badge-tag tag-amber">Problema 4 · Medición Interna de Ventas</span>
+              <button class="mini-toggle" onclick="toggleCard('diag-4')">⚙️ Ver detalle técnico</button>
+            </div>
+            <h3 class="card-title">El Píxel pierde ~35% de compras y la analítica de carritos está en blanco</h3>
+          </div>
+
+          <div class="diag-rows">
+            <div class="d-row d-what">
+              <strong>🔍 Qué sucede hoy</strong>
+              <span class="how-owner-panel">Tenés el Píxel básico que solo avisa desde el celular del comprador (perdiendo compras en iPhone) y el tablero de estadísticas de tu tienda no registra visitas ni carritos abandonados.</span>
+              <span class="how-tech-panel">Píxel <code>1510436377767604</code> solo del lado del cliente (sin CAPI Server-Side), contenedor <code>GTM-WPP27H4P</code> inactivo y propiedad GA4 vacía (<code>ga4_measurement_id: ''</code>).</span>
+            </div>
+            <div class="d-row d-scope">
+              <strong>📌 Qué abarca</strong>
+              Todas las compras desde dispositivos Apple (iOS/Safari) y todo el seguimiento del embudo de ventas en <code>inoxar.com.ar</code>.
+            </div>
+            <div class="d-row d-damage">
+              <strong>💸 Qué perjuicio te genera</strong>
+              Meta cree que los anuncios venden menos de lo real y te cobra más caro cada clic, y vos estás ciego sin saber cuántos clientes llegan al checkout y se arrepienten antes de pagar.
+            </div>
+          </div>
+        </div>
+
+        <!-- PROBLEMA 5: FALTA DE RADAR AUTOMÁTICO DE COMPETENCIA -->
+        <div class="card" id="diag-5">
+          <div class="card-head">
+            <div class="card-top">
+              <span class="badge-tag tag-cyan">Problema 5 · Seguimiento de Competencia</span>
+              <button class="mini-toggle" onclick="toggleCard('diag-5')">⚙️ Ver detalle técnico</button>
+            </div>
+            <h3 class="card-title">Falta de monitoreo automatizado de precios y anuncios rivales</h3>
+          </div>
+
+          <div class="diag-rows">
+            <div class="d-row d-what">
+              <strong>🔍 Qué sucede hoy</strong>
+              <span class="how-owner-panel">La comparación de precios y el seguimiento de competidores se hace a mano o de forma esporádica, sin un sistema automático que alerte diariamente variaciones de precios por variante exacta ni qué anuncios nuevos tienen activos.</span>
+              <span class="how-tech-panel">Ausencia de monitoreo automatizado de precios comparativos por variante (AISI 304 vs 430, kit vs pelada) y falta de extracción continua en la Ad Library de competidores directos.</span>
+            </div>
+            <div class="d-row d-scope">
+              <strong>📌 Qué abarca</strong>
+              La competitividad de precios de las ~30 líneas de INOX y la rentabilidad del presupuesto publicitario.
+            </div>
+            <div class="d-row d-damage">
+              <strong>💸 Qué perjuicio te genera</strong>
+              Riesgo de mantener publicidad activa en un modelo donde un competidor bajó el precio esa semana sin que te enteres, y gasto de tiempo y dinero probando anuncios a ciegas en vez de inspirarse en lo que ya está validado en el mercado.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       PAQUETE 2: PAQUETE DE SOLUCIONES + COMPLEMENTOS (ANALÍTICA Y COMPETENCIA)
+       ===================================================================== -->
+  <section id="paquete-soluciones">
+    <div class="container">
+      <div class="part-banner banner-green">✅ PARTE 2 DE 2 · PAQUETE DE SOLUCIONES Y COMPLEMENTOS A APLICAR</div>
+      <div class="sec-head">
+        <div>
+          <h2 class="sec-title">1. Soluciones Principales: Captación en Google y Meta Ads</h2>
+        </div>
+        <span class="sec-sub">Lo que implementamos para encender las ventas directas en inoxar.com.ar.</span>
+      </div>
+
+      <!-- BLOQUE A: SOLUCIONES CORE DE PAUTA Y CAPTACIÓN -->
+      <div class="grid-3">
+        <!-- SOLUCIÓN 1: GOOGLE SHOPPING + ADS -->
+        <div class="card" id="sol-1" style="border-color:rgba(16,185,129,0.35);">
+          <div class="card-head">
+            <div class="card-top">
+              <span class="badge-tag tag-green">Solución 1 · Google Shopping (M-05)</span>
+              <button class="mini-toggle" onclick="toggleCard('sol-1')">⚙️ Cómo técnico</button>
+            </div>
+            <h3 class="card-title">Encendido del Catálogo en Google Shopping y Búsqueda</h3>
+          </div>
+          <div class="how-owner-panel">
+            <div class="sol-box-owner">
+              <span class="lbl">🛠️ Qué hacemos (Sin vueltas)</span>
+              <ul class="short-list">
+                <li>🛍️ Conectamos tu Tienda Nube con Google para que tus bachas salgan arriba de todo con foto, precio y "Envío Gratis".</li>
+                <li>🎯 Capturamos al cliente que ya está buscando medidas exactas (ej. <em>75x43</em> o <em>Acero 304</em>) listo para pagar.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="how-tech-panel">
+            <div class="sol-box-tech">
+              <span class="lbl">⚙️ Ejecución Técnica (M-05)</span>
+              • Sincronización de Feed XML de Tienda Nube con <b>Google Merchant Center</b> vinculado a <code>AW-18191297327</code>.<br>
+              • Campañas Shopping / Performance Max separadas por categoría.
+            </div>
+          </div>
+        </div>
+
+        <!-- SOLUCIÓN 2: META ADS POR VARIANTE Y MARGEN -->
+        <div class="card" id="sol-2" style="border-color:rgba(16,185,129,0.35);">
+          <div class="card-head">
+            <div class="card-top">
+              <span class="badge-tag tag-green">Solución 2 · Meta Ads por Margen (M-05)</span>
+              <button class="mini-toggle" onclick="toggleCard('sol-2')">⚙️ Cómo técnico</button>
+            </div>
+            <h3 class="card-title">Campañas separadas por Variante y Persecución de Carritos</h3>
+          </div>
+          <div class="how-owner-panel">
+            <div class="sol-box-owner">
+              <span class="lbl">🛠️ Qué hacemos (Sin vueltas)</span>
+              <ul class="short-list">
+                <li>💰 Dividimos las campañas según tu ganancia: empujamos fuerte la Línea 304 Premium y los Kits con accesorios.</li>
+                <li>🔄 Si alguien mira la <em>Aqua L75</em> en tu web y sale sin comprar, le vuelve a aparecer en su Instagram hasta que cierre.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="how-tech-panel">
+            <div class="sol-box-tech">
+              <span class="lbl">⚙️ Ejecución Técnica (M-05)</span>
+              • Conjuntos de anuncios aislados por SKU/variante (<em>AISI 304</em> vs <em>AISI 430</em> vs <em>Piazza</em>).<br>
+              • Anuncios Dinámicos de Catálogo (DPA) sobre eventos <code>ViewContent</code> y <code>AddToCart</code>.
+            </div>
+          </div>
+        </div>
+
+        <!-- SOLUCIÓN 3: SEO Y DATOS ESTRUCTURADOS -->
+        <div class="card" id="sol-3" style="border-color:rgba(16,185,129,0.35);">
+          <div class="card-head">
+            <div class="card-top">
+              <span class="badge-tag tag-green">Solución 3 · Google Orgánico (M-10)</span>
+              <button class="mini-toggle" onclick="toggleCard('sol-3')">⚙️ Cómo técnico</button>
+            </div>
+            <h3 class="card-title">Posicionamiento Gratuito de Productos en Google</h3>
+          </div>
+          <div class="how-owner-panel">
+            <div class="sol-box-owner">
+              <span class="lbl">🛠️ Qué hacemos (Sin vueltas)</span>
+              <ul class="short-list">
+                <li>🏷️ Completamos y normalizamos de forma masiva las fichas de tus ~30 productos y variantes (marcas, códigos SKU y descripciones técnicas) para que Google lea el precio y stock.</li>
+                <li>📈 Tu tienda gana visitas gratuitas de compradores calificados en el buscador de Google sin pagar por cada clic.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="how-tech-panel">
+            <div class="sol-box-tech">
+              <span class="lbl">⚙️ Ejecución Técnica (M-10)</span>
+              • Procesamiento masivo de base de datos de catálogo vía CSV + scripts de automatización en Antigravity y re-importación limpia en Tienda Nube.<br>
+              • Activación del marcado <code>Schema.org/Product</code> nativo por variante y envío de <code>sitemap.xml</code> vía API de <b>Google Search Console</b>.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================================
+           SUB-SECCIÓN DE COMPLEMENTOS: ANALÍTICA + INTELIGENCIA DE COMPETENCIA
+           ================================================================= -->
+      <div id="complementos" class="complement-divider">
+        <h3>🧩 2. Complementos Estratégicos: Analítica Exacta e Inteligencia de Competencia</h3>
+        <span>Herramientas que blindan tus campañas para medir cada peso y saber qué anuncios y precios usa la competencia.</span>
+      </div>
+
+      <div class="grid-3">
+        <!-- COMPLEMENTO 1: ANALÍTICA Y MEDICIÓN (GA4 + GTM + CAPI) -->
+        <div class="card" id="comp-1">
+          <div class="card-head">
+            <div class="card-top">
+              <span class="badge-tag tag-cyan">Complemento 1 · Analítica (M-09)</span>
+              <button class="mini-toggle" onclick="toggleCard('comp-1')">⚙️ Cómo técnico</button>
+            </div>
+            <h3 class="card-title">Tablero de Visitas/Carritos (GA4) y Píxel por Servidor (CAPI)</h3>
+          </div>
+          <div class="how-owner-panel">
+            <div class="sol-box-owner">
+              <span class="lbl">🛠️ Para qué sirve y cómo funciona</span>
+              <ul class="short-list">
+                <li>📊 <b>GA4 + GTM:</b> Prendemos el registro de visitas, carritos abandonados y ventas reales en tu tienda.</li>
+                <li>🔒 <b>Píxel con Servidor (CAPI):</b> Recuperamos ese 35% de ventas en iPhone que hoy Facebook no ve.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="how-tech-panel">
+            <div class="sol-box-tech">
+              <span class="lbl">⚙️ Ejecución Técnica (M-09)</span>
+              • Configuración de <b>GTM-WPP27H4P</b> + activación de propiedad <b>GA4</b>.<br>
+              • <b>Meta CAPI Server-Side</b> sobre el Píxel <code>1510436377767604</code> con deduplicación <code>event_id</code>.
+            </div>
+          </div>
+        </div>
+
+        <!-- COMPLEMENTO 2: ANÁLISIS DE ANUNCIOS DE LA COMPETENCIA -->
+        <div class="card" id="comp-2">
+          <div class="card-head">
+            <div class="card-top">
+              <span class="badge-tag tag-cyan">Complemento 2 · Anuncios Rivales (M-06 / M-08)</span>
+              <button class="mini-toggle" onclick="toggleCard('comp-2')">⚙️ Cómo técnico</button>
+            </div>
+            <h3 class="card-title">Espionaje de Anuncios que le Funcionan a la Competencia</h3>
+          </div>
+          <div class="how-owner-panel">
+            <div class="sol-box-owner">
+              <span class="lbl">🛠️ Para qué sirve y cómo funciona</span>
+              <ul class="short-list">
+                <li>🕵️ Rastreamos qué anuncios tienen activos hoy las demás marcas de bachas, mesadas y griferías.</li>
+                <li>🎯 Vemos qué ofertas y formatos mantienen prendidos hace meses (porque les dan ventas) para ir directo a lo seguro.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="how-tech-panel">
+            <div class="sol-box-tech">
+              <span class="lbl">⚙️ Ejecución Técnica (M-06 + M-08)</span>
+              • Extracción automatizada de <b>Meta Ad Library</b> y perfiles rivales vía <b>Apify API</b>.<br>
+              • Detección de creatividades ganadoras por antigüedad de pauta y tracción.
+            </div>
+          </div>
+        </div>
+
+        <!-- COMPLEMENTO 3: ANÁLISIS DE PRECIOS DE LA COMPETENCIA POR MODELO Y VARIANTE -->
+        <div class="card" id="comp-3">
+          <div class="card-head">
+            <div class="card-top">
+              <span class="badge-tag tag-cyan">Complemento 3 · Precios por Variante (M-07)</span>
+              <button class="mini-toggle" onclick="toggleCard('comp-3')">⚙️ Cómo técnico</button>
+            </div>
+            <h3 class="card-title">Monitor de Precios de la Competencia por Modelo y Variante</h3>
+          </div>
+          <div class="how-owner-panel">
+            <div class="sol-box-owner">
+              <span class="lbl">🛠️ Para qué sirve y cómo funciona</span>
+              <ul class="short-list">
+                <li>🔍 Comparamos tus precios contra la competencia respetando <b>cada variante exacta</b> (Acero 304 vs 430, medida, bacha sola vs. kit con canasto y dispenser).</li>
+                <li>🚦 Te marca en <b>Verde</b> las variantes donde sos más competitivo para meter pauta ahí, y en <b>Rojo</b> donde un rival está más barato.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="how-tech-panel">
+            <div class="sol-box-tech">
+              <span class="lbl">⚙️ Ejecución Técnica (M-07)</span>
+              • Scraping programado normalizando atributos por SKU y variante (ej. <code>L75 Kit</code> vs <code>L75 Sola</code>, <code>2/3 orificios</code>).<br>
+              • Tablero semáforo de competitividad para asignar presupuesto de pauta.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================================
+           DEMOS INTERACTIVAS (GOOGLE SHOPPING + ANALÍTICA + PRECIOS POR VARIANTE)
+           ================================================================= -->
+      <div class="complement-divider" style="margin-top:28px; border-color:rgba(248,220,19,0.3); background:rgba(248,220,19,0.05);">
+        <h3 style="color:var(--inox-yellow);">🕹️ Demos Interactivas: Probá el Antes vs. Después en Vivo</h3>
+        <span>Hacé clic en los botones de cada tablero para ver cómo funcionan las soluciones y los complementos.</span>
+      </div>
+
+      <div class="grid-3">
+        <!-- DEMO 1: GOOGLE SHOPPING -->
+        <div class="demo-box">
+          <div>
+            <div class="demo-head">
+              <strong>🛍️ Demo 1: Google Shopping (M-05)</strong>
+              <div class="switch-pills">
+                <button id="btnShopOff" class="sw-btn active-red" onclick="setShoppingDemo(false)">Hoy (Diagnóstico)</button>
+                <button id="btnShopOn" class="sw-btn" onclick="setShoppingDemo(true)">Con Solución</button>
+              </div>
+            </div>
+            <div class="google-mock">
+              <div class="g-search-bar"><span>🔍 bacha cocina acero 304 75x43</span></div>
+              <div class="shopping-row" id="shoppingResults"></div>
+            </div>
+          </div>
+          <p id="shoppingCaption" style="font-size:11px; color:#F87171; margin-top:8px;"></p>
+        </div>
+
+        <!-- DEMO 2: COMPLEMENTO ANALÍTICA (PÍXEL + CAPI + GA4) -->
+        <div class="demo-box">
+          <div>
+            <div class="demo-head">
+              <strong>📊 Demo 2: Complemento Analítica (M-09)</strong>
+              <div class="switch-pills">
+                <button id="btnPixOld" class="sw-btn active-red" onclick="setPixelDemo(false)">Hoy (Diagnóstico)</button>
+                <button id="btnPixNew" class="sw-btn" onclick="setPixelDemo(true)">Con Solución</button>
+              </div>
+            </div>
+            <div class="flow-stage" id="pixelStage"></div>
+          </div>
+          <p id="pixelCaption" style="font-size:11px; color:#F87171; margin-top:8px;"></p>
+        </div>
+
+        <!-- DEMO 3: COMPLEMENTO COMPETENCIA (PRECIOS POR VARIANTE Y ANUNCIOS RIVALES) -->
+        <div class="demo-box">
+          <div>
+            <div class="demo-head">
+              <strong>🚦 Demo 3: Radar de Competencia</strong>
+              <div class="switch-pills">
+                <button id="btnCompPrices" class="sw-btn active-green" onclick="setCompDemo('prices')">Precios por Variante</button>
+                <button id="btnCompAds" class="sw-btn" onclick="setCompDemo('ads')">Anuncios Rivales</button>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="comp-table" id="compTableStage">
+                <!-- Renderizado por JS -->
+              </table>
+            </div>
+          </div>
+          <p id="compCaption" style="font-size:11px; color:#34D399; margin-top:8px;"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       PARTE 3: SOLUCIONES INTEGRALES (ANÁLISIS, CREACIÓN Y PUBLICACIÓN CONTINUA)
+       ===================================================================== -->
+  <section id="soluciones-integrales">
+    <div class="container">
+      <div class="part-banner banner-cyan">🚀 PARTE 3 · SOLUCIONES INTEGRALES: CICLO COMPLETO DE CAMPAÑAS</div>
+      <div class="sec-head">
+        <div>
+          <h2 class="sec-title">Solución Integral: Inteligencia, Creación y Publicación de Campañas</h2>
+        </div>
+        <span class="sec-sub">El circuito continuo para no depender de acciones aisladas: de la inteligencia de precios a la venta diaria en tu Tienda Nube.</span>
+      </div>
+
+      <!-- EL CIRCUITO EN 4 FASES -->
+      <div class="grid-4">
+        <div class="phase-card">
+          <div>
+            <span class="phase-num">Fase 1 · Inteligencia</span>
+            <h4 class="phase-title">Radar de Precios y Competencia</h4>
+            <p class="phase-desc">Monitoreo periódico de precios de rivales por modelo y variante (304 vs 430, kit vs sola) + espionaje de anuncios activos en Meta Ad Library.</p>
+          </div>
+          <span class="phase-tag">M-06 · M-07 · Monitor Automático</span>
+        </div>
+
+        <div class="phase-card">
+          <div>
+            <span class="phase-num">Fase 2 · Creación</span>
+            <h4 class="phase-title">Producción Técnica de Anuncios</h4>
+            <p class="phase-desc">Generación programática de carruseles de catálogo y videos animados enfocados en especificaciones reales, kits completos y ventajas frente al mercado.</p>
+          </div>
+          <span class="phase-tag">M-01 · M-02 · M-03 · Contenido IA</span>
+        </div>
+
+        <div class="phase-card">
+          <div>
+            <span class="phase-num">Fase 3 · Publicación</span>
+            <h4 class="phase-title">Pauta Avanzada por Margen</h4>
+            <p class="phase-desc">Lanzamiento en Google Shopping (Performance Max) y Meta Ads segmentando por rentabilidad neta + retargeting dinámico de catálogo (DPA) para carritos abandonados.</p>
+          </div>
+          <span class="phase-tag">M-05 · Meta & Google Ads</span>
+        </div>
+
+        <div class="phase-card">
+          <div>
+            <span class="phase-num">Fase 4 · Optimización</span>
+            <h4 class="phase-title">Medición CAPI y Escalado</h4>
+            <p class="phase-desc">Control de compras reales por servidor (CAPI) y GA4, apagado de anuncios fatigados y aceleración de inversión solo en las variantes más rentables.</p>
+          </div>
+          <span class="phase-tag">M-09 · Analítica & CAPI</span>
+        </div>
+      </div>
+
+      <!-- LAS 2 MODALIDADES DE CONTRATACIÓN -->
+      <div class="grid-2">
+        <!-- MODALIDAD 1: SERVICIO GESTIONADO (DESDE NUESTRA PC) -->
+        <div class="modality-card card-service">
+          <div>
+            <span class="modality-badge badge-service">Modalidad 1 · Servicio Operativo Gestionado</span>
+            <h3 class="modality-title">FuturizaTech Ejecuta Todo (Desde nuestra PC)</h3>
+            <p class="modality-subtitle">
+              Nosotros operamos la maquinaria técnica completa mes a mes. Tu empresa no instala nada ni gasta horas internas: vos solo revisás y das el OK.
+            </p>
+
+            <ul class="modality-ul">
+              <li>
+                <span>⚡</span>
+                <div><strong>Cero carga para tus empleados:</strong> No ocupás tiempo de tu personal ni necesitás diseñadores ni traffickers internos.</div>
+              </li>
+              <li>
+                <span>💻</span>
+                <div><strong>Infraestructura propia de Futuriza:</strong> Los scrapers de precios, generadores de carruseles y motores corren en nuestras máquinas.</div>
+              </li>
+              <li>
+                <span>🔄</span>
+                <div><strong>Rutina mensual continua:</strong> Auditoría de precios semanal, producción de piezas, lanzamiento de pauta y optimización diaria.</div>
+              </li>
+              <li>
+                <span>📈</span>
+                <div><strong>Reporte ejecutivo mensual:</strong> Cierre de mes con métricas limpias: ventas atribuidas, costo por compra y comparativa de mercado.</div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="modality-ideal">
+            <strong>🎯 Para quién es ideal</strong>
+            Empresas y dueños que quieren delegar la captación al 100% en un socio técnico confiable y concentrarse exclusivamente en fabricar, vender y despachar.
+          </div>
+        </div>
+
+        <!-- MODALIDAD 2: INSTALACIÓN IN-HOUSE (EN LA PC DEL CLIENTE) -->
+        <div class="modality-card card-inhouse">
+          <div>
+            <span class="modality-badge badge-inhouse">Modalidad 2 · Instalación In-House Llave en Mano</span>
+            <h3 class="modality-title">Paquete Instalado en la PC de tu Empresa</h3>
+            <p class="modality-subtitle">
+              Sello #1 de FuturizaTech: <strong>Propiedad 100% de tu empresa</strong>. Te instalamos la tecnología en tus computadoras y capacitamos a tu equipo para operarla de por vida.
+            </p>
+
+            <ul class="modality-ul">
+              <li>
+                <span>🏢</span>
+                <div><strong>Activo propio permanente:</strong> Instalamos y dejamos configurados los scripts de extracción de precios y motores de diseño directo en tu PC/servidor.</div>
+              </li>
+              <li>
+                <span>🎓</span>
+                <div><strong>Capacitación práctica a tu equipo:</strong> Entrenamos a tu personal de marketing o administración para que sepan correr y actualizar todo.</div>
+              </li>
+              <li>
+                <span>🔓</span>
+                <div><strong>Cero alquiler ni licencias:</strong> No pagás cuotas mensuales por software. La herramienta es tuya y la usás cuando querés sin ataduras.</div>
+              </li>
+              <li>
+                <span>🛡️</span>
+                <div><strong>Garantía de puesta en marcha:</strong> Entregamos el sistema testeado, con manuales operativos en español y acompañamiento inicial.</div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="modality-ideal">
+            <strong>🎯 Para quién es ideal</strong>
+            Empresas consolidadas que ya cuentan con equipo interno (marketing, diseño o administración) y quieren internalizar la tecnología como un activo de la firma.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <strong>Diagnóstico & Paquete de Soluciones · FuturizaTech × INOX (inoxar.com.ar)</strong> · Córdoba, Argentina.
+    </div>
+  </footer>
+
+  <script>
+    // MODO DUEÑO VS MODO INGENIERÍA
+    function setGlobalMode(mode) {
+      const body = document.body;
+      const btnOwner = document.getElementById('btnOwnerMode');
+      const btnTech = document.getElementById('btnTechMode');
+      document.querySelectorAll('.card').forEach(el => {
+        el.classList.remove('card-force-tech', 'card-force-owner');
+      });
+      if (mode === 'tech') {
+        body.classList.add('tech-mode');
+        btnTech.classList.add('active-tech');
+        btnOwner.classList.remove('active-owner');
+      } else {
+        body.classList.remove('tech-mode');
+        btnOwner.classList.add('active-owner');
+        btnTech.classList.remove('active-tech');
+      }
+    }
+
+    function toggleCard(cardId) {
+      const card = document.getElementById(cardId);
+      const isGlobalTech = document.body.classList.contains('tech-mode');
+      if (!isGlobalTech) {
+        card.classList.toggle('card-force-tech');
+      } else {
+        card.classList.toggle('card-force-owner');
+      }
+    }
+
+    // DEMO 1: GOOGLE SHOPPING
+    function setShoppingDemo(isActive) {
+      const btnOff = document.getElementById('btnShopOff');
+      const btnOn = document.getElementById('btnShopOn');
+      const container = document.getElementById('shoppingResults');
+      const caption = document.getElementById('shoppingCaption');
+
+      if (!isActive) {
+        btnOff.className = 'sw-btn active-red';
+        btnOn.className = 'sw-btn';
+        container.innerHTML = `
+          <div class="shop-card">
+            <div style="height:64px; background:#0A0D12; border-radius:5px; display:flex; align-items:center; justify-content:center; color:#64748B; font-size:9.5px; margin-bottom:5px;">[Competidor 1]</div>
+            <span style="font-weight:600; display:block;">Bacha 75x43 304</span>
+            <span class="shop-price">$272.200</span>
+            <span class="shop-store">Competidor A</span>
+          </div>
+          <div class="shop-card">
+            <div style="height:64px; background:#0A0D12; border-radius:5px; display:flex; align-items:center; justify-content:center; color:#64748B; font-size:9.5px; margin-bottom:5px;">[Competidor 2]</div>
+            <span style="font-weight:600; display:block;">Bacha Simple 304</span>
+            <span class="shop-price">$310.000</span>
+            <span class="shop-store">Sanitarios Web</span>
+          </div>
+          <div class="shop-card" style="border:1px dashed #EF4444; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+            <span style="font-size:15px;">🚫</span>
+            <strong style="color:#F87171; font-size:10px;">INOX AUSENTE</strong>
+            <span style="font-size:9px; color:#94A3B8;">Catálogo apagado</span>
+          </div>
+        `;
+        caption.style.color = '#F87171';
+        caption.innerHTML = '⚠️ <strong>Diagnóstico hoy:</strong> Tenés la Aqua L75 a $204.990 en tu web, pero no salís en Google Shopping.';
+      } else {
+        btnOff.className = 'sw-btn';
+        btnOn.className = 'sw-btn active-green';
+        container.innerHTML = `
+          <div class="shop-card inox-winner">
+            <img src="./assets/bacha-aqua-l75-acero-304-75x43x22cm-1.webp" alt="INOX Aqua L75" />
+            <span style="font-weight:700; color:#F8DC13; display:block;">Bacha Aqua L75 304</span>
+            <span class="shop-price">$204.990</span>
+            <span class="shop-store" style="color:#34D399;">✔ inoxar.com.ar · Envío gratis</span>
+          </div>
+          <div class="shop-card inox-winner">
+            <img src="./assets/bacha-aqua-l57-acero-304-57x43x22cm-1.webp" alt="INOX L65" />
+            <span style="font-weight:700; color:#F8DC13; display:block;">Bacha L65 Acero 304</span>
+            <span class="shop-price">$170.990</span>
+            <span class="shop-store" style="color:#34D399;">✔ inoxar.com.ar · Envío gratis</span>
+          </div>
+          <div class="shop-card">
+            <div style="height:64px; background:#0A0D12; border-radius:5px; display:flex; align-items:center; justify-content:center; color:#64748B; font-size:9.5px; margin-bottom:5px;">[Competidor]</div>
+            <span style="font-weight:600; display:block;">Bacha 75x43 304</span>
+            <span class="shop-price">$272.200</span>
+            <span class="shop-store">Competidor A</span>
+          </div>
+        `;
+        caption.style.color = '#34D399';
+        caption.innerHTML = '✔ <strong>Con la Solución 1:</strong> Tus bachas aparecen primeras con foto, precio y clic directo a tu tienda.';
+      }
+    }
+
+    // DEMO 2: COMPLEMENTO ANALÍTICA
+    function setPixelDemo(isFixed) {
+      const btnOld = document.getElementById('btnPixOld');
+      const btnNew = document.getElementById('btnPixNew');
+      const stage = document.getElementById('pixelStage');
+      const caption = document.getElementById('pixelCaption');
+
+      if (!isFixed) {
+        btnOld.className = 'sw-btn active-red';
+        btnNew.className = 'sw-btn';
+        stage.innerHTML = `
+          <div class="flow-row">
+            <span>🛒 <strong>Compras reales en Tienda Nube:</strong></span>
+            <span style="font-family:var(--font-mono); font-weight:700; color:#FFF;">10 ventas</span>
+          </div>
+          <div class="flow-row" style="border-left:3px solid #F59E0B;">
+            <span>📱 <strong>Píxel Básico (Bloqueado en iPhone):</strong></span>
+            <span style="font-family:var(--font-mono); font-weight:700; color:#FBBF24;">Solo ve 6 de 10</span>
+          </div>
+          <div class="flow-row" style="border-left:3px solid #EF4444;">
+            <span>📊 <strong>Registro en GA4 (Hoy vacío):</strong></span>
+            <span style="font-family:var(--font-mono); font-weight:700; color:#F87171;">0 registradas</span>
+          </div>
+        `;
+        caption.style.color = '#F87171';
+        caption.innerHTML = '⚠️ <strong>Diagnóstico hoy:</strong> Se pierden 4 de cada 10 compras y no se registran los carritos abandonados.';
+      } else {
+        btnOld.className = 'sw-btn';
+        btnNew.className = 'sw-btn active-green';
+        stage.innerHTML = `
+          <div class="flow-row">
+            <span>🛒 <strong>Compras reales en Tienda Nube:</strong></span>
+            <span style="font-family:var(--font-mono); font-weight:700; color:#FFF;">10 ventas</span>
+          </div>
+          <div class="flow-row" style="border-left:3px solid #10B981;">
+            <span>🔒 <strong>Píxel + Servidor CAPI (Sin bloqueos):</strong></span>
+            <span style="font-family:var(--font-mono); font-weight:700; color:#34D399;">10 de 10 exactas</span>
+          </div>
+          <div class="flow-row" style="border-left:3px solid #10B981;">
+            <span>📊 <strong>GA4 + GTM Activo:</strong></span>
+            <span style="font-family:var(--font-mono); font-weight:700; color:#34D399;">100% medido</span>
+          </div>
+        `;
+        caption.style.color = '#34D399';
+        caption.innerHTML = '✔ <strong>Con Complemento Analítica:</strong> El algoritmo recibe las 10 ventas reales y optimiza tu presupuesto.';
+      }
+    }
+
+    // DEMO 3: COMPLEMENTO DE COMPETENCIA (PRECIOS POR VARIANTE Y ANUNCIOS RIVALES)
+    function setCompDemo(mode) {
+      const btnPrices = document.getElementById('btnCompPrices');
+      const btnAds = document.getElementById('btnCompAds');
+      const table = document.getElementById('compTableStage');
+      const caption = document.getElementById('compCaption');
+
+      if (mode === 'prices') {
+        btnPrices.className = 'sw-btn active-green';
+        btnAds.className = 'sw-btn';
+        table.innerHTML = `
+          <thead>
+            <tr>
+              <th>Modelo y Variante Exacta</th>
+              <th>Tu Web</th>
+              <th>Rival Prom.</th>
+              <th>Decisión Ads</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Aqua L75 · 304 (Kit c/Acc.)</strong></td>
+              <td style="font-family:var(--font-mono); color:#34D399; font-weight:700;">$204.990</td>
+              <td style="font-family:var(--font-mono);">$262.000</td>
+              <td><span class="pill-state state-green">🟢 ACELERAR ADS</span></td>
+            </tr>
+            <tr>
+              <td><strong>Gema XL 80×50 · 304 (Sola)</strong></td>
+              <td style="font-family:var(--font-mono); color:#34D399; font-weight:700;">$203.990</td>
+              <td style="font-family:var(--font-mono);">$248.000</td>
+              <td><span class="pill-state state-green">🟢 ACELERAR ADS</span></td>
+            </tr>
+            <tr>
+              <td><strong>Piazza Kitchen Pro (Extensible)</strong></td>
+              <td style="font-family:var(--font-mono); color:#F87171; font-weight:700;">$193.990</td>
+              <td style="font-family:var(--font-mono);">$171.900</td>
+              <td><span class="pill-state state-red">🔴 NO PAUTAR SOLA</span></td>
+            </tr>
+            <tr>
+              <td><strong>Prisma Grafito 78×48 (2 Orif.)</strong></td>
+              <td style="font-family:var(--font-mono); color:#FBBF24; font-weight:700;">$477.990</td>
+              <td style="font-family:var(--font-mono);">$485.000</td>
+              <td><span class="pill-state state-amber">🟡 PAUTAR EN KIT</span></td>
+            </tr>
+          </tbody>
+        `;
+        caption.style.color = '#34D399';
+        caption.innerHTML = '✔ <strong>Monitor M-07:</strong> Compara cada variante exacta (sola vs. kit, acero 304 vs. 430) para pautar solo donde ganás.';
+      } else {
+        btnPrices.className = 'sw-btn';
+        btnAds.className = 'sw-btn active-green';
+        table.innerHTML = `
+          <thead>
+            <tr>
+              <th>Anuncio Detectado en Competencia</th>
+              <th>Variante Empujada</th>
+              <th>Uso para INOX</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Video mostrando espesor 304 vs 430</strong></td>
+              <td>Línea 304 Premium</td>
+              <td><span class="pill-state state-green">Replicar en Meta Ads</span></td>
+            </tr>
+            <tr>
+              <td><strong>Carrusel Kit Bacha + Canasto + Disp.</strong></td>
+              <td>Variante con Accesorios</td>
+              <td><span class="pill-state state-green">Destacar ahorro Kit</span></td>
+            </tr>
+            <tr>
+              <td><strong>Anuncio con plano de corte bajo mesada</strong></td>
+              <td>68×45 y 75×43 cm</td>
+              <td><span class="pill-state state-amber">Sumar en Catálogo</span></td>
+            </tr>
+            <tr>
+              <td><strong>Combo Bacha + Grifería Monocomando</strong></td>
+              <td>Bacha + Grifería</td>
+              <td><span class="pill-state state-green">Armar Combo c/Piazza</span></td>
+            </tr>
+          </tbody>
+        `;
+        caption.style.color = '#34D399';
+        caption.innerHTML = '✔ <strong>Radar M-06 / M-08:</strong> Vemos qué anuncios mantienen activos tus competidores para ir directo a lo que les vende.';
+      }
+    }
+
+    // Inicializar demos
+    setShoppingDemo(false);
+    setPixelDemo(false);
+    setCompDemo('prices');
+  </script>
+</body>
+</html>
