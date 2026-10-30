@@ -6,6 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Propuesta Comercial: Club de Puntos & Fidelización — Luciano Sosa | FuturizaTech</title>
+
+  <!-- Favicons Oficiales FuturizaTech -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -1343,7 +1351,7 @@
           <h3><span class="icon-check">✓</span> Solución a Medida FuturizaTech (Tu Club de Puntos)</h3>
           <ul class="compare-list">
             <li><span class="icon-check">✓</span> <strong>Cero descargas de tienda:</strong> Vos o tu empleado
-              buscan por DNI/celular y le dicen los puntos en 3 segundos.</li>
+              buscan por DNI o Nombre y le dicen los puntos en 3 segundos.</li>
             <li><span class="icon-check">✓</span> <strong>Atajo PWA para el Cliente:</strong> El cliente puede guardar
               el ícono en la pantalla de inicio de su teléfono. Su DNI queda recordado para consultar sus puntos y
               premios en 1 segundo, sin contraseñas ni instalaciones pesadas.</li>
@@ -1365,7 +1373,7 @@
       <span class="sec-tag">02 · Prototipo Funcional Interactivo</span>
       <h2 class="sec-title">Probá cómo funcionaría en tu caja o mostrador</h2>
       <p class="sec-desc">
-        Hacé la prueba interactiva directamente en este panel simulado. Buscá un cliente, sumale puntos por una compra o
+        Hacé la prueba interactiva directamente en este panel simulado. Buscá un cliente por DNI o Nombre, cargale puntos o
         canjeale un premio para ver cómo se actualiza en tiempo real:
       </p>
 
@@ -1393,14 +1401,14 @@
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
               <input type="text" id="simSearchInput" class="search-input"
-                placeholder="Buscar por DNI o Celular (ej: 34567890 o 351...)" value="34567890" oninput="simFilter()">
+                placeholder="Buscar por DNI o Nombre (ej: 34567890 o Juan...)" value="34567890" oninput="simFilter()">
             </div>
 
             <div class="client-card-sim">
               <div class="client-header">
                 <div>
                   <div class="client-name" id="simClientName">Juan Pérez</div>
-                  <div class="client-id" id="simClientId">DNI: 34.567.890 · Cel: 351 689 4421</div>
+                  <div class="client-id" id="simClientId">DNI: 34.567.890</div>
                 </div>
                 <span
                   style="font-size: 11px; background: rgba(16, 185, 129, 0.15); color: #10B981; padding: 2px 8px; border-radius: 999px; font-weight: 700;">Cliente
@@ -1442,7 +1450,7 @@
             <ul class="sim-log-list" id="simLogList">
               <li class="sim-log-item sum">
                 <div>
-                  <strong>+50 pts</strong> — Compra $5.000
+                  <strong>+50 pts</strong> — Carga de puntos
                   <div style="color: var(--text-muted); font-size: 10.5px;">Ayer 19:42 hs · Caja 1</div>
                 </div>
                 <span style="color: #10B981; font-weight: 700;">+50</span>
@@ -1532,7 +1540,7 @@
 
             <div class="pwa-reward-item">
               <div>
-                <strong style="font-size: 12px; color: #FFF; display: block;">Descuento 20% en compra</strong>
+                <strong style="font-size: 12px; color: #FFF; display: block;">Descuento 20% en mostrador</strong>
                 <span style="font-size: 10px; color: var(--text-muted); font-family: var(--font-mono);">Requiere: 100
                   pts</span>
               </div>
@@ -1562,12 +1570,11 @@
   <div class="sim-modal" id="modalSum">
     <div class="sim-modal-card">
       <h3 class="sim-modal-title">Sumar Puntos a <span id="modalClientName">Juan Pérez</span></h3>
-      <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 12px;">Ingresá el monto de la compra o los
-        puntos directos:</p>
-      <input type="number" id="inputMontoCompra" class="sim-modal-input" placeholder="Monto de la compra (ej: $12.000)"
-        value="8000">
+      <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 12px;">Ingresá la cantidad de puntos a cargar:</p>
+      <input type="number" id="inputPuntosSumar" class="sim-modal-input" placeholder="Puntos a sumar (ej: 50)"
+        value="50">
       <div style="font-size: 12px; color: var(--futuriza-cyan); margin-bottom: 16px; font-family: var(--font-mono);"
-        id="calcPointsPreview">Equivale a: <strong>+80 puntos</strong> (regla: 1 pt cada $100)</div>
+        id="calcPointsPreview">Se acreditarán <strong>+50 puntos</strong> al instante</div>
       <div class="sim-modal-btns">
         <button class="btn-cancel-modal" onclick="closeModal()">Cancelar</button>
         <button class="btn-act btn-add" style="padding: 8px 16px;" onclick="confirmSum()">Confirmar Carga</button>
@@ -1583,7 +1590,7 @@
         disponible:</p>
       <select id="selectPremio" class="sim-modal-input" style="cursor: pointer;">
         <option value="50">Descuento 10% en mostrador — 50 pts</option>
-        <option value="100" selected>Descuento 20% en compra — 100 pts</option>
+        <option value="100" selected>Descuento 20% en mostrador — 100 pts</option>
         <option value="200">Producto Especial / Premio X — 200 pts</option>
       </select>
       <div class="sim-modal-btns">
@@ -1620,13 +1627,13 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                <span><strong>Buscador Flash:</strong> Consulta de saldo por DNI o celular en 3 segundos.</span>
+                <span><strong>Buscador Flash:</strong> Consulta de saldo por DNI o Nombre en 3 segundos.</span>
               </li>
               <li>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                <span><strong>Alta Rápida de Clientes:</strong> Registro express con Nombre y Teléfono en caja.</span>
+                <span><strong>Alta Rápida de Clientes:</strong> Registro express con Nombre y DNI en caja.</span>
               </li>
               <li>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -1644,7 +1651,7 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                <span><strong>Historial de Movimientos:</strong> Registro auditable de compras y canjes.</span>
+                <span><strong>Historial de Movimientos:</strong> Registro auditable de puntos y canjes.</span>
               </li>
               <li>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -1896,7 +1903,7 @@
           badgeX.className = 'pwa-reward-badge badge-pending';
           badgeX.innerText = `Faltan ${200 - currentPoints} pts`;
           if (currentPoints < 50) {
-            statusText.innerText = `Sumá puntos con tu próxima compra`;
+            statusText.innerText = `Sumá puntos en tu próxima visita`;
             statusText.style.color = '#FF6B35';
           } else {
             statusText.innerText = `¡Tenés 2 premios disponibles para canjear!`;
@@ -1914,11 +1921,11 @@
 
       if (val === "" || val === "34567890" || val.toLowerCase().includes("juan")) {
         nameEl.innerText = "Juan Pérez";
-        idEl.innerText = "DNI: 34.567.890 · Cel: 351 689 4421";
+        idEl.innerText = "DNI: 34.567.890";
         ptsEl.innerText = currentPoints;
       } else if (val.includes("28") || val.toLowerCase().includes("maria")) {
         nameEl.innerText = "María Gómez";
-        idEl.innerText = "DNI: 28.123.456 · Cel: 351 712 8899";
+        idEl.innerText = "DNI: 28.123.456";
         ptsEl.innerText = "410";
       } else {
         nameEl.innerText = "Cliente Nuevo (No registrado)";
@@ -1942,18 +1949,19 @@
     }
 
     // Actualizar previsualización de puntos
-    const inputMonto = document.getElementById('inputMontoCompra');
-    inputMonto.addEventListener('input', function () {
-      const monto = parseFloat(this.value) || 0;
-      const pts = Math.floor(monto / 100);
-      document.getElementById('calcPointsPreview').innerHTML = `Equivale a: <strong>+${pts} puntos</strong> (regla: 1 pt cada $100)`;
-    });
+    const inputPuntos = document.getElementById('inputPuntosSumar');
+    if (inputPuntos) {
+      inputPuntos.addEventListener('input', function () {
+        const pts = parseInt(this.value, 10) || 0;
+        document.getElementById('calcPointsPreview').innerHTML = `Se acreditarán <strong>+${pts} puntos</strong> al instante`;
+      });
+    }
 
     function confirmSum() {
-      const monto = parseFloat(inputMonto.value) || 0;
-      const pts = Math.floor(monto / 100);
+      const inputPuntosEl = document.getElementById('inputPuntosSumar');
+      const pts = parseInt(inputPuntosEl.value, 10) || 0;
       if (pts <= 0) {
-        alert("Ingresá un monto válido.");
+        alert("Ingresá una cantidad de puntos válida.");
         return;
       }
       currentPoints += pts;
@@ -1966,7 +1974,7 @@
       li.className = 'sim-log-item sum';
       li.innerHTML = `
         <div>
-          <strong>+${pts} pts</strong> — Compra $${monto.toLocaleString('es-AR')}
+          <strong>+${pts} pts</strong> — Carga de puntos
           <div style="color: var(--text-muted); font-size: 10.5px;">Recién · Caja Mostrador</div>
         </div>
         <span style="color: #10B981; font-weight: 700;">+${pts}</span>
