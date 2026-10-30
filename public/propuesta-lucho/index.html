@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Propuesta Comercial: Club de Puntos & Fidelización — Luciano Sosa | FuturizaTech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-base: #060D1A;
+      --bg-surface: #0A192F;
+      --bg-elevated: #0E223D;
+      --bg-card: rgba(14, 34, 61, 0.7);
+      --text-primary: #FFFFFF;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+      --futuriza-cyan: #00E5FF;
+      --futuriza-orange: #FF6B35;
+      --futuriza-fire: #C2410C;
+      --status-green: #10B981;
+      --status-amber: #F59E0B;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-cyan: rgba(0, 229, 255, 0.3);
+      --border-orange: rgba(255, 107, 53, 0.3);
+      --font-display: 'Montserrat', sans-serif;
+      --font-sans: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      max-width: 100%;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      background-image:
+        radial-gradient(circle at 10% 10%, rgba(0, 229, 255, 0.06), transparent 35%),
+        radial-gradient(circle at 90% 20%, rgba(255, 107, 53, 0.06), transparent 40%),
+        radial-gradient(circle at 50% 80%, rgba(0, 229, 255, 0.03), transparent 50%);
+      padding-bottom: 96px;
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 16px;
+      }
+    }
+
+    /* HEADER */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(6, 13, 26, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 12px 0;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-group .divider {
+      color: var(--text-muted);
+      font-size: 13px;
+      font-family: var(--font-mono);
+    }
+
+    .client-tag {
+      background: rgba(255, 107, 53, 0.12);
+      border: 1px solid var(--border-orange);
+      color: var(--futuriza-orange);
+      font-size: 12px;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn-web-futuriza {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 229, 255, 0.08);
+      border: 1px solid var(--border-cyan);
+      color: var(--futuriza-cyan);
+      font-size: 12px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      text-decoration: none;
+      padding: 7px 16px;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-web-futuriza:hover {
+      background: var(--futuriza-cyan);
+      color: #060D1A;
+      box-shadow: 0 0 15px rgba(0, 229, 255, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .btn-cancel-modal {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-cancel-modal:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #FFF;
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        padding: 10px 0;
+      }
+
+      .topbar-inner {
+        gap: 10px;
+      }
+
+      .brand-group {
+        gap: 8px;
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .brand-group svg {
+        max-width: 145px;
+        height: auto;
+      }
+
+      .brand-group .divider {
+        display: none;
+      }
+
+      .client-tag {
+        font-size: 11px;
+        padding: 3px 8px;
+      }
+
+      .nav-actions {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .btn-web-futuriza {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+        padding: 9px 16px;
+        font-size: 12px;
+      }
+    }
+
+    /* HERO */
+    .hero {
+      padding: 48px 0 36px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 229, 255, 0.08);
+      border: 1px solid var(--border-cyan);
+      color: var(--futuriza-cyan);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(23px, 4vw, 44px);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 .gradient-text {
+      background: linear-gradient(135deg, #FFFFFF 30%, var(--futuriza-cyan) 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-lead {
+      font-size: 15.5px;
+      color: var(--text-secondary);
+      max-width: 820px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 28px 0 24px;
+      }
+
+      .badge-pill {
+        font-size: 10px;
+        padding: 4px 10px;
+      }
+
+      .hero-lead {
+        font-size: 14px;
+        margin-bottom: 18px;
+      }
+
+      .kpi-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .kpi-card {
+        padding: 12px;
+      }
+
+      .kpi-card .kpi-num {
+        font-size: 20px;
+      }
+
+      .kpi-card .kpi-sub {
+        font-size: 11px;
+      }
+    }
+
+    .kpi-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-cyan);
+    }
+
+    .kpi-card .kpi-num {
+      font-family: var(--font-mono);
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--futuriza-cyan);
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .kpi-card .kpi-sub {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* SECCIONES COMUNES */
+    section {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .sec-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--futuriza-orange);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .sec-title {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    .sec-desc {
+      color: var(--text-secondary);
+      font-size: 14.5px;
+      max-width: 760px;
+      margin-bottom: 28px;
+    }
+
+    /* COMPARATIVA TABLA */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .compare-card {
+      background: var(--bg-surface);
+      border-radius: 14px;
+      padding: 24px;
+      border: 1px solid var(--border-subtle);
+      position: relative;
+    }
+
+    .compare-card.bad {
+      border-color: rgba(239, 68, 68, 0.25);
+      background: rgba(239, 68, 68, 0.03);
+    }
+
+    .compare-card.good {
+      border-color: var(--border-cyan);
+      background: rgba(0, 229, 255, 0.03);
+      box-shadow: 0 0 30px rgba(0, 229, 255, 0.05);
+    }
+
+    .compare-card h3 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      margin-bottom: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .compare-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .compare-list li {
+      font-size: 13.5px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.45;
+    }
+
+    .icon-cross {
+      color: #EF4444;
+      font-weight: 900;
+      font-family: var(--font-mono);
+    }
+
+    .icon-check {
+      color: var(--futuriza-cyan);
+      font-weight: 900;
+      font-family: var(--font-mono);
+    }
+
+    /* SIMULADOR INTERACTIVO */
+    .sim-wrapper {
+      background: #040913;
+      border: 1px solid var(--border-cyan);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .sim-header {
+      background: #081224;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .sim-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .sim-view-toggle {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      padding: 3px;
+      gap: 4px;
+    }
+
+    .sim-tab {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 11.5px;
+      font-weight: 700;
+      font-family: var(--font-sans);
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .sim-tab.active {
+      background: var(--futuriza-cyan);
+      color: #060D1A;
+    }
+
+    .sim-tab.active-client {
+      background: var(--futuriza-orange);
+      color: #FFFFFF;
+    }
+
+    @media (max-width: 600px) {
+      .sim-view-toggle {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .sim-tab {
+        flex: 1;
+        font-size: 11px;
+        padding: 6px 8px;
+        text-align: center;
+      }
+    }
+
+    /* VISTA CELULAR CLIENTE PWA MOCKUP */
+    .client-pwa-wrap {
+      display: none;
+      padding: 24px 16px 32px;
+      justify-content: center;
+    }
+
+    .client-pwa-wrap.active {
+      display: flex;
+    }
+
+    .client-pwa-phone {
+      max-width: 370px;
+      width: 100%;
+      background: #020610;
+      border: 2px solid rgba(0, 229, 255, 0.35);
+      border-radius: 36px;
+      padding: 16px 16px 24px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 229, 255, 0.12);
+      position: relative;
+    }
+
+    .phone-notch {
+      width: 120px;
+      height: 14px;
+      background: #081224;
+      border-radius: 0 0 12px 12px;
+      margin: -10px auto 14px;
+    }
+
+    .pwa-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .pwa-badge-installed {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #10B981;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      padding: 3px 8px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 700;
+    }
+
+    .pwa-user-greeting {
+      font-size: 18px;
+      font-weight: 800;
+      font-family: var(--font-display);
+      margin-bottom: 2px;
+    }
+
+    .pwa-user-dni {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .pwa-points-card {
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(14, 34, 61, 0.95));
+      border: 1px solid var(--border-cyan);
+      border-radius: 16px;
+      padding: 18px 14px;
+      text-align: center;
+      margin-bottom: 14px;
+      box-shadow: 0 8px 20px rgba(0, 229, 255, 0.08);
+    }
+
+    .pwa-points-val {
+      font-family: var(--font-mono);
+      font-size: 44px;
+      font-weight: 900;
+      color: var(--futuriza-cyan);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .pwa-quick-tip {
+      background: rgba(255, 107, 53, 0.1);
+      border: 1px solid rgba(255, 107, 53, 0.3);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .pwa-rewards-title {
+      font-size: 13px;
+      font-weight: 700;
+      font-family: var(--font-display);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .pwa-reward-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .pwa-reward-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      white-space: nowrap;
+    }
+
+    .badge-ready {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10B981;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .badge-pending {
+      background: rgba(255, 107, 53, 0.12);
+      color: var(--futuriza-orange);
+      border: 1px solid rgba(255, 107, 53, 0.3);
+    }
+
+    .sim-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #EF4444;
+      display: inline-block;
+      box-shadow: 16px 0 0 #F59E0B, 32px 0 0 #10B981;
+      margin-right: 28px;
+    }
+
+    .sim-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background: rgba(0, 229, 255, 0.15);
+      color: var(--futuriza-cyan);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .sim-body {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 860px) {
+      .sim-body {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .search-box-wrap {
+      position: relative;
+      margin-bottom: 18px;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 12px 16px 12px 42px;
+      font-size: 16px;
+      /* 16px evita zoom automático en iPhone Safari */
+      color: #FFF;
+      font-family: var(--font-sans);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--futuriza-cyan);
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.25);
+    }
+
+    .search-icon-svg {
+      position: absolute;
+      left: 14px;
+      top: 13px;
+      color: var(--text-muted);
+    }
+
+    .client-card-sim {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .client-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .client-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: #FFF;
+      font-family: var(--font-display);
+    }
+
+    .client-id {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .points-display {
+      background: rgba(0, 229, 255, 0.07);
+      border: 1px dashed var(--border-cyan);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .points-number {
+      font-family: var(--font-mono);
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--futuriza-cyan);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .points-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .sim-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    @media (max-width: 440px) {
+      .sim-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .btn-act {
+        padding: 13px !important;
+        font-size: 13.5px !important;
+      }
+    }
+
+    .btn-act {
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-add {
+      background: #10B981;
+      color: #041E15;
+    }
+
+    .btn-add:hover {
+      background: #34D399;
+      transform: translateY(-1px);
+    }
+
+    .btn-redeem {
+      background: var(--futuriza-orange);
+      color: #FFFFFF;
+    }
+
+    .btn-redeem:hover {
+      background: #FF8555;
+      transform: translateY(-1px);
+    }
+
+    /* HISTORIAL SIMULADOR */
+    .sim-log-wrap {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sim-log-head {
+      font-size: 13.5px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sim-log-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 240px;
+      overflow-y: auto;
+    }
+
+    .sim-log-item {
+      font-size: 12px;
+      padding: 8px 10px;
+      background: rgba(255, 255, 255, 0.02);
+      border-left: 3px solid var(--border-subtle);
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sim-log-item.sum {
+      border-left-color: #10B981;
+    }
+
+    .sim-log-item.canje {
+      border-left-color: var(--futuriza-orange);
+    }
+
+    /* PLANES DE INVERSIÓN */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .price-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 32px 24px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .price-card.featured {
+      border-color: var(--futuriza-cyan);
+      background: linear-gradient(180deg, rgba(0, 229, 255, 0.05) 0%, rgba(10, 25, 47, 0.8) 100%);
+      box-shadow: 0 10px 30px rgba(0, 229, 255, 0.08);
+    }
+
+    .tag-featured {
+      position: absolute;
+      top: -12px;
+      left: 24px;
+      background: var(--futuriza-cyan);
+      color: #060D1A;
+      font-size: 10.5px;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .price-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .price-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.5;
+      min-height: 40px;
+    }
+
+    .price-amount {
+      font-family: var(--font-mono);
+      font-size: 38px;
+      font-weight: 900;
+      color: #FFF;
+      margin-bottom: 4px;
+    }
+
+    .price-amount span {
+      font-size: 16px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .price-meta {
+      font-size: 12px;
+      color: var(--futuriza-cyan);
+      font-family: var(--font-mono);
+      margin-bottom: 24px;
+    }
+
+    .features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .features-list li {
+      font-size: 13px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .features-list li svg {
+      flex-shrink: 0;
+      color: var(--futuriza-cyan);
+      margin-top: 2px;
+    }
+
+    .btn-plan {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--bg-elevated);
+      color: #FFF;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 700;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .btn-plan:hover {
+      border-color: var(--border-cyan);
+      transform: translateY(-2px);
+    }
+
+    .btn-plan.btn-plan-featured {
+      background: linear-gradient(135deg, var(--futuriza-orange), var(--futuriza-fire));
+      border: none;
+      color: #FFF;
+      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    }
+
+    .btn-plan.btn-plan-featured:hover {
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.45);
+    }
+
+    /* SELLOS DE CONFIANZA */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 820px) {
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .trust-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 22px;
+    }
+
+    .trust-num {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--futuriza-orange);
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .trust-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .trust-p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 860px) {
+      .timeline {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .timeline-step {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 18px;
+      position: relative;
+    }
+
+    .step-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--futuriza-cyan);
+      background: rgba(0, 229, 255, 0.08);
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 14.5px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .step-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 48px 0 80px;
+      text-align: center;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .footer-p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* FLOATING CTA */
+    .floating-bar {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10, 25, 47, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-cyan);
+      border-radius: 999px;
+      padding: 8px 18px 8px 24px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 229, 255, 0.2);
+      z-index: 9999;
+      max-width: 90vw;
+      transition: all 0.25s ease;
+    }
+
+    .floating-text {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #FFF;
+      white-space: nowrap;
+    }
+
+    .btn-wa-float {
+      background: #25D366;
+      color: #041E15;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 8px 18px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-wa-float:hover {
+      background: #2ee672;
+      transform: scale(1.03);
+    }
+
+    @media (max-width: 640px) {
+      .floating-bar {
+        width: calc(100% - 24px);
+        max-width: 440px;
+        bottom: 12px;
+        padding: 6px;
+        border-radius: 14px;
+        justify-content: center;
+        gap: 0;
+      }
+
+      .floating-text {
+        display: none;
+      }
+
+      .btn-wa-float {
+        width: 100%;
+        justify-content: center;
+        font-size: 13.5px;
+        padding: 12px 16px;
+        border-radius: 10px;
+      }
+    }
+
+    /* MODAL EN SIMULADOR */
+    .sim-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .sim-modal.active {
+      display: flex;
+    }
+
+    .sim-modal-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-cyan);
+      border-radius: 14px;
+      padding: 24px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    }
+
+    @media (max-width: 480px) {
+      .sim-modal-card {
+        padding: 18px 14px;
+      }
+    }
+
+    .sim-modal-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .sim-modal-input {
+      width: 100%;
+      background: var(--bg-base);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #FFF;
+      font-size: 16px;
+      /* 16px previene auto-zoom molesto en iPhone Safari */
+      margin-bottom: 14px;
+      outline: none;
+    }
+
+    .sim-modal-btns {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand-group">
+        <!-- FuturizaTech Logo Oficial SVG -->
+        <svg width="180" height="38" viewBox="0 0 250 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g id="isotipo" transform="translate(2, 2)">
+            <path
+              d="M6 10C6 8.89543 6.89543 8 8 8H19.5L16 14.5H13V21H20.5V27H13V38C13 39.1046 12.1046 40 11 40H8C6.89543 40 6 39.1046 6 38V10Z"
+              fill="#00E5FF" />
+            <path
+              d="M21 8H39C40.1046 8 41 8.89543 41 10V12.5C41 13.6046 40.1046 14.5 39 14.5H34.5V38C34.5 39.1046 33.6046 40 32.5 40H29.5C28.3954 40 27.5 39.1046 27.5 38V14.5H17.5L21 8Z"
+              fill="#FF6B35" />
+          </g>
+          <text x="56" y="34" font-family="'Montserrat', system-ui, sans-serif" font-size="25" font-weight="800"
+            letter-spacing="-0.5px">
+            <tspan fill="#FFFFFF">Futuriza</tspan>
+            <tspan fill="#FF6B35">Tech</tspan>
+          </text>
+        </svg>
+        <span class="divider">/</span>
+        <span class="client-tag">Cliente: Luciano Sosa</span>
+      </div>
+
+      <div class="nav-actions">
+        <!-- BOTÓN SITIO WEB OFICIAL -->
+        <a href="https://futurizatech.com" target="_blank" rel="noopener noreferrer" class="btn-web-futuriza">
+          <span>futurizatech.com</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <span class="badge-pill">Módulo M-13 · Software de Gestión & Fidelización</span>
+      <h1>
+        Sistema de Fidelización & Puntos para Mostrador<br>
+        <span class="gradient-text">Fidelizá clientes sin fricción y 100% propio.</span>
+      </h1>
+      <p class="hero-lead">
+        Una herramienta web de mostrador diseñada para cargar clientes y puntos en menos de 10 segundos.
+        Sin que tus clientes tengan que descargar apps pesadas, sin demoras en caja y <strong>con $0 de costo de
+          licencias mensuales</strong>.
+      </p>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <span class="kpi-num">&lt; 10 seg</span>
+          <span class="kpi-sub">Tiempo para registrar y sumar puntos en caja</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-num">$0 / mes</span>
+          <span class="kpi-sub">Cero suscripciones ni licencias por usuario</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-num">10 días</span>
+          <span class="kpi-sub">Plazo de entrega llave en mano funcionando</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-num">100% Tuyo</span>
+          <span class="kpi-sub">Código, base de datos y clientes bajo tu control</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 1: COMPARATIVA -->
+  <section>
+    <div class="container">
+      <span class="sec-tag">01 · Diagnóstico de Mercado</span>
+      <h2 class="sec-title">¿Por qué un sistema a medida y no una app enlatada?</h2>
+      <p class="sec-desc">
+        La mayoría de los programas de puntos fallan porque obligan al cliente a descargarse una app en el momento de
+        pagar, demorando la fila y generando rechazo. El enfoque de FuturizaTech resuelve la fidelización desde el
+        mostrador.
+      </p>
+
+      <div class="compare-grid">
+        <div class="compare-card bad">
+          <h3><span class="icon-cross">✕</span> Apps Tradicionales / Plataformas Enlatadas</h3>
+          <ul class="compare-list">
+            <li><span class="icon-cross">✕</span> Obligan al cliente a descargarse una app de 80 MB que casi nadie
+              quiere instalar en el momento.</li>
+            <li><span class="icon-cross">✕</span> Te cobran una suscripción mensual en dólares (USD 40 a USD 120/mes) de
+              por vida.</li>
+            <li><span class="icon-cross">✕</span> Si dejás de pagar la cuota, perdés toda la base de datos de tus
+              clientes y sus puntos.</li>
+            <li><span class="icon-cross">✕</span> Interfaces lentas con 10 pasos que traban la atención en caja en
+              horario pico.</li>
+          </ul>
+        </div>
+
+        <div class="compare-card good">
+          <h3><span class="icon-check">✓</span> Solución a Medida FuturizaTech (Tu Club de Puntos)</h3>
+          <ul class="compare-list">
+            <li><span class="icon-check">✓</span> <strong>Cero descargas de tienda:</strong> Vos o tu empleado
+              buscan por DNI/celular y le dicen los puntos en 3 segundos.</li>
+            <li><span class="icon-check">✓</span> <strong>Atajo PWA para el Cliente:</strong> El cliente puede guardar
+              el ícono en la pantalla de inicio de su teléfono. Su DNI queda recordado para consultar sus puntos y
+              premios en 1 segundo, sin contraseñas ni instalaciones pesadas.</li>
+            <li><span class="icon-check">✓</span> <strong>Propiedad 100% tuya:</strong> Pagás el desarrollo una sola
+              vez. No pagás alquiler mensual de software.</li>
+            <li><span class="icon-check">✓</span> <strong>Infraestructura $0/mes:</strong> Alojamientos cloud modernos y
+              base de datos con planes gratuitos permanentes.</li>
+            <li><span class="icon-check">✓</span> <strong>Velocidad en caja:</strong> Se abre en la compu del local o en
+              el celular de los empleados con acceso instantáneo.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 2: SIMULADOR INTERACTIVO DE MOSTRADOR -->
+  <section id="demo">
+    <div class="container">
+      <span class="sec-tag">02 · Prototipo Funcional Interactivo</span>
+      <h2 class="sec-title">Probá cómo funcionaría en tu caja o mostrador</h2>
+      <p class="sec-desc">
+        Hacé la prueba interactiva directamente en este panel simulado. Buscá un cliente, sumale puntos por una compra o
+        canjeale un premio para ver cómo se actualiza en tiempo real:
+      </p>
+
+      <div class="sim-wrapper">
+        <div class="sim-header">
+          <div class="sim-title-group">
+            <span class="sim-dot"></span>
+            <div class="sim-view-toggle">
+              <button class="sim-tab active" id="tabPos" onclick="switchSimView('pos')">🏪 Vista Mostrador
+                (Caja)</button>
+              <button class="sim-tab" id="tabClient" onclick="switchSimView('client')">📱 Vista Celular Cliente (Atajo
+                PWA)</button>
+            </div>
+          </div>
+          <span class="sim-badge">● Simulador en Vivo</span>
+        </div>
+
+        <div class="sim-body" id="simPosView">
+          <!-- Columna izquierda: Buscador y Ficha -->
+          <div>
+            <div class="search-box-wrap">
+              <svg class="search-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="simSearchInput" class="search-input"
+                placeholder="Buscar por DNI o Celular (ej: 34567890 o 351...)" value="34567890" oninput="simFilter()">
+            </div>
+
+            <div class="client-card-sim">
+              <div class="client-header">
+                <div>
+                  <div class="client-name" id="simClientName">Juan Pérez</div>
+                  <div class="client-id" id="simClientId">DNI: 34.567.890 · Cel: 351 689 4421</div>
+                </div>
+                <span
+                  style="font-size: 11px; background: rgba(16, 185, 129, 0.15); color: #10B981; padding: 2px 8px; border-radius: 999px; font-weight: 700;">Cliente
+                  Activo</span>
+              </div>
+
+              <div class="points-display">
+                <div class="points-number" id="simPointsVal">240</div>
+                <div class="points-label">PUNTOS DISPONIBLES</div>
+              </div>
+
+              <div class="sim-actions">
+                <button class="btn-act btn-add" onclick="openSumModal()">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  Sumar Puntos
+                </button>
+                <button class="btn-act btn-redeem" onclick="openCanjeModal()">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                    <rect x="2" y="7" width="20" height="5"></rect>
+                    <line x1="12" y1="22" x2="12" y2="7"></line>
+                  </svg>
+                  Canjear Premio
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna derecha: Historial de transacciones -->
+          <div class="sim-log-wrap">
+            <div class="sim-log-head">
+              <span>Historial del Cliente</span>
+              <span style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);" id="simLogCount">3
+                movimientos</span>
+            </div>
+            <ul class="sim-log-list" id="simLogList">
+              <li class="sim-log-item sum">
+                <div>
+                  <strong>+50 pts</strong> — Compra $5.000
+                  <div style="color: var(--text-muted); font-size: 10.5px;">Ayer 19:42 hs · Caja 1</div>
+                </div>
+                <span style="color: #10B981; font-weight: 700;">+50</span>
+              </li>
+              <li class="sim-log-item canje">
+                <div>
+                  <strong>-100 pts</strong> — Canje Descuento 15%
+                  <div style="color: var(--text-muted); font-size: 10.5px;">24 Oct 18:15 hs · Caja 1</div>
+                </div>
+                <span style="color: var(--futuriza-orange); font-weight: 700;">-100</span>
+              </li>
+              <li class="sim-log-item sum">
+                <div>
+                  <strong>+290 pts</strong> — Carga inicial
+                  <div style="color: var(--text-muted); font-size: 10.5px;">15 Oct 11:20 hs · Registro</div>
+                </div>
+                <span style="color: #10B981; font-weight: 700;">+290</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- VISTA CELULAR CLIENTE (ATAJO PWA) -->
+        <div class="client-pwa-wrap" id="simClientPwaView">
+          <div class="client-pwa-phone">
+            <div class="phone-notch"></div>
+
+            <div class="pwa-top-bar">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <svg width="22" height="22" viewBox="0 0 48 48" fill="none">
+                  <path
+                    d="M6 10C6 8.89543 6.89543 8 8 8H19.5L16 14.5H13V21H20.5V27H13V38C13 39.1046 12.1046 40 11 40H8C6.89543 40 6 39.1046 6 38V10Z"
+                    fill="#00E5FF" />
+                  <path
+                    d="M21 8H39C40.1046 8 41 8.89543 41 10V12.5C41 13.6046 40.1046 14.5 39 14.5H34.5V38C34.5 39.1046 33.6046 40 32.5 40H29.5C28.3954 40 27.5 39.1046 27.5 38V14.5H17.5L21 8Z"
+                    fill="#FF6B35" />
+                </svg>
+                <strong style="font-size: 13px; font-family: var(--font-display); color: #FFF;">Tu Club de
+                  Puntos</strong>
+              </div>
+              <span class="pwa-badge-installed">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Atajo PWA
+              </span>
+            </div>
+
+            <div class="pwa-user-greeting">¡Hola, <span id="pwaClientName">Juan</span>! 👋</div>
+            <div class="pwa-user-dni">DNI: <span id="pwaClientDni">34.567.890</span> · Atajo recordado</div>
+
+            <div class="pwa-points-card">
+              <div
+                style="font-size: 10px; font-family: var(--font-mono); color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px;">
+                TUS PUNTOS ACTUALES</div>
+              <div class="pwa-points-val" id="pwaPointsVal">240</div>
+              <div style="font-size: 11px; color: #10B981; font-weight: 600;" id="pwaPointsStatus">✓ Tenés beneficios
+                listos para canjear</div>
+            </div>
+
+            <div class="pwa-quick-tip">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2"
+                style="flex-shrink: 0; margin-top: 1px;">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+              </svg>
+              <div>
+                <strong>Acceso con 1 Toque:</strong> El cliente guarda el ícono en su pantalla de inicio. Su DNI queda
+                recordado para consultar su saldo en cualquier momento sin descargas de tienda.
+              </div>
+            </div>
+
+            <div class="pwa-rewards-title">
+              <span>Premios & Canjes Disponibles</span>
+              <span style="font-size: 10.5px; color: var(--futuriza-cyan); font-family: var(--font-mono);">Mostrá en
+                caja</span>
+            </div>
+
+            <div class="pwa-reward-item">
+              <div>
+                <strong style="font-size: 12px; color: #FFF; display: block;">Descuento 10% en mostrador</strong>
+                <span style="font-size: 10px; color: var(--text-muted); font-family: var(--font-mono);">Requiere: 50
+                  pts</span>
+              </div>
+              <span class="pwa-reward-badge badge-ready">✓ Canjeable</span>
+            </div>
+
+            <div class="pwa-reward-item">
+              <div>
+                <strong style="font-size: 12px; color: #FFF; display: block;">Descuento 20% en compra</strong>
+                <span style="font-size: 10px; color: var(--text-muted); font-family: var(--font-mono);">Requiere: 100
+                  pts</span>
+              </div>
+              <span class="pwa-reward-badge badge-ready">✓ Canjeable</span>
+            </div>
+
+            <div class="pwa-reward-item">
+              <div>
+                <strong style="font-size: 12px; color: #FFF; display: block;">Producto Especial / Premio X</strong>
+                <span style="font-size: 10px; color: var(--text-muted); font-family: var(--font-mono);">Requiere: 200
+                  pts</span>
+              </div>
+              <span class="pwa-reward-badge badge-ready" id="pwaBadgePremioX">✓ Canjeable</span>
+            </div>
+
+            <div style="margin-top: 14px; text-align: center;">
+              <span style="font-size: 10px; color: var(--text-muted); display: block;">Sincronizado en tiempo real con
+                la base de datos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL SUMAR PUNTOS SIMULADOR -->
+  <div class="sim-modal" id="modalSum">
+    <div class="sim-modal-card">
+      <h3 class="sim-modal-title">Sumar Puntos a <span id="modalClientName">Juan Pérez</span></h3>
+      <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 12px;">Ingresá el monto de la compra o los
+        puntos directos:</p>
+      <input type="number" id="inputMontoCompra" class="sim-modal-input" placeholder="Monto de la compra (ej: $12.000)"
+        value="8000">
+      <div style="font-size: 12px; color: var(--futuriza-cyan); margin-bottom: 16px; font-family: var(--font-mono);"
+        id="calcPointsPreview">Equivale a: <strong>+80 puntos</strong> (regla: 1 pt cada $100)</div>
+      <div class="sim-modal-btns">
+        <button class="btn-cancel-modal" onclick="closeModal()">Cancelar</button>
+        <button class="btn-act btn-add" style="padding: 8px 16px;" onclick="confirmSum()">Confirmar Carga</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL CANJEAR PREMIO SIMULADOR -->
+  <div class="sim-modal" id="modalCanje">
+    <div class="sim-modal-card">
+      <h3 class="sim-modal-title">Canjear Premio</h3>
+      <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 12px;">Seleccioná el premio del catálogo
+        disponible:</p>
+      <select id="selectPremio" class="sim-modal-input" style="cursor: pointer;">
+        <option value="50">Descuento 10% en mostrador — 50 pts</option>
+        <option value="100" selected>Descuento 20% en compra — 100 pts</option>
+        <option value="200">Producto Especial / Premio X — 200 pts</option>
+      </select>
+      <div class="sim-modal-btns">
+        <button class="btn-cancel-modal" onclick="closeModal()">Cancelar</button>
+        <button class="btn-act btn-redeem" style="padding: 8px 16px;" onclick="confirmCanje()">Confirmar Canje</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3: OPCIONES DE INVERSIÓN -->
+  <section id="planes">
+    <div class="container">
+      <span class="sec-tag">03 · Opciones de Implementación</span>
+      <h2 class="sec-title">Presupuesto y Alcance de Entrega</h2>
+      <p class="sec-desc">
+        Dos alternativas claras según el nivel de automatización que quieras implementar en esta primera etapa:
+      </p>
+
+      <div class="pricing-grid">
+        <!-- Opción A: MVP Mostrador -->
+        <div class="price-card featured">
+          <span class="tag-featured">Recomendado para arrancar</span>
+          <div>
+            <h3 class="price-title">Opción A: MVP Mostrador</h3>
+            <p class="price-desc">
+              Todo lo que necesitás para operar el club de puntos desde la compu del local o tu celular en menos de 10
+              segundos por cliente.
+            </p>
+            <div class="price-amount">USD 240 <span>pago único</span></div>
+            <div class="price-meta">Entrega en 10 días hábiles · $0 costo mensual</div>
+
+            <ul class="features-list">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>Buscador Flash:</strong> Consulta de saldo por DNI o celular en 3 segundos.</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>Alta Rápida de Clientes:</strong> Registro express con Nombre y Teléfono en caja.</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>Carga y Canje de Puntos:</strong> Botones rápidos de suma y descuento por premios.</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>Catálogo de Premios:</strong> Panel editable para cargar qué premios se canjean.</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>Historial de Movimientos:</strong> Registro auditable de compras y canjes.</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>PWA Instalable:</strong> Ícono directo en pantalla de inicio de celus y compus.</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>Propiedad Total:</strong> Base de datos propia en Supabase sin mensualidades.</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="https://wa.me/5493518046223?text=Hola%20Angel!%20Estuve%20viendo%20la%20propuesta%20del%20Club%20de%20Puntos.%20Me%20interesa%20avanzar%20con%20la%20Opci%C3%B3n%20A%20(MVP%20Mostrador)!"
+            target="_blank" class="btn-plan btn-plan-featured">
+            Elegir Opción A (MVP Mostrador)
+          </a>
+        </div>
+
+        <!-- Opción B: Mostrador + Portal Web Cliente -->
+        <div class="price-card">
+          <div>
+            <h3 class="price-title">Opción B: Integral + Portal Web QR</h3>
+            <p class="price-desc">
+              Todo el panel de mostrador de la Opción A, más una web pública donde el cliente puede consultar sus puntos
+              escaneando un QR.
+            </p>
+            <div class="price-amount">USD 480 <span>pago único</span></div>
+            <div class="price-meta">Entrega en 3 semanas · $0 costo mensual</div>
+
+            <ul class="features-list">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>Todo lo incluido en la Opción A</strong> (Panel operativo completo de mostrador).</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>Portal de Consulta para Clientes:</strong> Página web responsive adaptada a tu
+                  marca.</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>Acceso por DNI sin login:</strong> El cliente ingresa su DNI y ve sus puntos y premios
+                  disponibles.</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>Cartelería QR para Mostrador:</strong> Diseño listo para imprimir y apoyar en caja para
+                  que los clientes escaneen.</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="https://wa.me/5493518046223?text=Hola%20Angel!%20Estuve%20viendo%20la%20propuesta%20del%20Club%20de%20Puntos.%20Me%20interesa%20avanzar%20con%20la%20Opci%C3%B3n%20B%20(Integral%20%2B%20Portal%20QR)!"
+            target="_blank" class="btn-plan">
+            Elegir Opción B (Con Portal QR)
+          </a>
+        </div>
+      </div>
+
+      <div
+        style="margin-top: 24px; padding: 16px 20px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: 12px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+        <span style="font-size: 13px; color: var(--text-muted);">
+          * <strong>Condición de pago:</strong> 50% de anticipo al confirmar inicio y 50% contra entrega funcionando en
+          tu negocio. Valores en USD (pagaderos en USD o en ARS al tipo de cambio del día).
+        </span>
+        <span style="font-size: 12px; font-family: var(--font-mono); color: var(--futuriza-cyan); font-weight: 700;">
+          ✓ Propuesta formal válida por 7 días
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 4: LOS 3 SELLOS DE CONFIANZA -->
+  <section>
+    <div class="container">
+      <span class="sec-tag">04 · Respaldo y Garantía</span>
+      <h2 class="sec-title">Los 3 Sellos de Confianza de FuturizaTech</h2>
+      <p class="sec-desc">
+        No somos una agencia tradicional que te ata con cuotas mensuales; somos un estudio de ingeniería de software que
+        instala herramientas definitivas para tu negocio.
+      </p>
+
+      <div class="trust-grid">
+        <div class="trust-card">
+          <span class="trust-num">01</span>
+          <h3 class="trust-title">Propiedad 100% de tu Empresa</h3>
+          <p class="trust-p">
+            El código, la base de datos y los accesos son totalmente tuyos. Cero licencias mensuales por usuario ni
+            ataduras de ningún tipo.
+          </p>
+        </div>
+
+        <div class="trust-card">
+          <span class="trust-num">02</span>
+          <h3 class="trust-title">Garantías por Contrato</h3>
+          <p class="trust-p">
+            Alcance técnico cerrado, entregables testeados y presupuesto fijo sin sorpresas ni costos ocultos al momento
+            de la entrega.
+          </p>
+        </div>
+
+        <div class="trust-card">
+          <span class="trust-num">03</span>
+          <h3 class="trust-title">Modular y Escalable</h3>
+          <p class="trust-p">
+            Arrancás resolviendo el punto de venta hoy, y cuando lo decidas podés sumarle portal web, avisos por
+            WhatsApp o campañas automáticas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 5: CRONOGRAMA DE 10 DÍAS -->
+  <section>
+    <div class="container">
+      <span class="sec-tag">05 · Cronograma Oficial</span>
+      <h2 class="sec-title">Puesta en Marcha en 10 Días Hábiles</h2>
+      <p class="sec-desc">
+        Un proceso estructurado para que tengas el sistema funcionando en tu local en dos semanas:
+      </p>
+
+      <div class="timeline">
+        <div class="timeline-step">
+          <span class="step-badge">DÍAS 1 A 3</span>
+          <h3 class="step-title">Arquitectura y Base de Datos</h3>
+          <p class="step-desc">Configuración del entorno en Supabase, tablas de clientes, puntos y catálogo de premios.
+          </p>
+        </div>
+        <div class="timeline-step">
+          <span class="step-badge">DÍAS 4 A 7</span>
+          <h3 class="step-title">Desarrollo de Pantallas</h3>
+          <p class="step-desc">Programación del Buscador Flash, alta express de clientes y botones de suma y canje en
+            mostrador.</p>
+        </div>
+        <div class="timeline-step">
+          <span class="step-badge">DÍAS 8 A 9</span>
+          <h3 class="step-title">Pruebas en Caja & Ajustes</h3>
+          <p class="step-desc">Testeo en dispositivos reales (computadora del local y teléfonos) para asegurar velocidad
+            máxima.</p>
+        </div>
+        <div class="timeline-step">
+          <span class="step-badge">DÍA 10</span>
+          <h3 class="step-title">Entrega y Puesta en Marcha</h3>
+          <p class="step-desc">Instalación del atajo PWA en mostrador, capacitación rápida al equipo y lanzamiento en
+            vivo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-p">
+        Propuesta técnica y comercial confeccionada para <strong>Luciano Sosa</strong> por <strong>Angel — Dirección
+          Técnica, FuturizaTech</strong>.<br>
+        Córdoba, Argentina · Operativa remota para todo el país.
+      </p>
+      <p style="font-size: 12px; color: var(--text-muted); font-family: var(--font-mono);">
+        FuturizaTech © 2026 · Ingeniería de Software & Sistemas de Gestión a Medida
+      </p>
+    </div>
+  </footer>
+
+  <!-- FLOATING CTA -->
+  <div class="floating-bar">
+    <span class="floating-text">¿Dudas o querés comenzar?</span>
+    <a href="https://wa.me/5493518046223?text=Hola%20Angel!%20Estuve%20viendo%20la%20propuesta%20del%20Club%20de%20Puntos%20y%20quiero%20coordinar%20el%20inicio."
+      target="_blank" class="btn-wa-float">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c.969.541 1.794.819 2.806.819 3.181 0 5.767-2.586 5.768-5.766.001-3.18-2.585-5.766-5.768-5.766zm9.969 5.766c0 5.509-4.484 9.992-9.969 9.992-1.748 0-3.385-.453-4.818-1.246l-5.213 1.367 1.391-5.083c-.899-1.492-1.391-3.238-1.391-5.03 0-5.508 4.484-9.992 9.969-9.992 5.51 0 10.032 4.484 10.032 9.992z" />
+      </svg>
+      Hablar con Angel por WhatsApp
+    </a>
+  </div>
+
+  <!-- SCRIPT INTERACTIVO DEL SIMULADOR -->
+  <script>
+    // ESTADO DEL SIMULADOR
+    let currentPoints = 240;
+    const client = {
+      name: "Juan Pérez",
+      dni: "34567890",
+      phone: "351 689 4421"
+    };
+
+    function switchSimView(view) {
+      const tabPos = document.getElementById('tabPos');
+      const tabClient = document.getElementById('tabClient');
+      const posView = document.getElementById('simPosView');
+      const clientView = document.getElementById('simClientPwaView');
+
+      if (view === 'client') {
+        tabPos.classList.remove('active');
+        tabClient.classList.add('active-client');
+        posView.style.display = 'none';
+        clientView.classList.add('active');
+        updateClientPwaView();
+      } else {
+        tabClient.classList.remove('active-client');
+        tabPos.classList.add('active');
+        clientView.classList.remove('active');
+        posView.style.display = 'grid';
+      }
+    }
+
+    function updateClientPwaView() {
+      const name = document.getElementById('simClientName').innerText;
+      const idText = document.getElementById('simClientId').innerText;
+      const pwaNameEl = document.getElementById('pwaClientName');
+      const pwaDniEl = document.getElementById('pwaClientDni');
+      const pwaPtsEl = document.getElementById('pwaPointsVal');
+      const badgeX = document.getElementById('pwaBadgePremioX');
+      const statusText = document.getElementById('pwaPointsStatus');
+
+      if (pwaNameEl) pwaNameEl.innerText = name.split(' ')[0] || name;
+      if (pwaDniEl) pwaDniEl.innerText = idText.replace('DNI: ', '').split('·')[0].trim();
+      if (pwaPtsEl) pwaPtsEl.innerText = currentPoints;
+
+      if (badgeX && statusText) {
+        if (currentPoints >= 200) {
+          badgeX.className = 'pwa-reward-badge badge-ready';
+          badgeX.innerText = '✓ Canjeable';
+          statusText.innerText = '✓ Tenés beneficios listos para canjear';
+          statusText.style.color = '#10B981';
+        } else {
+          badgeX.className = 'pwa-reward-badge badge-pending';
+          badgeX.innerText = `Faltan ${200 - currentPoints} pts`;
+          if (currentPoints < 50) {
+            statusText.innerText = `Sumá puntos con tu próxima compra`;
+            statusText.style.color = '#FF6B35';
+          } else {
+            statusText.innerText = `¡Tenés 2 premios disponibles para canjear!`;
+            statusText.style.color = '#10B981';
+          }
+        }
+      }
+    }
+
+    function simFilter() {
+      const val = document.getElementById('simSearchInput').value.trim();
+      const nameEl = document.getElementById('simClientName');
+      const idEl = document.getElementById('simClientId');
+      const ptsEl = document.getElementById('simPointsVal');
+
+      if (val === "" || val === "34567890" || val.toLowerCase().includes("juan")) {
+        nameEl.innerText = "Juan Pérez";
+        idEl.innerText = "DNI: 34.567.890 · Cel: 351 689 4421";
+        ptsEl.innerText = currentPoints;
+      } else if (val.includes("28") || val.toLowerCase().includes("maria")) {
+        nameEl.innerText = "María Gómez";
+        idEl.innerText = "DNI: 28.123.456 · Cel: 351 712 8899";
+        ptsEl.innerText = "410";
+      } else {
+        nameEl.innerText = "Cliente Nuevo (No registrado)";
+        idEl.innerText = "Búsqueda: " + val;
+        ptsEl.innerText = "0";
+      }
+      updateClientPwaView();
+    }
+
+    function openSumModal() {
+      document.getElementById('modalSum').classList.add('active');
+    }
+
+    function openCanjeModal() {
+      document.getElementById('modalCanje').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('modalSum').classList.remove('active');
+      document.getElementById('modalCanje').classList.remove('active');
+    }
+
+    // Actualizar previsualización de puntos
+    const inputMonto = document.getElementById('inputMontoCompra');
+    inputMonto.addEventListener('input', function () {
+      const monto = parseFloat(this.value) || 0;
+      const pts = Math.floor(monto / 100);
+      document.getElementById('calcPointsPreview').innerHTML = `Equivale a: <strong>+${pts} puntos</strong> (regla: 1 pt cada $100)`;
+    });
+
+    function confirmSum() {
+      const monto = parseFloat(inputMonto.value) || 0;
+      const pts = Math.floor(monto / 100);
+      if (pts <= 0) {
+        alert("Ingresá un monto válido.");
+        return;
+      }
+      currentPoints += pts;
+      document.getElementById('simPointsVal').innerText = currentPoints;
+      updateClientPwaView();
+
+      // Agregar al log
+      const logList = document.getElementById('simLogList');
+      const li = document.createElement('li');
+      li.className = 'sim-log-item sum';
+      li.innerHTML = `
+        <div>
+          <strong>+${pts} pts</strong> — Compra $${monto.toLocaleString('es-AR')}
+          <div style="color: var(--text-muted); font-size: 10.5px;">Recién · Caja Mostrador</div>
+        </div>
+        <span style="color: #10B981; font-weight: 700;">+${pts}</span>
+      `;
+      logList.insertBefore(li, logList.firstChild);
+      closeModal();
+    }
+
+    function confirmCanje() {
+      const sel = document.getElementById('selectPremio');
+      const ptsRequeridos = parseInt(sel.value, 10);
+      const textPremio = sel.options[sel.selectedIndex].text.split('—')[0].trim();
+
+      if (currentPoints < ptsRequeridos) {
+        alert(`Saldo insuficiente. El cliente tiene ${currentPoints} pts y el premio requiere ${ptsRequeridos} pts.`);
+        return;
+      }
+
+      currentPoints -= ptsRequeridos;
+      document.getElementById('simPointsVal').innerText = currentPoints;
+      updateClientPwaView();
+
+      // Agregar al log
+      const logList = document.getElementById('simLogList');
+      const li = document.createElement('li');
+      li.className = 'sim-log-item canje';
+      li.innerHTML = `
+        <div>
+          <strong>-${ptsRequeridos} pts</strong> — Canje ${textPremio}
+          <div style="color: var(--text-muted); font-size: 10.5px;">Recién · Caja Mostrador</div>
+        </div>
+        <span style="color: var(--futuriza-orange); font-weight: 700;">-${ptsRequeridos}</span>
+      `;
+      logList.insertBefore(li, logList.firstChild);
+      closeModal();
+    }
+  </script>
+</body>
+
+</html>
