@@ -14,7 +14,7 @@ export interface ServicePillar {
 export const SERVICE_PILLARS: ServicePillar[] = [
   {
     number: '01',
-    codeRange: 'M-01 · M-07 · M-19 · M-20 · M-27',
+    codeRange: 'M-01 · M-07 · M-19 · M-20 · M-27 · M-29',
     title: 'Automatización & Herramientas de Marketing',
     roleBadge: 'Sistematizar captación',
     painSolved:
@@ -22,6 +22,7 @@ export const SERVICE_PILLARS: ServicePillar[] = [
     whatWeInstall: [
       'Circuitos por código que redactan, diseñan y publican carruseles, videos cortos con IA y posts en 6 redes sociales sin trabajo artesanal diario.',
       'Captura instantánea de prospectos en menos de 15 segundos conectando anuncios web a WhatsApp Oficial, correo y alerta directa a tu vendedor.',
+      'Motor de prospección B2B multi-fuente (web, mapas, redes y directorios): investigación y clasificación automática con Agentes IA, contacto por WhatsApp Oficial/Email y derivación a ventas.',
       'Monitores automáticos de precios de competidores en comercio electrónico, extracción de métricas de mercado y auditoría técnica de Meta Ads y Google Ads.',
     ],
     timeframeLabel: '3–7 DÍAS HÁBILES / 1–3 SEMANAS',
@@ -99,8 +100,8 @@ export const PRECONFIGURED_SYSTEMS = [
   },
   {
     name: 'Sistema B2B de Velocidad Comercial (< 15s)',
-    modules: 'M-27 + M-23 + M-24 + M-26',
-    summary: 'Captura inmediata de prospectos de Meta Ads / Web + contacto por WhatsApp Oficial + alerta instantánea a ventas.',
+    modules: 'M-27 + M-23 + M-24 + M-26 (+ M-29)',
+    summary: 'Captura Inbound <15s y prospección B2B Outbound con IA + contacto por WhatsApp Oficial + alerta instantánea a ventas.',
   },
   {
     name: 'Sistema de Caja, Facturación & Planillas en Vivo',
