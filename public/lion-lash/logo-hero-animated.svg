@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" fill="none">
+  <defs>
+    <!-- Gradiente Metálico Oro 3D Principal -->
+    <linearGradient id="lion-gold-main" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8A611C" />
+      <stop offset="18%" stop-color="#D8AF53" />
+      <stop offset="36%" stop-color="#FFF2B6" />
+      <stop offset="52%" stop-color="#E2B95B" />
+      <stop offset="70%" stop-color="#9A6E24" />
+      <stop offset="88%" stop-color="#E9C76B" />
+      <stop offset="100%" stop-color="#FFF6CC" />
+    </linearGradient>
+
+    <!-- Gradiente Vertical para Tallos de Letras Serif -->
+    <linearGradient id="lion-gold-stem" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF5C4" />
+      <stop offset="25%" stop-color="#E4BC60" />
+      <stop offset="50%" stop-color="#FFF0AE" />
+      <stop offset="80%" stop-color="#C89838" />
+      <stop offset="100%" stop-color="#8D631E" />
+    </linearGradient>
+
+    <!-- Gradiente Línea Horizontal -->
+    <linearGradient id="lion-line-left" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#D4A438" stop-opacity="0" />
+      <stop offset="35%" stop-color="#FFF2B2" stop-opacity="1" />
+      <stop offset="100%" stop-color="#D4A438" stop-opacity="0.85" />
+    </linearGradient>
+    <linearGradient id="lion-line-right" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#D4A438" stop-opacity="0.85" />
+      <stop offset="65%" stop-color="#FFF2B2" stop-opacity="1" />
+      <stop offset="100%" stop-color="#D4A438" stop-opacity="0" />
+    </linearGradient>
+
+    <radialGradient id="flare-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+      <stop offset="25%" stop-color="#FFF0A8" stop-opacity="0.85" />
+      <stop offset="60%" stop-color="#D4A438" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#D4A438" stop-opacity="0" />
+    </radialGradient>
+
+    <filter id="luxury-shadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000000" flood-opacity="0.85" />
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#E5C158" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- CAPA 1: LETRAS SERIF L - I - N -->
+  <g id="layer-letters" filter="url(#luxury-shadow)">
+    <!-- Letra L -->
+    <path class="letter-l" d="M88 94 H158 V100 C142 100, 136 105, 136 122 V246 C136 260, 141 264, 156 264 H198 C218 264, 230 254, 240 230 H246 L236 274 H88 V268 C104 268, 110 262, 110 246 V122 C110 105, 104 100, 88 100 Z" fill="url(#lion-gold-stem)" stroke="#FFF3B8" stroke-width="0.7" />
+
+    <!-- Letra I -->
+    <path class="letter-i" d="M268 94 H338 V100 C321 100, 316 105, 316 122 V246 C316 262, 321 268, 338 268 V274 H268 V268 C285 268, 290 262, 290 246 V122 C290 105, 285 100, 268 100 Z" fill="url(#lion-gold-stem)" stroke="#FFF3B8" stroke-width="0.7" />
+
+    <!-- Letra N -->
+    <path class="letter-n" d="M566 94 H614 L708 224 V122 C708 105, 701 100, 684 100 V94 H742 V100 C725 100, 718 105, 718 122 V276 H710 L604 128 V246 C604 262, 611 268, 628 268 V274 H568 V268 C585 268, 594 262, 594 246 V118 C586 105, 579 100, 566 100 Z" fill="url(#lion-gold-stem)" stroke="#FFF3B8" stroke-width="0.7" />
+  </g>
+
+  <!-- CAPA 2: ISOTIPO CENTRAL DEL OJO (LA O) -->
+  <g id="layer-eye" transform="translate(332, 62)" filter="url(#luxury-shadow)">
+    <!-- Ceja Superior -->
+    <path id="eye-brow-path" d="M16 82 C44 26, 118 18, 206 64 L184 71 L188 80 C118 43, 54 43, 16 82 Z" fill="url(#lion-gold-main)" stroke="#FFF5C0" stroke-width="0.6" />
+
+    <!-- Cepillo / Spoolie -->
+    <g id="eye-spoolie">
+      <rect x="174" y="72" width="54" height="15" rx="2" transform="rotate(-14 174 72)" fill="url(#lion-gold-main)" stroke="#FFF6CC" stroke-width="0.8" />
+      <line x1="58" y1="108" x2="177" y2="79" stroke="#FFF4BE" stroke-width="3.4" stroke-linecap="round" />
+      <g stroke="#FFF2B2" stroke-width="2.2" stroke-linecap="round">
+        <line x1="62" y1="101" x2="65" y2="115" />
+        <line x1="69" y1="98" x2="73" y2="114" />
+        <line x1="76" y1="95" x2="80" y2="113" />
+        <line x1="83" y1="93" x2="87" y2="111" />
+        <line x1="90" y1="91" x2="94" y2="109" />
+        <line x1="97" y1="89" x2="101" y2="107" />
+        <line x1="104" y1="88" x2="108" y2="105" />
+        <line x1="111" y1="87" x2="115" y2="103" />
+        <line x1="118" y1="87" x2="122" y2="100" />
+      </g>
+    </g>
+
+    <!-- Párpado Inferior y Pestañas -->
+    <g id="eye-lashes-fan">
+      <path d="M36 106 C76 152, 142 156, 188 126" stroke="url(#lion-gold-main)" stroke-width="4.2" stroke-linecap="round" fill="none" />
+      <path d="M42 103 C80 145, 138 148, 182 121" stroke="#FFF5C4" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.75" />
+      <g stroke="url(#lion-gold-main)" stroke-width="2.8" stroke-linecap="round">
+        <line x1="42" y1="112" x2="26" y2="126" />
+        <line x1="50" y1="119" x2="33" y2="136" />
+        <line x1="59" y1="125" x2="43" y2="145" />
+        <line x1="68" y1="131" x2="54" y2="154" />
+        <line x1="78" y1="136" x2="66" y2="161" />
+        <line x1="88" y1="140" x2="80" y2="167" />
+        <line x1="99" y1="143" x2="94" y2="172" />
+        <line x1="110" y1="144" x2="108" y2="174" />
+        <line x1="121" y1="145" x2="122" y2="174" />
+        <line x1="132" y1="144" x2="136" y2="172" />
+        <line x1="142" y1="142" x2="150" y2="169" />
+        <line x1="152" y1="139" x2="163" y2="164" />
+        <line x1="162" y1="135" x2="175" y2="158" />
+        <line x1="171" y1="131" x2="186" y2="150" />
+        <line x1="180" y1="126" x2="195" y2="141" />
+      </g>
+    </g>
+  </g>
+
+  <!-- CAPA 3: SUBTÍTULO L A S H -->
+  <g id="layer-subtext" filter="url(#luxury-shadow)" fill="url(#lion-gold-main)">
+    <!-- L -->
+    <path d="M298 332 H304 V366 H324 V372 H298 Z" />
+    <!-- A -->
+    <path d="M372 332 H378 L395 372 H388 L384 362 H366 L362 372 H355 Z M368 356 H382 L375 339 Z" />
+    <!-- S -->
+    <path d="M446 337 C442 337, 439 339, 439 342 C439 346, 443 348, 448 350 C456 352, 461 355, 461 362 C461 368, 455 373, 446 373 C439 373, 433 370, 431 366 L435 362 C437 365, 441 367, 446 367 C452 367, 455 365, 455 362 C455 358, 451 356, 445 354 C438 352, 433 349, 433 342 C433 336, 438 331, 446 331 C452 331, 457 333, 460 337 L456 341 C453 338, 450 337, 446 337 Z" />
+    <!-- H -->
+    <path d="M502 332 H508 V349 H528 V332 H534 V372 H528 V355 H508 V372 H502 Z" />
+  </g>
+
+  <!-- CAPA 4: LÍNEAS DIVISORIAS LATERALES -->
+  <g id="layer-lines">
+    <rect x="88" y="351" width="176" height="1.8" fill="url(#lion-line-left)" />
+    <rect x="568" y="351" width="176" height="1.8" fill="url(#lion-line-right)" />
+  </g>
+
+  <!-- CAPA 5: DESTELLOS ÓPTICOS (STARBURST FLARES) -->
+  <g id="layer-flares">
+    <!-- Destello Superior L -->
+    <g class="star-flare" transform="translate(112, 95)">
+      <circle cx="0" cy="0" r="24" fill="url(#flare-glow)" />
+      <path d="M-38 0 L38 0 M0 -38 L0 38 M-14 -14 L14 14 M-14 14 L14 -14" stroke="#FFF9D6" stroke-width="1.3" stroke-linecap="round" />
+      <circle cx="0" cy="0" r="3.5" fill="#FFFFFF" />
+    </g>
+    <!-- Destello Superior N -->
+    <g class="star-flare" transform="translate(718, 95)">
+      <circle cx="0" cy="0" r="24" fill="url(#flare-glow)" />
+      <path d="M-38 0 L38 0 M0 -38 L0 38 M-14 -14 L14 14 M-14 14 L14 -14" stroke="#FFF9D6" stroke-width="1.3" stroke-linecap="round" />
+      <circle cx="0" cy="0" r="3.5" fill="#FFFFFF" />
+    </g>
+    <!-- Destello Línea Izquierda -->
+    <g class="star-flare" transform="translate(152, 352)">
+      <circle cx="0" cy="0" r="14" fill="url(#flare-glow)" />
+      <circle cx="0" cy="0" r="2.2" fill="#FFFFFF" />
+    </g>
+    <!-- Destello Línea Derecha -->
+    <g class="star-flare" transform="translate(684, 352)">
+      <circle cx="0" cy="0" r="14" fill="url(#flare-glow)" />
+      <circle cx="0" cy="0" r="2.2" fill="#FFFFFF" />
+    </g>
+  </g>
+</svg>

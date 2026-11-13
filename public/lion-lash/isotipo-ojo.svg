@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <defs>
+    <linearGradient id="gold-metallic" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8A6421" />
+      <stop offset="22%" stop-color="#DFB75A" />
+      <stop offset="45%" stop-color="#FFF2B2" />
+      <stop offset="65%" stop-color="#D4A438" />
+      <stop offset="85%" stop-color="#9C7125" />
+      <stop offset="100%" stop-color="#F7DF8B" />
+    </linearGradient>
+    <linearGradient id="gold-bright" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#B68934" />
+      <stop offset="50%" stop-color="#FFE89E" />
+      <stop offset="100%" stop-color="#D1A13C" />
+    </linearGradient>
+    <filter id="gold-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.75" />
+      <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#E5C158" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <g filter="url(#gold-glow)">
+    <!-- Arco Superior: Ceja Esculpida -->
+    <path class="eye-brow" d="M22 86 C48 36, 114 26, 198 68 L178 74 L181 82 C116 48, 56 48, 22 86 Z" fill="url(#gold-metallic)" />
+
+    <!-- Cepillo / Spoolie Diagonal -->
+    <g class="eye-brush">
+      <!-- Mango del cepillo -->
+      <rect x="166" y="75" width="48" height="14" rx="2" transform="rotate(-14 166 75)" fill="url(#gold-metallic)" stroke="#FFF2B2" stroke-width="0.6" />
+      <!-- Varilla central -->
+      <line x1="62" y1="108" x2="169" y2="81" stroke="url(#gold-bright)" stroke-width="3.2" stroke-linecap="round" />
+      <!-- Cerdas del cepillo -->
+      <g stroke="url(#gold-bright)" stroke-width="2.1" stroke-linecap="round">
+        <line x1="65" y1="102" x2="68" y2="114" />
+        <line x1="71" y1="99" x2="75" y2="114" />
+        <line x1="77" y1="96" x2="81" y2="113" />
+        <line x1="83" y1="94" x2="88" y2="112" />
+        <line x1="89" y1="93" x2="94" y2="110" />
+        <line x1="95" y1="91" x2="100" y2="108" />
+        <line x1="101" y1="90" x2="106" y2="106" />
+        <line x1="107" y1="89" x2="112" y2="104" />
+        <line x1="113" y1="89" x2="117" y2="101" />
+      </g>
+    </g>
+
+    <!-- Arco Inferior: Párpado y Extensiones de Pestañas -->
+    <g class="eye-lashes">
+      <!-- Línea del párpado inferior -->
+      <path d="M40 105 C78 148, 138 152, 180 124" stroke="url(#gold-metallic)" stroke-width="4" stroke-linecap="round" fill="none" />
+      <path d="M45 103 C80 142, 136 146, 176 120" stroke="#FFF2B2" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.7" />
+      <!-- Abanico de pestañas -->
+      <g stroke="url(#gold-metallic)" stroke-width="2.6" stroke-linecap="round">
+        <line x1="46" y1="111" x2="31" y2="124" />
+        <line x1="53" y1="117" x2="37" y2="133" />
+        <line x1="61" y1="123" x2="46" y2="142" />
+        <line x1="70" y1="128" x2="56" y2="150" />
+        <line x1="79" y1="133" x2="68" y2="157" />
+        <line x1="88" y1="136" x2="80" y2="162" />
+        <line x1="98" y1="139" x2="93" y2="166" />
+        <line x1="108" y1="140" x2="106" y2="168" />
+        <line x1="118" y1="141" x2="119" y2="168" />
+        <line x1="128" y1="140" x2="132" y2="166" />
+        <line x1="137" y1="139" x2="144" y2="164" />
+        <line x1="146" y1="136" x2="156" y2="159" />
+        <line x1="155" y1="133" x2="167" y2="154" />
+        <line x1="164" y1="129" x2="178" y2="147" />
+        <line x1="172" y1="125" x2="186" y2="139" />
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>NEXT LEVEL · Curso Individual de Perfeccionamiento 1 a 1 ($280.000) · Lion Lash</title>
+  <meta name="description"
+    content="Curso individual 1 a 1 de perfeccionamiento en extensiones de pestañas para Lash Artists por Azul Bravo en Córdoba. Trabajo en capas, uso correcto del adhesivo, styling, mapping y corrección de dirección. Incluye Pinza de Regalo ($280.000)." />
+  <meta name="theme-color" content="#070708" />
+
+  <!-- Open Graph / WhatsApp & Instagram Share Preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:site_name" content="Lion Lash · Azul Bravo" />
+  <meta property="og:title" content="NEXT LEVEL · Perfeccionamiento Individual 1 a 1 ($280.000)" />
+  <meta property="og:description"
+    content="Capacitación 100% personalizada para Lash Artists. Trabajo en capas, adhesivo, styling, mapping y corrección de dirección + Pinza de regalo." />
+  <meta property="og:url" content="https://futurizatech.com/lion-lash/next-level/" />
+  <meta property="og:image" content="https://futurizatech.com/lion-lash/og-share-banner.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NEXT LEVEL · Perfeccionamiento 1 a 1 por Azul Bravo" />
+  <meta name="twitter:description"
+    content="Llevá tu técnica al siguiente nivel en una jornada 100% dedicada a vos. Incluye Pinza de regalo + materiales descartables." />
+  <meta name="twitter:image" content="https://futurizatech.com/lion-lash/og-share-banner.jpg" />
+
+  <!-- Multi-Format Favicons -->
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" id="fav-svg" />
+  <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" id="fav-ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" id="fav-apple" />
+  <link rel="manifest" href="../site.webmanifest" id="fav-manifest" />
+
+  <!-- Google Fonts: Cormorant Garamond + Plus Jakarta Sans + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Librerías de Animación Cinemática y 3D (Three.js + GSAP + ScrollTrigger + Lenis) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
+
+  <style>
+    :root {
+      --bg-obsidian: #050506;
+      --bg-surface: #0C0C0E;
+      --bg-card: rgba(17, 16, 14, 0.84);
+      --bg-card-hover: rgba(25, 22, 17, 0.94);
+      --gold-100: #FFF8D6;
+      --gold-200: #FCE8A6;
+      --gold-300: #E7C36A;
+      --gold-400: #D4AF37;
+      --gold-500: #B68B28;
+      --gold-600: #876216;
+      --text-ivory: #FAF7F0;
+      --text-champagne: #D4CBB8;
+      --text-muted: #9A907E;
+      --border-gold: rgba(212, 175, 55, 0.24);
+      --border-gold-bright: rgba(252, 232, 166, 0.52);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: clip;
+    }
+
+    body {
+      background-color: var(--bg-obsidian);
+      color: var(--text-ivory);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection {
+      background: var(--gold-400);
+      color: #050506;
+    }
+
+    section[id] {
+      scroll-margin-top: 118px;
+    }
+
+    .font-serif-luxury {
+      font-family: var(--font-serif);
+    }
+
+    .font-mono-tech {
+      font-family: var(--font-mono);
+    }
+
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFF7CE 0%, #E7C36A 28%, #D4AF37 52%, #9F7420 75%, #FFF2B2 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmerGold 7s ease-in-out infinite;
+    }
+
+    @keyframes shimmerGold {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    #webgl-gold-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .ambient-glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(130px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glow-top {
+      top: -180px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 760px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.16) 0%, rgba(182, 139, 40, 0.05) 55%, transparent 75%);
+    }
+
+    /* Header Superior Full-Bleed Sólido — Cero Contenido Flotando Por Arriba */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 76px;
+      z-index: 100;
+      background: rgba(6, 6, 8, 0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border-gold);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.78);
+    }
+
+    .header-inner {
+      width: min(1200px, calc(100% - 40px));
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-ivory);
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      padding: 0 8px;
+    }
+
+    .header-nav a {
+      color: var(--text-champagne);
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 500;
+      padding: 8px 13px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: color 0.22s ease, background-color 0.22s ease;
+    }
+
+    .header-nav a:hover {
+      color: var(--gold-100);
+      background: rgba(212, 175, 55, 0.1);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    /* Botones Joya */
+    .btn-gold {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 28px;
+      border-radius: 999px;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 0.92rem;
+      line-height: 1.2;
+      white-space: nowrap;
+      color: #090806;
+      background: linear-gradient(135deg, #FFF5C0 0%, #E5C158 35%, #D4AF37 68%, #F9E498 100%);
+      background-size: 200% auto;
+      text-decoration: none;
+      border: 1px solid rgba(255, 250, 220, 0.65);
+      box-shadow: 0 10px 32px -6px rgba(212, 175, 55, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.75);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, background-position 0.45s ease;
+      cursor: pointer;
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      background-position: right center;
+      box-shadow: 0 16px 40px -6px rgba(212, 175, 55, 0.65), inset 0 1px 2px rgba(255, 255, 255, 0.9);
+    }
+
+    .btn-glass {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 26px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      line-height: 1.2;
+      white-space: nowrap;
+      color: var(--gold-100);
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid var(--border-gold-bright);
+      text-decoration: none;
+      backdrop-filter: blur(12px);
+      transition: all 0.28s ease;
+      cursor: pointer;
+    }
+
+    .btn-glass:hover {
+      background: rgba(212, 175, 55, 0.18);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(212, 175, 55, 0.18);
+    }
+
+    .btn-header-cta {
+      padding: 10px 20px;
+      font-size: 0.82rem;
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+    }
+
+    .container {
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .section-spacing {
+      padding: clamp(64px, 7vw, 100px) 0;
+    }
+
+    .section-header-center {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 48px;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 15px;
+      border-radius: 999px;
+      background: rgba(212, 175, 55, 0.11);
+      border: 1px solid rgba(212, 175, 55, 0.34);
+      color: var(--gold-200);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.25rem, 4vw, 3.45rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--text-ivory);
+    }
+
+    .back-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      color: var(--text-champagne);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      margin-bottom: 22px;
+      transition: all 0.22s ease;
+    }
+
+    .back-pill:hover {
+      color: var(--gold-100);
+      border-color: var(--gold-300);
+      background: rgba(212, 175, 55, 0.1);
+    }
+
+    .course-hero {
+      padding: 136px 0 56px;
+      position: relative;
+    }
+
+    .luxury-card {
+      position: relative;
+      background: radial-gradient(circle at 85% 15%, rgba(212, 175, 55, 0.16) 0%, rgba(14, 13, 11, 0.94) 60%);
+      border: 1px solid var(--border-gold-bright);
+      border-radius: 28px;
+      padding: clamp(26px, 4.5vw, 52px);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      overflow: hidden;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.78);
+    }
+
+    .course-header-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.22);
+    }
+
+    .course-price-box {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .course-footer-bar {
+      margin-top: 40px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(212, 175, 55, 0.22);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    /* PATRÓN CANÓNICO DE LISTAS (Cero Ruptura de Negritas en Columnas) */
+    .module-list {
+      list-style: none;
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .module-list li {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 10px;
+      align-items: baseline;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--text-champagne);
+    }
+
+    .module-list li .bullet-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gold-300);
+      text-align: center;
+      user-select: none;
+    }
+
+    .module-list li .bullet-text {
+      display: block;
+      min-width: 0;
+    }
+
+    .module-list li .bullet-text strong {
+      color: var(--text-ivory);
+      font-weight: 600;
+    }
+
+    /* Pilares Next Level */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+      align-items: stretch;
+    }
+
+    .module-card {
+      position: relative;
+      background: rgba(15, 14, 12, 0.88);
+      border: 1px solid rgba(212, 175, 55, 0.24);
+      border-radius: 22px;
+      padding: 28px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      transition: border-color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .module-card:hover {
+      border-color: var(--gold-300);
+      transform: translateY(-3px);
+      background: rgba(22, 19, 14, 0.95);
+    }
+
+    .module-num {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: #090806;
+      background: linear-gradient(135deg, #FFF2B2, #D4AF37);
+      padding: 5px 12px;
+      border-radius: 99px;
+      display: inline-block;
+      align-self: flex-start;
+      margin-bottom: 14px;
+    }
+
+    /* Destacado de Regalo Incluido */
+    .gift-banner {
+      margin-top: 32px;
+      padding: 24px 28px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.18), rgba(15, 14, 12, 0.92));
+      border: 1px solid var(--border-gold-bright);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    /* Acordeón FAQ */
+    .faq-item {
+      border: 1px solid var(--border-gold);
+      border-radius: 20px;
+      background: rgba(14, 14, 16, 0.85);
+      margin-bottom: 14px;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+
+    .faq-item.open {
+      border-color: var(--gold-300);
+    }
+
+    .faq-btn {
+      width: 100%;
+      padding: 22px 26px;
+      background: none;
+      border: none;
+      color: var(--text-ivory);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.4;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding: 0 26px;
+      color: var(--text-champagne);
+      font-size: 0.94rem;
+      line-height: 1.68;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 560px;
+      padding: 0 26px 24px;
+    }
+
+    /* Menú Mobile */
+    .mobile-menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid var(--border-gold-bright);
+      color: var(--gold-100);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .mobile-nav-drawer {
+      position: fixed;
+      top: 92px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-12px);
+      width: calc(100% - 28px);
+      max-width: 480px;
+      z-index: 99;
+      background: rgba(10, 10, 12, 0.96);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border-gold-bright);
+      border-radius: 24px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.92);
+    }
+
+    .mobile-nav-drawer.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .mobile-nav-drawer a {
+      padding: 12px 16px;
+      border-radius: 14px;
+      color: var(--text-ivory);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .mobile-nav-drawer a:hover {
+      background: rgba(212, 175, 55, 0.12);
+      border-color: rgba(212, 175, 55, 0.3);
+      color: var(--gold-200);
+    }
+
+    /* Sticky Dock Mobile */
+    .mobile-sticky-dock {
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 20px);
+      max-width: 460px;
+      z-index: 95;
+      background: rgba(10, 10, 12, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-gold-bright);
+      border-radius: 999px;
+      padding: 7px 9px;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.9);
+    }
+
+    .dock-link {
+      flex: 1;
+      text-align: center;
+      padding: 10px 6px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-champagne);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dock-link.dock-wa {
+      background: linear-gradient(135deg, #FFF2B2, #D4AF37);
+      color: #070708;
+      font-weight: 700;
+    }
+
+    @media (max-width: 1180px) {
+      .header-nav {
+        display: none;
+      }
+      .mobile-menu-toggle {
+        display: inline-flex;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+      .mobile-sticky-dock {
+        display: flex;
+      }
+      body {
+        padding-bottom: 96px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: calc(100% - 28px);
+      }
+      .course-price-box {
+        text-align: left;
+        width: 100%;
+        padding-top: 16px;
+        border-top: 1px solid rgba(212, 175, 55, 0.16);
+      }
+      .course-footer-bar .btn-gold {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .site-header {
+        height: 64px;
+      }
+      .header-inner {
+        width: calc(100% - 28px);
+      }
+      .mobile-nav-drawer {
+        top: 72px;
+      }
+      .header-cta-desktop-text {
+        display: none;
+      }
+      .luxury-card {
+        padding: 24px 18px;
+        border-radius: 22px;
+      }
+      .module-card {
+        padding: 22px 18px;
+      }
+      .gift-banner {
+        padding: 20px 18px;
+      }
+      .faq-btn {
+        padding: 18px;
+        font-size: 0.95rem;
+      }
+      .faq-answer,
+      .faq-item.open .faq-answer {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    (function () {
+      var p = window.location.pathname;
+      var isFile = window.location.protocol === 'file:';
+      var root = (!isFile && p.indexOf('/lion-lash') === 0) ? '/lion-lash/' : '../';
+      var map = {
+        'fav-svg': 'favicon.svg',
+        'fav-ico': 'favicon.ico',
+        'fav-apple': 'apple-touch-icon.png',
+        'fav-manifest': 'site.webmanifest'
+      };
+      Object.keys(map).forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.href = root + map[id];
+      });
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('a[data-home]').forEach(function (a) {
+          a.href = isFile ? '../index.html' : root;
+        });
+        document.querySelectorAll('a[data-subpage]').forEach(function (a) {
+          var sub = a.getAttribute('data-subpage');
+          a.href = isFile ? ('../' + sub + '/index.html') : (root + sub + '/');
+        });
+        var fImg = document.getElementById('footer-logo-img');
+        if (fImg) fImg.src = root + 'logo-transparent.png';
+      });
+    })();
+  </script>
+
+  <!-- 1. LIENZO 3D / WEBGL DE POLVO DE ORO EN TIEMPO REAL -->
+  <canvas id="webgl-gold-canvas"></canvas>
+  <div class="ambient-glow glow-top"></div>
+
+  <!-- 2. HEADER SUPERIOR FULL-BLEED -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="../index.html" data-home="true" class="header-brand" aria-label="Volver al Inicio de Lion Lash">
+        <svg width="42" height="34" viewBox="0 0 240 200" fill="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="nav-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#B68B28" />
+              <stop offset="50%" stop-color="#FFF5C4" />
+              <stop offset="100%" stop-color="#D4AF37" />
+            </linearGradient>
+          </defs>
+          <path d="M22 86 C48 36, 114 26, 198 68 L178 74 L181 82 C116 48, 56 48, 22 86 Z" fill="url(#nav-gold)" />
+          <rect x="166" y="75" width="48" height="14" rx="2" transform="rotate(-14 166 75)" fill="url(#nav-gold)" />
+          <line x1="62" y1="108" x2="169" y2="81" stroke="#FFF8D6" stroke-width="4" stroke-linecap="round" />
+          <path d="M40 105 C76 148, 138 152, 180 124" stroke="url(#nav-gold)" stroke-width="5" stroke-linecap="round" fill="none" />
+          <g stroke="url(#nav-gold)" stroke-width="3" stroke-linecap="round">
+            <line x1="53" y1="117" x2="37" y2="133" />
+            <line x1="79" y1="133" x2="68" y2="157" />
+            <line x1="108" y1="140" x2="106" y2="168" />
+            <line x1="137" y1="139" x2="144" y2="164" />
+            <line x1="164" y1="129" x2="178" y2="147" />
+          </g>
+        </svg>
+        <div>
+          <div class="font-serif-luxury" style="font-size: 1.3rem; font-weight: 700; letter-spacing: 0.16em; line-height: 1;">LION LASH</div>
+          <div style="font-size: 0.62rem; letter-spacing: 0.22em; color: var(--gold-300); margin-top: 3px;">POR AZUL BRAVO</div>
+        </div>
+      </a>
+
+      <!-- 5 Enlaces Concisos Exclusivos de esta Página -->
+      <nav class="header-nav" aria-label="Navegación Next Level">
+        <a href="../index.html" data-home="true">← Inicio</a>
+        <a href="#pilares-1a1">Los 4 Pilares</a>
+        <a href="#regalo-incluido">Pinza de Regalo</a>
+        <a href="#faq-next">Preguntas</a>
+        <a href="../lion-lash-method/index.html" data-subpage="lion-lash-method">Ver más sobre Curso Inicial</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Vi%20en%20la%20web%20el%20curso%20individual%20de%20perfeccionamiento%20NEXT%20LEVEL%20(%24280.000)%20con%20pinza%20de%20regalo.%20Quiero%20recibir%20m%C3%A1s%20informaci%C3%B3n%20y%20consultar%20disponibilidad."
+          target="_blank" rel="noopener noreferrer" class="btn-gold btn-header-cta">
+          <span>WhatsApp <span class="header-cta-desktop-text">· Coordinar 1 a 1</span></span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+            <path d="M7 17L17 7M17 7H7M17 7V17" />
+          </svg>
+        </a>
+
+        <button type="button" class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú de navegación">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Menú Desplegable Mobile -->
+  <nav class="mobile-nav-drawer" id="mobile-nav-drawer" aria-label="Menú Móvil">
+    <a href="../index.html" data-home="true" class="js-mobile-link">← Volver al Inicio General</a>
+    <a href="#pilares-1a1" class="js-mobile-link">✦ Los 4 Pilares de Next Level</a>
+    <a href="#regalo-incluido" class="js-mobile-link">✦ Pinza de Regalo + Materiales</a>
+    <a href="#faq-next" class="js-mobile-link">✦ Dudas sobre Perfeccionamiento</a>
+    <a href="../lion-lash-method/index.html" data-subpage="lion-lash-method" class="js-mobile-link">✦ Ver más sobre Curso Inicial (Lion Lash Method) →</a>
+  </nav>
+
+  <main>
+    <!-- 3. SECCIÓN PRINCIPAL DE NEXT LEVEL ($280.000) -->
+    <section class="course-hero">
+      <div class="container">
+        <a href="../index.html" data-home="true" class="back-pill hero-anim">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          <span>Volver al Inicio de Lion Lash</span>
+        </a>
+
+        <div class="luxury-card hero-anim">
+          <div class="course-header-row">
+            <div style="max-width: 660px;">
+              <div class="section-tag">CURSO INDIVIDUAL DE PERFECCIONAMIENTO · PARA LASH ARTISTS</div>
+              <h1 class="font-serif-luxury" style="font-size: clamp(2.5rem, 4.8vw, 4.2rem); font-weight: 700; line-height: 1.04;">
+                NEXT <span class="gold-gradient-text">LEVEL</span>
+              </h1>
+              <p style="color: var(--text-champagne); font-size: 1.04rem; line-height: 1.68; margin-top: 14px;">
+                <strong style="color: var(--text-ivory);">Una experiencia 100% personalizada (1 a 1)</strong> diseñada exclusivamente para Lash Artists que ya cuentan con formación previa, pero quieren potenciar su técnica, resolver dudas que antes no pudieron ver y lograr sets definidos, limpios y duraderos cuidando siempre la pestaña natural.
+              </p>
+            </div>
+
+            <div class="course-price-box">
+              <div class="font-mono-tech" style="font-size: 0.74rem; color: var(--gold-200); letter-spacing: 0.12em;">FORMACIÓN 100% INDIVIDUAL · 1 SOLA ALUMNA</div>
+              <div class="font-serif-luxury gold-gradient-text" style="font-size: clamp(2.4rem, 3.8vw, 3.35rem); font-weight: 700; line-height: 1.1; margin-top: 4px;">
+                INVERSIÓN $280.000
+              </div>
+              <div style="font-size: 0.84rem; color: var(--gold-200); margin-top: 4px;">✦ Incluye Pinza de Regalo + Materiales Descartables</div>
+            </div>
+          </div>
+
+          <!-- Los 4 Bloques Oficiales del Folleto Next Level -->
+          <div id="pilares-1a1" class="pillars-grid">
+            <!-- Bloque 1 -->
+            <article class="module-card js-module-reveal">
+              <span class="module-num">PILAR 01 · ATENCIÓN EXCLUSIVA</span>
+              <h2 class="font-serif-luxury" style="font-size: 1.8rem; font-weight: 700; color: var(--gold-100); line-height: 1.15;">
+                Una capacitación enfocada en vos
+              </h2>
+              <p style="color: var(--text-champagne); font-size: 0.9rem; margin-top: 8px;">
+                Sin grupos grandes ni distracciones. Azul trabaja al lado tuyo durante toda la jornada para acompañarte en este paso:
+              </p>
+              <ul class="module-list">
+                <li><span class="bullet-num">✦</span><span class="bullet-text">Formación individual y personalizada</span></li>
+                <li><span class="bullet-num">✦</span><span class="bullet-text">Correcciones enfocadas en tus necesidades reales</span></li>
+                <li><span class="bullet-num">✦</span><span class="bullet-text">Atención dedicada a una sola alumna</span></li>
+                <li><span class="bullet-num">✦</span><span class="bullet-text">Revisión profunda de técnica y resolución de dudas previas</span></li>
+              </ul>
+            </article>
+
+            <!-- Bloque 2 -->
+            <article class="module-card js-module-reveal">
+              <span class="module-num">PILAR 02 · DOMINÁ LOS FUNDAMENTOS</span>
+              <h2 class="font-serif-luxury" style="font-size: 1.8rem; font-weight: 700; color: var(--gold-100); line-height: 1.15;">
+                Técnica y Control: Capas & Adhesivo
+              </h2>
+              <p style="color: var(--text-champagne); font-size: 0.9rem; margin-top: 8px;">
+                Dominá los dos factores técnicos que definen la durabilidad y perfección visual de un set de alto nivel:
+              </p>
+              <ul class="module-list">
+                <li>
+                  <span class="bullet-num">01</span>
+                  <span class="bullet-text"><strong>Trabajo en capas:</strong> Cómo construir sets más completos, definidos y duraderos.</span>
+                </li>
+                <li>
+                  <span class="bullet-num">02</span>
+                  <span class="bullet-text"><strong>Correcto uso del adhesivo:</strong> Selección, cantidad exacta y aplicación para lograr máxima retención y seguridad ocular.</span>
+                </li>
+              </ul>
+            </article>
+
+            <!-- Bloque 3 -->
+            <article class="module-card js-module-reveal">
+              <span class="module-num">PILAR 03 · VISAGISMO AVANZADO</span>
+              <h2 class="font-serif-luxury" style="font-size: 1.8rem; font-weight: 700; color: var(--gold-100); line-height: 1.15;">
+                Diseño de Miradas, Styling y Mapping
+              </h2>
+              <p style="color: var(--text-champagne); font-size: 0.9rem; margin-top: 8px;">
+                Personalizá cada diseño según el rostro, el estilo y la intención de tu clienta:
+              </p>
+              <ul class="module-list">
+                <li><span class="bullet-num">✦</span><span class="bullet-text">Diseño de sets a medida para cada fisonomía</span></li>
+                <li><span class="bullet-num">✦</span><span class="bullet-text">Selección estratégica de efectos</span></li>
+                <li><span class="bullet-num">✦</span><span class="bullet-text">Resultados que realzan y diferencian tu firma profesional</span></li>
+                <li><span class="bullet-num">✦</span><span class="bullet-text">Dominio avanzado de Styling y Mapping</span></li>
+              </ul>
+            </article>
+
+            <!-- Bloque 4 -->
+            <article class="module-card js-module-reveal">
+              <span class="module-num">PILAR 04 · PRECISIÓN EN VIVO</span>
+              <h2 class="font-serif-luxury" style="font-size: 1.8rem; font-weight: 700; color: var(--gold-100); line-height: 1.15;">
+                Correcciones que hacen la diferencia
+              </h2>
+              <p style="color: var(--text-champagne); font-size: 0.9rem; margin-top: 8px;">
+                Detectamos los micro-hábitos que hoy frenan tus resultados y los corregimos en el acto:
+              </p>
+              <ul class="module-list">
+                <li><span class="bullet-num">✦</span><span class="bullet-text">Corrección personalizada de dirección</span></li>
+                <li><span class="bullet-num">✦</span><span class="bullet-text">Identificación exacta de tus puntos a mejorar</span></li>
+                <li><span class="bullet-num">✦</span><span class="bullet-text">Más precisión, limpieza y seguridad al trabajar</span></li>
+                <li><span class="bullet-num">✦</span><span class="bullet-text"><strong>Regalo incluido:</strong> Pinza profesional + materiales descartables</span></li>
+              </ul>
+            </article>
+          </div>
+
+          <!-- Banner de Regalo Incluido -->
+          <div id="regalo-incluido" class="gift-banner">
+            <div>
+              <div class="font-mono-tech" style="font-size: 0.74rem; color: var(--gold-200); letter-spacing: 0.1em; margin-bottom: 4px;">BENEFICIO EXCLUSIVO NEXT LEVEL</div>
+              <div class="font-serif-luxury" style="font-size: 1.65rem; font-weight: 700; color: var(--gold-100);">Incluye Pinza Profesional de Regalo + Materiales Descartables</div>
+              <div style="font-size: 0.9rem; color: var(--text-champagne); margin-top: 4px;">Para que apliques lo aprendido desde el primer minuto con una herramienta calibrada y seleccionada por Azul Bravo.</div>
+            </div>
+            <span class="section-tag" style="margin-bottom: 0; background: rgba(212, 175, 55, 0.22);">INCLUIDO EN TU INVERSIÓN</span>
+          </div>
+
+          <!-- Barra de Cierre Curso 2 -->
+          <div class="course-footer-bar">
+            <div>
+              <div style="font-weight: 700; font-size: 1.08rem; color: var(--text-ivory);">Tu Experiencia Next Level · Escribime para consultar disponibilidad</div>
+              <div style="color: var(--text-champagne); font-size: 0.9rem; margin-top: 4px;">Al ser una capacitación 100% individual (1 a 1), coordinamos la fecha especialmente para vos por WhatsApp.</div>
+            </div>
+            <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Vi%20en%20la%20web%20el%20curso%20individual%20de%20perfeccionamiento%20NEXT%20LEVEL%20(%24280.000)%20con%20pinza%20de%20regalo.%20Quiero%20recibir%20m%C3%A1s%20informaci%C3%B3n%20y%20consultar%20disponibilidad."
+              target="_blank" rel="noopener noreferrer" class="btn-gold">
+              <span>Ir a WhatsApp · Consultar Disponibilidad ($280.000)</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. PREGUNTAS FRECUENTES EXCLUSIVAS DE NEXT LEVEL -->
+    <section id="faq-next" class="section-spacing" style="padding-top: 20px;">
+      <div class="container" style="max-width: 880px;">
+        <div class="section-header-center">
+          <div class="section-tag">DUDAS SOBRE NEXT LEVEL</div>
+          <h2 class="section-title">
+            Preguntas frecuentes de <span class="gold-gradient-text">Perfeccionamiento 1 a 1</span>
+          </h2>
+        </div>
+
+        <div class="faq-item open">
+          <button type="button" class="faq-btn">
+            <span>Ya hice un curso en otro lugar pero siento que me faltan bases o velocidad, ¿es para mí?</span>
+            <span style="color: var(--gold-300); font-size: 1.3rem;">+</span>
+          </button>
+          <div class="faq-answer">
+            Sí, exactamente para eso fue creado <strong style="color:var(--text-ivory);">Next Level</strong>. Al ser <strong style="color:var(--text-ivory);">100% individual (una sola alumna)</strong>, Azul diagnostica cómo estás trabajando hoy y adapta la clase a tus puntos específicos: ya sea mejorar retención de adhesivo, dominar trabajo en capas, perfeccionar mapping o corregir dirección.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-btn">
+            <span>¿Qué incluye la inversión de $280.000?</span>
+            <span style="color: var(--gold-300); font-size: 1.3rem;">+</span>
+          </button>
+          <div class="faq-answer">
+            Incluye la capacitación presencial 100% individual dedicada exclusivamente a vos, todos los <strong style="color:var(--text-ivory);">materiales descartables</strong> para trabajar en clase y una <strong style="color:var(--text-ivory);">pinza profesional de regalo</strong>.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-btn">
+            <span>¿Cómo coordinamos la fecha de mi clase 1 a 1?</span>
+            <span style="color: var(--gold-300); font-size: 1.3rem;">+</span>
+          </button>
+          <div class="faq-answer">
+            Como es una clase privada para una sola alumna, hacé clic en el botón de WhatsApp para hablar directo con Azul Bravo (<strong style="color:var(--text-ivory);">351 802-4072</strong>) y elegir juntos el día y horario disponible que mejor te quede.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. FOOTER -->
+    <footer style="padding: 72px 0 60px; border-top: 1px solid var(--border-gold); background: linear-gradient(180deg, rgba(10,10,12,0.4) 0%, #030304 100%);">
+      <div class="container" style="text-align: center;">
+        <img src="../logo-transparent.png" id="footer-logo-img" alt="Lion Lash Logo Oficial" style="width: min(300px, 72vw); height: auto; margin: 0 auto 22px; display: block;" />
+
+        <h2 class="font-serif-luxury" style="font-size: clamp(2rem, 3.8vw, 3.1rem); font-weight: 600; max-width: 680px; margin: 0 auto 14px;">
+          Llevá tu técnica al <span class="gold-gradient-text">Next Level</span>
+        </h2>
+        <p style="color: var(--text-champagne); max-width: 540px; margin: 0 auto 30px; line-height: 1.65;">
+          Escribile ahora a Azul Bravo por WhatsApp para consultar disponibilidad y agendar tu jornada individual 1 a 1.
+        </p>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-bottom: 44px;">
+          <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Vi%20en%20la%20web%20el%20curso%20individual%20NEXT%20LEVEL%20(%24280.000)%20y%20quiero%20consultar%20disponibilidad."
+            target="_blank" rel="noopener noreferrer" class="btn-gold">
+            <span>Ir a WhatsApp · Coordinar Next Level 1 a 1 ($280.000) ↗</span>
+          </a>
+          <a href="../lion-lash-method/index.html" data-subpage="lion-lash-method" class="btn-glass">
+            <span>Ver más sobre Curso Inicial (Lion Lash Method) →</span>
+          </a>
+          <a href="../index.html" data-home="true" class="btn-glass">
+            <span>← Volver al Inicio General</span>
+          </a>
+        </div>
+
+        <div style="padding-top: 24px; border-top: 1px solid rgba(212, 175, 55, 0.14); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; font-size: 0.8rem; color: var(--text-muted);">
+          <div>© Lion Lash · Presenta Azul Bravo · Córdoba, Argentina</div>
+          <div>WhatsApp: +54 9 351 802-4072 · Instagram: @Lion.laash</div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- STICKY DOCK MOBILE -->
+  <div class="mobile-sticky-dock" aria-label="Accesos rápidos móviles">
+    <a href="../index.html" data-home="true" class="dock-link">← Inicio</a>
+    <a href="#pilares-1a1" class="dock-link">Ver 4 Pilares</a>
+    <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Quiero%20coordinar%20mi%20clase%20individual%20NEXT%20LEVEL%20(%24280.000)."
+      target="_blank" rel="noopener noreferrer" class="dock-link dock-wa">Ir a WhatsApp</a>
+  </div>
+
+  <!-- SCRIPTS DE ANIMACIÓN 3D Y SCROLL -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof Lenis !== 'undefined') {
+        var lenis = new Lenis({
+          duration: 1.15,
+          easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+          smoothWheel: true
+        });
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+      }
+
+      initThreeGoldParticles();
+
+      document.querySelectorAll('.faq-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var item = btn.parentElement;
+          var isOpen = item.classList.contains('open');
+          document.querySelectorAll('.faq-item').forEach(function (el) { el.classList.remove('open'); });
+          if (!isOpen) item.classList.add('open');
+        });
+      });
+
+      var menuBtn = document.getElementById('mobile-menu-btn');
+      var menuDrawer = document.getElementById('mobile-nav-drawer');
+      if (menuBtn && menuDrawer) {
+        menuBtn.addEventListener('click', function () {
+          menuDrawer.classList.toggle('open');
+        });
+        document.querySelectorAll('.js-mobile-link').forEach(function (lnk) {
+          lnk.addEventListener('click', function () {
+            menuDrawer.classList.remove('open');
+          });
+        });
+      }
+
+      if (typeof gsap !== 'undefined') {
+        if (typeof ScrollTrigger !== 'undefined') {
+          gsap.registerPlugin(ScrollTrigger);
+        }
+        gsap.fromTo('.hero-anim',
+          { y: 26, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.85, stagger: 0.12, ease: 'power3.out' }
+        );
+        if (typeof ScrollTrigger !== 'undefined') {
+          gsap.utils.toArray('.js-module-reveal').forEach(function (card) {
+            gsap.fromTo(card,
+              { y: 28, opacity: 0 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                ease: 'power2.out',
+                scrollTrigger: {
+                  trigger: card,
+                  start: 'top 88%'
+                }
+              }
+            );
+          });
+        }
+      }
+    });
+
+    function initThreeGoldParticles() {
+      if (typeof THREE === 'undefined') return;
+      var canvas = document.getElementById('webgl-gold-canvas');
+      if (!canvas) return;
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.z = 55;
+      var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      var count = window.innerWidth < 768 ? 80 : 160;
+      var geo = new THREE.BufferGeometry();
+      var positions = new Float32Array(count * 3);
+      var speeds = new Float32Array(count);
+      for (var i = 0; i < count; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 130;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 90;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 50;
+        speeds[i] = 0.02 + Math.random() * 0.05;
+      }
+      geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+      var pCanvas = document.createElement('canvas');
+      pCanvas.width = 32;
+      pCanvas.height = 32;
+      var ctx = pCanvas.getContext('2d');
+      var grad = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+      grad.addColorStop(0, 'rgba(255, 248, 210, 1)');
+      grad.addColorStop(0.35, 'rgba(212, 175, 55, 0.75)');
+      grad.addColorStop(1, 'rgba(212, 175, 55, 0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 32, 32);
+
+      var tex = new THREE.CanvasTexture(pCanvas);
+      var mat = new THREE.PointsMaterial({
+        size: 1.65,
+        map: tex,
+        transparent: true,
+        opacity: 0.72,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending
+      });
+      var points = new THREE.Points(geo, mat);
+      scene.add(points);
+
+      var mouseX = 0, mouseY = 0;
+      window.addEventListener('mousemove', function (e) {
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 8;
+        mouseY = (e.clientY / window.innerHeight - 0.5) * 8;
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+        var pos = geo.attributes.position.array;
+        for (var i = 0; i < count; i++) {
+          pos[i * 3 + 1] += speeds[i];
+          if (pos[i * 3 + 1] > 48) pos[i * 3 + 1] = -48;
+        }
+        geo.attributes.position.needsUpdate = true;
+        points.rotation.y += (mouseX * 0.02 - points.rotation.y) * 0.03;
+        points.rotation.x += (-mouseY * 0.02 - points.rotation.x) * 0.03;
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener('resize', function () {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    }
+  </script>
+</body>
+
+</html>
