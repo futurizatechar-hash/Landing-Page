@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnóstico de Rendimiento y Experiencia Web · Grupo Rosario Máquinas</title>
+  <meta name="description" content="Relevamiento técnico y comercial del sitio web oficial de Grupo Rosario Máquinas (gruporm.com.ar) elaborado por FuturizaTech para Fernanda y la dirección comercial.">
+  <meta property="og:title" content="Diagnóstico de Rendimiento y Experiencia Web · Grupo Rosario Máquinas">
+  <meta property="og:description" content="Relevamiento técnico y comercial del sitio oficial gruporm.com.ar elaborado por el equipo de ingeniería de FuturizaTech.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.futurizatech.com/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #121316;
+      --bg-card: #1B1D22;
+      --bg-card-hover: #22252C;
+      --bg-light-tint: #262930;
+      --text-main: #FFFFFF;
+      --text-muted: #9EABB8;
+      --text-sub: #BAC6D4;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(0, 173, 198, 0.35);
+      
+      /* Identidad Oficial GRM */
+      --grm-graphite: #1E2023;
+      --grm-cyan: #00ADC6;
+      --grm-orange: #FF6900;
+      --grm-gold: #A1824F;
+      --grm-gray: #58595C;
+      
+      /* Estados de Diagnóstico */
+      --color-danger: #FF4D4D;
+      --color-danger-bg: rgba(255, 77, 77, 0.12);
+      --color-danger-border: rgba(255, 77, 77, 0.35);
+      --color-warning: #FFB020;
+      --color-warning-bg: rgba(255, 176, 32, 0.12);
+      --color-success: #10B981;
+      --color-success-bg: rgba(16, 185, 129, 0.12);
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* BARRA SUPERIOR CO-BRANDED (ESTRICTAMENTE SIN BOTONES) */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(18, 19, 22, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 16px 24px;
+    }
+
+    .topbar-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-cobrand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .grm-logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .grm-logo-symbol {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #00ADC6 0%, #1E2023 100%);
+      border: 1px solid rgba(0, 173, 198, 0.5);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 17px;
+      color: #FFFFFF;
+      letter-spacing: -0.5px;
+      box-shadow: 0 4px 14px rgba(0, 173, 198, 0.25);
+    }
+
+    .grm-logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .grm-logo-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.5px;
+      line-height: 1.1;
+    }
+
+    .grm-logo-sub {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--grm-cyan);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .brand-divider {
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 20px;
+      font-weight: 300;
+    }
+
+    .futuriza-logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .futuriza-bullet {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #00ADC6;
+      box-shadow: 0 0 10px #00ADC6;
+    }
+
+    .futuriza-name {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-sub);
+      letter-spacing: 0.2px;
+    }
+
+    .pill-diagnostic {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 105, 0, 0.12);
+      color: #FF6900;
+      border: 1px solid rgba(255, 105, 0, 0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .pill-diagnostic::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #FF6900;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      padding: 64px 0 40px;
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--grm-cyan);
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4.8vw, 48px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.8px;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+      max-width: 980px;
+    }
+
+    .hero-title span.highlight {
+      color: var(--grm-cyan);
+    }
+
+    .hero-title span.highlight-alert {
+      color: #FF6900;
+    }
+
+    .intro-letter {
+      background: linear-gradient(180deg, rgba(27, 29, 34, 0.95) 0%, rgba(20, 22, 26, 0.95) 100%);
+      border: 1px solid var(--border-subtle);
+      border-left: 4px solid var(--grm-cyan);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-top: 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .intro-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .intro-addressee {
+      font-size: 15px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .intro-date {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .intro-body {
+      font-size: 15px;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    .intro-body p + p {
+      margin-top: 14px;
+    }
+
+    /* METRICAS CLAVE / KPIS */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin: 44px 0 54px;
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 22px 20px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    .kpi-card.danger {
+      border-top: 3px solid var(--color-danger);
+    }
+
+    .kpi-card.warning {
+      border-top: 3px solid var(--color-warning);
+    }
+
+    .kpi-badge {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .kpi-value {
+      font-family: var(--font-display);
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .kpi-card.danger .kpi-value {
+      color: var(--color-danger);
+    }
+
+    .kpi-card.warning .kpi-value {
+      color: var(--color-warning);
+    }
+
+    .kpi-card.cyan .kpi-value {
+      color: var(--grm-cyan);
+    }
+
+    .kpi-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .kpi-subtext {
+      margin-top: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.4);
+      border-top: 1px dashed var(--border-subtle);
+      padding-top: 8px;
+    }
+
+    /* SECCION GENERAL */
+    .section-title-wrap {
+      margin-bottom: 32px;
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--grm-orange);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3.2vw, 34px);
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.4px;
+    }
+
+    .section-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      max-width: 820px;
+    }
+
+    /* TARJETAS DETALLADAS DE DIAGNOSTICO */
+    .finding-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .finding-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .finding-num {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(0, 173, 198, 0.12);
+      border: 1px solid rgba(0, 173, 198, 0.35);
+      color: var(--grm-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+
+    .finding-title-group {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .finding-title {
+      font-family: var(--font-display);
+      font-size: 21px;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .finding-severity {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .severity-critical {
+      background: var(--color-danger-bg);
+      color: var(--color-danger);
+      border: 1px solid var(--color-danger-border);
+    }
+
+    .severity-high {
+      background: var(--color-warning-bg);
+      color: var(--color-warning);
+      border: 1px solid rgba(255, 176, 32, 0.3);
+    }
+
+    .severity-medium {
+      background: rgba(0, 173, 198, 0.12);
+      color: var(--grm-cyan);
+      border: 1px solid rgba(0, 173, 198, 0.3);
+    }
+
+    .finding-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 820px) {
+      .finding-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .content-box {
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .content-box.impact {
+      background: rgba(255, 77, 77, 0.05);
+      border-color: rgba(255, 77, 77, 0.2);
+    }
+
+    .content-box.solution {
+      background: rgba(16, 185, 129, 0.05);
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .box-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .box-title.problem-title {
+      color: #FFB020;
+    }
+
+    .box-title.impact-title {
+      color: #FF4D4D;
+    }
+
+    .box-title.solution-title {
+      color: #10B981;
+    }
+
+    .box-text {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    .visual-comparison-inline {
+      margin-top: 18px;
+      background: #141619;
+      border: 1px dashed var(--border-subtle);
+      border-radius: 10px;
+      padding: 16px;
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+
+    .evidence-tag {
+      display: inline-block;
+      font-family: monospace;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: #FFD166;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    /* TABLA COMPARATIVA */
+    .comparison-section {
+      margin: 60px 0;
+    }
+
+    .table-scroll-hint {
+      display: none;
+      text-align: center;
+      font-size: 12px;
+      color: var(--grm-cyan);
+      margin-bottom: 12px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .comparison-table-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .table-responsive {
+      width: 100%;
+      min-width: 620px;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .table-responsive th {
+      background: #15171B;
+      padding: 18px 22px;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .table-responsive th.col-aspect {
+      color: var(--text-muted);
+      width: 25%;
+    }
+
+    .table-responsive th.col-current {
+      color: var(--color-danger);
+      background: rgba(255, 77, 77, 0.08);
+      width: 37.5%;
+    }
+
+    .table-responsive th.col-optimized {
+      color: var(--grm-cyan);
+      background: rgba(0, 173, 198, 0.08);
+      width: 37.5%;
+    }
+
+    .table-responsive td {
+      padding: 18px 22px;
+      font-size: 14px;
+      line-height: 1.55;
+      border-bottom: 1px solid var(--border-subtle);
+      vertical-align: top;
+    }
+
+    .table-responsive tr:last-child td {
+      border-bottom: none;
+    }
+
+    .table-responsive td.aspect-name {
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .table-responsive td.current-status {
+      color: #E2A0A0;
+      background: rgba(255, 77, 77, 0.02);
+    }
+
+    .table-responsive td.optimized-status {
+      color: #A5DFF0;
+      background: rgba(0, 173, 198, 0.02);
+    }
+
+    /* SECCION DE CIERRE / ACCION */
+    .closing-card {
+      background: linear-gradient(135deg, #1B1E24 0%, #15171C 100%);
+      border: 1px solid var(--border-accent);
+      border-radius: 18px;
+      padding: 42px 36px;
+      margin: 40px 0 60px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .closing-title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3.2vw, 32px);
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 14px;
+    }
+
+    .closing-desc {
+      font-size: 15px;
+      color: var(--text-sub);
+      max-width: 760px;
+      margin: 0 auto 28px;
+      line-height: 1.7;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #FF6900 0%, #E05600 100%);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 16px;
+      padding: 16px 32px;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(255, 105, 0, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(255, 105, 0, 0.45);
+    }
+
+    .cta-icon {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    .closing-subtext {
+      margin-top: 18px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 32px 0;
+      color: var(--text-muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .table-scroll-hint {
+        display: block;
+      }
+      .topbar {
+        padding: 12px 16px;
+      }
+      .topbar-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .brand-cobrand {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .brand-divider {
+        display: none;
+      }
+      .futuriza-logo-badge {
+        display: none;
+      }
+      .pill-diagnostic {
+        font-size: 10px;
+        padding: 4px 10px;
+      }
+      .container {
+        padding: 0 16px;
+      }
+      .hero {
+        padding: 40px 0 24px;
+      }
+      .hero-title {
+        font-size: clamp(24px, 6.5vw, 32px);
+      }
+      .intro-letter {
+        padding: 22px 18px;
+        border-radius: 12px;
+      }
+      .kpi-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin: 30px 0 40px;
+      }
+      .kpi-value {
+        font-size: 32px;
+      }
+      .finding-card {
+        padding: 22px 18px;
+        border-radius: 14px;
+      }
+      .finding-title {
+        font-size: 19px;
+      }
+      .content-box {
+        padding: 16px 14px;
+      }
+      .comparison-section {
+        margin: 40px 0;
+      }
+      .closing-card {
+        padding: 32px 18px;
+        border-radius: 14px;
+      }
+      .cta-button {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 20px;
+        font-size: 15px;
+      }
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR CO-BRANDED (SIN BOTONES DE ACCIÓN) -->
+  <header class="topbar">
+    <div class="topbar-container">
+      <div class="brand-cobrand">
+        <!-- Logo Grupo RM -->
+        <div class="grm-logo-badge">
+          <div class="grm-logo-symbol">RM</div>
+          <div class="grm-logo-text">
+            <span class="grm-logo-title">GRUPO ROSARIO MÁQUINAS</span>
+            <span class="grm-logo-sub">Maquinaria Vial &amp; Repuestos</span>
+          </div>
+        </div>
+        
+        <span class="brand-divider">/</span>
+        
+        <!-- Logo FuturizaTech -->
+        <div class="futuriza-logo-badge">
+          <div class="futuriza-bullet"></div>
+          <span class="futuriza-name">Futuriza Core · Ingeniería</span>
+        </div>
+      </div>
+
+      <div class="pill-diagnostic">
+        Informe Técnico Confidencial
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-eyebrow">
+        Relevamiento Digital Independiente · Noviembre 2026
+      </div>
+      <h1 class="hero-title">
+        Diagnóstico de Experiencia Web y Portal Comercial: <span class="highlight">¿Por qué hoy se pierden ventas</span> en <span class="highlight-alert">gruporm.com.ar</span>?
+      </h1>
+      
+      <!-- CARTA DE INTRODUCCIÓN A FERNANDA -->
+      <div class="intro-letter">
+        <div class="intro-header">
+          <div class="intro-addressee">
+            Dirigido a: <strong>Fernanda</strong> y Dirección Comercial · Grupo Rosario Máquinas
+          </div>
+          <div class="intro-date">
+            Rosario, Santa Fe / Córdoba · Informe de Colaboración
+          </div>
+        </div>
+        <div class="intro-body">
+          <p>
+            Estimada Fernanda, buenas tardes.
+          </p>
+          <p>
+            Mientras nuestro equipo de ingeniería terminaba de estructurar la propuesta de captación activa de prospectos que conecta su propio Excel con los envíos directos a WhatsApp, realizamos una auditoría completa del funcionamiento de su sitio web oficial (<strong>gruporm.com.ar</strong>).
+          </p>
+          <p>
+            El prestigio de Grupo Rosario Máquinas y la representación de marcas líderes internacionales como <strong>Develon, Fassi, Soosan, Rigor y Lovol</strong> merecen un portal que refleje esa misma solidez. Sin embargo, encontramos una serie de fallas graves en la experiencia de navegación que hoy actúan como un freno de mano: compradores con presupuesto en mano entran a consultar, se frustran con la demora o la falta de información, y terminan cerrando la pestaña para buscar a otros distribuidores.
+          </p>
+          <p>
+            Le acercamos este diagnóstico explicado de forma sencilla y directa, sin términos técnicos confusos, para que comprendan con exactitud qué está sucediendo y el impacto comercial directo que tiene sobre las consultas diarias.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDICADORES CLAVE / KPIS -->
+    <section>
+      <div class="kpi-grid">
+        
+        <div class="kpi-card danger">
+          <div class="kpi-badge">Velocidad de Carga</div>
+          <div class="kpi-value">9 a 15s</div>
+          <div class="kpi-desc">Demora en abrir completamente la página. Los estudios demuestran que más del 40% de los visitantes abandona si tarda más de 3 segundos.</div>
+          <div class="kpi-subtext">Estándar recomendado: Menos de 2 segundos</div>
+        </div>
+
+        <div class="kpi-card danger">
+          <div class="kpi-badge">Consumo de Datos</div>
+          <div class="kpi-value">33.8 MB</div>
+          <div class="kpi-desc">Peso únicamente del video de fondo. Equivale a obligar al cliente a descargar más de 50 fotos pesadas juntas sin haber pedido ver un video.</div>
+          <div class="kpi-subtext">Límite recomendado: 1.5 a 2.5 MB total</div>
+        </div>
+
+        <div class="kpi-card warning">
+          <div class="kpi-badge">Catálogo de Equipos</div>
+          <div class="kpi-value">0 Fichas</div>
+          <div class="kpi-desc">Las 13 categorías de maquinaria llevan a una página genérica vacía de modelos, sin fichas descargables ni botón para pedir cotización directa.</div>
+          <div class="kpi-subtext">Resultado: El cliente navega a ciegas</div>
+        </div>
+
+        <div class="kpi-card warning">
+          <div class="kpi-badge">Navegación Móvil</div>
+          <div class="kpi-value">70% Fuga</div>
+          <div class="kpi-desc">El 70% de las consultas B2B se hacen hoy desde el teléfono celular. En la web actual los textos se salen de la pantalla y las fotos quedan recortadas.</div>
+          <div class="kpi-subtext">Falta total de adaptación responsiva</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LOS 6 PROBLEMAS PRINCIPALES EXPLICADOS EN CLARO -->
+    <section>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">Análisis Detallado de Impacto Comercial</div>
+        <h2 class="section-title">Los 6 obstáculos críticos que encontramos en la página web</h2>
+        <p class="section-subtitle">
+          Cada uno de estos puntos representa fricción innecesaria entre un cliente que necesita comprar una máquina o un repuesto y su equipo de ventas.
+        </p>
+      </div>
+
+      <!-- PROBLEMA 1: EL VIDEO GIGANTE -->
+      <article class="finding-card">
+        <div class="finding-header">
+          <div class="finding-num">1</div>
+          <div class="finding-title-group">
+            <h3 class="finding-title">El video de portada de 34 Megabytes y la lentitud extrema</h3>
+            <span class="finding-severity severity-critical">Impacto Crítico · Pérdida directa de visitas</span>
+          </div>
+        </div>
+
+        <div class="finding-content">
+          <div class="content-box">
+            <div class="box-title problem-title">
+              <span>⚠️</span> ¿Qué sucede técnicamente en la pantalla?
+            </div>
+            <p class="box-text">
+              La portada del sitio tiene configurado de fondo un video gigante de alta definición que pesa <strong>33.8 Megabytes</strong>. Además, la página tiene una animación de carga previa ("ruedita giratoria") que bloquea toda la pantalla hasta que no se descargan decenas de archivos pesados.
+            </p>
+            <div class="visual-comparison-inline">
+              <strong>Evidencia detectada:</strong><br>
+              <span class="evidence-tag">Video principal: 33.8 MB (MP4 sin compresión web)</span><br>
+              <span class="evidence-tag">Tiempo de bloqueo inicial: 9.4 segundos en conexiones promedio</span>
+            </div>
+          </div>
+
+          <div class="content-box impact">
+            <div class="box-title impact-title">
+              <span>🛑</span> ¿Cómo le perjudica comercialmente al negocio?
+            </div>
+            <p class="box-text">
+              Un contratista vial, un jefe de compras de una minera o el dueño de una empresa constructora suele buscar repuestos o equipos <strong>desde la obra, desde el campo o en viaje</strong>, donde la señal 4G suele ser débil.
+            </p>
+            <p class="box-text" style="margin-top: 10px;">
+              Al entrar al sitio, la pantalla se queda en negro o congelada durante más de 10 segundos y les consume los datos del celular. La persona piensa que la empresa ya no opera o que el sitio está caído, cierra la pestaña y le escribe al competidor que aparece segundo en Google.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROBLEMA 2: MENÚ DIMINUTO EN COMPUTADORAS -->
+      <article class="finding-card">
+        <div class="finding-header">
+          <div class="finding-num">2</div>
+          <div class="finding-title-group">
+            <h3 class="finding-title">Menú superior con letras y botones diminutos en computadoras</h3>
+            <span class="finding-severity severity-high">Impacto Alto · Dificultad de lectura y clic</span>
+          </div>
+        </div>
+
+        <div class="finding-content">
+          <div class="content-box">
+            <div class="box-title problem-title">
+              <span>⚠️</span> ¿Qué sucede técnicamente en la pantalla?
+            </div>
+            <p class="box-text">
+              Cuando se abre la página desde una computadora de escritorio o notebook de oficina, las letras del menú principal donde están los accesos a "Productos", "Repuestos", "Postventa" y "Contacto" miden apenas <strong>10 a 11 píxeles de altura</strong>, apretadas en una barra oscura superior.
+            </p>
+            <div class="visual-comparison-inline">
+              <strong>Evidencia detectada:</strong><br>
+              <span class="evidence-tag">Tamaño de fuente de menú: 10px a 12px (ilegible sin forzar la vista)</span><br>
+              <span class="evidence-tag">Área de clic: Diminuta e incómoda con mouse convencional</span>
+            </div>
+          </div>
+
+          <div class="content-box impact">
+            <div class="box-title impact-title">
+              <span>🛑</span> ¿Cómo le perjudica comercialmente al negocio?
+            </div>
+            <p class="box-text">
+              Quienes compran maquinaria vial o repuestos pesados suelen ser personas que trabajan en oficinas técnicas o gerencias operativas con monitores grandes.
+            </p>
+            <p class="box-text" style="margin-top: 10px;">
+              Tener que entrecerrar los ojos para descifrar dónde hacer clic transmite una sensación de sitio web desactualizado o abandonado. El comprador moderno espera botones claros, teléfonos visibles a simple vista y accesos rápidos a los repuestos que necesita cotizar con urgencia.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROBLEMA 3: NO RESPONSIVO EN CELULARES -->
+      <article class="finding-card">
+        <div class="finding-header">
+          <div class="finding-num">3</div>
+          <div class="finding-title-group">
+            <h3 class="finding-title">Falta de adaptación a teléfonos móviles (Página no responsiva)</h3>
+            <span class="finding-severity severity-critical">Impacto Crítico · Más del 70% del tráfico afectado</span>
+          </div>
+        </div>
+
+        <div class="finding-content">
+          <div class="content-box">
+            <div class="box-title problem-title">
+              <span>⚠️</span> ¿Qué sucede técnicamente en la pantalla?
+            </div>
+            <p class="box-text">
+              En diseño web, "responsivo" significa que la página se acomoda de forma inteligente al tamaño de la pantalla donde se mira. En el sitio actual ocurre lo contrario: los títulos grandes quedan desbordados hacia los costados obligando a deslizar el dedo hacia los lados para leer la frase entera, y las fotos de palas y grúas quedan recortadas.
+            </p>
+            <div class="visual-comparison-inline">
+              <strong>Evidencia detectada:</strong><br>
+              <span class="evidence-tag">Desborde horizontal forzado en pantallas de smartphones</span><br>
+              <span class="evidence-tag">El mapa de ubicación de Rosario se monta sobre otros textos</span>
+            </div>
+          </div>
+
+          <div class="content-box impact">
+            <div class="box-title impact-title">
+              <span>🛑</span> ¿Cómo le perjudica comercialmente al negocio?
+            </div>
+            <p class="box-text">
+              Hoy más de 7 de cada 10 consultas por maquinaria y repuestos se inician desde un teléfono celular (WhatsApp, redes sociales o búsquedas rápidas en Google mientras están en el taller o la obra).
+            </p>
+            <p class="box-text" style="margin-top: 10px;">
+              Si al ingresar en el celular la página se ve deformada, los botones no responden al toque del pulgar y el mapa no deja ver la dirección exacta del local, el cliente siente desconfianza y busca otra opción más fácil de contactar.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROBLEMA 4: EL CATALOGO A CIEGAS -->
+      <article class="finding-card">
+        <div class="finding-header">
+          <div class="finding-num">4</div>
+          <div class="finding-title-group">
+            <h3 class="finding-title">El catálogo de maquinaria "a ciegas" (13 categorías sin fichas)</h3>
+            <span class="finding-severity severity-critical">Impacto Crítico · Oportunidades de cotización perdidas</span>
+          </div>
+        </div>
+
+        <div class="finding-content">
+          <div class="content-box">
+            <div class="box-title problem-title">
+              <span>⚠️</span> ¿Qué sucede técnicamente en la pantalla?
+            </div>
+            <p class="box-text">
+              La portada presenta 13 recuadros con fotos atractivas de familias de maquinaria (Excavadoras, Palas Cargadoras, Autoelevadores, Grúas, etc.). Sin embargo, al hacer clic en cualquiera de ellas, <strong>todas redirigen exactamente a la misma página general `/web/productos/`</strong>.
+            </p>
+            <div class="visual-comparison-inline">
+              <strong>Evidencia detectada:</strong><br>
+              <span class="evidence-tag">13 botones distintos apuntan al mismo destino genérico</span><br>
+              <span class="evidence-tag">0 fichas técnicas de modelos específicos disponibles</span><br>
+              <span class="evidence-tag">Sin botón directo: "Pedir cotización de este equipo"</span>
+            </div>
+          </div>
+
+          <div class="content-box impact">
+            <div class="box-title impact-title">
+              <span>🛑</span> ¿Cómo le perjudica comercialmente al negocio?
+            </div>
+            <p class="box-text">
+              En esa página de destino no hay modelos detallados, ni capacidades de carga, ni tonelaje, ni mención de las marcas internacionales líderes que comercializan (Develon, Fassi, Soosan, Rigor, Lovol).
+            </p>
+            <p class="box-text" style="margin-top: 10px;">
+              El cliente que ingresó entusiasmado por una excavadora o un autoelevador no encuentra qué modelos tienen, si son nuevos o usados, ni qué potencia tienen. Al no encontrar un botón de <em>"Consultar disponibilidad por WhatsApp"</em> con el modelo pre-cargado, el interés se diluye y la venta se enfría.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROBLEMA 5: DETALLES VISIBLES QUE RESTAN SOLIDEZ -->
+      <article class="finding-card">
+        <div class="finding-header">
+          <div class="finding-num">5</div>
+          <div class="finding-title-group">
+            <h3 class="finding-title">Errores visibles que debilitan la imagen de seriedad de la empresa</h3>
+            <span class="finding-severity severity-high">Impacto de Marca · Imagen corporativa ante grandes cuentas</span>
+          </div>
+        </div>
+
+        <div class="finding-content">
+          <div class="content-box">
+            <div class="box-title problem-title">
+              <span>⚠️</span> ¿Qué sucede técnicamente en la pantalla?
+            </div>
+            <p class="box-text">
+              Existen tres detalles técnicos visibles que generan ruido ante un comprador exigente o una licitación:
+            </p>
+            <ul class="box-text" style="margin-left: 18px; margin-top: 8px;">
+              <li><strong>Falta ortográfica en Google:</strong> El título que lee Google y la pestaña del navegador dice textualmente: <em>"Venta, respuestos y postventa..."</em> (con una 's' de más en la palabra repuestos).</li>
+              <li><strong>Dirección web con carpeta vieja:</strong> Al escribir gruporm.com.ar, la página redirige forzadamente a <code>/web/</code>, una estructura antigua que confunde a los usuarios.</li>
+              <li><strong>Al compartir por WhatsApp:</strong> Si un vendedor o cliente pasa el enlace del sitio por WhatsApp, no aparece la foto de una máquina ni el logo de Grupo RM; solo un recuadro gris vacío sin descripción.</li>
+            </ul>
+          </div>
+
+          <div class="content-box impact">
+            <div class="box-title impact-title">
+              <span>🛑</span> ¿Cómo le perjudica comercialmente al negocio?
+            </div>
+            <p class="box-text">
+              Grupo Rosario Máquinas maneja operaciones de cientos de miles de dólares en maquinaria pesada y repuestos críticos de alta gama.
+            </p>
+            <p class="box-text" style="margin-top: 10px;">
+              Un error ortográfico visible en el título principal de Google y una tarjeta gris sin imagen en WhatsApp no representan la envergadura real de la empresa y transmiten desatención en los detalles ante clientes corporativos y constructoras de primera línea.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROBLEMA 6: PUBLICIDAD A TERCEROS -->
+      <article class="finding-card">
+        <div class="finding-header">
+          <div class="finding-num">6</div>
+          <div class="finding-title-group">
+            <h3 class="finding-title">Publicidad a empresas ajenas dentro del sitio propio de Grupo RM</h3>
+            <span class="finding-severity severity-medium">Foco Comercial · Distracción del cliente</span>
+          </div>
+        </div>
+
+        <div class="finding-content">
+          <div class="content-box">
+            <div class="box-title problem-title">
+              <span>⚠️</span> ¿Qué sucede técnicamente en la pantalla?
+            </div>
+            <p class="box-text">
+              Tanto en el menú superior como en el pie de página del sitio, se le da un protagonismo visual marcado al logotipo y a los enlaces de la agencia externa de diseño web que armó la página hace años.
+            </p>
+            <div class="visual-comparison-inline">
+              <strong>Evidencia detectada:</strong><br>
+              <span class="evidence-tag">Enlaces salientes que invitan a salir del sitio web de Grupo RM</span>
+            </div>
+          </div>
+
+          <div class="content-box impact">
+            <div class="box-title impact-title">
+              <span>🛑</span> ¿Cómo le perjudica comercialmente al negocio?
+            </div>
+            <p class="box-text">
+              El sitio web de Grupo Rosario Máquinas es un activo comercial exclusivo para vender maquinaria, repuestos y servicios de taller propios.
+            </p>
+            <p class="box-text" style="margin-top: 10px;">
+              Cada espacio visual debe estar al servicio de generar confianza en Grupo RM y facilitar el contacto con sus asesores de ventas, sin desviar la atención del cliente hacia promociones de terceros.
+            </p>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- TABLA COMPARATIVA: EXPERIENCIA ACTUAL VS PORTAL DE ALTO RENDIMIENTO -->
+    <section class="comparison-section">
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">Comparativa Directa</div>
+        <h2 class="section-title">¿Qué vive hoy un comprador vs. Qué debería experimentar?</h2>
+        <p class="section-subtitle">
+          Una mirada lado a lado sobre cómo cambia la percepción y la captación de clientes cuando la plataforma está optimizada.
+        </p>
+      </div>
+
+      <div class="table-scroll-hint">
+        👈 Deslizá hacia los lados para comparar punto por punto 👉
+      </div>
+
+      <div class="comparison-table-wrap">
+        <table class="table-responsive">
+          <thead>
+            <tr>
+              <th class="col-aspect">Punto de Contacto</th>
+              <th class="col-current">Experiencia Actual en gruporm.com.ar</th>
+              <th class="col-optimized">Portal Comercial de Alto Rendimiento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="aspect-name">Velocidad al ingresar</td>
+              <td class="current-status">Espera de 9 a 15 segundos con pantalla congelada o negra mientras descarga un video de 34 MB.</td>
+              <td class="optimized-status">Carga instantánea en menos de 1.8 segundos, incluso con señal débil 3G/4G en el campo o la ruta.</td>
+            </tr>
+            <tr>
+              <td class="aspect-name">Visualización en teléfonos celulares</td>
+              <td class="current-status">Textos cortados en los bordes, fotos de maquinaria truncadas y mapa descolocado.</td>
+              <td class="optimized-status">Diseño 100% fluido y ergonómico. Botones grandes y cómodos para tocar con el pulgar.</td>
+            </tr>
+            <tr>
+              <td class="aspect-name">Catálogo de maquinaria</td>
+              <td class="current-status">Las 13 categorías llevan a una página vacía sin modelos, marcas ni especificaciones de tonelaje.</td>
+              <td class="optimized-status">Fichas técnicas claras por familia (Develon, Fassi, etc.) con botón: <em>"Cotizar este modelo por WhatsApp"</em>.</td>
+            </tr>
+            <tr>
+              <td class="aspect-name">Búsqueda y pedido de repuestos</td>
+              <td class="current-status">No hay un canal ágil para mandar el número de pieza o foto de la pieza rota.</td>
+              <td class="optimized-status">Botón flotante directo al sector repuestos: <em>"Envíanos el código o foto de tu repuesto"</em>.</td>
+            </tr>
+            <tr>
+              <td class="aspect-name">Presencia al enviar por WhatsApp</td>
+              <td class="current-status">Se envía como un recuadro gris vacío sin foto, sin logo y sin texto descriptivo.</td>
+              <td class="optimized-status">Tarjeta rica automática con foto de una máquina imponente, logo oficial y texto institucional de solidez.</td>
+            </tr>
+            <tr>
+              <td class="aspect-name">Búsqueda en Google</td>
+              <td class="current-status">Aparece con el error tipográfico <em>"Venta, respuestos..."</em> y carpeta vieja `/web/`.</td>
+              <td class="optimized-status">Presencia impecable, sin faltas ortográficas, con títulos claros y directos a cada servicio.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CIERRE Y PRÓXIMOS PASOS -->
+    <section class="closing-card">
+      <h2 class="closing-title">¿Cómo transformar su web en un motor comercial real?</h2>
+      <p class="closing-desc">
+        Fernanda: todo lo que observamos en este informe tiene una solución técnica clara, rápida y definitiva. No requiere meses de desarrollo ni reinventar la rueda; se trata de limpiar la estructura, optimizar las imágenes y el catálogo, y conectar la página directamente con el circuito de prospección y ventas que les presentamos en la propuesta comercial.
+      </p>
+
+      <a href="https://wa.me/5493518046223?text=Hola%20Angel,%20le%C3%AD%20el%20diagn%C3%B3stico%20del%20sitio%20web%20de%20Grupo%20RM.%20Conversemos%20unos%20minutos%20para%20ver%20c%C3%B3mo%20avanzar." class="cta-button" target="_blank" rel="noopener">
+        <!-- Icono WhatsApp SVG -->
+        <svg class="cta-icon" viewBox="0 0 24 24">
+          <path d="M12.031 2c-5.516 0-9.999 4.486-9.999 10.007 0 1.763.46 3.486 1.332 5.006L2 22l5.127-1.344a9.96 9.96 0 0 0 4.904 1.28h.004c5.516 0 9.999-4.486 9.999-10.007 0-2.673-1.04-5.186-2.928-7.075A9.91 9.91 0 0 0 12.031 2zm0 18.283h-.003a8.28 8.28 0 0 1-4.223-1.157l-.303-.18-3.14.823.838-3.061-.197-.314a8.275 8.275 0 0 1-1.267-4.387c0-4.577 3.722-8.3 8.298-8.3 2.217 0 4.301.865 5.867 2.433a8.243 8.243 0 0 1 2.428 5.871c0 4.578-3.724 8.3-8.298 8.3zM16.574 14.5c-.249-.125-1.474-.727-1.703-.81-.228-.083-.395-.125-.561.125-.166.249-.644.81-.789.976-.145.166-.291.187-.54.062-.249-.125-1.052-.388-2.003-1.236-.74-.66-1.24-1.475-1.385-1.724-.145-.249-.015-.383.11-.507.112-.112.249-.291.374-.436.124-.145.166-.249.249-.415.083-.166.042-.312-.021-.436-.062-.125-.561-1.35-.769-1.85-.202-.486-.407-.42-.561-.428l-.478-.008c-.166 0-.436.062-.664.312-.228.249-.872.852-.872 2.077 0 1.225.893 2.409 1.018 2.575.125.166 1.756 2.682 4.255 3.761.595.257 1.059.41 1.422.525.597.19 1.141.163 1.57.099.479-.071 1.474-.602 1.682-1.184.208-.582.208-1.08.145-1.184-.062-.104-.228-.166-.477-.291z"/>
+        </svg>
+        <span>Coordinar breve llamada de 15 minutos</span>
+      </a>
+
+      <p class="closing-subtext">
+        Angel Salazar · Dirección Técnica FuturizaTech · +54 9 351 804 6223
+      </p>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>FuturizaTech</strong> · Ingeniería de Software, Plataformas Web &amp; Automatización Operativa
+      </div>
+      <div>
+        Córdoba &amp; Rosario, Argentina · Operativa Remota Nacional · <a href="https://www.futurizatech.com" target="_blank" style="color:var(--grm-cyan);text-decoration:none;">www.futurizatech.com</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+
