@@ -685,14 +685,26 @@
 
     @media (max-width: 1180px) {
       .header-nav {
+        gap: 2px;
+        padding: 0 4px;
+      }
+      .header-nav a {
+        font-size: 0.77rem;
+        padding: 6px 9px;
+      }
+      .btn-header-cta {
+        padding: 9px 14px;
+        font-size: 0.76rem;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .header-nav {
         display: none;
       }
       .mobile-menu-toggle {
         display: inline-flex;
       }
-    }
-
-    @media (max-width: 960px) {
       .modules-grid {
         grid-template-columns: 1fr;
       }
