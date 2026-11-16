@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesta Comercial y Operativa: Sistema de Prospección | Sumar Servicios × FuturizaTech</title>
+  <meta name="description"
+    content="Propuesta modular de Prospección B2B, Integración con su Sistema Propio y Primer Contacto Personalizado por WhatsApp Oficial para Sumar Servicios.">
+  <link rel="icon" type="image/png" href="./favicon.png">
+  <link rel="shortcut icon" type="image/png" href="./favicon.png">
+  <link rel="apple-touch-icon" href="./favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      /* PALETA OFICIAL & TOKENS INDUSTRIALES — SUMAR SERVICIOS (ROJO PURO) */
+      --brand-primary: #E30613;
+      --brand-primary-dark: #B91C1C;
+      --brand-primary-bright: #FF2424;
+      --brand-primary-light: #FEF2F2;
+      --brand-primary-border: #FECACA;
+      --brand-secondary: #1D1D1B;
+      --brand-secondary-light: #F1F5F9;
+      --brand-secondary-border: #CBD5E1;
+
+      --sumar-dark: #1D1D1B;
+      --sumar-dark-deep: #121210;
+      --sumar-surface: #272724;
+      --sumar-steel: #424241;
+      --sumar-steel-light: #94A3B8;
+      --sumar-body: #334155;
+      --sumar-muted: #64748B;
+      --sumar-white: #FFFFFF;
+      --sumar-bg-light: #F4F5F8;
+      --sumar-border-light: #E2E8F0;
+      --sumar-border-dark: rgba(255, 255, 255, 0.12);
+
+      /* Acentos técnicos complementarios por módulo */
+      --mod-blue: #0284C7;
+      --mod-blue-light: #38BDF8;
+      --mod-whatsapp: #25D366;
+      --mod-whatsapp-dark: #128C7E;
+
+      /* Gradientes de Identidad Sumar Servicios */
+      --grad-hero: radial-gradient(circle at 86% 18%, rgba(227, 6, 19, 0.22), transparent 46%),
+        radial-gradient(circle at 12% 84%, rgba(185, 28, 28, 0.16), transparent 44%),
+        linear-gradient(155deg, #111111 0%, #1A1A1A 50%, #242424 100%);
+      --grad-red: linear-gradient(135deg, #E30613 0%, #B91C1C 100%);
+      --grad-blue: linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%);
+      --grad-whatsapp: linear-gradient(135deg, #25D366 0%, #1FAF54 100%);
+      --grad-dark-card: linear-gradient(180deg, #242424 0%, #171717 100%);
+      --grad-brand-line: linear-gradient(90deg, #E30613 0%, #424241 48%, #FFFFFF 75%, #B91C1C 100%);
+
+      --grad-red-soft: linear-gradient(180deg, #FFFFFF 0%, #FFF8F8 100%);
+      --grad-slate-soft: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+      --grad-blue-soft: linear-gradient(180deg, #FFFFFF 0%, #F0F9FF 100%);
+
+      --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --shadow-elevated: 0 20px 45px rgba(0, 0, 0, 0.38);
+      --shadow-card-light: 0 8px 24px rgba(29, 29, 27, 0.06);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--sumar-bg-light);
+      color: var(--sumar-dark);
+      line-height: 1.55;
+      font-size: 16.5px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+    }
+
+    em, i {
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      background: #EEF2F6;
+      border: 1px solid #CBD5E1;
+      padding: 1px 6px;
+      border-radius: 5px;
+      color: var(--sumar-dark);
+    }
+
+    /* BARRA SUPERIOR EJECUTIVA (CERO BOTONES DE ACCIÓN) */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(18, 18, 16, 0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 2px solid;
+      border-image: var(--grad-brand-line) 1;
+      padding: 11px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .brand-cobrand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .client-logo-img {
+      height: 28px;
+      width: auto;
+      max-width: 220px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .brand-divider {
+      width: 1px;
+      height: 22px;
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .ft-badge {
+      display: flex;
+      align-items: center;
+    }
+
+    .ft-logo-img {
+      height: 22px;
+      width: auto;
+      display: block;
+    }
+
+    /* BOTONES SOLO EN FOOTER */
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-cta.whatsapp {
+      background: var(--grad-whatsapp);
+      color: #FFFFFF;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+    }
+
+    .btn-cta.whatsapp:hover {
+      background: linear-gradient(135deg, #1FAF54 0%, #15803D 100%);
+      transform: translateY(-1px);
+    }
+
+    .btn-cta.dark {
+      background: var(--sumar-surface);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .btn-cta.dark:hover {
+      background: var(--sumar-steel);
+    }
+
+    .btn-cta.red {
+      background: var(--grad-red);
+      color: #FFFFFF;
+      box-shadow: 0 4px 18px rgba(227, 6, 19, 0.38);
+    }
+
+    .btn-cta.red:hover {
+      background: linear-gradient(135deg, #FF2424 0%, #B91C1C 100%);
+      transform: translateY(-1px);
+    }
+
+    /* HERO INDUSTRIAL SUMAR SERVICIOS */
+    .hero {
+      background: var(--grad-hero);
+      color: var(--sumar-white);
+      padding: 48px 5% 54px;
+      border-bottom: 5px solid;
+      border-image: var(--grad-brand-line) 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.22fr 0.98fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #FFFFFF;
+      background: rgba(227, 6, 19, 0.24);
+      border: 1px solid #E30613;
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(27px, 3.4vw, 42px);
+      font-weight: 800;
+      line-height: 1.14;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: #FFFFFF;
+    }
+
+    .hero h1 span.highlight {
+      color: var(--brand-primary-bright);
+    }
+
+    .hero-lead {
+      font-size: 17px;
+      color: #E2E8F0;
+      max-width: 660px;
+      font-weight: 400;
+      line-height: 1.56;
+    }
+
+    /* FICHA EJECUTIVA EN EL HERO */
+    .meta-card {
+      background: var(--grad-dark-card);
+      border: 1px solid rgba(227, 6, 19, 0.45);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      box-shadow: var(--shadow-elevated), 0 0 28px rgba(227, 6, 19, 0.1);
+    }
+
+    .meta-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--sumar-border-dark);
+    }
+
+    .meta-card-header img {
+      height: 24px;
+      max-width: 148px;
+      width: auto;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .meta-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: #FFFFFF;
+      background: var(--brand-primary);
+      border: 1px solid var(--brand-primary-bright);
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .meta-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      font-size: 14px;
+    }
+
+    .meta-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.09);
+      padding-bottom: 7px;
+    }
+
+    .meta-list li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .meta-label {
+      color: var(--sumar-steel-light);
+      font-weight: 500;
+    }
+
+    .meta-val {
+      color: #FFFFFF;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .meta-val.accent {
+      color: var(--brand-primary-bright);
+      font-weight: 700;
+    }
+
+    /* SECCIONES */
+    .section {
+      padding: 46px 5%;
+    }
+
+    .section.white {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--sumar-border-light);
+    }
+
+    .section.dark {
+      background: linear-gradient(160deg, #121210 0%, #1D1D1B 52%, #252522 100%);
+      color: #FFFFFF;
+      border-top: 4px solid;
+      border-bottom: 4px solid;
+      border-image: var(--grad-brand-line) 1;
+    }
+
+    .section-header {
+      max-width: 800px;
+      margin-bottom: 28px;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--brand-primary);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .section.dark .section-kicker {
+      color: var(--brand-primary-bright);
+    }
+
+    .section-title {
+      font-size: clamp(25px, 2.9vw, 36px);
+      font-weight: 800;
+      line-height: 1.16;
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--sumar-body);
+    }
+
+    .section.dark .section-sub {
+      color: #CBD5E1;
+    }
+
+    /* 01. LECTURA DEL NEGOCIO (3 TARJETAS CLAVE) */
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 26px;
+    }
+
+    .insight-card {
+      background: #FFFFFF;
+      border: 1px solid var(--sumar-border-light);
+      border-top: 5px solid var(--brand-primary);
+      border-radius: var(--radius-lg);
+      padding: 25px 23px;
+      box-shadow: var(--shadow-card-light);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .insight-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(29, 29, 27, 0.09);
+    }
+
+    .insight-card.red-accent {
+      border-top-color: var(--brand-primary);
+      background: var(--grad-red-soft);
+    }
+
+    .insight-card.blue-accent {
+      border-top-color: var(--mod-blue);
+      background: var(--grad-blue-soft);
+    }
+
+    .insight-card.slate-accent {
+      border-top-color: var(--sumar-steel);
+      background: var(--grad-slate-soft);
+    }
+
+    .insight-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      align-self: flex-start;
+    }
+
+    .insight-card.red-accent .insight-tag {
+      color: var(--brand-primary-dark);
+      background: var(--brand-primary-light);
+      border: 1px solid var(--brand-primary-border);
+    }
+
+    .insight-card.blue-accent .insight-tag {
+      color: #0369A1;
+      background: #E0F2FE;
+      border: 1px solid #BAE6FD;
+    }
+
+    .insight-card.slate-accent .insight-tag {
+      color: var(--sumar-dark);
+      background: #E2E8F0;
+      border: 1px solid #CBD5E1;
+    }
+
+    .insight-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.24;
+      color: var(--sumar-dark);
+    }
+
+    .insight-card p {
+      font-size: 15px;
+      color: var(--sumar-body);
+      line-height: 1.54;
+    }
+
+    .context-highlight-box {
+      background: linear-gradient(135deg, #181816 0%, #242421 55%, #1D1D1B 100%);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      border-left: 5px solid var(--brand-primary);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .context-highlight-box h4 {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--brand-primary-bright);
+    }
+
+    .context-highlight-box p {
+      font-size: 15.5px;
+      color: #E2E8F0;
+      line-height: 1.54;
+    }
+
+    /* 02. DOS MOTORES COMERCIALES DESDE EL DÍA UNO */
+    .diag-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .diag-box {
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      border: 1px solid var(--sumar-border-light);
+      background: #FFFFFF;
+      box-shadow: var(--shadow-card-light);
+    }
+
+    .diag-box.solution {
+      background: linear-gradient(155deg, #161614 0%, #21211E 60%, #1B1B19 100%);
+      color: #FFFFFF;
+      border: 2px solid var(--brand-primary);
+      box-shadow: 0 10px 30px rgba(227, 6, 19, 0.16);
+    }
+
+    .diag-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+
+    .diag-badge.current {
+      background: #E2E8F0;
+      color: var(--sumar-dark);
+    }
+
+    .diag-badge.target {
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      border: 1px solid var(--brand-primary-bright);
+    }
+
+    .diag-box h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      line-height: 1.25;
+    }
+
+    .diag-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 15.5px;
+    }
+
+    .diag-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .diag-points li span.icon {
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* 03. LOS 3 MÓDULOS CONECTADOS */
+    .modules-flow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+
+    .module-card {
+      background: #FFFFFF;
+      border: 1px solid var(--sumar-border-light);
+      border-top: 5px solid var(--sumar-dark);
+      border-radius: var(--radius-lg);
+      padding: 24px 22px;
+      box-shadow: var(--shadow-card-light);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .module-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(29, 29, 27, 0.12);
+    }
+
+    .module-card.module-m29 {
+      border-top-color: var(--brand-primary);
+    }
+
+    .module-card.module-m29 .mod-code {
+      background: var(--grad-red);
+    }
+
+    .module-card.module-m29 .mod-purpose {
+      border-left-color: var(--brand-primary);
+      background: rgba(227, 6, 19, 0.06);
+    }
+
+    .module-card.module-m29 .mod-deliverables li::before {
+      color: var(--brand-primary);
+    }
+
+    .module-card.module-m26 {
+      border-top-color: var(--mod-blue);
+    }
+
+    .module-card.module-m26 .mod-code {
+      background: var(--grad-blue);
+    }
+
+    .module-card.module-m26 .mod-purpose {
+      border-left-color: var(--mod-blue);
+      background: rgba(2, 132, 199, 0.07);
+    }
+
+    .module-card.module-m26 .mod-deliverables li::before {
+      color: var(--mod-blue);
+    }
+
+    .module-card.module-m23 {
+      border-top-color: var(--mod-whatsapp);
+    }
+
+    .module-card.module-m23 .mod-code {
+      background: var(--grad-whatsapp);
+    }
+
+    .module-card.module-m23 .mod-purpose {
+      border-left-color: var(--mod-whatsapp);
+      background: rgba(37, 211, 102, 0.08);
+    }
+
+    .module-card.module-m23 .mod-deliverables li::before {
+      color: var(--mod-whatsapp-dark);
+    }
+
+    .mod-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #EEF2F6;
+    }
+
+    .mod-code {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      background: var(--sumar-dark);
+      color: #FFFFFF;
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .mod-step {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--sumar-steel);
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      white-space: nowrap;
+      background: #F1F5F9;
+      padding: 4px 9px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .module-card h3 {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--sumar-dark);
+      margin-bottom: 10px;
+      line-height: 1.24;
+    }
+
+    .mod-purpose {
+      font-size: 15px;
+      font-weight: 600;
+      color: #0F172A;
+      padding: 10px 13px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+      border-left: 3px solid var(--sumar-steel);
+    }
+
+    .mod-deliverables {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      font-size: 15px;
+      color: var(--sumar-body);
+      margin-bottom: 20px;
+    }
+
+    .mod-deliverables li::before {
+      content: "✓ ";
+      font-weight: 800;
+    }
+
+    .mod-footer {
+      padding-top: 14px;
+      border-top: 1px solid var(--sumar-border-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--sumar-muted);
+    }
+
+    /* 04. SIMULADOR INTERACTIVO: DEL SISTEMA INTERNO AL WHATSAPP OFICIAL */
+    .sim-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .sim-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .sim-tab {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.06);
+      color: #CBD5E1;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .sim-tab:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+    }
+
+    .sim-tab.active {
+      background: var(--brand-primary);
+      border-color: var(--brand-primary);
+      color: #FFFFFF;
+    }
+
+    .sim-hint {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--sumar-steel-light);
+    }
+
+    .simulator-grid {
+      display: grid;
+      grid-template-columns: 1.16fr 0.84fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .excel-panel {
+      background: #171715;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .panel-bar {
+      background: #232320;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #E2E8F0;
+    }
+
+    .excel-badge {
+      background: #0284C7;
+      color: #FFFFFF;
+      padding: 3px 9px;
+      border-radius: 5px;
+      font-weight: 700;
+      font-size: 11px;
+    }
+
+    .excel-table-wrap {
+      padding: 16px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      flex: 1;
+    }
+
+    table.excel-preview {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      color: #E2E8F0;
+    }
+
+    table.excel-preview th {
+      background: #2B2B28;
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-align: left;
+      padding: 9px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 2px solid var(--brand-primary);
+      white-space: nowrap;
+    }
+
+    table.excel-preview tbody tr {
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    table.excel-preview tbody tr:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    table.excel-preview tbody tr.row-active {
+      background: rgba(227, 6, 19, 0.18);
+    }
+
+    table.excel-preview td {
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      vertical-align: middle;
+    }
+
+    table.excel-preview td code {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.14);
+      color: #E2E8F0;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .status-sent {
+      background: rgba(37, 211, 102, 0.16);
+      color: #4ADE80;
+      padding: 3px 8px;
+      border-radius: 99px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .status-ready {
+      background: rgba(56, 189, 248, 0.18);
+      color: #38BDF8;
+      padding: 3px 8px;
+      border-radius: 99px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .wa-panel {
+      background: #0B141A;
+      border: 1px solid rgba(37, 211, 102, 0.36);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wa-header {
+      background: #202C33;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .wa-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .wa-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .wa-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .wa-title {
+      font-family: var(--font-heading);
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.2;
+    }
+
+    .wa-sub {
+      font-size: 11.5px;
+      color: #8696A0;
+    }
+
+    .wa-body {
+      padding: 16px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+      justify-content: flex-start;
+    }
+
+    .wa-bubble {
+      background: #005C4B;
+      color: #E9EDEF;
+      padding: 13px 15px;
+      border-radius: 12px 12px 2px 12px;
+      font-size: 14px;
+      line-height: 1.5;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .wa-bubble p {
+      margin: 0 0 10px 0;
+    }
+
+    .wa-bubble p:last-child {
+      margin-bottom: 0;
+    }
+
+    .wa-var {
+      background: rgba(255, 255, 255, 0.14);
+      color: #FDE68A;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-weight: 600;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    .wa-reply {
+      background: #202C33;
+      color: #E9EDEF;
+      padding: 11px 14px;
+      border-radius: 12px 12px 12px 2px;
+      font-size: 13.5px;
+      line-height: 1.48;
+      align-self: flex-start;
+      border-left: 3px solid var(--mod-whatsapp);
+      width: 100%;
+    }
+
+    .wa-handover {
+      display: block;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.14);
+      font-size: 12.5px;
+      color: #4ADE80;
+      font-weight: 600;
+    }
+
+    /* 05. INVERSIÓN Y PRESUPUESTO */
+    .pricing-layout {
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .price-card-main {
+      background: #FFFFFF;
+      border: 2px solid var(--sumar-dark);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card-light);
+    }
+
+    .price-card-head {
+      background: linear-gradient(135deg, #181816 0%, #272724 100%);
+      color: #FFFFFF;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      border-bottom: 4px solid;
+      border-image: var(--grad-brand-line) 1;
+    }
+
+    .price-card-head h3 {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .price-total-box {
+      text-align: right;
+    }
+
+    .price-old {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--sumar-steel-light);
+      text-decoration: line-through;
+      display: block;
+    }
+
+    .price-amount {
+      font-family: var(--font-mono);
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--brand-primary-bright);
+      line-height: 1.1;
+    }
+
+    .price-breakdown {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .price-breakdown th,
+    .price-breakdown td {
+      padding: 15px 24px;
+      text-align: left;
+      border-bottom: 1px solid var(--sumar-border-light);
+      font-size: 15.5px;
+    }
+
+    .price-breakdown th {
+      background: #F8FAFC;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      text-transform: uppercase;
+      color: var(--sumar-steel);
+    }
+
+    .price-breakdown tr.total-row {
+      background: var(--brand-primary-light);
+      font-weight: 700;
+    }
+
+    .price-side-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .side-option-card {
+      background: #FFFFFF;
+      border: 1px solid var(--sumar-border-light);
+      border-left: 5px solid var(--sumar-steel);
+      border-radius: var(--radius-md);
+      padding: 22px 24px;
+      box-shadow: var(--shadow-card-light);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .side-option-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(29, 29, 27, 0.08);
+    }
+
+    .side-option-card.red-border {
+      border-left-color: var(--brand-primary);
+      background: var(--grad-red-soft);
+    }
+
+    .side-option-card.blue-border {
+      border-left-color: var(--mod-blue);
+      background: var(--grad-blue-soft);
+    }
+
+    .side-option-card.slate-border {
+      border-left-color: var(--sumar-steel);
+      background: var(--grad-slate-soft);
+    }
+
+    .side-option-card h4 {
+      font-size: 18.5px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--sumar-dark);
+    }
+
+    .side-option-card p {
+      font-size: 15px;
+      color: var(--sumar-body);
+      margin-bottom: 10px;
+    }
+
+    /* SELLOS DE CONFIANZA */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 32px;
+    }
+
+    .trust-card {
+      background: #FFFFFF;
+      border: 1px solid var(--sumar-border-light);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-card-light);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .trust-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(29, 29, 27, 0.08);
+    }
+
+    .trust-card.red-top {
+      border-top: 4px solid var(--brand-primary);
+      background: var(--grad-red-soft);
+    }
+
+    .trust-card.blue-top {
+      border-top: 4px solid var(--mod-blue);
+      background: var(--grad-blue-soft);
+    }
+
+    .trust-card.slate-top {
+      border-top: 4px solid var(--sumar-steel);
+      background: var(--grad-slate-soft);
+    }
+
+    .trust-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .trust-card.red-top .trust-num {
+      color: var(--brand-primary-dark);
+    }
+
+    .trust-card.blue-top .trust-num {
+      color: #0369A1;
+    }
+
+    .trust-card.slate-top .trust-num {
+      color: var(--sumar-steel);
+    }
+
+    .trust-card h4 {
+      font-size: 18.5px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--sumar-dark);
+    }
+
+    .trust-card p {
+      font-size: 15px;
+      color: var(--sumar-body);
+    }
+
+    /* FOOTER CORPORATIVO */
+    .footer {
+      background: linear-gradient(180deg, #181816 0%, #0E0E0D 100%);
+      color: #FFFFFF;
+      padding: 48px 5% 36px;
+      border-top: 4px solid;
+      border-image: var(--grad-brand-line) 1;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 28px;
+      padding-bottom: 26px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 13.5px;
+      color: var(--sumar-steel-light);
+    }
+
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* BOTÓN FLOTANTE DE WHATSAPP EN MÓVIL */
+    .floating-wa {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      background: var(--grad-whatsapp);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+      transition: all 0.2s ease;
+    }
+
+    .floating-wa:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.55);
+    }
+
+    @media (min-width: 981px) {
+      .floating-wa {
+        display: none;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .insight-grid,
+      .modules-flow,
+      .simulator-grid,
+      .pricing-layout,
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        padding: 10px 4%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        font-size: 15.5px;
+      }
+
+      .topbar {
+        padding: 10px 4%;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .brand-cobrand {
+        gap: 12px;
+      }
+
+      .client-logo-img {
+        height: 22px;
+        max-width: 165px;
+      }
+
+      .ft-logo-img {
+        height: 18px;
+      }
+
+      .hero {
+        padding: 34px 4% 38px;
+      }
+
+      .section {
+        padding: 36px 4%;
+      }
+
+      table.excel-preview {
+        min-width: 560px;
+        font-size: 12.5px;
+      }
+
+      .price-card-head {
+        padding: 20px 18px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .price-total-box {
+        text-align: left;
+      }
+
+      .price-breakdown th,
+      .price-breakdown td {
+        padding: 12px 14px;
+        font-size: 14.5px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .footer-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .footer-actions .btn-cta {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .footer-copy {
+        flex-direction: column;
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm 8mm;
+      }
+
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .topbar {
+        position: static !important;
+        background: #121210 !important;
+        box-shadow: none !important;
+      }
+
+      .floating-wa,
+      .footer-actions {
+        display: none !important;
+      }
+
+      .insight-card,
+      .context-highlight-box,
+      .diag-box,
+      .module-card,
+      .excel-panel,
+      .wa-panel,
+      .price-card-main,
+      .side-option-card,
+      .trust-card,
+      .meta-card,
+      .footer {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- BARRA SUPERIOR CO-BRANDEADA (CERO BOTONES DE ACCIÓN) -->
+  <header class="topbar">
+    <div class="brand-cobrand">
+      <img src="./logo-sumar.png" onerror="this.src='/propuesta-sumar/logo-sumar.png'" alt="Sumar Servicios"
+        class="client-logo-img">
+      <div class="brand-divider"></div>
+      <div class="ft-badge">
+        <img
+          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUwIiBoZWlnaHQ9IjUyIiB2aWV3Qm94PSIwIDAgMjUwIDUyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxnIGlkPSJpc290aXBvIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyLCAyKSI+CiAgICA8cGF0aCBkPSJNNiAxMEM2IDguODk1NDMgNi44OTU0MyA4IDggOEgxOS41TDE2IDE0LjVIMTNWMjFIMjAuNVYyN0gxM1YzOEMxMyAzOS4xMDQ2IDEyLjEwNDYgNDAgMTEgNDBIOEM2Ljg5NTQzIDQwIDYgMzkuMTA0NiA2IDM4VjEwWiIgZmlsbD0iIzAwRTVGRiIvPgogICAgPHBhdGggZD0iTTIxIDhIMzlDNDAuMTA0NiA4IDQxIDguODk1NDMgNDEgMTBWMTIuNUM0MSAxMy42MDQ2IDQwLjEwNDYgMTQuNSAzOSAxNC41SDM0LjVWMzhDMzQuNSAzOS4xMDQ2IDMzLjYwNDYgNDAgMzIuNSA0MEgyOS41QzI4LjM5NTQgNDAgMjcuNSAzOS4xMDQ2IDI3LjUgMzhWMTQuNUgxNy41TDIxIDhaIiBmaWxsPSIjRkY2QjM1Ii8+CiAgPC9nPgogIDx0ZXh0IHg9IjU2IiB5PSIzNCIgZm9udC1mYW1pbHk9IidNb250c2VycmF0Jywgc3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iLTAuNXB4Ij4KICAgIDx0c3BhbiBmaWxsPSIjRkZGRkZGIj5GdXR1cml6YTwvdHNwYW4+PHRzcGFuIGZpbGw9IiNGRjZCMzUiPlRlY2g8L3RzcGFuPgogIDwvdGV4dD4KPC9zdmc+"
+          alt="FuturizaTech" class="ft-logo-img">
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO PRINCIPAL -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">DOCUMENTO CONFIDENCIAL · SUMAR SERVICIOS</div>
+        <h1>Propuesta Comercial y Operativa: <span class="highlight">Sistema Automatizado de Prospección y Expansión
+            Comercial</span></h1>
+        <p class="hero-lead">
+          Conectamos el <strong>sistema de gestión propio de Sumar Servicios</strong> para abrir ventas y alquileres de <strong>grupos electrógenos, plataformas Skyjack, torres LED y compresores ELGI</strong> en todo el país, y multiplicar <strong>abonos técnicos y repuestos</strong> desde sus sedes de <strong>Ezeiza</strong> y <strong>Córdoba</strong>.
+        </p>
+      </div>
+
+      <!-- FICHA RESUMEN EJECUTIVA -->
+      <aside class="meta-card">
+        <div class="meta-card-header">
+          <img src="./logo-sumar.png" onerror="this.src='/propuesta-sumar/logo-sumar.png'" alt="Sumar Servicios">
+          <span class="meta-tag">FT-0106</span>
+        </div>
+        <ul class="meta-list">
+          <li>
+            <span class="meta-label">Empresa:</span>
+            <span class="meta-val">Sumar Servicios Industriales S.R.L.</span>
+          </li>
+          <li>
+            <span class="meta-label">Bases Propias:</span>
+            <span class="meta-val">Ezeiza + Córdoba Capital</span>
+          </li>
+          <li>
+            <span class="meta-label">Respaldo Comprobado:</span>
+            <span class="meta-val">+4.000 vendidos · +300 flota · +600 abonos</span>
+          </li>
+          <li>
+            <span class="meta-label">Integración:</span>
+            <span class="meta-val accent">Sobre su Sistema Propio + WhatsApp</span>
+          </li>
+          <li>
+            <span class="meta-label">Puesta en Marcha:</span>
+            <span class="meta-val">1 a 3 semanas</span>
+          </li>
+          <li>
+            <span class="meta-label">Licencias por Usuario:</span>
+            <span class="meta-val accent">$0 · Sin alquiler mensual</span>
+          </li>
+          <li>
+            <span class="meta-label">Validez:</span>
+            <span class="meta-val">7 días corridos</span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 01: LECTURA DEL NEGOCIO Y OPORTUNIDAD -->
+  <section class="section white">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">01 · Oportunidad Comercial</span>
+        <h2 class="section-title">Por qué este sistema encaja con la escala de Sumar Servicios</h2>
+        <p class="section-sub">
+          Capitalizamos su fabricación propia, sus representaciones oficiales y sus normas ISO 9001 e ISO 14001 para generar oportunidades todas las semanas.
+        </p>
+      </div>
+
+      <div class="insight-grid">
+        <article class="insight-card red-accent">
+          <span class="insight-tag">Alcance Nacional · Venta + Rental</span>
+          <h3>Llegar a obras e industrias en todo el país</h3>
+          <p>
+            En lugar de esperar solo consultas entrantes, salimos a buscar constructoras, agro, logística, minería y energía en cada provincia con necesidad real de equipamiento industrial.
+          </p>
+        </article>
+
+        <article class="insight-card slate-accent">
+          <span class="insight-tag">Doble Base · Ezeiza + Córdoba</span>
+          <h3>Cercanía operativa y recurrencia técnica</h3>
+          <p>
+            Desde <strong>Polo Industrial Ezeiza</strong> y <strong>Eco Parque Córdoba</strong> (<strong>+4.000 vendidos, +300 en flota y +600 abonados</strong>), captamos parques industriales vecinos que exigen respuesta rápida en planta.
+          </p>
+        </article>
+
+        <article class="insight-card blue-accent">
+          <span class="insight-tag">Velocidad Comercial B2B</span>
+          <h3>La IA abre el diálogo; su vendedor cierra</h3>
+          <p>
+            En el rubro industrial cotiza primero quien llega directo al WhatsApp del decisor con respaldo <strong>ISO 9001 / 14001</strong>. Su equipo deja de buscar teléfonos a mano y se dedica a cotizar.
+          </p>
+        </article>
+      </div>
+
+      <div class="context-highlight-box">
+        <h4>Qué cambia en la práctica:</h4>
+        <p>
+          Su sistema de gestión recibe todas las semanas <strong>empresas clasificadas por provincia y rubro</strong> listas para vender o alquilar maquinaria, mientras activa de forma continua su cartera de <strong>mantenimiento preventivo y repuestos</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 02: DOS MOTORES COMERCIALES DESDE EL DÍA UNO -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">02 · Dos Frentes Activos desde el Día Uno</span>
+        <h2 class="section-title">Su sistema propio conectado para abrir mercado en todo el país</h2>
+        <p class="section-sub">
+          Respetamos la herramienta que su equipo ya usa a diario: automatizamos la búsqueda de empresas, la carga en su sistema y el primer WhatsApp.
+        </p>
+      </div>
+
+      <div class="diag-grid">
+        <div class="diag-box">
+          <span class="diag-badge current">Motor 01 · Alcance Nacional (Equipos y Rental)</span>
+          <h3>Nuevas obras, plantas industriales y energía</h3>
+          <ul class="diag-points">
+            <li><span class="icon" style="color:var(--brand-primary);">•</span> <span><strong>Energía e Iluminación:</strong> Constructoras, viales, mineras y contratistas para venta o alquiler de generación continua e iluminación de obra.</span></li>
+            <li><span class="icon" style="color:var(--brand-primary);">•</span> <span><strong>Altura y Aire Comprimido:</strong> Centros logísticos, naves industriales y fábricas con requerimiento de elevación segura y compresión industrial.</span></li>
+            <li><span class="icon" style="color:var(--brand-primary);">•</span> <span><strong>Sincronización directa:</strong> Prospectos verificados e inyectados en su sistema por provincia y rubro, sin carga manual.</span></li>
+          </ul>
+        </div>
+
+        <div class="diag-box solution">
+          <span class="diag-badge target">Motor 02 · Ezeiza + Córdoba (Abonos y Repuestos)</span>
+          <h3>Recurrencia técnica y reactivación de cartera</h3>
+          <ul class="diag-points">
+            <li><span class="icon" style="color:#4ADE80;">✓</span> <span><strong>Parques industriales vecinos:</strong> Contacto directo a plantas cercanas a <strong>Ezeiza y Córdoba</strong> para alquiler temporal, entrega rápida y soporte en planta.</span></li>
+            <li><span class="icon" style="color:#4ADE80;">✓</span> <span><strong>Reactivación de clientes:</strong> Campañas sobre su propia base histórica para sumar nuevos <strong>abonos preventivos</strong> y venta de repuestos originales.</span></li>
+            <li><span class="icon" style="color:#4ADE80;">✓</span> <span><strong>Pase inmediato al vendedor:</strong> Apenas el cliente responde el WhatsApp, sigue su asesor de Buenos Aires o Córdoba en el mismo chat.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 03: CÓMO FUNCIONA EL SISTEMA EN 3 PASOS -->
+  <section class="section white">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">03 · El Circuito en 3 Pasos</span>
+        <h2 class="section-title">Qué dejamos funcionando llave en mano en 1 a 3 semanas</h2>
+        <p class="section-sub">
+          Tres módulos conectados que buscan clientes, actualizan su sistema y abren conversaciones reales en WhatsApp.
+        </p>
+      </div>
+
+      <div class="modules-flow">
+        <!-- PASO 1: M-29 -->
+        <article class="module-card module-m29">
+          <div>
+            <div class="mod-top">
+              <span class="mod-code">MÓDULO M-29</span>
+              <span class="mod-step">PASO 1 · NUTRIR</span>
+            </div>
+            <h3>Agente IA Buscador y Clasificador</h3>
+            <div class="mod-purpose">
+              Detecta y clasifica compradores de equipos, alquiler y soporte técnico.
+            </div>
+            <ul class="mod-deliverables">
+              <li>Releva constructoras, frigoríficos, logística, minería, <em>Oil & Gas</em> y parques industriales en todo el país.</li>
+              <li>Entrega números de teléfono validados y listos para contactar por WhatsApp.</li>
+              <li>Identifica la actividad de cada empresa para asignarle la unidad de negocio adecuada antes de escribirle.</li>
+            </ul>
+          </div>
+          <div class="mod-footer">
+            <span>OBJETIVO: ABRIR MERCADO</span>
+            <span>1 A 3 SEMANAS</span>
+          </div>
+        </article>
+
+        <!-- PASO 2: M-26 -->
+        <article class="module-card module-m26">
+          <div>
+            <div class="mod-top">
+              <span class="mod-code">MÓDULO M-26</span>
+              <span class="mod-step">PASO 2 · CONECTAR</span>
+            </div>
+            <h3>Conexión en Vivo con su Sistema</h3>
+            <div class="mod-purpose">
+              Vincula el motor de prospección con el sistema interno que hoy utilizan.
+            </div>
+            <ul class="mod-deliverables">
+              <li>Registra automáticamente cada nueva empresa validada sin que su equipo cargue datos a mano.</li>
+              <li>Cruza contra su base actual para evitar duplicados o contactar dos veces al mismo cliente.</li>
+              <li>Actualiza en vivo el <code>Estado</code> de cada cuenta cuando se envía el mensaje o responde un interesado.</li>
+            </ul>
+          </div>
+          <div class="mod-footer">
+            <span>OBJETIVO: INTEGRACIÓN EN VIVO</span>
+            <span>1 A 3 SEMANAS</span>
+          </div>
+        </article>
+
+        <!-- PASO 3: M-23 -->
+        <article class="module-card module-m23">
+          <div>
+            <div class="mod-top">
+              <span class="mod-code">MÓDULO M-23</span>
+              <span class="mod-step">PASO 3 · PRIMER CONTACTO</span>
+            </div>
+            <h3>Agente IA Redactor + 1° WhatsApp</h3>
+            <div class="mod-purpose">
+              Envía el primer mensaje a medida; cuando el cliente responde, sigue su vendedor.
+            </div>
+            <ul class="mod-deliverables">
+              <li>Redacta un primer mensaje personalizado según el rubro de la empresa y la sucursal más cercana.</li>
+              <li>Realiza el envío mediante plantillas aprobadas por la línea oficial de WhatsApp.</li>
+              <li><strong>Pase directo al vendedor:</strong> Cuando el cliente responde, su asesor toma ese mismo chat para cotizar.</li>
+            </ul>
+          </div>
+          <div class="mod-footer">
+            <span>OBJETIVO: INICIAR VENTAS</span>
+            <span>1 A 3 SEMANAS</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 04: SIMULADOR INTERACTIVO EN VIVO -->
+  <section class="section dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">04 · Demostración Interactiva</span>
+        <h2 class="section-title">De su Sistema Propio al WhatsApp del cliente</h2>
+        <p class="section-sub">
+          Haga clic en cualquier registro para ver cómo el Agente IA inicia la charla y la deriva a su vendedor.
+        </p>
+      </div>
+
+      <div class="sim-controls">
+        <div class="sim-tabs" role="tablist" aria-label="Filtrar segmentos del simulador">
+          <button type="button" class="sim-tab active" data-filter="all">Todos (4)</button>
+          <button type="button" class="sim-tab" data-filter="nacional">Alcance Nacional · Equipos</button>
+          <button type="button" class="sim-tab" data-filter="polos">Ezeiza & Córdoba · Alquiler y Abonos</button>
+        </div>
+        <div class="sim-hint">Haga clic en una fila para previsualizar el chat</div>
+      </div>
+
+      <div class="simulator-grid">
+        <!-- VISTA SISTEMA CONECTADO -->
+        <div class="excel-panel">
+          <div class="panel-bar">
+            <span>Sistema de Gestión Sumar · Bandeja Sincronizada</span>
+            <span class="excel-badge">CONECTADO EN VIVO</span>
+          </div>
+          <div class="excel-table-wrap">
+            <table class="excel-preview">
+              <thead>
+                <tr>
+                  <th>Origen</th>
+                  <th>Empresa / Zona</th>
+                  <th>WhatsApp</th>
+                  <th>Oportunidad</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="excel-rows">
+                <tr class="row-active" data-id="0" data-cat="nacional">
+                  <td>Alcance Nacional</td>
+                  <td><strong>Constructora & Obras Viales del Sur S.A.</strong> (Neuquén · Vaca Muerta, RN)</td>
+                  <td><code>+54 9 299 542-XXXX</code></td>
+                  <td>Rental / Venta Grupos Electrógenos Cabinados + Torres LED</td>
+                  <td><span class="status-sent">✓ 1° Mensaje Enviado</span></td>
+                </tr>
+                <tr data-id="1" data-cat="nacional">
+                  <td>Alcance Nacional</td>
+                  <td><strong>Frigorífico & Alimentos Litoral S.R.L.</strong> (Santa Fe, SF)</td>
+                  <td><code>+54 9 342 468-XXXX</code></td>
+                  <td>Grupo Electrógeno Diésel 500 kVA + Puesta en Marcha</td>
+                  <td><span class="status-sent">✓ 1° Mensaje Enviado</span></td>
+                </tr>
+                <tr data-id="2" data-cat="polos">
+                  <td>Polo Ind. Ezeiza</td>
+                  <td><strong>Logística & Naves Industriales Ezeiza S.A.</strong> (Ezeiza, BA)</td>
+                  <td><code>+54 9 11 5904-XXXX</code></td>
+                  <td>Alquiler / Compra Plataformas Tijera Eléctricas Skyjack</td>
+                  <td><span class="status-sent">✓ 1° Mensaje Enviado</span></td>
+                </tr>
+                <tr data-id="3" data-cat="polos">
+                  <td>Eco Parque Córdoba</td>
+                  <td><strong>Metalúrgica Autopartista Ferreyra S.A.</strong> (Córdoba Capital, CB)</td>
+                  <td><code>+54 9 351 612-XXXX</code></td>
+                  <td>Compresor a Tornillo ELGI + Abono Mantenimiento Preventivo</td>
+                  <td><span class="status-ready">En cola de envío</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- VISTA WHATSAPP OFICIAL EN VIVO -->
+        <div class="wa-panel">
+          <div class="wa-header">
+            <div class="wa-header-left">
+              <div class="wa-avatar">
+                <img src="./favicon.png" onerror="this.src='/propuesta-sumar/favicon.png'" alt="Sumar Servicios">
+              </div>
+              <div>
+                <div class="wa-title">Sumar Servicios · Oficial</div>
+                <div class="wa-sub" id="wa-sub-label">1° Mensaje personalizado y pase al asesor comercial</div>
+              </div>
+            </div>
+          </div>
+          <div class="wa-body" id="wa-preview-body">
+            <div class="wa-bubble">
+              <p>Buen día, equipo de <span class="wa-var">Constructora & Obras Viales del Sur</span>. Les escribimos desde <strong>Sumar Servicios</strong> (sedes Ezeiza y Córdoba).</p>
+              <p>Para sus obras en <span class="wa-var">Neuquén / Vaca Muerta</span> contamos con disponibilidad inmediata en venta y alquiler de <span class="wa-var">Grupos Electrógenos Cabinados y Torres LED</span> (certificación ISO 9001 / 14001).</p>
+              <p>¿Con quién del área de Equipos o Compras podemos compartir disponibilidad y tarifas?</p>
+            </div>
+            <div class="wa-reply">
+              <strong>Respuesta del cliente:</strong> "Hola, justo estamos cotizando 2 torres LED y un grupo de 150 kVA para un obrador en Añelo la semana próxima."
+              <span class="wa-handover">Pase directo al vendedor (Buenos Aires / Nacional): Su asesor toma este mismo chat para cotizar.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 05: INVERSIÓN Y MODALIDADES -->
+  <section class="section white" id="inversion">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">05 · Inversión y Formas de Avance</span>
+        <h2 class="section-title">Presupuesto Llave en Mano</h2>
+        <p class="section-sub">
+          Pago único de implementación ($0 alquiler mensual por usuario), con bonificación por sistema completo o avance en 2 etapas.
+        </p>
+      </div>
+
+      <div class="pricing-layout">
+        <!-- TABLA PRINCIPAL DEL PAQUETE DE 3 MÓDULOS -->
+        <div class="price-card-main">
+          <div class="price-card-head">
+            <div>
+              <span style="font-family:var(--font-mono);font-size:11.5px;color:var(--brand-primary-bright);font-weight:700;text-transform:uppercase;">Entrega
+                Funcionando · 1 a 3 Semanas</span>
+              <h3>Sistema de Prospección Automatizado Sumar Servicios (3 Pasos Integrados)</h3>
+            </div>
+            <div class="price-total-box">
+              <span class="price-old">Por separado: USD 1.850</span>
+              <span class="price-amount">USD 1.550</span>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="price-breakdown">
+              <thead>
+                <tr>
+                  <th>Módulo</th>
+                  <th>Alcance Incluido</th>
+                  <th style="text-align:right;white-space:nowrap;">Valor Individual</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong><code>M-29</code></strong></td>
+                  <td>
+                    <strong>Agente IA Buscador y Clasificador (País + Ezeiza y Córdoba)</strong><br>
+                    <span style="font-size:14px;color:var(--sumar-muted);">Detecta y clasifica empresas por rubro y ubicación con teléfonos validados listos para contactar.</span>
+                  </td>
+                  <td style="text-align:right;white-space:nowrap;"><strong>USD 750</strong></td>
+                </tr>
+                <tr>
+                  <td><strong><code>M-26</code></strong></td>
+                  <td>
+                    <strong>Conexión en Vivo con su Sistema Propio</strong><br>
+                    <span style="font-size:14px;color:var(--sumar-muted);">Sincroniza prospectos, evita duplicados con su cartera actual y actualiza el estado de cada gestión.</span>
+                  </td>
+                  <td style="text-align:right;white-space:nowrap;"><strong>USD 450</strong></td>
+                </tr>
+                <tr>
+                  <td><strong><code>M-23</code></strong></td>
+                  <td>
+                    <strong>Agente IA Redactor + 1° Envío por WhatsApp Oficial</strong><br>
+                    <span style="font-size:14px;color:var(--sumar-muted);">Envía el primer mensaje a medida por empresa; cuando el cliente responde, sigue su vendedor en ese chat.</span>
+                  </td>
+                  <td style="text-align:right;white-space:nowrap;"><strong>USD 650</strong></td>
+                </tr>
+                <tr style="background:#F8FAFC;color:#475569;font-size:14.5px;">
+                  <td colspan="2">
+                    <strong>Subtotal contratando los módulos por separado</strong><br>
+                    <span style="color:#0D9488;font-weight:700;">Bonificación por Sistema Completo Integrado (-16% · Ahorro USD 300)</span>
+                  </td>
+                  <td style="text-align:right;white-space:nowrap;font-family:var(--font-mono);">
+                    <span style="text-decoration:line-through;color:#94A3B8;display:block;font-size:13.5px;">USD 1.850</span>
+                    <span style="color:#0D9488;font-weight:700;font-size:14.5px;">- USD 300</span>
+                  </td>
+                </tr>
+                <tr class="total-row">
+                  <td colspan="2">
+                    <strong>Inversión Final Sistema Completo</strong><br>
+                    <span style="font-size:14px;font-weight:500;color:var(--sumar-body);">50% al iniciar (USD 775) · 50% contra entrega funcionando (USD 775).</span>
+                  </td>
+                  <td style="text-align:right;white-space:nowrap;font-family:var(--font-mono);font-size:21px;color:var(--brand-primary-dark);">USD 1.550</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- OPCIONES ALTERNATIVAS LATERALES -->
+        <div class="price-side-stack">
+          <div class="side-option-card red-border">
+            <span style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--brand-primary-dark);text-transform:uppercase;">Avance en 2 Etapas (USD 1.850)</span>
+            <h4>Si prefieren implementar por etapas</h4>
+            <div style="font-size:14px;display:flex;flex-direction:column;gap:10px;color:var(--sumar-body);">
+              <div style="background:#FFFFFF;border:1px solid var(--sumar-border-light);border-radius:8px;padding:11px 13px;">
+                <strong style="color:var(--sumar-dark);display:block;margin-bottom:3px;">Camino A · Primero nutrir su sistema:</strong>
+                • Etapa 1 (<code>M-29</code> + <code>M-26</code>): <strong>USD 1.200</strong> · Etapa 2 (<code>M-23</code>): <strong>USD 650</strong>
+              </div>
+              <div style="background:#FFFFFF;border:1px solid var(--sumar-border-light);border-radius:8px;padding:11px 13px;">
+                <strong style="color:var(--sumar-dark);display:block;margin-bottom:3px;">Camino B · Primero activar su base por WhatsApp:</strong>
+                • Etapa 1 (<code>M-26</code> + <code>M-23</code>): <strong>USD 1.100</strong> · Etapa 2 (<code>M-29</code>): <strong>USD 750</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="side-option-card blue-border">
+            <span style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:#0369A1;text-transform:uppercase;">Opcional Post-Entrega</span>
+            <h4>Operación Mensual Llave en Mano</h4>
+            <p style="margin-bottom:0;">
+              Su equipo puede operarlo internamente con <strong>$0 de licencia mensual</strong>. Si prefieren que ejecutemos nosotros las búsquedas y campañas cada mes: <strong>USD 350 / mes</strong>.
+            </p>
+          </div>
+
+          <div class="side-option-card slate-border">
+            <span style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--sumar-steel);text-transform:uppercase;">Condiciones Claras</span>
+            <h4>Transparencia Operativa</h4>
+            <p style="font-size:14px;margin-bottom:6px;">
+              • <strong>Moneda:</strong> USD o equivalente en Pesos (ARS) al día de pago.
+            </p>
+            <p style="font-size:14px;margin-bottom:0;">
+              • <strong>WhatsApp Oficial:</strong> El consumo directo de Meta se abona en la cuenta de Sumar Servicios al costo oficial sin recargos.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOS 3 SELLOS DE CONFIANZA -->
+      <div class="trust-grid">
+        <div class="trust-card red-top">
+          <span class="trust-num">COMPROMISO 01</span>
+          <h4>Cero Licencias por Usuario</h4>
+          <p>Pago único de implementación: sin alquiler mensual por vendedor en Ezeiza o Córdoba.</p>
+        </div>
+        <div class="trust-card blue-top">
+          <span class="trust-num">COMPROMISO 02</span>
+          <h4>Listo en 1 a 3 Semanas</h4>
+          <p>Semana 1 conexión a su sistema y buscador, Semana 2 WhatsApp Oficial y Semana 3 salida en vivo.</p>
+        </div>
+        <div class="trust-card slate-top">
+          <span class="trust-num">COMPROMISO 03</span>
+          <h4>Conectado a su Sistema Propio</h4>
+          <p>Se integra a la herramienta que ya usan hoy para ventas, alquiler de flota, repuestos y abonos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CORPORATIVO CO-BRANDEADO -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap;">
+            <img src="./logo-sumar.png" onerror="this.src='/propuesta-sumar/logo-sumar.png'" alt="Sumar Servicios"
+              style="height:26px;width:auto;object-fit:contain;">
+            <span style="color:var(--sumar-steel-light);font-size:14px;">×</span>
+            <img
+              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUwIiBoZWlnaHQ9IjUyIiB2aWV3Qm94PSIwIDAgMjUwIDUyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxnIGlkPSJpc290aXBvIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyLCAyKSI+CiAgICA8cGF0aCBkPSJNNiAxMEM2IDguODk1NDMgNi44OTU0MyA4IDggOEgxOS41TDE2IDE0LjVIMTNWMjFIMjAuNVYyN0gxM1YzOEMxMyAzOS4xMDQ2IDEyLjEwNDYgNDAgMTEgNDBIOEM2Ljg5NTQzIDQwIDYgMzkuMTA0NiA2IDM4VjEwWiIgZmlsbD0iIzAwRTVGRiIvPgogICAgPHBhdGggZD0iTTIxIDhIMzlDNDAuMTA0NiA4IDQxIDguODk1NDMgNDEgMTBWMTIuNUM0MSAxMy42MDQ2IDQwLjEwNDYgMTQuNSAzOSAxNC41SDM0LjVWMzhDMzQuNSAzOS4xMDQ2IDMzLjYwNDYgNDAgMzIuNSA0MEgyOS41QzI4LjM5NTQgNDAgMjcuNSAzOS4xMDQ2IDI3LjUgMzhWMTQuNUgxNy41TDIxIDhaIiBmaWxsPSIjRkY2QjM1Ii8+CiAgPC9nPgogIDx0ZXh0IHg9IjU2IiB5PSIzNCIgZm9udC1mYW1pbHk9IidNb250c2VycmF0Jywgc3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iLTAuNXB4Ij4KICAgIDx0c3BhbiBmaWxsPSIjRkZGRkZGIj5GdXR1cml6YTwvdHNwYW4+PHRzcGFuIGZpbGw9IiNGRjZCMzUiPlRlY2g8L3RzcGFuPgogIDwvdGV4dD4KPC9zdmc+"
+              alt="FuturizaTech" style="height:20px;width:auto;">
+          </div>
+          <p style="color:#CBD5E1;max-width:620px;font-size:15px;">
+            Cuando usted lo disponga, coordinamos una <strong>videollamada de 15 minutos</strong> para revisar el alcance para Ezeiza y Córdoba y definir la fecha de inicio.
+          </p>
+        </div>
+        <div class="footer-actions">
+          <a href="https://api.whatsapp.com/send?phone=5493518046223&text=Hola%20Angel%2C%20nos%20comunicamos%20de%20Sumar%20Servicios.%20Estuvimos%20revisando%20la%20propuesta%20y%20queremos%20coordinar%20una%20videollamada."
+            target="_blank" rel="noopener" class="btn-cta whatsapp">Hablar por WhatsApp (+54 9 351 804 6223)</a>
+          <a href="mailto:info@futurizatech.com?subject=Propuesta%20Comercial%20Sumar%20Servicios"
+            class="btn-cta dark">info@futurizatech.com</a>
+        </div>
+      </div>
+      <div class="footer-copy">
+        <span>FuturizaTech: Ingeniería de Software, Sistemas de Gestión y Automatización Comercial (Córdoba, Argentina)</span>
+        <span>Propuesta confidencial preparada para Sumar Servicios Industriales S.R.L. · Validez 7 días corridos.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOTÓN FLOTANTE DE CONTACTO RÁPIDO PARA MÓVIL -->
+  <a href="https://api.whatsapp.com/send?phone=5493518046223&text=Hola%20Angel%2C%20nos%20comunicamos%20de%20Sumar%20Servicios.%20Estuvimos%20revisando%20la%20propuesta%20web%20y%20queremos%20coordinar%20una%20videollamada."
+    target="_blank" rel="noopener" class="floating-wa" aria-label="Consultar por WhatsApp">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path
+        d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.587 1.961.948 2.8.948 3.174 0 5.761-2.587 5.761-5.766.001-3.181-2.585-5.766-5.77-5.766zm10.007 5.766c-.002 5.565-4.52 10.088-10.024 10.088-1.758 0-3.411-.462-4.856-1.272l-5.158 1.353 1.378-5.034c-.901-1.498-1.397-3.238-1.399-5.135.002-5.565 4.524-10.088 10.03-10.088 5.503 0 10.027 4.522 10.029 10.088z" />
+    </svg>
+    <span>Consultar</span>
+  </a>
+
+  <script>
+    (function () {
+      const conversations = [
+        {
+          sub: 'Alcance Nacional · Flota Venta y Rental (Neuquén / Vaca Muerta)',
+          outbound: '<p>Buen día, equipo de <span class="wa-var">Constructora & Obras Viales del Sur</span>. Les escribimos desde <strong>Sumar Servicios</strong> (sedes Ezeiza y Córdoba).</p><p>Para sus obras en <span class="wa-var">Neuquén / Vaca Muerta</span> contamos con disponibilidad inmediata en venta y alquiler de <span class="wa-var">Grupos Electrógenos Cabinados y Torres LED</span> (certificación ISO 9001 / 14001).</p><p>¿Con quién del área de Equipos o Compras podemos compartir disponibilidad y tarifas?</p>',
+          reply: '"Hola, justo estamos cotizando 2 torres LED y un grupo de 150 kVA para un obrador en Añelo la semana próxima."',
+          handover: 'Pase directo al vendedor (Buenos Aires / Nacional): Su asesor toma este mismo chat para cotizar.'
+        },
+        {
+          sub: 'Alcance Nacional · Generación Continua (Santa Fe)',
+          outbound: '<p>Hola, ¿cómo están en <span class="wa-var">Frigorífico & Alimentos Litoral</span>? Les escribimos desde <strong>Sumar Servicios</strong>.</p><p>Para respaldar la cadena de frío en <span class="wa-var">Santa Fe</span> fabricamos <span class="wa-var">Grupos Electrógenos Diésel y a Gas (MWM, Cummins, Perkins)</span> con puesta en marcha y soporte propio.</p><p>¿Están evaluando sumar o renovar respaldo eléctrico este semestre?</p>',
+          reply: '"Buen día. Tenemos que reemplazar un equipo en cámara 2 por uno de 500 kVA. ¿Tienen entrega y financiación?"',
+          handover: 'Pase directo al vendedor (Buenos Aires / Litoral): Toma el hilo al instante para enviar ficha de 500 kVA y cotización.'
+        },
+        {
+          sub: 'Cercanía Polo Industrial Ezeiza · Elevación Skyjack',
+          outbound: '<p>Buen día al área de Mantenimiento de <span class="wa-var">Logística & Naves Industriales Ezeiza</span>. Les escribimos como vecinos desde el <span class="wa-var">Polo Industrial Ezeiza</span> en <strong>Sumar Servicios</strong>.</p><p>Representamos oficialmente <span class="wa-var">Skyjack (plataformas tijera y brazos articulados)</span> para venta o alquiler diario/mensual, con entrega inmediata a minutos de su nave.</p><p>¿Con quién podemos coordinar cuando precisen equipos de altura?</p>',
+          reply: '"¡Qué tal! Estamos a 10 minutos. La semana que viene necesitamos alquilar dos tijeras eléctricas de 10 m para luminarias."',
+          handover: 'Pase directo al vendedor (Sede Ezeiza): Toma el chat para reservar las 2 plataformas Skyjack de la flota.'
+        },
+        {
+          sub: 'Cercanía Eco Parque Industrial Córdoba · ELGI + Abono Técnico',
+          outbound: '<p>Hola al equipo de Planta de <span class="wa-var">Metalúrgica Autopartista Ferreyra</span>. Les contactamos desde nuestra base en <span class="wa-var">Eco Parque Industrial Córdoba</span> de <strong>Sumar Servicios</strong>.</p><p>Somos representantes oficiales de compresores a tornillo <span class="wa-var">ELGI</span> y brindamos <span class="wa-var">abonos de mantenimiento preventivo y repuestos originales</span> en Córdoba.</p><p>¿Les compartimos nuestra propuesta de abonos y compresores industriales?</p>',
+          reply: '"Hola, nos viene bien porque buscamos un abono para nuestro grupo electrógeno y revisar un compresor secundario."',
+          handover: 'Pase directo al vendedor (Sucursal Córdoba): Continúa en el mismo chat para agendar visita técnica en planta.'
+        }
+      ];
+
+      const rows = Array.from(document.querySelectorAll('#excel-rows tr'));
+      const tabs = Array.from(document.querySelectorAll('.sim-tab'));
+      const subLabel = document.getElementById('wa-sub-label');
+      const waBody = document.getElementById('wa-preview-body');
+
+      function renderConversation(idx) {
+        const item = conversations[idx];
+        if (!item) return;
+        rows.forEach((r) => r.classList.remove('row-active'));
+        const activeRow = rows.find((r) => Number(r.dataset.id) === idx);
+        if (activeRow) activeRow.classList.add('row-active');
+
+        subLabel.textContent = item.sub;
+        waBody.innerHTML =
+          '<div class="wa-bubble">' + item.outbound + '</div>' +
+          '<div class="wa-reply"><strong>Respuesta del cliente:</strong> ' + item.reply +
+          '<span class="wa-handover">' + item.handover + '</span></div>';
+      }
+
+      rows.forEach((row) => {
+        row.addEventListener('click', function () {
+          renderConversation(Number(row.dataset.id));
+        });
+      });
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', function () {
+          tabs.forEach((t) => t.classList.remove('active'));
+          tab.classList.add('active');
+          const filter = tab.dataset.filter;
+          let firstVisibleIdx = null;
+          rows.forEach((row) => {
+            const match = filter === 'all' || row.dataset.cat === filter;
+            row.style.display = match ? '' : 'none';
+            if (match && firstVisibleIdx === null) {
+              firstVisibleIdx = Number(row.dataset.id);
+            }
+          });
+          if (firstVisibleIdx !== null) {
+            renderConversation(firstVisibleIdx);
+          }
+        });
+      });
+    })();
+  </script>
+
+</body>
+
+</html>

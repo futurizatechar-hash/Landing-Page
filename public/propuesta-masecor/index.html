@@ -1,0 +1,2008 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesta Comercial y Operativa: Sistema de Prospección | Masecor × FuturizaTech</title>
+  <meta name="description"
+    content="Propuesta modular de Prospección B2B en las 24 provincias, Base de Datos en Excel y Primer Contacto Personalizado por WhatsApp Oficial para Masecor.">
+  <link rel="icon" type="image/png" href="./favicon.png">
+  <link rel="shortcut icon" type="image/png" href="./favicon.png">
+  <link rel="apple-touch-icon" href="./favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Montserrat:wght@700;800&family=Outfit:wght@600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      /* PALETA OFICIAL & TOKENS INDUSTRIALES — MASECOR (ACERO INOXIDABLE & CARBONO) */
+      --masecor-dark: #0A0A0A;
+      --masecor-dark-deep: #050506;
+      --masecor-surface: #18181B;
+      --masecor-surface-light: #27272A;
+      --masecor-steel: #52525B;
+      --masecor-steel-light: #A1A1AA;
+      --masecor-silver: #E4E4E7;
+      --masecor-body: #334155;
+      --masecor-muted: #64748B;
+      --masecor-white: #FFFFFF;
+      --masecor-bg-light: #F4F5F8;
+      --masecor-border-light: #E2E8F0;
+      --masecor-border-dark: rgba(255, 255, 255, 0.13);
+
+      /* Acentos técnicos y comerciales por módulo */
+      --mod-cyan: #0284C7;
+      --mod-cyan-dark: #0369A1;
+      --mod-cyan-light: #38BDF8;
+      --mod-amber: #D97706;
+      --mod-amber-dark: #B45309;
+      --mod-amber-light: #FBBF24;
+      --mod-whatsapp: #25D366;
+      --mod-whatsapp-dark: #15803D;
+
+      /* Gradientes de Identidad Masecor Acero Inoxidable */
+      --grad-hero: radial-gradient(circle at 86% 18%, rgba(228, 228, 231, 0.14), transparent 46%),
+        radial-gradient(circle at 14% 84%, rgba(56, 189, 248, 0.12), transparent 44%),
+        linear-gradient(155deg, #09090B 0%, #141417 50%, #1F2024 100%);
+      --grad-steel-text: linear-gradient(135deg, #FFFFFF 0%, #D4D4D8 48%, #38BDF8 100%);
+      --grad-steel-badge: linear-gradient(135deg, #3F3F46 0%, #18181B 100%);
+      --grad-cyan: linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%);
+      --grad-amber: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+      --grad-whatsapp: linear-gradient(135deg, #25D366 0%, #1FAF54 100%);
+      --grad-dark-card: linear-gradient(180deg, #1E1E22 0%, #121215 100%);
+      --grad-brand-line: linear-gradient(90deg, #71717A 0%, #FFFFFF 35%, #38BDF8 68%, #25D366 100%);
+
+      --grad-steel-soft: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+      --grad-cyan-soft: linear-gradient(180deg, #FFFFFF 0%, #F0F9FF 100%);
+      --grad-emerald-soft: linear-gradient(180deg, #FFFFFF 0%, #F0FDF4 100%);
+
+      --font-heading: 'Outfit', system-ui, -apple-system, sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --shadow-elevated: 0 20px 45px rgba(0, 0, 0, 0.42);
+      --shadow-card-light: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--masecor-bg-light);
+      color: var(--masecor-dark);
+      line-height: 1.56;
+      font-size: 16.5px;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--font-heading);
+    }
+
+    em,
+    i {
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      background: #EEF2F6;
+      border: 1px solid #CBD5E1;
+      padding: 1px 6px;
+      border-radius: 5px;
+      color: var(--masecor-dark);
+    }
+
+    /* BARRA SUPERIOR EJECUTIVA (CERO BOTONES DE ACCIÓN) */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 12, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 2px solid;
+      border-image: var(--grad-brand-line) 1;
+      padding: 11px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.38);
+    }
+
+    .brand-cobrand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .masecor-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+    }
+
+    .masecor-mark-img {
+      height: 26px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .masecor-wordmark {
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 19px;
+      letter-spacing: 0.14em;
+      color: #FFFFFF;
+      line-height: 1;
+    }
+
+    .brand-divider {
+      width: 1px;
+      height: 22px;
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .ft-badge {
+      display: flex;
+      align-items: center;
+    }
+
+    .ft-logo-img {
+      height: 22px;
+      width: auto;
+      display: block;
+    }
+
+    .topbar-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(228, 228, 231, 0.35);
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+    }
+
+    /* BOTONES SOLO EN EL FOOTER */
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-cta.whatsapp {
+      background: var(--grad-whatsapp);
+      color: #FFFFFF;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+    }
+
+    .btn-cta.whatsapp:hover {
+      background: linear-gradient(135deg, #1FAF54 0%, #15803D 100%);
+      transform: translateY(-1px);
+    }
+
+    .btn-cta.dark {
+      background: var(--masecor-surface);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .btn-cta.dark:hover {
+      background: var(--masecor-steel);
+    }
+
+    .btn-cta.cyan {
+      background: var(--grad-cyan);
+      color: #FFFFFF;
+      box-shadow: 0 4px 18px rgba(2, 132, 199, 0.35);
+    }
+
+    .btn-cta.cyan:hover {
+      background: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%);
+      transform: translateY(-1px);
+    }
+
+    /* HERO INDUSTRIAL MASECOR */
+    .hero {
+      background: var(--grad-hero);
+      color: var(--masecor-white);
+      padding: 48px 5% 54px;
+      border-bottom: 5px solid;
+      border-image: var(--grad-brand-line) 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.22fr 0.98fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--mod-cyan-light);
+      background: rgba(56, 189, 248, 0.14);
+      border: 1px solid rgba(56, 189, 248, 0.42);
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(27px, 3.4vw, 42px);
+      font-weight: 800;
+      line-height: 1.14;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: #FFFFFF;
+    }
+
+    .hero h1 span.highlight {
+      background: var(--grad-steel-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-lead {
+      font-size: 17px;
+      color: #E2E8F0;
+      max-width: 660px;
+      font-weight: 400;
+      line-height: 1.56;
+    }
+
+    /* FICHA EJECUTIVA EN EL HERO */
+    .meta-card {
+      background: var(--grad-dark-card);
+      border: 1px solid rgba(228, 228, 231, 0.28);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      box-shadow: var(--shadow-elevated), 0 0 28px rgba(56, 189, 248, 0.08);
+    }
+
+    .meta-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--masecor-border-dark);
+    }
+
+    .meta-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--mod-cyan-light);
+      background: rgba(2, 132, 199, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .meta-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      font-size: 14px;
+    }
+
+    .meta-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.09);
+      padding-bottom: 7px;
+    }
+
+    .meta-list li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .meta-label {
+      color: var(--masecor-steel-light);
+      font-weight: 500;
+    }
+
+    .meta-val {
+      color: #FFFFFF;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .meta-val.accent {
+      color: #4ADE80;
+      font-weight: 700;
+    }
+
+    /* SECCIONES */
+    .section {
+      padding: 46px 5%;
+    }
+
+    .section.white {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--masecor-border-light);
+    }
+
+    .section.dark {
+      background: linear-gradient(160deg, #09090B 0%, #141418 52%, #1C1D22 100%);
+      color: #FFFFFF;
+      border-top: 4px solid;
+      border-bottom: 4px solid;
+      border-image: var(--grad-brand-line) 1;
+    }
+
+    .section-header {
+      max-width: 800px;
+      margin-bottom: 28px;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--mod-cyan);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .section.dark .section-kicker {
+      color: var(--mod-cyan-light);
+    }
+
+    .section-title {
+      font-size: clamp(25px, 2.9vw, 36px);
+      font-weight: 800;
+      line-height: 1.16;
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--masecor-body);
+    }
+
+    .section.dark .section-sub {
+      color: #CBD5E1;
+    }
+
+    /* 01. LECTURA DEL NEGOCIO (3 TARJETAS CLAVE) */
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 26px;
+    }
+
+    .insight-card {
+      background: #FFFFFF;
+      border: 1px solid var(--masecor-border-light);
+      border-top: 5px solid var(--masecor-dark);
+      border-radius: var(--radius-lg);
+      padding: 25px 23px;
+      box-shadow: var(--shadow-card-light);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .insight-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.09);
+    }
+
+    .insight-card.steel-accent {
+      border-top-color: var(--masecor-dark);
+      background: var(--grad-steel-soft);
+    }
+
+    .insight-card.cyan-accent {
+      border-top-color: var(--mod-cyan);
+      background: var(--grad-cyan-soft);
+    }
+
+    .insight-card.emerald-accent {
+      border-top-color: var(--mod-whatsapp);
+      background: var(--grad-emerald-soft);
+    }
+
+    .insight-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      align-self: flex-start;
+    }
+
+    .insight-card.steel-accent .insight-tag {
+      color: var(--masecor-dark);
+      background: #E2E8F0;
+      border: 1px solid #CBD5E1;
+    }
+
+    .insight-card.cyan-accent .insight-tag {
+      color: var(--mod-cyan-dark);
+      background: #E0F2FE;
+      border: 1px solid #BAE6FD;
+    }
+
+    .insight-card.emerald-accent .insight-tag {
+      color: var(--mod-whatsapp-dark);
+      background: #DCFCE7;
+      border: 1px solid #BBF7D0;
+    }
+
+    .insight-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.24;
+      color: var(--masecor-dark);
+    }
+
+    .insight-card p {
+      font-size: 15px;
+      color: var(--masecor-body);
+      line-height: 1.54;
+    }
+
+    .context-highlight-box {
+      background: linear-gradient(135deg, #0D0E11 0%, #1A1B20 55%, #121316 100%);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      border-left: 5px solid var(--mod-cyan-light);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .context-highlight-box h4 {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--mod-cyan-light);
+    }
+
+    .context-highlight-box p {
+      font-size: 15.5px;
+      color: #E2E8F0;
+      line-height: 1.54;
+    }
+
+    /* 02. DOS MOTORES COMERCIALES DESDE EL DÍA UNO */
+    .diag-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .diag-box {
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      border: 1px solid var(--masecor-border-light);
+      background: #FFFFFF;
+      box-shadow: var(--shadow-card-light);
+    }
+
+    .diag-box.solution {
+      background: linear-gradient(155deg, #111216 0%, #1B1D24 60%, #14151A 100%);
+      color: #FFFFFF;
+      border: 2px solid var(--mod-cyan);
+      box-shadow: 0 10px 30px rgba(2, 132, 199, 0.16);
+    }
+
+    .diag-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+
+    .diag-badge.current {
+      background: #E2E8F0;
+      color: var(--masecor-dark);
+    }
+
+    .diag-badge.target {
+      background: rgba(56, 189, 248, 0.18);
+      color: var(--mod-cyan-light);
+      border: 1px solid rgba(56, 189, 248, 0.45);
+    }
+
+    .diag-box h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      line-height: 1.25;
+    }
+
+    .diag-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 15.5px;
+    }
+
+    .diag-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .diag-points li span.icon {
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* 03. LOS 3 MÓDULOS CONECTADOS */
+    .modules-flow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+
+    .module-card {
+      background: #FFFFFF;
+      border: 1px solid var(--masecor-border-light);
+      border-top: 5px solid var(--masecor-dark);
+      border-radius: var(--radius-lg);
+      padding: 24px 22px;
+      box-shadow: var(--shadow-card-light);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .module-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+    }
+
+    .module-card.module-m29 {
+      border-top-color: var(--masecor-dark);
+    }
+
+    .module-card.module-m29 .mod-code {
+      background: var(--grad-steel-badge);
+    }
+
+    .module-card.module-m29 .mod-purpose {
+      border-left-color: var(--masecor-dark);
+      background: #F1F5F9;
+    }
+
+    .module-card.module-m29 .mod-deliverables li::before {
+      color: var(--masecor-dark);
+    }
+
+    .module-card.module-m26 {
+      border-top-color: var(--mod-cyan);
+    }
+
+    .module-card.module-m26 .mod-code {
+      background: var(--grad-cyan);
+    }
+
+    .module-card.module-m26 .mod-purpose {
+      border-left-color: var(--mod-cyan);
+      background: rgba(2, 132, 199, 0.07);
+    }
+
+    .module-card.module-m26 .mod-deliverables li::before {
+      color: var(--mod-cyan);
+    }
+
+    .module-card.module-m23 {
+      border-top-color: var(--mod-whatsapp);
+    }
+
+    .module-card.module-m23 .mod-code {
+      background: var(--grad-whatsapp);
+    }
+
+    .module-card.module-m23 .mod-purpose {
+      border-left-color: var(--mod-whatsapp);
+      background: rgba(37, 211, 102, 0.08);
+    }
+
+    .module-card.module-m23 .mod-deliverables li::before {
+      color: var(--mod-whatsapp-dark);
+    }
+
+    .mod-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #EEF2F6;
+    }
+
+    .mod-code {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      background: var(--masecor-dark);
+      color: #FFFFFF;
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .mod-step {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--masecor-steel);
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      white-space: nowrap;
+      background: #F1F5F9;
+      padding: 4px 9px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .module-card h3 {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--masecor-dark);
+      margin-bottom: 10px;
+      line-height: 1.24;
+    }
+
+    .mod-purpose {
+      font-size: 15px;
+      font-weight: 600;
+      color: #0F172A;
+      padding: 10px 13px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+      border-left: 3px solid var(--masecor-steel);
+    }
+
+    .mod-deliverables {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      font-size: 15px;
+      color: var(--masecor-body);
+      margin-bottom: 20px;
+    }
+
+    .mod-deliverables li::before {
+      content: "✓ ";
+      font-weight: 800;
+    }
+
+    .mod-footer {
+      padding-top: 14px;
+      border-top: 1px solid var(--masecor-border-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--masecor-muted);
+    }
+
+    /* 04. SIMULADOR INTERACTIVO: DEL EXCEL AL WHATSAPP OFICIAL */
+    .sim-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .sim-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .sim-tab {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.06);
+      color: #CBD5E1;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .sim-tab:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+    }
+
+    .sim-tab.active {
+      background: var(--mod-cyan);
+      border-color: var(--mod-cyan-light);
+      color: #FFFFFF;
+    }
+
+    .sim-hint {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--masecor-steel-light);
+    }
+
+    .simulator-grid {
+      display: grid;
+      grid-template-columns: 1.16fr 0.84fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .excel-panel {
+      background: #141519;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .panel-bar {
+      background: #1E2026;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #E2E8F0;
+    }
+
+    .excel-badge {
+      background: #107C41;
+      color: #FFFFFF;
+      padding: 3px 9px;
+      border-radius: 5px;
+      font-weight: 700;
+      font-size: 11px;
+    }
+
+    .excel-table-wrap {
+      padding: 16px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      flex: 1;
+    }
+
+    table.excel-preview {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      color: #E2E8F0;
+    }
+
+    table.excel-preview th {
+      background: #25272E;
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-align: left;
+      padding: 9px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 2px solid var(--mod-cyan-light);
+      white-space: nowrap;
+    }
+
+    table.excel-preview tbody tr {
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    table.excel-preview tbody tr:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    table.excel-preview tbody tr.row-active {
+      background: rgba(56, 189, 248, 0.15);
+    }
+
+    table.excel-preview td {
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      vertical-align: middle;
+    }
+
+    table.excel-preview td code {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.14);
+      color: #E2E8F0;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .status-sent {
+      background: rgba(37, 211, 102, 0.16);
+      color: #4ADE80;
+      padding: 3px 8px;
+      border-radius: 99px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .status-ready {
+      background: rgba(56, 189, 248, 0.18);
+      color: #38BDF8;
+      padding: 3px 8px;
+      border-radius: 99px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .wa-panel {
+      background: #0B141A;
+      border: 1px solid rgba(37, 211, 102, 0.36);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wa-header {
+      background: #202C33;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .wa-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .wa-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #141414;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .wa-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .wa-title {
+      font-family: var(--font-heading);
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.2;
+    }
+
+    .wa-sub {
+      font-size: 11.5px;
+      color: #8696A0;
+    }
+
+    .wa-body {
+      padding: 16px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+      justify-content: flex-start;
+    }
+
+    .wa-bubble {
+      background: #005C4B;
+      color: #E9EDEF;
+      padding: 13px 15px;
+      border-radius: 12px 12px 2px 12px;
+      font-size: 14px;
+      line-height: 1.5;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .wa-bubble p {
+      margin: 0 0 10px 0;
+    }
+
+    .wa-bubble p:last-child {
+      margin-bottom: 0;
+    }
+
+    .wa-var {
+      background: rgba(255, 255, 255, 0.14);
+      color: #BAE6FD;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-weight: 600;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    .wa-reply {
+      background: #202C33;
+      color: #E9EDEF;
+      padding: 11px 14px;
+      border-radius: 12px 12px 12px 2px;
+      font-size: 13.5px;
+      line-height: 1.48;
+      align-self: flex-start;
+      border-left: 3px solid var(--mod-whatsapp);
+      width: 100%;
+    }
+
+    .wa-handover {
+      display: block;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.14);
+      font-size: 12.5px;
+      color: #4ADE80;
+      font-weight: 600;
+    }
+
+    /* 05. INVERSIÓN Y PRESUPUESTO */
+    .pricing-layout {
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .price-card-main {
+      background: #FFFFFF;
+      border: 2px solid var(--masecor-dark);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card-light);
+    }
+
+    .price-card-head {
+      background: linear-gradient(135deg, #0A0A0C 0%, #1F2026 100%);
+      color: #FFFFFF;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      border-bottom: 4px solid;
+      border-image: var(--grad-brand-line) 1;
+    }
+
+    .price-card-head h3 {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .price-total-box {
+      text-align: right;
+    }
+
+    .price-old {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--masecor-steel-light);
+      text-decoration: line-through;
+      display: block;
+    }
+
+    .price-amount {
+      font-family: var(--font-mono);
+      font-size: 34px;
+      font-weight: 700;
+      color: #4ADE80;
+      line-height: 1.1;
+    }
+
+    .price-breakdown {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .price-breakdown th,
+    .price-breakdown td {
+      padding: 15px 24px;
+      text-align: left;
+      border-bottom: 1px solid var(--masecor-border-light);
+      font-size: 15.5px;
+    }
+
+    .price-breakdown th {
+      background: #F8FAFC;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      text-transform: uppercase;
+      color: var(--masecor-steel);
+    }
+
+    .price-breakdown tr.total-row {
+      background: #F0FDF4;
+      font-weight: 700;
+    }
+
+    .price-side-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .side-option-card {
+      background: #FFFFFF;
+      border: 1px solid var(--masecor-border-light);
+      border-left: 5px solid var(--masecor-steel);
+      border-radius: var(--radius-md);
+      padding: 22px 24px;
+      box-shadow: var(--shadow-card-light);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .side-option-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .side-option-card.cyan-border {
+      border-left-color: var(--mod-cyan);
+      background: var(--grad-cyan-soft);
+    }
+
+    .side-option-card.emerald-border {
+      border-left-color: var(--mod-whatsapp);
+      background: var(--grad-emerald-soft);
+    }
+
+    .side-option-card.steel-border {
+      border-left-color: var(--masecor-dark);
+      background: var(--grad-steel-soft);
+    }
+
+    .side-option-card h4 {
+      font-size: 18.5px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--masecor-dark);
+    }
+
+    .side-option-card p {
+      font-size: 15px;
+      color: var(--masecor-body);
+      margin-bottom: 10px;
+    }
+
+    /* SELLOS DE CONFIANZA */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 32px;
+    }
+
+    .trust-card {
+      background: #FFFFFF;
+      border: 1px solid var(--masecor-border-light);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-card-light);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .trust-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .trust-card.steel-top {
+      border-top: 4px solid var(--masecor-dark);
+      background: var(--grad-steel-soft);
+    }
+
+    .trust-card.cyan-top {
+      border-top: 4px solid var(--mod-cyan);
+      background: var(--grad-cyan-soft);
+    }
+
+    .trust-card.emerald-top {
+      border-top: 4px solid var(--mod-whatsapp);
+      background: var(--grad-emerald-soft);
+    }
+
+    .trust-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .trust-card.steel-top .trust-num {
+      color: var(--masecor-dark);
+    }
+
+    .trust-card.cyan-top .trust-num {
+      color: var(--mod-cyan-dark);
+    }
+
+    .trust-card.emerald-top .trust-num {
+      color: var(--mod-whatsapp-dark);
+    }
+
+    .trust-card h4 {
+      font-size: 18.5px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--masecor-dark);
+    }
+
+    .trust-card p {
+      font-size: 15px;
+      color: var(--masecor-body);
+    }
+
+    /* FOOTER CORPORATIVO */
+    .footer {
+      background: linear-gradient(180deg, #121215 0%, #070709 100%);
+      color: #FFFFFF;
+      padding: 48px 5% 36px;
+      border-top: 4px solid;
+      border-image: var(--grad-brand-line) 1;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 28px;
+      padding-bottom: 26px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 13.5px;
+      color: var(--masecor-steel-light);
+    }
+
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* BOTÓN FLOTANTE DE WHATSAPP EN MÓVIL */
+    .floating-wa {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      background: var(--grad-whatsapp);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+      transition: all 0.2s ease;
+    }
+
+    .floating-wa:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.55);
+    }
+
+    @media (min-width: 981px) {
+      .floating-wa {
+        display: none;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .insight-grid,
+      .modules-flow,
+      .simulator-grid,
+      .pricing-layout,
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        padding: 10px 4%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        font-size: 15.5px;
+      }
+
+      .topbar {
+        padding: 10px 4%;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .brand-cobrand {
+        gap: 12px;
+      }
+
+      .masecor-mark-img {
+        height: 22px;
+      }
+
+      .masecor-wordmark {
+        font-size: 16px;
+      }
+
+      .ft-logo-img {
+        height: 18px;
+      }
+
+      .topbar-badge {
+        font-size: 10px;
+        padding: 4px 10px;
+      }
+
+      .hero {
+        padding: 34px 4% 38px;
+      }
+
+      .section {
+        padding: 36px 4%;
+      }
+
+      table.excel-preview {
+        min-width: 560px;
+        font-size: 12.5px;
+      }
+
+      .price-card-head {
+        padding: 20px 18px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .price-total-box {
+        text-align: left;
+      }
+
+      .price-breakdown th,
+      .price-breakdown td {
+        padding: 12px 14px;
+        font-size: 14.5px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .footer-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .footer-actions .btn-cta {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .footer-copy {
+        flex-direction: column;
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm 8mm;
+      }
+
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .topbar {
+        position: static !important;
+        background: #0A0A0C !important;
+        box-shadow: none !important;
+      }
+
+      .floating-wa,
+      .footer-actions {
+        display: none !important;
+      }
+
+      .insight-card,
+      .context-highlight-box,
+      .diag-box,
+      .module-card,
+      .excel-panel,
+      .wa-panel,
+      .price-card-main,
+      .side-option-card,
+      .trust-card,
+      .meta-card,
+      .footer {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- BARRA SUPERIOR CO-BRANDEADA (CERO BOTONES DE ACCIÓN) -->
+  <header class="topbar">
+    <div class="brand-cobrand">
+      <div class="masecor-lockup">
+        <img src="./logo-m-isolated-opt.webp" onerror="this.src='/propuesta-masecor/logo-m-isolated-opt.webp'"
+          alt="Masecor" class="masecor-mark-img">
+        <span class="masecor-wordmark">MASECOR</span>
+      </div>
+      <div class="brand-divider"></div>
+      <div class="ft-badge">
+        <img
+          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUwIiBoZWlnaHQ9IjUyIiB2aWV3Qm94PSIwIDAgMjUwIDUyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxnIGlkPSJpc290aXBvIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyLCAyKSI+CiAgICA8cGF0aCBkPSJNNiAxMEM2IDguODk1NDMgNi44OTU0MyA4IDggOEgxOS41TDE2IDE0LjVIMTNWMjFIMjAuNVYyN0gxM1YzOEMxMyAzOS4xMDQ2IDEyLjEwNDYgNDAgMTEgNDBIOEM2Ljg5NTQzIDQwIDYgMzkuMTA0NiA2IDM4VjEwWiIgZmlsbD0iIzAwRTVGRiIvPgogICAgPHBhdGggZD0iTTIxIDhIMzlDNDAuMTA0NiA4IDQxIDguODk1NDMgNDEgMTBWMTIuNUM0MSAxMy42MDQ2IDQwLjEwNDYgMTQuNSAzOSAxNC41SDM0LjVWMzhDMzQuNSAzOS4xMDQ2IDMzLjYwNDYgNDAgMzIuNSA0MEgyOS41QzI4LjM5NTQgNDAgMjcuNSAzOS4xMDQ2IDI3LjUgMzhWMTQuNUgxNy41TDIxIDhaIiBmaWxsPSIjRkY2QjM1Ii8+CiAgPC9nPgogIDx0ZXh0IHg9IjU2IiB5PSIzNCIgZm9udC1mYW1pbHk9IidNb250c2VycmF0Jywgc3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iLTAuNXB4Ij4KICAgIDx0c3BhbiBmaWxsPSIjRkZGRkZGIj5GdXR1cml6YTwvdHNwYW4+PHRzcGFuIGZpbGw9IiNGRjZCMzUiPlRlY2g8L3RzcGFuPgogIDwvdGV4dD4KPC9zdmc+"
+          alt="FuturizaTech" class="ft-logo-img">
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO PRINCIPAL -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">DOCUMENTO CONFIDENCIAL · MASECOR</div>
+        <h1>Propuesta Comercial: <span class="highlight">Sistema Automatizado de Prospección Comercial</span></h1>
+        <p class="hero-lead">
+          Conectamos su planilla de Excel con Inteligencia Artificial y WhatsApp Oficial para activar dos canales desde su fábrica en Córdoba: <strong>sumar distribuidores, corralones, sanitarios y fábricas de muebles en las 24 provincias</strong> y <strong>captar proyectos especiales a medida</strong> en gastronomía, hotelería, salud y construcción.
+        </p>
+      </div>
+
+      <!-- FICHA RESUMEN EJECUTIVA -->
+      <aside class="meta-card">
+        <div class="meta-card-header">
+          <div class="masecor-lockup">
+            <img src="./logo-m-isolated-opt.webp" onerror="this.src='/propuesta-masecor/logo-m-isolated-opt.webp'"
+              alt="Masecor" style="height:22px;width:auto;">
+            <span class="masecor-wordmark" style="font-size:16px;">MASECOR</span>
+          </div>
+          <span class="meta-tag">FT-0105</span>
+        </div>
+        <ul class="meta-list">
+          <li>
+            <span class="meta-label">Empresa:</span>
+            <span class="meta-val">Masecor</span>
+          </li>
+          <li>
+            <span class="meta-label">Alcance:</span>
+            <span class="meta-val">Cobertura Nacional · 24 Provincias</span>
+          </li>
+          <li>
+            <span class="meta-label">Foco Comercial:</span>
+            <span class="meta-val">Red Mayorista + Trabajos a Medida</span>
+          </li>
+          <li>
+            <span class="meta-label">Puesta en Marcha:</span>
+            <span class="meta-val">1 a 3 semanas</span>
+          </li>
+          <li>
+            <span class="meta-label">Licencias por Usuario:</span>
+            <span class="meta-val accent">$0 · Sin alquiler mensual</span>
+          </li>
+          <li>
+            <span class="meta-label">Validez:</span>
+            <span class="meta-val">7 días corridos</span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 01: OPORTUNIDAD Y DOS MOTORES COMERCIALES -->
+  <section class="section white">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">01 · Oportunidad Comercial para Masecor</span>
+        <h2 class="section-title">Su mismo Excel de siempre, abriendo distribuidores y obras en todo el país</h2>
+        <p class="section-sub">
+          Mantenemos su forma actual de trabajar en planilla y automatizamos la búsqueda de empresas y el primer contacto oficial por WhatsApp.
+        </p>
+      </div>
+
+      <div class="diag-grid">
+        <div class="diag-box">
+          <span class="diag-badge current">Frente 01 · Red Mayorista en las 24 Provincias</span>
+          <h3>Sumar puntos de venta y fábricas de muebles</h3>
+          <ul class="diag-points">
+            <li><span class="icon" style="color:var(--masecor-dark);">•</span> <span><strong>Corralones, Sanitarios y Distribuidores:</strong> Incorporar comercios de todo el país con reposición continua de bachas, mesadas y piletones.</span></li>
+            <li><span class="icon" style="color:var(--masecor-dark);">•</span> <span><strong>Marmolerías y Amoblamientos:</strong> Contactar fabricantes que integran bachas y mesadas de acero inoxidable en cada entrega.</span></li>
+            <li><span class="icon" style="color:var(--masecor-dark);">•</span> <span><strong>Base limpia en su Excel:</strong> Cada comercio nuevo ingresa ordenado por provincia y localidad, sin buscar ni copiar datos a mano.</span></li>
+          </ul>
+        </div>
+
+        <div class="diag-box solution">
+          <span class="diag-badge target">Frente 02 · Trabajos a Medida + Cartera Actual</span>
+          <h3>Proyectos especiales a medida y reactivación</h3>
+          <ul class="diag-points">
+            <li><span class="icon" style="color:#4ADE80;">✓</span> <span><strong>Gastronomía, Hotelería, Salud y Obras:</strong> Detectar cocinas industriales, hoteles, salones, clínicas, laboratorios y constructoras para cotizar desarrollos a medida.</span></li>
+            <li><span class="icon" style="color:#4ADE80;">✓</span> <span><strong>Reactivación de clientes históricos:</strong> Contactar desde su Excel a distribuidores inactivos para generar nuevos pedidos sin pisar cuentas activas.</span></li>
+            <li><span class="icon" style="color:#4ADE80;">✓</span> <span><strong>Pase directo a su vendedor:</strong> Apenas el cliente responde el primer WhatsApp, su vendedor sigue en ese mismo chat para enviar lista o cotizar.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 02: CÓMO FUNCIONA EL SISTEMA EN 3 PASOS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">02 · El Circuito en 3 Pasos</span>
+        <h2 class="section-title">Qué dejamos funcionando llave en mano en 1 a 3 semanas</h2>
+        <p class="section-sub">
+          Tres módulos conectados que buscan clientes en todo el país, actualizan su Excel y abren la conversación en WhatsApp.
+        </p>
+      </div>
+
+      <div class="modules-flow">
+        <!-- PASO 1: M-29 -->
+        <article class="module-card module-m29">
+          <div>
+            <div class="mod-top">
+              <span class="mod-code">MÓDULO M-29</span>
+              <span class="mod-step">PASO 1 · BUSCAR</span>
+            </div>
+            <h3>Agente IA Buscador de Clientes</h3>
+            <div class="mod-purpose">
+              Releva compradores mayoristas y proyectos especiales en las 24 provincias.
+            </div>
+            <ul class="mod-deliverables">
+              <li>Encuentra corralones, sanitarios, distribuidores, marmolerías y mueblerías, además de gastronomía, hoteles, clínicas y constructoras.</li>
+              <li>Valida teléfonos móviles listos para contactar por WhatsApp.</li>
+              <li>Clasifica si corresponde ofrecer <strong>línea mayorista estándar o fabricación a medida</strong>.</li>
+            </ul>
+          </div>
+          <div class="mod-footer">
+            <span>OBJETIVO: ABRIR MERCADO</span>
+            <span>1 A 3 SEMANAS</span>
+          </div>
+        </article>
+
+        <!-- PASO 2: M-26 -->
+        <article class="module-card module-m26">
+          <div>
+            <div class="mod-top">
+              <span class="mod-code">MÓDULO M-26</span>
+              <span class="mod-step">PASO 2 · CONECTAR</span>
+            </div>
+            <h3>Conexión en Vivo con su Excel</h3>
+            <div class="mod-purpose">
+              Convierte su planilla actual en el centro ordenado de la operación.
+            </div>
+            <ul class="mod-deliverables">
+              <li>Carga cada empresa nueva automáticamente sin tipeo manual.</li>
+              <li>Filtra duplicados para no contactar dos veces al mismo comercio.</li>
+              <li>Actualiza en vivo la columna <code>Estado</code> cuando se envía el mensaje o responde el cliente.</li>
+            </ul>
+          </div>
+          <div class="mod-footer">
+            <span>OBJETIVO: ORDEN EN VIVO</span>
+            <span>1 A 3 SEMANAS</span>
+          </div>
+        </article>
+
+        <!-- PASO 3: M-23 -->
+        <article class="module-card module-m23">
+          <div>
+            <div class="mod-top">
+              <span class="mod-code">MÓDULO M-23</span>
+              <span class="mod-step">PASO 3 · CONTACTAR</span>
+            </div>
+            <h3>Agente IA Redactor + WhatsApp Oficial</h3>
+            <div class="mod-purpose">
+              Envía el primer mensaje a medida; cuando responden, sigue su vendedor.
+            </div>
+            <ul class="mod-deliverables">
+              <li>Redacta un primer mensaje personalizado según el rubro y la provincia del cliente.</li>
+              <li>Envía mediante plantillas aprobadas por la línea oficial de WhatsApp de Masecor.</li>
+              <li><strong>Pase al vendedor:</strong> Cuando el cliente contesta, su asesor toma el chat para cotizar y cerrar.</li>
+            </ul>
+          </div>
+          <div class="mod-footer">
+            <span>OBJETIVO: INICIAR VENTAS</span>
+            <span>1 A 3 SEMANAS</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 03: SIMULADOR INTERACTIVO EN VIVO -->
+  <section class="section dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">03 · Demostración Interactiva</span>
+        <h2 class="section-title">Así se ve en vivo: de su Excel al WhatsApp de su vendedor</h2>
+        <p class="section-sub">
+          Haga clic en cualquier fila de la planilla para ver cómo la IA inicia la charla y se la pasa a su equipo comercial.
+        </p>
+      </div>
+
+      <div class="sim-controls">
+        <div class="sim-tabs" role="tablist" aria-label="Filtrar segmentos del simulador">
+          <button type="button" class="sim-tab active" data-filter="all">Todos (4)</button>
+          <button type="button" class="sim-tab" data-filter="mayorista">Canal Mayorista · 24 Provincias</button>
+          <button type="button" class="sim-tab" data-filter="especiales">Trabajos Especiales · A Medida</button>
+        </div>
+        <div class="sim-hint">Haga clic en una fila para ver el mensaje</div>
+      </div>
+
+      <div class="simulator-grid">
+        <!-- VISTA EXCEL CONECTADA -->
+        <div class="excel-panel">
+          <div class="panel-bar">
+            <span>Base_Clientes_Masecor.xlsx (Su Excel conectado)</span>
+            <span class="excel-badge">ACTIVO EN VIVO</span>
+          </div>
+          <div class="excel-table-wrap">
+            <table class="excel-preview">
+              <thead>
+                <tr>
+                  <th>Canal</th>
+                  <th>Empresa / Localidad</th>
+                  <th>WhatsApp</th>
+                  <th>Línea a Ofrecer</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="excel-rows">
+                <tr class="row-active" data-id="0" data-cat="mayorista">
+                  <td>Mayorista País</td>
+                  <td><strong>Corralón San Martín S.R.L.</strong> (Santa Fe, SF)</td>
+                  <td><code>+54 9 342 481-XXXX</code></td>
+                  <td>Línea Mayorista de Bachas y Mesadas</td>
+                  <td><span class="status-sent">✓ 1° Mensaje Enviado</span></td>
+                </tr>
+                <tr data-id="1" data-cat="mayorista">
+                  <td>Mayorista País</td>
+                  <td><strong>Amoblamientos del Sur S.A.</strong> (Neuquén, NQ)</td>
+                  <td><code>+54 9 299 514-XXXX</code></td>
+                  <td>Bachas y Piletones para Amoblamiento</td>
+                  <td><span class="status-sent">✓ 1° Mensaje Enviado</span></td>
+                </tr>
+                <tr data-id="2" data-cat="especiales">
+                  <td>Trabajos a Medida</td>
+                  <td><strong>Equipamientos Gastronómicos Cuyo</strong> (Mendoza, MZ)</td>
+                  <td><code>+54 9 261 602-XXXX</code></td>
+                  <td>Mesadas Industriales y Bachas a Medida</td>
+                  <td><span class="status-sent">✓ 1° Mensaje Enviado</span></td>
+                </tr>
+                <tr data-id="3" data-cat="especiales">
+                  <td>Trabajos a Medida</td>
+                  <td><strong>Constructora & Salud Norte S.A.</strong> (Salta, SA)</td>
+                  <td><code>+54 9 387 439-XXXX</code></td>
+                  <td>Mesadas y Piletas Especiales sobre Plano</td>
+                  <td><span class="status-ready">En cola de envío</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- VISTA WHATSAPP OFICIAL EN VIVO -->
+        <div class="wa-panel">
+          <div class="wa-header">
+            <div class="wa-header-left">
+              <div class="wa-avatar">
+                <img src="./favicon.png" onerror="this.src='/propuesta-masecor/favicon.png'" alt="Masecor">
+              </div>
+              <div>
+                <div class="wa-title">Masecor · WhatsApp Oficial</div>
+                <div class="wa-sub" id="wa-sub-label">Canal Mayorista · Corralones y Sanitarios (Santa Fe)</div>
+              </div>
+            </div>
+          </div>
+          <div class="wa-body" id="wa-preview-body">
+            <div class="wa-bubble">
+              <p>Buen día, equipo de <span class="wa-var">Corralón San Martín</span>. Les escribimos desde <strong>Masecor</strong>, fábrica en Córdoba de bachas, mesadas y piletones de acero inoxidable desde 1987.</p>
+              <p>Abastecemos de forma directa a distribuidores y corralones en <span class="wa-var">Santa Fe</span> con <span class="wa-var">stock permanente y despachos semanales</span>.</p>
+              <p>¿Con quién del área de Compras podemos compartir catálogo y lista de precios mayorista?</p>
+            </div>
+            <div class="wa-reply">
+              <strong>Respuesta del cliente:</strong> "Buen día, sí por favor. Pásennos la lista mayorista de mesadas y bachas dobles con envío a Santa Fe."
+              <span class="wa-handover">Pase directo a su vendedor: El asesor de Masecor sigue en este mismo chat para enviar la lista y cerrar el pedido.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 04: INVERSIÓN Y MODALIDADES -->
+  <section class="section white" id="inversion">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">04 · Inversión y Formas de Avance</span>
+        <h2 class="section-title">Presupuesto Llave en Mano</h2>
+        <p class="section-sub">
+          Pago único de implementación ($0 de licencia mensual por usuario), con descuento por sistema completo o avance en 2 etapas.
+        </p>
+      </div>
+
+      <div class="pricing-layout">
+        <!-- TABLA PRINCIPAL DEL PAQUETE DE 3 MÓDULOS -->
+        <div class="price-card-main">
+          <div class="price-card-head">
+            <div>
+              <span
+                style="font-family:var(--font-mono);font-size:11.5px;color:var(--mod-cyan-light);font-weight:700;text-transform:uppercase;">Entrega
+                Funcionando · 1 a 3 Semanas</span>
+              <h3>Sistema de Prospección Automatizado Masecor (3 Pasos Integrados)</h3>
+            </div>
+            <div class="price-total-box">
+              <span class="price-old">Por separado: USD 1.850</span>
+              <span class="price-amount">USD 1.550</span>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="price-breakdown">
+              <thead>
+                <tr>
+                  <th>Módulo</th>
+                  <th>Alcance Incluido</th>
+                  <th style="text-align:right;white-space:nowrap;">Valor Individual</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong><code>M-29</code></strong></td>
+                  <td>
+                    <strong>Agente IA Buscador y Clasificador (24 Provincias + Especiales)</strong><br>
+                    <span style="font-size:14px;color:var(--masecor-muted);">Busca y clasifica corralones, sanitarios, distribuidores, marmolerías y mueblerías, más gastronomía, hoteles, salud y obras.</span>
+                  </td>
+                  <td style="text-align:right;white-space:nowrap;"><strong>USD 750</strong></td>
+                </tr>
+                <tr>
+                  <td><strong><code>M-26</code></strong></td>
+                  <td>
+                    <strong>Conexión en Vivo con su Excel</strong><br>
+                    <span style="font-size:14px;color:var(--masecor-muted);">Carga prospectos sin duplicados y actualiza el estado de cada contacto en su planilla.</span>
+                  </td>
+                  <td style="text-align:right;white-space:nowrap;"><strong>USD 450</strong></td>
+                </tr>
+                <tr>
+                  <td><strong><code>M-23</code></strong></td>
+                  <td>
+                    <strong>Agente IA Redactor + 1° Envío por WhatsApp Oficial</strong><br>
+                    <span style="font-size:14px;color:var(--masecor-muted);">Envía el primer mensaje personalizado por empresa y deriva las respuestas al chat de su vendedor.</span>
+                  </td>
+                  <td style="text-align:right;white-space:nowrap;"><strong>USD 650</strong></td>
+                </tr>
+                <tr style="background:#F8FAFC;color:#475569;font-size:14.5px;">
+                  <td colspan="2">
+                    <strong>Subtotal contratando por separado</strong><br>
+                    <span style="color:#0D9488;font-weight:700;">Bonificación Sistema Completo (-16% · Ahorro USD 300)</span>
+                  </td>
+                  <td style="text-align:right;white-space:nowrap;font-family:var(--font-mono);">
+                    <span style="text-decoration:line-through;color:#94A3B8;display:block;font-size:13.5px;">USD 1.850</span>
+                    <span style="color:#0D9488;font-weight:700;font-size:14.5px;">- USD 300</span>
+                  </td>
+                </tr>
+                <tr class="total-row">
+                  <td colspan="2">
+                    <strong>Inversión Final Sistema Completo</strong><br>
+                    <span style="font-size:14px;font-weight:500;color:var(--masecor-body);">50% al iniciar (USD 775) · 50% contra entrega funcionando (USD 775).</span>
+                  </td>
+                  <td style="text-align:right;white-space:nowrap;font-family:var(--font-mono);font-size:21px;color:var(--mod-whatsapp-dark);">USD 1.550</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- OPCIONES ALTERNATIVAS LATERALES -->
+        <div class="price-side-stack">
+          <div class="side-option-card cyan-border">
+            <span
+              style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--mod-cyan-dark);text-transform:uppercase;">Avance
+              Modular en 2 Etapas (USD 1.850)</span>
+            <h4>Si prefieren avanzar paso a paso</h4>
+            <div style="font-size:14px;display:flex;flex-direction:column;gap:10px;color:var(--masecor-body);">
+              <div style="background:#FFFFFF;border:1px solid var(--masecor-border-light);border-radius:8px;padding:11px 13px;">
+                <strong style="color:var(--masecor-dark);display:block;margin-bottom:3px;">Camino A · Primero nutrir su Excel:</strong>
+                • Etapa 1 (<code>M-29</code> + <code>M-26</code>): <strong>USD 1.200</strong> · Etapa 2 (<code>M-23</code>): <strong>USD 650</strong>
+              </div>
+              <div style="background:#FFFFFF;border:1px solid var(--masecor-border-light);border-radius:8px;padding:11px 13px;">
+                <strong style="color:var(--masecor-dark);display:block;margin-bottom:3px;">Camino B · Primero activar su Excel actual:</strong>
+                • Etapa 1 (<code>M-26</code> + <code>M-23</code>): <strong>USD 1.100</strong> · Etapa 2 (<code>M-29</code>): <strong>USD 750</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="side-option-card emerald-border">
+            <span
+              style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--mod-whatsapp-dark);text-transform:uppercase;">Opcional
+              Post-Entrega</span>
+            <h4>Gestión Mensual Llave en Mano</h4>
+            <p style="margin-bottom:0;">
+              Masecor puede operarlo internamente con <strong>$0 de abono mensual</strong>, o delegar en nuestro equipo la ejecución mensual de búsquedas y envíos por <strong>USD 350 / mes</strong>.
+            </p>
+          </div>
+
+          <div class="side-option-card steel-border">
+            <span
+              style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--masecor-dark);text-transform:uppercase;">Condiciones
+              Claras</span>
+            <h4>Moneda y WhatsApp Oficial</h4>
+            <p style="font-size:14px;margin-bottom:0;">
+              Valores en USD o Pesos (ARS) al tipo de cambio del día de pago. Los envíos de WhatsApp Oficial corren al costo directo de Meta sin recargos.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOS 3 SELLOS DE CONFIANZA -->
+      <div class="trust-grid">
+        <div class="trust-card steel-top">
+          <span class="trust-num">COMPROMISO 01</span>
+          <h4>Cero Licencias por Usuario</h4>
+          <p>Abona la implementación única, nunca un alquiler mensual por vendedor.</p>
+        </div>
+        <div class="trust-card cyan-top">
+          <span class="trust-num">COMPROMISO 02</span>
+          <h4>Listo en 1 a 3 Semanas</h4>
+          <p>En menos de 21 días queda conectado a su Excel y enviando mensajes reales.</p>
+        </div>
+        <div class="trust-card emerald-top">
+          <span class="trust-num">COMPROMISO 03</span>
+          <h4>Sobre su Propio Excel</h4>
+          <p>Su equipo sigue usando la planilla que ya conoce, sin aprender sistemas complejos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CORPORATIVO CO-BRANDEADO -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap;">
+            <div class="masecor-lockup">
+              <img src="./logo-m-isolated-opt.webp" onerror="this.src='/propuesta-masecor/logo-m-isolated-opt.webp'"
+                alt="Masecor" style="height:24px;width:auto;object-fit:contain;">
+              <span class="masecor-wordmark" style="font-size:17px;">MASECOR</span>
+            </div>
+            <span style="color:var(--masecor-steel-light);font-size:14px;">×</span>
+            <img
+              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUwIiBoZWlnaHQ9IjUyIiB2aWV3Qm94PSIwIDAgMjUwIDUyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxnIGlkPSJpc290aXBvIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyLCAyKSI+CiAgICA8cGF0aCBkPSJNNiAxMEM2IDguODk1NDMgNi44OTU0MyA4IDggOEgxOS41TDE2IDE0LjVIMTNWMjFIMjAuNVYyN0gxM1YzOEMxMyAzOS4xMDQ2IDEyLjEwNDYgNDAgMTEgNDBIOEM2Ljg5NTQzIDQwIDYgMzkuMTA0NiA2IDM4VjEwWiIgZmlsbD0iIzAwRTVGRiIvPgogICAgPHBhdGggZD0iTTIxIDhIMzlDNDAuMTA0NiA4IDQxIDguODk1NDMgNDEgMTBWMTIuNUM0MSAxMy42MDQ2IDQwLjEwNDYgMTQuNSAzOSAxNC41SDM0LjVWMzhDMzQuNSAzOS4xMDQ2IDMzLjYwNDYgNDAgMzIuNSA0MEgyOS41QzI4LjM5NTQgNDAgMjcuNSAzOS4xMDQ2IDI3LjUgMzhWMTQuNUgxNy41TDIxIDhaIiBmaWxsPSIjRkY2QjM1Ii8+CiAgPC9nPgogIDx0ZXh0IHg9IjU2IiB5PSIzNCIgZm9udC1mYW1pbHk9IidNb250c2VycmF0Jywgc3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iLTAuNXB4Ij4KICAgIDx0c3BhbiBmaWxsPSIjRkZGRkZGIj5GdXR1cml6YTwvdHNwYW4+PHRzcGFuIGZpbGw9IiNGRjZCMzUiPlRlY2g8L3RzcGFuPgogIDwvdGV4dD4KPC9zdmc+"
+              alt="FuturizaTech" style="height:20px;width:auto;">
+          </div>
+          <p style="color:#CBD5E1;max-width:620px;font-size:15px;">
+            Cuando usted lo disponga, coordinamos una breve <strong>videollamada de 15 minutos</strong> para despejar consultas y definir la fecha de inicio.
+          </p>
+        </div>
+        <div class="footer-actions">
+          <a href="https://api.whatsapp.com/send?phone=5493518046223&text=Hola%20Angel%2C%20nos%20comunicamos%20de%20Masecor.%20Estuvimos%20revisando%20la%20propuesta%20y%20queremos%20coordinar%20una%20videollamada."
+            target="_blank" rel="noopener" class="btn-cta whatsapp">Hablar por WhatsApp (+54 9 351 804 6223)</a>
+          <a href="mailto:info@futurizatech.com?subject=Propuesta%20Comercial%20Masecor"
+            class="btn-cta dark">info@futurizatech.com</a>
+        </div>
+      </div>
+      <div class="footer-copy">
+        <span>FuturizaTech: Ingeniería de Software, Sistemas de Gestión y Automatización Comercial (Córdoba, Argentina)</span>
+        <span>Propuesta confidencial preparada para Masecor · Validez 7 días corridos (hasta el 20/11/2026).</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOTÓN FLOTANTE DE CONTACTO RÁPIDO PARA MÓVIL -->
+  <a href="https://api.whatsapp.com/send?phone=5493518046223&text=Hola%20Angel%2C%20nos%20comunicamos%20de%20Masecor.%20Estuvimos%20revisando%20la%20propuesta%20web%20y%20queremos%20coordinar%20una%20videollamada."
+    target="_blank" rel="noopener" class="floating-wa" aria-label="Consultar por WhatsApp">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path
+        d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.587 1.961.948 2.8.948 3.174 0 5.761-2.587 5.761-5.766.001-3.181-2.585-5.766-5.77-5.766zm10.007 5.766c-.002 5.565-4.52 10.088-10.024 10.088-1.758 0-3.411-.462-4.856-1.272l-5.158 1.353 1.378-5.034c-.901-1.498-1.397-3.238-1.399-5.135.002-5.565 4.524-10.088 10.03-10.088 5.503 0 10.027 4.522 10.029 10.088z" />
+    </svg>
+    <span>Consultar</span>
+  </a>
+
+  <script>
+    (function () {
+      const conversations = [
+        {
+          sub: 'Canal Mayorista · Corralones y Sanitarios (Santa Fe)',
+          outbound: '<p>Buen día, equipo de <span class="wa-var">Corralón San Martín</span>. Les escribimos desde <strong>Masecor</strong>, fábrica en Córdoba de bachas, mesadas y piletones de acero inoxidable desde 1987.</p><p>Abastecemos de forma directa a distribuidores y corralones en <span class="wa-var">Santa Fe</span> con <span class="wa-var">stock permanente y despachos semanales</span>.</p><p>¿Con quién del área de Compras podemos compartir catálogo y lista de precios mayorista?</p>',
+          reply: '"Buen día, sí por favor. Pásennos la lista mayorista de mesadas y bachas dobles con envío a Santa Fe."',
+          handover: 'Pase directo a su vendedor: El asesor de Masecor sigue en este mismo chat para enviar la lista y cerrar el pedido.'
+        },
+        {
+          sub: 'Canal Mayorista · Fábricas de Muebles y Marmolerías (Neuquén)',
+          outbound: '<p>Hola, equipo de <span class="wa-var">Amoblamientos del Sur</span>. Les escribimos de <strong>Masecor</strong> (fábrica en Córdoba).</p><p>Fabricamos <span class="wa-var">bachas simples, dobles, mesadas y piletones de acero inoxidable</span> para marmolerías y fábricas de muebles, con envíos semanales a <span class="wa-var">Neuquén</span>.</p><p>¿Les enviamos medidas de encastre y lista mayorista directa de fábrica?</p>',
+          reply: '"Hola, qué tal. Sí, pásennos catálogo de bachas bajo mesada y piletones con envío a Neuquén."',
+          handover: 'Pase directo a su vendedor: Su asesor toma el chat para enviar fichas y precios por volumen.'
+        },
+        {
+          sub: 'Trabajos Especiales · Gastronomía y Hotelería (Mendoza)',
+          outbound: '<p>Buen día, equipo de <span class="wa-var">Equipamientos Gastronómicos Cuyo</span>. Les escribimos desde la división de proyectos a medida de <strong>Masecor</strong>.</p><p>Fabricamos sobre plano <span class="wa-var">mesadas industriales, bachas profundas y equipamiento especial de acero inoxidable</span> para gastronomía y hotelería en <span class="wa-var">Mendoza</span>.</p><p>¿Con quién podemos tomar contacto para cotizar sus próximos proyectos?</p>',
+          reply: '"Buen día. Justo necesitamos cotizar 4 mesadas especiales con bacha profunda para un hotel. ¿Les paso el plano?"',
+          handover: 'Pase directo a su vendedor: Recibe el plano en este mismo chat para presupuestar a medida.'
+        },
+        {
+          sub: 'Trabajos Especiales · Salud, Laboratorios y Obras (Salta)',
+          outbound: '<p>Estimados <span class="wa-var">Constructora & Salud Norte</span>, buen día. Les contactamos de <strong>Masecor</strong> (Córdoba).</p><p>Fabricamos a medida <span class="wa-var">mesadas y piletas especiales de acero inoxidable</span> para clínicas, laboratorios y obras civiles en <span class="wa-var">Salta</span>.</p><p>¿Están presupuestando equipamiento en acero inoxidable para próximas obras?</p>',
+          reply: '"Hola, sí. Estamos cerrando el cómputo de una clínica en Salta y necesitamos cotizar 12 mesadas especiales a medida."',
+          handover: 'Pase directo a su vendedor: Continúa en el chat para recibir el pliego y enviar cotización.'
+        }
+      ];
+
+      const rows = Array.from(document.querySelectorAll('#excel-rows tr'));
+      const tabs = Array.from(document.querySelectorAll('.sim-tab'));
+      const subLabel = document.getElementById('wa-sub-label');
+      const waBody = document.getElementById('wa-preview-body');
+
+      function renderConversation(idx) {
+        const item = conversations[idx];
+        if (!item) return;
+        rows.forEach((r) => r.classList.remove('row-active'));
+        const activeRow = rows.find((r) => Number(r.dataset.id) === idx);
+        if (activeRow) activeRow.classList.add('row-active');
+
+        subLabel.textContent = item.sub;
+        waBody.innerHTML =
+          '<div class="wa-bubble">' + item.outbound + '</div>' +
+          '<div class="wa-reply"><strong>Respuesta del cliente:</strong> ' + item.reply +
+          '<span class="wa-handover">' + item.handover + '</span></div>';
+      }
+
+      rows.forEach((row) => {
+        row.addEventListener('click', function () {
+          renderConversation(Number(row.dataset.id));
+        });
+      });
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', function () {
+          tabs.forEach((t) => t.classList.remove('active'));
+          tab.classList.add('active');
+          const filter = tab.dataset.filter;
+          let firstVisibleIdx = null;
+          rows.forEach((row) => {
+            const match = filter === 'all' || row.dataset.cat === filter;
+            row.style.display = match ? '' : 'none';
+            if (match && firstVisibleIdx === null) {
+              firstVisibleIdx = Number(row.dataset.id);
+            }
+          });
+          if (firstVisibleIdx !== null) {
+            renderConversation(firstVisibleIdx);
+          }
+        });
+      });
+    })();
+  </script>
+
+</body>
+
+</html>
