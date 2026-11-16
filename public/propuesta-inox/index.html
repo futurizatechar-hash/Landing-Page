@@ -115,6 +115,8 @@
       padding: 1px 6px;
       border-radius: 5px;
       color: var(--inox-dark);
+      white-space: nowrap;
+      display: inline-block;
     }
 
     /* BARRA SUPERIOR EJECUTIVA (REGLA 3: SOLO LOGOS A LA IZQUIERDA, DERECHA 100% VACÍA) */
@@ -850,6 +852,12 @@
       color: var(--inox-steel);
     }
 
+    .price-breakdown th:first-child,
+    .price-breakdown td:first-child {
+      white-space: nowrap;
+      width: 110px;
+    }
+
     .price-breakdown tr.total-row {
       background: #F0FDF4;
       font-weight: 700;
@@ -1048,10 +1056,72 @@
         text-align: left;
       }
 
-      .price-breakdown th,
-      .price-breakdown td {
-        padding: 12px 14px;
-        font-size: 14.5px;
+      .price-breakdown thead {
+        display: none;
+      }
+
+      .price-breakdown,
+      .price-breakdown tbody {
+        display: block;
+        width: 100%;
+      }
+
+      .price-breakdown tr.module-row {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+          "badge price"
+          "desc desc";
+        row-gap: 10px;
+        column-gap: 12px;
+        align-items: center;
+        padding: 16px 14px;
+        border-bottom: 1px solid var(--inox-border-light);
+      }
+
+      .price-breakdown tr.module-row td {
+        display: block;
+        padding: 0;
+        border: none;
+      }
+
+      .price-breakdown tr.module-row td:nth-child(1) {
+        grid-area: badge;
+      }
+
+      .price-breakdown tr.module-row td:nth-child(2) {
+        grid-area: desc;
+        font-size: 14px;
+        line-height: 1.48;
+      }
+
+      .price-breakdown tr.module-row td:nth-child(3) {
+        grid-area: price;
+        text-align: right;
+        font-family: var(--font-mono);
+        font-size: 16px;
+        color: var(--inox-dark);
+      }
+
+      .price-breakdown tr.subtotal-row,
+      .price-breakdown tr.total-row {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 16px 14px;
+      }
+
+      .price-breakdown tr.subtotal-row td,
+      .price-breakdown tr.total-row td {
+        display: block;
+        width: 100%;
+        padding: 0;
+        border: none;
+      }
+
+      .price-breakdown tr.subtotal-row td:last-child,
+      .price-breakdown tr.total-row td:last-child {
+        text-align: right;
       }
 
       .footer-inner {
@@ -1356,7 +1426,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr class="module-row">
                   <td><strong><code>M-09</code></strong></td>
                   <td>
                     <strong>Analítica GA4 + GTM y Píxel Meta CAPI por Servidor</strong><br>
@@ -1364,7 +1434,7 @@
                   </td>
                   <td style="text-align:right;white-space:nowrap;"><strong>USD 450</strong></td>
                 </tr>
-                <tr>
+                <tr class="module-row">
                   <td><strong><code>M-10</code></strong></td>
                   <td>
                     <strong>Normalización de Fichas en Tiendanube y Google Orgánico</strong><br>
@@ -1372,7 +1442,7 @@
                   </td>
                   <td style="text-align:right;white-space:nowrap;"><strong>USD 350</strong></td>
                 </tr>
-                <tr>
+                <tr class="module-row">
                   <td><strong><code>M-05</code></strong></td>
                   <td>
                     <strong>Google Shopping + Catálogo en Meta Ads y Recupero de Carritos (DPA)</strong><br>
@@ -1380,7 +1450,7 @@
                   </td>
                   <td style="text-align:right;white-space:nowrap;"><strong>USD 450</strong></td>
                 </tr>
-                <tr style="background:#F8FAFC;color:#475569;font-size:14.5px;">
+                <tr class="subtotal-row" style="background:#F8FAFC;color:#475569;font-size:14.5px;">
                   <td colspan="2">
                     <strong>Subtotal contratando por separado</strong><br>
                     <span style="color:#0D9488;font-weight:700;">Bonificación Paquete Completo Integrado (-16% · Ahorro USD 200)</span>
