@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>LION LASH METHOD · Curso Inicial de Pestañas Desde Cero ($250.000) · Azul Bravo</title>
+  <title>LION LASH METHOD · Curso Inicial Desde Cero (Desde $78.000 / clase) · Azul Bravo</title>
   <meta name="description"
-    content="Curso presencial nivel iniciante de extensiones de pestañas por Azul Bravo en Córdoba. 3 clases presenciales, 8 módulos completos, Kit Inicial Completo + Manual Digital incluidos. Valor $250.000." />
+    content="Curso presencial nivel iniciante de extensiones de pestañas por Azul Bravo en Córdoba. 3 clases presenciales (8 módulos + Manual Digital + Kit Inicial Completo). Empezá desde $78.000 por clase o 1 pago bonificado de $219.000." />
   <meta name="theme-color" content="#070708" />
 
   <!-- Open Graph / WhatsApp & Instagram Share Preview -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_AR" />
   <meta property="og:site_name" content="Lion Lash · Azul Bravo" />
-  <meta property="og:title" content="LION LASH METHOD · Curso Inicial Desde Cero ($250.000)" />
+  <meta property="og:title" content="LION LASH METHOD · Curso Inicial Desde Cero (Desde $78.000 / clase)" />
   <meta property="og:description"
-    content="8 módulos completos, 3 clases presenciales, Kit Inicial Completo + Manual Digital y módulo de Emprendimiento y Ventas. Reservá por WhatsApp." />
+    content="8 módulos completos en 3 clases presenciales, Manual Digital + Kit Inicial Completo. Aboná por clase ($78.000), en 2 pagos ($229.000) o 1 pago bonificado ($219.000)." />
   <meta property="og:url" content="https://futurizatech.com/lion-lash/lion-lash-method/" />
   <meta property="og:image" content="https://futurizatech.com/lion-lash/og-share-banner.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -532,6 +532,97 @@
       margin-bottom: 14px;
     }
 
+    /* Hoja de Ruta por Clases (3 Encuentros Presenciales) */
+    .classes-roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin: 22px 0 36px;
+      align-items: stretch;
+    }
+
+    .class-phase-card {
+      background: linear-gradient(155deg, rgba(212, 175, 55, 0.14), rgba(14, 13, 11, 0.92));
+      border: 1px solid rgba(212, 175, 55, 0.32);
+      border-radius: 20px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .class-phase-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+    }
+
+    .class-phase-price {
+      font-family: var(--font-serif);
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--gold-100);
+      line-height: 1.1;
+    }
+
+    /* Grilla de 3 Modalidades de Pago */
+    .pricing-plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+      align-items: stretch;
+    }
+
+    .pricing-plan-card {
+      background: rgba(15, 14, 12, 0.92);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      border-radius: 22px;
+      padding: 26px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .pricing-plan-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold-300);
+    }
+
+    .pricing-plan-card.plan-featured {
+      background: linear-gradient(155deg, rgba(212, 175, 55, 0.2), rgba(15, 14, 12, 0.95));
+      border-color: var(--border-gold-bright);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.75), 0 0 28px rgba(212, 175, 55, 0.14);
+    }
+
+    .plan-save-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      background: rgba(212, 175, 55, 0.16);
+      border: 1px solid rgba(212, 175, 55, 0.42);
+      color: var(--gold-200);
+      align-self: flex-start;
+    }
+
+    .pricing-plan-card.plan-featured .plan-save-badge {
+      background: linear-gradient(135deg, #FFF2B2, #D4AF37);
+      color: #090806;
+      border-color: transparent;
+    }
+
     /* Acordeón FAQ */
     .faq-item {
       border: 1px solid var(--border-gold);
@@ -705,7 +796,9 @@
       .mobile-menu-toggle {
         display: inline-flex;
       }
-      .modules-grid {
+      .modules-grid,
+      .classes-roadmap-grid,
+      .pricing-plans-grid {
         grid-template-columns: 1fr;
       }
       .includes-strip {
@@ -900,13 +993,13 @@
       <nav class="header-nav" aria-label="Navegación Curso Inicial">
         <a href="../index.html" data-home="true">← Inicio</a>
         <a href="#incluye">Qué Incluye</a>
-        <a href="#temario-8-modulos">Los 8 Módulos</a>
+        <a href="#temario-8-modulos">Clases y 8 Módulos</a>
+        <a href="#planes-pago-inicial">Planes de Pago</a>
         <a href="#faq-inicial">Preguntas</a>
-        <a href="../next-level/index.html" data-subpage="next-level">Ver más sobre Next Level</a>
       </nav>
 
       <div class="header-actions">
-        <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Vi%20en%20la%20web%20el%20curso%20inicial%20LION%20LASH%20METHOD%20(%24250.000)%20con%20los%208%20m%C3%B3dulos%20y%20kit%20completo.%20Quiero%20consultar%20pr%C3%B3ximas%20fechas%20y%20c%C3%B3mo%20inscribirme."
+        <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Vi%20en%20la%20web%20el%20curso%20inicial%20LION%20LASH%20METHOD%20(desde%20%2478.000%20por%20clase%20%2F%202%20pagos%20por%20%24229.000%20%2F%201%20pago%20de%20%24219.000)%20y%20quiero%20consultar%20pr%C3%B3ximas%20fechas."
           target="_blank" rel="noopener noreferrer" class="btn-gold btn-header-cta">
           <span>WhatsApp <span class="header-cta-desktop-text">· Reservar</span></span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
@@ -927,13 +1020,14 @@
   <nav class="mobile-nav-drawer" id="mobile-nav-drawer" aria-label="Menú Móvil">
     <a href="../index.html" data-home="true" class="js-mobile-link">← Volver al Inicio General</a>
     <a href="#incluye" class="js-mobile-link">✦ Qué Incluye el Curso Inicial</a>
-    <a href="#temario-8-modulos" class="js-mobile-link">✦ Programa de los 8 Módulos</a>
+    <a href="#temario-8-modulos" class="js-mobile-link">✦ Las 3 Clases y los 8 Módulos</a>
+    <a href="#planes-pago-inicial" class="js-mobile-link">✦ Las 3 Formas de Pago (Desde $78.000)</a>
     <a href="#faq-inicial" class="js-mobile-link">✦ Dudas sobre Nivel Inicial</a>
     <a href="../next-level/index.html" data-subpage="next-level" class="js-mobile-link">✦ Ver más sobre Curso Next Level (1 a 1) →</a>
   </nav>
 
   <main>
-    <!-- 3. SECCIÓN PRINCIPAL DE LION LASH METHOD ($250.000) -->
+    <!-- 3. SECCIÓN PRINCIPAL DE LION LASH METHOD (DESDE $78.000 / CLASE) -->
     <section class="course-hero">
       <div class="container">
         <a href="../index.html" data-home="true" class="back-pill hero-anim">
@@ -945,22 +1039,25 @@
 
         <div class="luxury-card hero-anim" style="border-color: rgba(212, 175, 55, 0.38);">
           <div class="course-header-row">
-            <div style="max-width: 660px;">
+            <div style="max-width: 650px;">
               <div class="section-tag">CURSO 01 · NIVEL INICIANTE DESDE CERO · PRESENTA AZUL BRAVO</div>
               <h1 class="font-serif-luxury" style="font-size: clamp(2.5rem, 4.8vw, 4.1rem); font-weight: 700; line-height: 1.04;">
                 LION LASH <span class="gold-gradient-text">METHOD</span>
               </h1>
               <p style="color: var(--text-champagne); font-size: 1.04rem; line-height: 1.68; margin-top: 14px;">
-                <strong style="color: var(--text-ivory);">8 módulos. Un método completo.</strong> Diseñado para quienes comienzan desde cero y no conocen nada sobre el mundo de las pestañas. Aprenderás la técnica pelo a pelo cuidando siempre la salud de la pestaña natural y <strong style="color: var(--text-ivory);">cómo venderte en el rubro</strong> para lanzar tu propio emprendimiento.
+                <strong style="color: var(--text-ivory);">3 clases presenciales · 8 módulos. Un método completo.</strong> Diseñado para quienes comienzan desde cero y no conocen nada sobre el mundo de las pestañas. Aprenderás la técnica pelo a pelo cuidando siempre la salud de la pestaña natural y <strong style="color: var(--text-ivory);">cómo venderte en el rubro</strong> para lanzar tu propio emprendimiento.
               </p>
             </div>
 
             <div class="course-price-box">
-              <div class="font-mono-tech" style="font-size: 0.74rem; color: var(--gold-300); letter-spacing: 0.12em;">CAPACITACIÓN PRESENCIAL · 3 CLASES</div>
-              <div class="font-serif-luxury gold-gradient-text" style="font-size: clamp(2.4rem, 3.8vw, 3.35rem); font-weight: 700; line-height: 1.1; margin-top: 4px;">
-                VALOR $250.000
+              <div class="font-mono-tech" style="font-size: 0.74rem; color: var(--gold-300); letter-spacing: 0.12em;">ACCESO FLEXIBLE POR CLASE O CON DESCUENTO</div>
+              <div class="font-serif-luxury gold-gradient-text" style="font-size: clamp(2.2rem, 3.5vw, 3.1rem); font-weight: 700; line-height: 1.1; margin-top: 4px;">
+                DESDE $78.000 / CLASE
               </div>
-              <div style="font-size: 0.84rem; color: var(--text-muted); margin-top: 4px;">Incluye Kit Inicial Completo + Manual Digital</div>
+              <div style="font-size: 0.84rem; color: var(--text-champagne); margin-top: 6px; line-height: 1.45;">
+                Por Clase: <strong style="color:var(--text-ivory);">$249.000</strong> · En 2 Pagos: <strong style="color:var(--gold-200);">$229.000</strong><br />
+                1 Pago Único Bonificado: <strong style="color:var(--gold-100);">$219.000 (Ahorrás $30.000)</strong>
+              </div>
             </div>
           </div>
 
@@ -968,34 +1065,85 @@
           <div id="incluye" class="includes-strip">
             <div class="include-item">
               <div class="font-mono-tech" style="color: var(--gold-300); font-size: 0.76rem; margin-bottom: 6px;">INCLUYE / 01</div>
-              <div style="font-weight: 700; font-size: 1.04rem; margin-bottom: 6px; color: var(--text-ivory);">Kit inicial completo</div>
-              <div style="font-size: 0.85rem; color: var(--text-champagne); line-height: 1.5;">Todos los insumos y herramientas seleccionadas para tus primeras prácticas y clientas.</div>
+              <div style="font-weight: 700; font-size: 1.04rem; margin-bottom: 6px; color: var(--text-ivory);">Insumos en sala + Kit inicial completo</div>
+              <div style="font-size: 0.85rem; color: var(--text-champagne); line-height: 1.5;">En Clases 1 y 2 practicás con materiales en sala de Azul y en la Clase 3 te llevás tu Kit Inicial Completo nuevo.</div>
             </div>
             <div class="include-item">
               <div class="font-mono-tech" style="color: var(--gold-300); font-size: 0.76rem; margin-bottom: 6px;">INCLUYE / 02</div>
-              <div style="font-weight: 700; font-size: 1.04rem; margin-bottom: 6px; color: var(--text-ivory);">Manual digital</div>
-              <div style="font-size: 0.85rem; color: var(--text-champagne); line-height: 1.5;">Material teórico paso a paso de consulta permanente en tu celular o PC.</div>
+              <div style="font-weight: 700; font-size: 1.04rem; margin-bottom: 6px; color: var(--text-ivory);">Manual digital desde el día 1</div>
+              <div style="font-size: 0.85rem; color: var(--text-champagne); line-height: 1.5;">Material teórico paso a paso de consulta permanente en tu celular o PC desde tu primera clase.</div>
             </div>
             <div class="include-item">
               <div class="font-mono-tech" style="color: var(--gold-300); font-size: 0.76rem; margin-bottom: 6px;">INCLUYE / 03</div>
-              <div style="font-weight: 700; font-size: 1.04rem; margin-bottom: 6px; color: var(--text-ivory);">Práctica guiada</div>
-              <div style="font-size: 0.85rem; color: var(--text-champagne); line-height: 1.5;">3 clases presenciales construyendo destreza real paso a paso junto a Azul Bravo.</div>
+              <div style="font-weight: 700; font-size: 1.04rem; margin-bottom: 6px; color: var(--text-ivory);">Práctica guiada en 3 clases</div>
+              <div style="font-size: 0.85rem; color: var(--text-champagne); line-height: 1.5;">3 encuentros presenciales construyendo destreza real paso a paso junto a Azul Bravo.</div>
             </div>
             <div class="include-item">
               <div class="font-mono-tech" style="color: var(--gold-300); font-size: 0.76rem; margin-bottom: 6px;">INCLUYE / 04</div>
               <div style="font-weight: 700; font-size: 1.04rem; margin-bottom: 6px; color: var(--text-ivory);">Correcciones personalizadas</div>
-              <div style="font-size: 0.85rem; color: var(--text-champagne); line-height: 1.5;">Seguimiento cercano de postura, agarre y aislamiento adaptado a cada alumna.</div>
+              <div style="font-size: 0.85rem; color: var(--text-champagne); line-height: 1.5;">Seguimiento cercano de postura, agarre y aislamiento adaptado al ritmo de cada alumna.</div>
             </div>
           </div>
 
-          <!-- Recorrido Interactivo por los 8 Módulos Oficiales -->
+          <!-- Recorrido Interactivo por las 3 Clases y los 8 Módulos Oficiales -->
           <div id="temario-8-modulos">
             <h2 class="font-serif-luxury" style="font-size: clamp(1.85rem, 3vw, 2.45rem); font-weight: 600; margin-bottom: 6px;">
-              Recorrido Académico · <span class="gold-gradient-text">Los 8 Módulos Oficiales</span>
+              Estructura por Encuentros · <span class="gold-gradient-text">Las 3 Clases y los 8 Módulos</span>
             </h2>
             <p style="color: var(--text-muted); font-size: 0.94rem;">
-              Cada módulo combina rigor técnico, preservación de la salud natural y visión comercial para vivir de tu profesión.
+              El programa divide los 8 módulos en 3 clases progresivas para que puedas avanzar paso a paso abonando por clase o con descuento por paquete.
             </p>
+
+            <!-- Mapa de las 3 Clases Presenciales -->
+            <div class="classes-roadmap-grid">
+              <div class="class-phase-card">
+                <div>
+                  <div class="class-phase-top">
+                    <span class="module-num" style="margin-bottom: 0;">CLASE 01 · FASE FUNDACIONAL</span>
+                    <span class="class-phase-price">$78.000</span>
+                  </div>
+                  <div style="font-weight: 700; font-size: 1.05rem; color: var(--text-ivory); margin: 10px 0 6px;">Módulos 01, 02 y 03</div>
+                  <p style="font-size: 0.86rem; color: var(--text-champagne); line-height: 1.55;">
+                    Bases profesionales, anatomía, ciclo de vida natural, patologías y química de materiales/adhesivos.
+                  </p>
+                </div>
+                <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--gold-200); padding-top: 8px; border-top: 1px dashed rgba(212,175,55,0.22);">
+                  ✦ Incluye Manual Digital + Insumos en sala
+                </div>
+              </div>
+
+              <div class="class-phase-card">
+                <div>
+                  <div class="class-phase-top">
+                    <span class="module-num" style="margin-bottom: 0;">CLASE 02 · FASE TÉCNICA</span>
+                    <span class="class-phase-price">$78.000</span>
+                  </div>
+                  <div style="font-weight: 700; font-size: 1.05rem; color: var(--text-ivory); margin: 10px 0 6px;">Módulos 04 y 05</div>
+                  <p style="font-size: 0.86rem; color: var(--text-champagne); line-height: 1.55;">
+                    Arquitectura de Mapping personalizado por tipo de ojo, técnica Pelo a Pelo, postura, agarre y aislamiento 1 a 1.
+                  </p>
+                </div>
+                <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--gold-200); padding-top: 8px; border-top: 1px dashed rgba(212,175,55,0.22);">
+                  ✦ Práctica técnica con insumos en sala
+                </div>
+              </div>
+
+              <div class="class-phase-card" style="border-color: rgba(252, 232, 166, 0.55);">
+                <div>
+                  <div class="class-phase-top">
+                    <span class="module-num" style="margin-bottom: 0;">CLASE 03 · GRADUACIÓN & KIT</span>
+                    <span class="class-phase-price">$93.000</span>
+                  </div>
+                  <div style="font-weight: 700; font-size: 1.05rem; color: var(--text-ivory); margin: 10px 0 6px;">Módulos 06, 07 y 08</div>
+                  <p style="font-size: 0.86rem; color: var(--text-champagne); line-height: 1.55;">
+                    Práctica guiada supervisada, mantenimiento y retiro seguro + Módulo de Emprendimiento, Marketing y Ventas.
+                  </p>
+                </div>
+                <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--gold-100); font-weight: 600; padding-top: 8px; border-top: 1px dashed rgba(212,175,55,0.35);">
+                  ✦ Entrega de tu Kit Inicial Completo nuevo
+                </div>
+              </div>
+            </div>
 
             <div class="modules-timeline" id="method-timeline">
               <div class="modules-spine-track">
@@ -1005,7 +1153,7 @@
               <div class="modules-grid">
                 <!-- Módulo 01 -->
                 <article class="module-card js-module-reveal">
-                  <span class="module-num">MÓDULO 01</span>
+                  <span class="module-num">MÓDULO 01 · CLASE 01</span>
                   <h3 class="font-serif-luxury" style="font-size: 1.65rem; font-weight: 700; color: var(--gold-100); line-height: 1.15;">Bases Profesionales</h3>
                   <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 6px;">Conceptos fundamentales para iniciarte como profesional.</p>
                   <ul class="module-list">
@@ -1017,7 +1165,7 @@
 
                 <!-- Módulo 02 -->
                 <article class="module-card js-module-reveal">
-                  <span class="module-num">MÓDULO 02</span>
+                  <span class="module-num">MÓDULO 02 · CLASE 01</span>
                   <h3 class="font-serif-luxury" style="font-size: 1.65rem; font-weight: 700; color: var(--gold-100); line-height: 1.15;">Anatomía y Salud</h3>
                   <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 6px;">Comprender la pestaña natural es la base de una práctica segura.</p>
                   <ul class="module-list">
@@ -1030,7 +1178,7 @@
 
                 <!-- Módulo 03 -->
                 <article class="module-card js-module-reveal">
-                  <span class="module-num">MÓDULO 03</span>
+                  <span class="module-num">MÓDULO 03 · CLASE 01</span>
                   <h3 class="font-serif-luxury" style="font-size: 1.65rem; font-weight: 700; color: var(--gold-100); line-height: 1.15;">Materiales y Herramientas</h3>
                   <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 6px;">Elegí y cuidá tus insumos con criterio profesional.</p>
                   <ul class="module-list">
@@ -1043,7 +1191,7 @@
 
                 <!-- Módulo 04 -->
                 <article class="module-card js-module-reveal">
-                  <span class="module-num">MÓDULO 04</span>
+                  <span class="module-num">MÓDULO 04 · CLASE 02</span>
                   <h3 class="font-serif-luxury" style="font-size: 1.65rem; font-weight: 700; color: var(--gold-100); line-height: 1.15;">Mapping y Diseño</h3>
                   <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 6px;">Diseños personalizados que realzan cada mirada.</p>
                   <ul class="module-list">
@@ -1056,7 +1204,7 @@
 
                 <!-- Módulo 05 -->
                 <article class="module-card js-module-reveal">
-                  <span class="module-num">MÓDULO 05</span>
+                  <span class="module-num">MÓDULO 05 · CLASE 02</span>
                   <h3 class="font-serif-luxury" style="font-size: 1.65rem; font-weight: 700; color: var(--gold-100); line-height: 1.15;">Técnica Pelo a Pelo</h3>
                   <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 6px;">Precisión, control y naturalidad en cada aplicación.</p>
                   <ul class="module-list">
@@ -1069,7 +1217,7 @@
 
                 <!-- Módulo 06 -->
                 <article class="module-card js-module-reveal">
-                  <span class="module-num">MÓDULO 06</span>
+                  <span class="module-num">MÓDULO 06 · CLASE 03</span>
                   <h3 class="font-serif-luxury" style="font-size: 1.65rem; font-weight: 700; color: var(--gold-100); line-height: 1.15;">Práctica</h3>
                   <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 6px;">La destreza se construye con guía, repetición y confianza.</p>
                   <ul class="module-list">
@@ -1082,7 +1230,7 @@
 
                 <!-- Módulo 07 -->
                 <article class="module-card js-module-reveal">
-                  <span class="module-num">MÓDULO 07</span>
+                  <span class="module-num">MÓDULO 07 · CLASE 03</span>
                   <h3 class="font-serif-luxury" style="font-size: 1.65rem; font-weight: 700; color: var(--gold-100); line-height: 1.15;">Mantenimiento y Retiro</h3>
                   <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 6px;">Cuidar el resultado también es parte del servicio.</p>
                   <ul class="module-list">
@@ -1095,7 +1243,7 @@
 
                 <!-- Módulo 08 -->
                 <article class="module-card js-module-reveal" style="border-color: rgba(252, 232, 166, 0.45);">
-                  <span class="module-num">MÓDULO 08 · DIFERENCIAL COMERCIAL</span>
+                  <span class="module-num">MÓDULO 08 · CLASE 03 (+ KIT INICIAL)</span>
                   <h3 class="font-serif-luxury" style="font-size: 1.65rem; font-weight: 700; color: var(--gold-100); line-height: 1.15;">Emprendimiento</h3>
                   <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 6px;">Convertí tu técnica en una marca con proyección y aprendé a venderte.</p>
                   <ul class="module-list">
@@ -1109,15 +1257,91 @@
             </div>
           </div>
 
+          <!-- 3 Modalidades de Pago (Selector Directo a WhatsApp) -->
+          <div id="planes-pago-inicial" style="margin-top: 48px; padding-top: 36px; border-top: 1px solid rgba(212, 175, 55, 0.22);">
+            <div class="section-tag">3 MODALIDADES DE INSCRIPCIÓN</div>
+            <h2 class="font-serif-luxury" style="font-size: clamp(1.85rem, 3vw, 2.45rem); font-weight: 600; margin-bottom: 6px;">
+              Elegí cómo abonar tu curso <span class="gold-gradient-text">Lion Lash Method</span>
+            </h2>
+            <p style="color: var(--text-champagne); font-size: 0.94rem;">
+              Podés empezar hoy mismo abonando clase a clase a medida que asistís, o aprovechar los descuentos por pago en 2 veces o pago único bonificado.
+            </p>
+
+            <div class="pricing-plans-grid">
+              <!-- Modalidad 1: Por Clase -->
+              <div class="pricing-plan-card">
+                <div>
+                  <span class="plan-save-badge">OPCIÓN 1 · MÁXIMA FLEXIBILIDAD</span>
+                  <h3 class="font-serif-luxury" style="font-size: 1.65rem; font-weight: 700; color: var(--text-ivory); margin-top: 12px;">Pago Clase a Clase</h3>
+                  <div class="font-serif-luxury gold-gradient-text" style="font-size: 2.35rem; font-weight: 700; line-height: 1.1; margin: 8px 0 4px;">
+                    $78.000 <span style="font-size: 1rem; font-family: var(--font-sans); font-weight: 500; color: var(--text-muted);">/ inicio</span>
+                  </div>
+                  <div style="font-size: 0.83rem; color: var(--text-muted); margin-bottom: 14px;">Total sumando las 3 clases: <strong style="color:var(--text-ivory);">$249.000</strong></div>
+                  <ul class="module-list">
+                    <li><span class="bullet-num">01</span><span class="bullet-text"><strong>Clase 1: $78.000</strong> (Mód. 1 a 3 + Manual Digital + insumos en sala)</span></li>
+                    <li><span class="bullet-num">02</span><span class="bullet-text"><strong>Clase 2: $78.000</strong> (Mód. 4 y 5 + insumos en sala)</span></li>
+                    <li><span class="bullet-num">03</span><span class="bullet-text"><strong>Clase 3: $93.000</strong> (Mód. 6 a 8 + <strong>Entrega de Kit Inicial Completo</strong>)</span></li>
+                  </ul>
+                </div>
+                <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Quiero%20inscribirme%20a%20LION%20LASH%20METHOD%20con%20la%20Opci%C3%B3n%201%20(Pago%20Clase%20a%20Clase%3A%20empezando%20por%20la%20Clase%201%20de%20%2478.000).%20%C2%BFQu%C3%A9%20fechas%20ten%C3%A9s%20disponibles%3F"
+                  target="_blank" rel="noopener noreferrer" class="btn-glass" style="width: 100%;">
+                  <span>Empezar por Clase 1 ($78.000) →</span>
+                </a>
+              </div>
+
+              <!-- Modalidad 2: En 2 Pagos -->
+              <div class="pricing-plan-card">
+                <div>
+                  <span class="plan-save-badge">OPCIÓN 2 · AHORRÁS $20.000</span>
+                  <h3 class="font-serif-luxury" style="font-size: 1.65rem; font-weight: 700; color: var(--text-ivory); margin-top: 12px;">Plan en 2 Pagos</h3>
+                  <div class="font-serif-luxury gold-gradient-text" style="font-size: 2.35rem; font-weight: 700; line-height: 1.1; margin: 8px 0 4px;">
+                    $229.000 <span style="font-size: 1rem; font-family: var(--font-sans); font-weight: 500; color: var(--text-muted);">total</span>
+                  </div>
+                  <div style="font-size: 0.83rem; color: var(--gold-200); margin-bottom: 14px;">2 pagos de <strong>$114.500</strong> (vs. $249.000 de lista)</div>
+                  <ul class="module-list">
+                    <li><span class="bullet-num">01</span><span class="bullet-text"><strong>1° Pago en la Clase 1:</strong> $114.500</span></li>
+                    <li><span class="bullet-num">02</span><span class="bullet-text"><strong>2° Pago en la Clase 2:</strong> $114.500</span></li>
+                    <li><span class="bullet-num">✦</span><span class="bullet-text">Incluye las 3 clases, Manual Digital, insumos en sala y <strong>Kit Inicial Completo en Clase 3</strong>.</span></li>
+                  </ul>
+                </div>
+                <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Quiero%20inscribirme%20a%20LION%20LASH%20METHOD%20con%20la%20Opci%C3%B3n%202%20(Plan%20en%202%20Pagos%20de%20%24114.500%20%C2%B7%20Total%20%24229.000%20ahorrando%20%2420.000).%20%C2%BFQu%C3%A9%20fechas%20ten%C3%A9s%20disponibles%3F"
+                  target="_blank" rel="noopener noreferrer" class="btn-glass" style="width: 100%;">
+                  <span>Elegir Plan en 2 Pagos ($229.000) →</span>
+                </a>
+              </div>
+
+              <!-- Modalidad 3: 1 Pago Único Bonificado -->
+              <div class="pricing-plan-card plan-featured">
+                <div>
+                  <span class="plan-save-badge">OPCIÓN 3 · AHORRÁS $30.000</span>
+                  <h3 class="font-serif-luxury" style="font-size: 1.65rem; font-weight: 700; color: var(--gold-100); margin-top: 12px;">1 Pago Único Bonificado</h3>
+                  <div class="font-serif-luxury gold-gradient-text" style="font-size: 2.35rem; font-weight: 700; line-height: 1.1; margin: 8px 0 4px;">
+                    $219.000 <span style="font-size: 1rem; font-family: var(--font-sans); font-weight: 500; color: var(--gold-200);">final</span>
+                  </div>
+                  <div style="font-size: 0.83rem; color: var(--gold-200); margin-bottom: 14px;">El mayor descuento disponible (antes <span style="text-decoration:line-through;color:var(--text-muted);">$249.000</span>)</div>
+                  <ul class="module-list">
+                    <li><span class="bullet-num">✦</span><span class="bullet-text"><strong>1 solo pago total de $219.000</strong> al inscribirte.</span></li>
+                    <li><span class="bullet-num">✦</span><span class="bullet-text"><strong>Ahorro directo de $30.000</strong> sobre el valor por clases.</span></li>
+                    <li><span class="bullet-num">✦</span><span class="bullet-text">Acceso completo a las 3 clases + Manual Digital + <strong>Kit Inicial Completo</strong>.</span></li>
+                  </ul>
+                </div>
+                <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Quiero%20inscribirme%20a%20LION%20LASH%20METHOD%20con%20la%20Opci%C3%B3n%203%20(1%20Pago%20%C3%9Anico%20Bonificado%20de%20%24219.000%20ahorrando%20%2430.000).%20%C2%BFQu%C3%A9%20fechas%20ten%C3%A9s%20disponibles%3F"
+                  target="_blank" rel="noopener noreferrer" class="btn-gold" style="width: 100%;">
+                  <span>Aprovechar 1 Pago Único ($219.000) →</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
           <!-- Barra de Cierre Curso 1 -->
           <div class="course-footer-bar">
             <div>
               <div style="font-weight: 700; font-size: 1.08rem; color: var(--text-ivory);">¿Lista para empezar desde cero con tu Kit Inicial Completo?</div>
               <div style="color: var(--text-champagne); font-size: 0.9rem; margin-top: 4px;">Escribile directo a Azul Bravo por WhatsApp para consultar próximas fechas presenciales de Lion Lash Method.</div>
             </div>
-            <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Vi%20en%20la%20web%20el%20curso%20inicial%20LION%20LASH%20METHOD%20(%24250.000)%20con%20los%208%20m%C3%B3dulos%20y%20kit%20completo.%20Quiero%20consultar%20pr%C3%B3ximas%20fechas%20y%20c%C3%B3mo%20inscribirme."
+            <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Vi%20en%20la%20web%20el%20curso%20inicial%20LION%20LASH%20METHOD%20(desde%20%2478.000%20por%20clase%20o%20%24219.000%20en%201%20pago)%20y%20quiero%20consultar%20pr%C3%B3ximas%20fechas%20para%20inscribirme."
               target="_blank" rel="noopener noreferrer" class="btn-gold">
-              <span>Ir a WhatsApp · Consultar Fechas ($250.000)</span>
+              <span>Ir a WhatsApp · Consultar Fechas (Desde $78.000 / clase)</span>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
                 <path d="M7 17L17 7M17 7H7M17 7V17" />
               </svg>
@@ -1149,11 +1373,11 @@
 
         <div class="faq-item">
           <button type="button" class="faq-btn">
-            <span>¿Qué incluye el valor de $250.000?</span>
+            <span>¿Cuáles son las 3 formas de pago y cuándo recibo mi Kit Inicial Completo?</span>
             <span style="color: var(--gold-300); font-size: 1.3rem;">+</span>
           </button>
           <div class="faq-answer">
-            Incluye las <strong style="color:var(--text-ivory);">3 clases presenciales</strong>, el <strong style="color:var(--text-ivory);">kit inicial completo</strong> seleccionado con criterio profesional, el <strong style="color:var(--text-ivory);">manual digital</strong>, práctica guiada y correcciones personalizadas en clase.
+            Podés inscribirte con cualquiera de las 3 modalidades: <strong style="color:var(--text-ivory);">1) Pago Clase a Clase</strong> abonando a medida que asistís ($78.000 en la Clase 1, $78.000 en la Clase 2 y $93.000 en la Clase 3 · Total $249.000); <strong style="color:var(--text-ivory);">2) Plan en 2 Pagos</strong> de $114.500 en las Clases 1 y 2 (<strong style="color:var(--gold-200);">Total $229.000 · Ahorrás $20.000</strong>); o <strong style="color:var(--text-ivory);">3) 1 Pago Único Bonificado de $219.000</strong> (<strong style="color:var(--gold-200);">Ahorrás $30.000</strong>). Durante las Clases 1 y 2 practicás con todos los insumos y herramientas en sala provistos por Azul (y recibís tu Manual Digital desde el día 1), y al finalizar la <strong style="color:var(--text-ivory);">Clase 3</strong> te llevás tu <strong style="color:var(--text-ivory);">Kit Inicial Completo nuevo</strong> para empezar a atender a tus clientas.
           </div>
         </div>
 
@@ -1178,13 +1402,13 @@
           ¿Lista para dar tu primer paso con <span class="gold-gradient-text">Lion Lash Method</span>?
         </h2>
         <p style="color: var(--text-champagne); max-width: 540px; margin: 0 auto 30px; line-height: 1.65;">
-          Escribile directo a Azul Bravo por WhatsApp para consultar las próximas fechas presenciales y reservar tu lugar con kit completo.
+          Escribile directo a Azul Bravo por WhatsApp para consultar las próximas fechas presenciales y elegir tu modalidad de inscripción.
         </p>
 
         <div class="footer-cta-stack" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-bottom: 44px;">
-          <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Vi%20en%20la%20web%20el%20curso%20inicial%20LION%20LASH%20METHOD%20(%24250.000)%20y%20quiero%20consultar%20pr%C3%B3ximas%20fechas%20para%20inscribirme."
+          <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Vi%20en%20la%20web%20el%20curso%20inicial%20LION%20LASH%20METHOD%20(desde%20%2478.000%20por%20clase%20o%20%24219.000%20en%201%20pago)%20y%20quiero%20consultar%20pr%C3%B3ximas%20fechas%20para%20inscribirme."
             target="_blank" rel="noopener noreferrer" class="btn-gold">
-            <span>Ir a WhatsApp · Reservar Lion Lash Method ($250.000) ↗</span>
+            <span>Ir a WhatsApp · Reservar Lion Lash Method (Desde $78.000 / clase) ↗</span>
           </a>
           <a href="../next-level/index.html" data-subpage="next-level" class="btn-glass">
             <span>Ver más sobre Curso Next Level (1 a 1) →</span>
@@ -1205,8 +1429,8 @@
   <!-- STICKY DOCK MOBILE -->
   <div class="mobile-sticky-dock" aria-label="Accesos rápidos móviles">
     <a href="../index.html" data-home="true" class="dock-link">← Inicio</a>
-    <a href="#temario-8-modulos" class="dock-link">Ver 8 Módulos</a>
-    <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Quiero%20inscribirme%20al%20curso%20inicial%20LION%20LASH%20METHOD%20(%24250.000)."
+    <a href="#planes-pago-inicial" class="dock-link">Planes de Pago</a>
+    <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Quiero%20inscribirme%20al%20curso%20inicial%20LION%20LASH%20METHOD%20(desde%20%2478.000%20por%20clase%20o%20%24219.000%20en%201%20pago)."
       target="_blank" rel="noopener noreferrer" class="dock-link dock-wa">Ir a WhatsApp</a>
   </div>
 

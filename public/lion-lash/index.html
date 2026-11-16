@@ -15,7 +15,7 @@
   <meta property="og:site_name" content="Lion Lash · Azul Bravo" />
   <meta property="og:title" content="LION LASH · Cursos Presenciales de Pestañas por Azul Bravo" />
   <meta property="og:description"
-    content="Aprendé desde cero con Lion Lash Method ($250.000 · Kit completo + 8 módulos) o perfeccioná tu técnica 1 a 1 con Next Level ($280.000 · Pinza de regalo)." />
+    content="Aprendé desde cero con Lion Lash Method (Desde $78.000 / clase o 1 pago bonificado de $219.000 · Kit completo) o perfeccioná tu técnica 1 a 1 con Next Level (Desde $88.000 / clase o 1 pago de $249.000 · Pinza de regalo)." />
   <meta property="og:url" content="https://futurizatech.com/lion-lash/" />
   <meta property="og:image" content="https://futurizatech.com/lion-lash/og-share-banner.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -659,17 +659,62 @@
     .price-pill {
       display: inline-flex;
       align-items: center;
-      padding: 6px 18px;
+      padding: 6px 16px;
       border-radius: 999px;
       background: rgba(212, 175, 55, 0.15);
       border: 1px solid rgba(212, 175, 55, 0.45);
       color: var(--gold-100);
       font-family: var(--font-serif);
-      font-size: 1.5rem;
+      font-size: 1.32rem;
       font-weight: 700;
       line-height: 1.1;
       white-space: nowrap;
       flex-shrink: 0;
+    }
+
+    .payment-mini-strip {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .payment-mini-item {
+      padding: 10px 10px;
+      border-radius: 14px;
+      background: rgba(212, 175, 55, 0.06);
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 3px;
+    }
+
+    .payment-mini-item.featured {
+      background: linear-gradient(145deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.06));
+      border-color: rgba(252, 232, 166, 0.52);
+    }
+
+    .payment-mini-label {
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold-300);
+    }
+
+    .payment-mini-val {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-ivory);
+      line-height: 1.15;
+    }
+
+    .payment-mini-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.3;
     }
 
     .selector-card-title {
@@ -1305,7 +1350,8 @@
         border-radius: 14px;
       }
       .includes-strip,
-      .selector-card-actions {
+      .selector-card-actions,
+      .payment-mini-strip {
         grid-template-columns: 1fr;
       }
       .selector-grid {
@@ -1749,7 +1795,7 @@
             <div>
               <div class="selector-card-top">
                 <span class="section-tag" style="margin-bottom: 0;">CURSO 01 · NIVEL INICIANTE</span>
-                <span class="price-pill">$250.000</span>
+                <span class="price-pill">Desde $78.000 / clase</span>
               </div>
 
               <h3 class="selector-card-title">LION LASH METHOD</h3>
@@ -1765,7 +1811,7 @@
                 </li>
                 <li>
                   <span class="bullet-num">✦</span>
-                  <span class="bullet-text"><strong>Kit inicial completo</strong> + Manual digital incluidos.</span>
+                  <span class="bullet-text">Insumos en sala en Clases 1 y 2 + <strong>Manual digital</strong> desde el día 1 + <strong>Kit inicial completo</strong> al finalizar la Clase 3.</span>
                 </li>
                 <li>
                   <span class="bullet-num">✦</span>
@@ -1776,6 +1822,24 @@
                   <span class="bullet-text">Módulo exclusivo de <strong>Emprendimiento, Marketing y Ventas</strong>.</span>
                 </li>
               </ul>
+
+              <div class="payment-mini-strip" aria-label="Modalidades de pago Lion Lash Method">
+                <div class="payment-mini-item">
+                  <span class="payment-mini-label">1 · Por Clase</span>
+                  <span class="payment-mini-val">$78.000</span>
+                  <span class="payment-mini-sub">Clases 1 y 2 + $93.000 Clase 3 con Kit ($249.000)</span>
+                </div>
+                <div class="payment-mini-item">
+                  <span class="payment-mini-label">2 · En 2 Pagos</span>
+                  <span class="payment-mini-val">$229.000</span>
+                  <span class="payment-mini-sub">2 x $114.500 (Clases 1 y 2) · Ahorrás $20.000</span>
+                </div>
+                <div class="payment-mini-item featured">
+                  <span class="payment-mini-label">3 · 1 Pago Único</span>
+                  <span class="payment-mini-val">$219.000</span>
+                  <span class="payment-mini-sub">Bonificado total · Ahorrás $30.000</span>
+                </div>
+              </div>
             </div>
 
             <div class="selector-card-actions">
@@ -1785,7 +1849,7 @@
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </a>
-              <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Vi%20en%20la%20web%20el%20curso%20inicial%20LION%20LASH%20METHOD%20(%24250.000)%20y%20quiero%20consultar%20pr%C3%B3ximas%20fechas%20para%20empezar%20desde%20cero."
+              <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Vi%20en%20la%20web%20el%20curso%20inicial%20LION%20LASH%20METHOD%20(desde%20%2478.000%20por%20clase%20%2F%202%20pagos%20por%20%24229.000%20%2F%201%20pago%20de%20%24219.000)%20y%20quiero%20consultar%20pr%C3%B3ximas%20fechas."
                 target="_blank" rel="noopener noreferrer" class="btn-glass">
                 <span>Ir a WhatsApp · Consultar Fechas</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -1800,7 +1864,7 @@
             <div>
               <div class="selector-card-top">
                 <span class="section-tag" style="margin-bottom: 0; background: rgba(212, 175, 55, 0.2);">CURSO 02 · NIVEL AVANZADO 1 A 1</span>
-                <span class="price-pill">$280.000</span>
+                <span class="price-pill">Desde $88.000 / clase</span>
               </div>
 
               <h3 class="selector-card-title">
@@ -1814,7 +1878,7 @@
               <ul class="module-list">
                 <li>
                   <span class="bullet-num">✦</span>
-                  <span class="bullet-text"><strong>Formación 100% individual:</strong> atención dedicada exclusivamente a vos.</span>
+                  <span class="bullet-text"><strong>Formación 100% individual:</strong> atención dedicada exclusivamente a vos en 3 clases/fases.</span>
                 </li>
                 <li>
                   <span class="bullet-num">✦</span>
@@ -1826,9 +1890,27 @@
                 </li>
                 <li>
                   <span class="bullet-num">✦</span>
-                  <span class="bullet-text">Incluye <strong>Pinza profesional de regalo</strong> + Materiales descartables.</span>
+                  <span class="bullet-text">Materiales descartables en sala + <strong>Pinza profesional de regalo</strong> en la Clase 3.</span>
                 </li>
               </ul>
+
+              <div class="payment-mini-strip" aria-label="Modalidades de pago Next Level">
+                <div class="payment-mini-item">
+                  <span class="payment-mini-label">1 · Por Clase</span>
+                  <span class="payment-mini-val">$88.000</span>
+                  <span class="payment-mini-sub">Clases 1 y 2 + $103.000 Clase 3 con Pinza ($279.000)</span>
+                </div>
+                <div class="payment-mini-item">
+                  <span class="payment-mini-label">2 · En 2 Pagos</span>
+                  <span class="payment-mini-val">$259.000</span>
+                  <span class="payment-mini-sub">2 x $129.500 (Clases 1 y 2) · Ahorrás $20.000</span>
+                </div>
+                <div class="payment-mini-item featured">
+                  <span class="payment-mini-label">3 · 1 Pago Único</span>
+                  <span class="payment-mini-val">$249.000</span>
+                  <span class="payment-mini-sub">Bonificado total · Ahorrás $30.000</span>
+                </div>
+              </div>
             </div>
 
             <div class="selector-card-actions">
@@ -1838,7 +1920,7 @@
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </a>
-              <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Vi%20en%20la%20web%20el%20curso%20individual%20de%20perfeccionamiento%20NEXT%20LEVEL%20(%24280.000)%20y%20quiero%20consultar%20disponibilidad."
+              <a href="https://wa.me/5493518024072?text=%C2%A1Hola%20Azul!%20Vi%20en%20la%20web%20el%20curso%20individual%20de%20perfeccionamiento%20NEXT%20LEVEL%20(desde%20%2488.000%20por%20clase%20%2F%202%20pagos%20por%20%24259.000%20%2F%201%20pago%20de%20%24249.000)%20y%20quiero%20consultar%20disponibilidad."
                 target="_blank" rel="noopener noreferrer" class="btn-glass">
                 <span>Ir a WhatsApp · Consultar Disponibilidad</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -1988,13 +2070,13 @@
               </tr>
               <tr>
                 <td style="font-weight: 600; color: var(--gold-200);">Modalidad y Duración</td>
-                <td data-course="LION LASH METHOD · INICIAL">Presencial · <strong style="color:var(--text-ivory);">3 clases presenciales</strong> (8 módulos).</td>
-                <td data-course="NEXT LEVEL · PERFECCIONAMIENTO">Presencial · <strong style="color:var(--text-ivory);">100% Individual</strong> (atención dedicada a 1 sola alumna).</td>
+                <td data-course="LION LASH METHOD · INICIAL">Presencial · <strong style="color:var(--text-ivory);">3 clases presenciales</strong> (8 módulos progresivos).</td>
+                <td data-course="NEXT LEVEL · PERFECCIONAMIENTO">Presencial · <strong style="color:var(--text-ivory);">100% Individual</strong> (3 clases/fases dedicadas a 1 sola alumna).</td>
               </tr>
               <tr>
                 <td style="font-weight: 600; color: var(--gold-200);">Materiales Incluidos</td>
-                <td data-course="LION LASH METHOD · INICIAL"><strong style="color:var(--text-ivory);">Kit inicial completo</strong> + Manual digital + Práctica guiada.</td>
-                <td data-course="NEXT LEVEL · PERFECCIONAMIENTO"><strong style="color:var(--text-ivory);">Pinza de regalo</strong> + Materiales descartables incluidos.</td>
+                <td data-course="LION LASH METHOD · INICIAL">Insumos en sala en Clases 1 y 2 + <strong style="color:var(--text-ivory);">Manual digital</strong> desde el día 1 + <strong style="color:var(--text-ivory);">Kit inicial completo</strong> al finalizar la Clase 3.</td>
+                <td data-course="NEXT LEVEL · PERFECCIONAMIENTO">Materiales descartables en sala + <strong style="color:var(--text-ivory);">Pinza profesional de regalo</strong> en la Clase 3.</td>
               </tr>
               <tr>
                 <td style="font-weight: 600; color: var(--gold-200);">Foco Técnico y Comercial</td>
@@ -2002,13 +2084,23 @@
                 <td data-course="NEXT LEVEL · PERFECCIONAMIENTO">Trabajo en capas, uso correcto del adhesivo, styling/mapping a medida y <strong style="color:var(--text-ivory);">corrección de dirección</strong>.</td>
               </tr>
               <tr>
-                <td style="font-weight: 600; color: var(--gold-200);">Inversión e Información</td>
+                <td style="font-weight: 600; color: var(--gold-200);">Inversión y Planes de Pago</td>
                 <td data-course="LION LASH METHOD · INICIAL">
-                  <div style="font-family: var(--font-serif); font-size: 1.55rem; font-weight: 700; color: var(--gold-100); margin-bottom: 10px;">$250.000</div>
+                  <div style="font-family: var(--font-serif); font-size: 1.55rem; font-weight: 700; color: var(--gold-100); margin-bottom: 6px;">Desde $78.000 / clase</div>
+                  <div style="font-size: 0.84rem; color: var(--text-champagne); line-height: 1.55; margin-bottom: 12px;">
+                    • <strong>Por Clase:</strong> $78.000 (Clase 1) + $78.000 (Clase 2) + $93.000 (Clase 3 con Kit) = <strong>$249.000</strong><br />
+                    • <strong>En 2 Pagos:</strong> 2 x $114.500 (Clases 1 y 2) = <strong>$229.000</strong> <span style="color:var(--gold-300);">(Ahorrás $20.000)</span><br />
+                    • <strong>1 Pago Único:</strong> <strong style="color:var(--gold-200);">$219.000</strong> <span style="color:var(--gold-300);">(Ahorrás $30.000)</span>
+                  </div>
                   <a href="./lion-lash-method/index.html" data-subpage="lion-lash-method" class="btn-gold" style="padding: 10px 18px; font-size: 0.82rem;">Ver más sobre Lion Lash Method →</a>
                 </td>
                 <td data-course="NEXT LEVEL · PERFECCIONAMIENTO">
-                  <div style="font-family: var(--font-serif); font-size: 1.55rem; font-weight: 700; color: var(--gold-100); margin-bottom: 10px;">$280.000</div>
+                  <div style="font-family: var(--font-serif); font-size: 1.55rem; font-weight: 700; color: var(--gold-100); margin-bottom: 6px;">Desde $88.000 / clase</div>
+                  <div style="font-size: 0.84rem; color: var(--text-champagne); line-height: 1.55; margin-bottom: 12px;">
+                    • <strong>Por Clase:</strong> $88.000 (Clase 1) + $88.000 (Clase 2) + $103.000 (Clase 3 con Pinza) = <strong>$279.000</strong><br />
+                    • <strong>En 2 Pagos:</strong> 2 x $129.500 (Clases 1 y 2) = <strong>$259.000</strong> <span style="color:var(--gold-300);">(Ahorrás $20.000)</span><br />
+                    • <strong>1 Pago Único:</strong> <strong style="color:var(--gold-200);">$249.000</strong> <span style="color:var(--gold-300);">(Ahorrás $30.000)</span>
+                  </div>
                   <a href="./next-level/index.html" data-subpage="next-level" class="btn-gold" style="padding: 10px 18px; font-size: 0.82rem;">Ver más sobre Curso Next Level →</a>
                 </td>
               </tr>
@@ -2034,7 +2126,17 @@
             <span style="color: var(--gold-300); font-size: 1.3rem;">+</span>
           </button>
           <div class="faq-answer">
-            Si empezás <strong style="color:var(--text-ivory);">desde cero absoluto</strong> y nunca hiciste pestañas, tu curso es <a href="./lion-lash-method/index.html" data-subpage="lion-lash-method" style="color:var(--gold-200);font-weight:600;text-decoration:underline;">Lion Lash Method ($250.000)</a>, que incluye 3 clases presenciales, los 8 módulos desde anatomía hasta emprendimiento y el kit inicial completo. Si <strong style="color:var(--text-ivory);">ya sos Lash Artist</strong> y querés perfeccionar capas, retención de adhesivo, styling y dirección en una clase privada para vos sola, tu lugar es <a href="./next-level/index.html" data-subpage="next-level" style="color:var(--gold-200);font-weight:600;text-decoration:underline;">Next Level ($280.000)</a>.
+            Si empezás <strong style="color:var(--text-ivory);">desde cero absoluto</strong> y nunca hiciste pestañas, tu curso es <a href="./lion-lash-method/index.html" data-subpage="lion-lash-method" style="color:var(--gold-200);font-weight:600;text-decoration:underline;">Lion Lash Method (desde $78.000 por clase o $219.000 en 1 pago)</a>, que incluye 3 clases presenciales, los 8 módulos desde anatomía hasta emprendimiento y el kit inicial completo. Si <strong style="color:var(--text-ivory);">ya sos Lash Artist</strong> y querés perfeccionar capas, retención de adhesivo, styling y dirección en clases privadas para vos sola, tu lugar es <a href="./next-level/index.html" data-subpage="next-level" style="color:var(--gold-200);font-weight:600;text-decoration:underline;">Next Level (desde $88.000 por clase o $249.000 en 1 pago)</a>.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-btn">
+            <span>¿Cómo funcionan las 3 modalidades de pago y la entrega del Kit o la Pinza?</span>
+            <span style="color: var(--gold-300); font-size: 1.3rem;">+</span>
+          </button>
+          <div class="faq-answer">
+            Podés elegir entre <strong style="color:var(--text-ivory);">3 formas de pago</strong> según tu comodidad: <strong style="color:var(--text-ivory);">1) Pago Clase a Clase</strong> a medida que asistís ($78.000 en Clases 1 y 2 + $93.000 en Clase 3 para Method; o $88.000 en Clases 1 y 2 + $103.000 en Clase 3 para Next Level); <strong style="color:var(--text-ivory);">2) Plan en 2 Pagos en las Clases 1 y 2</strong> ahorrando <strong style="color:var(--gold-200);">$20.000</strong> ($229.000 en Method / $259.000 en Next Level); o <strong style="color:var(--text-ivory);">3) 1 Pago Único Bonificado</strong> ahorrando <strong style="color:var(--gold-200);">$30.000</strong> ($219.000 en Method / $249.000 en Next Level). Durante las Clases 1 y 2 practicás con todos los insumos en sala provistos por Azul y, al finalizar la <strong style="color:var(--text-ivory);">Clase 3</strong>, te llevás tu <strong style="color:var(--text-ivory);">Kit Inicial Completo nuevo</strong> (o tu <strong style="color:var(--text-ivory);">Pinza Profesional de regalo</strong> en Next Level).
           </div>
         </div>
 
@@ -2054,7 +2156,7 @@
             <span style="color: var(--gold-300); font-size: 1.3rem;">+</span>
           </button>
           <div class="faq-answer">
-            Podés entrar a la página de <a href="./lion-lash-method/index.html" data-subpage="lion-lash-method" style="color:var(--gold-200);font-weight:600;text-decoration:underline;">Lion Lash Method</a> o a la de <a href="./next-level/index.html" data-subpage="next-level" style="color:var(--gold-200);font-weight:600;text-decoration:underline;">Next Level</a> para revisar el programa completo, o tocar cualquier botón de WhatsApp para hablar directo con Azul Bravo (<strong style="color:var(--text-ivory);">351 802-4072</strong>).
+            Podés entrar a la página de <a href="./lion-lash-method/index.html" data-subpage="lion-lash-method" style="color:var(--gold-200);font-weight:600;text-decoration:underline;">Lion Lash Method</a> o a la de <a href="./next-level/index.html" data-subpage="next-level" style="color:var(--gold-200);font-weight:600;text-decoration:underline;">Next Level</a> para elegir tu plan de pago, o tocar cualquier botón de WhatsApp para hablar directo con Azul Bravo (<strong style="color:var(--text-ivory);">351 802-4072</strong>).
           </div>
         </div>
       </div>
@@ -2183,7 +2285,7 @@
             '✦ Acople Micro-Gota Sin Exceso',
             '✦ Retención Extendida'
           ],
-          desc: 'En <strong style="color:var(--text-ivory);">Next Level ($280.000)</strong> dominás el <strong style="color:var(--text-ivory);">trabajo en capas</strong> para lograr sets más completos, definidos y duraderos, controlando cantidad y aplicación del adhesivo con seguridad total.',
+          desc: 'En <strong style="color:var(--text-ivory);">Next Level (desde $88.000 por clase o $249.000 en 1 pago)</strong> dominás el <strong style="color:var(--text-ivory);">trabajo en capas</strong> para lograr sets más completos, definidos y duraderos, controlando cantidad y aplicación del adhesivo con seguridad total.',
           svg: '<path d="M96 80 C176 8, 344 8, 424 80" stroke="#FFF2B2" stroke-width="2" stroke-dasharray="6 4" fill="none" /><path d="M76 106 C162 36, 358 36, 444 106" stroke="#E5C158" stroke-width="2.5" fill="none" /><circle cx="145" cy="99" r="4.5" fill="#FFF8D6" stroke="#D4AF37" stroke-width="1.5" /><circle cx="180" cy="90" r="4.5" fill="#FFF8D6" stroke="#D4AF37" stroke-width="1.5" /><circle cx="340" cy="90" r="4.5" fill="#FFF8D6" stroke="#D4AF37" stroke-width="1.5" /><circle cx="375" cy="99" r="4.5" fill="#FFF8D6" stroke="#D4AF37" stroke-width="1.5" /><rect x="196" y="13" width="128" height="22" rx="11" fill="#0B0A08" stroke="#FFF2B2" stroke-width="1.2" /><text x="260" y="28" text-anchor="middle" fill="#FFF8D6" stroke="none" font-family="JetBrains Mono, monospace" font-weight="700" font-size="11">CAPA 3 · 11mm</text><rect x="196" y="42" width="128" height="22" rx="11" fill="#0B0A08" stroke="#E5C158" stroke-width="1.2" /><text x="260" y="57" text-anchor="middle" fill="#FCE8A6" stroke="none" font-family="JetBrains Mono, monospace" font-weight="700" font-size="11">CAPA 2 · 10mm</text><rect x="196" y="72" width="128" height="22" rx="11" fill="#0B0A08" stroke="#D4AF37" stroke-width="1.2" /><text x="260" y="87" text-anchor="middle" fill="#D4AF37" stroke="none" font-family="JetBrains Mono, monospace" font-weight="700" font-size="11">CAPA 1 · 9mm</text>'
         },
         salud: {
