@@ -1,0 +1,2550 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Terminal de Mostrador &amp; Caja — Tu Tablita Autoservicio</title>
+  <meta name="description" content="Software interno de mostrador y caja para carga de ventas, cálculo del 5% de cashback en puntos y canjes de Tu Tablita Autoservicio.">
+  
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#E60000">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23111827'/><path d='M10 38 L12 49 Q14 54 22 54 L42 51 Q48 50 49 42 L50 35 Q51 30 56 30 Q60 30 60 23 Q60 17 53 18 L46 20' stroke='%23E60000' stroke-width='4' fill='none' stroke-linecap='round'/><circle cx='54' cy='24' r='2.5' fill='%23F59E0B'/><text x='14' y='35' font-family='sans-serif' font-weight='900' font-size='20' fill='%23FFFFFF'>TT</text></svg>">
+
+  <!-- Google Fonts: Kaushan Script + Montserrat + Plus Jakarta Sans + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700;800;900&family=Kaushan+Script&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --tt-charcoal: #111827;
+      --tt-night: #090D16;
+      --tt-concrete: #1E293B;
+      --tt-concrete-light: #334155;
+      --tt-red: #E60000;
+      --tt-red-dark: #B30000;
+      --tt-red-glow: #FF2200;
+      --tt-amber: #F59E0B;
+      --tt-amber-soft: #FDE68A;
+      --tt-emerald: #10B981;
+      --tt-white: #FFFFFF;
+      --tt-border: rgba(255, 255, 255, 0.12);
+      
+      --font-script: 'Kaushan Script', cursive;
+      --font-display: 'Montserrat', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-red: 0 0 24px rgba(230, 0, 0, 0.35);
+      --shadow-amber: 0 0 24px rgba(245, 158, 11, 0.3);
+      --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--tt-night);
+      color: #E2E8F0;
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+    }
+
+    @media (min-width: 960px) {
+      body.term-active {
+        height: 100vh;
+        overflow: hidden;
+      }
+      #view-terminal {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+    }
+
+    /* Header Exclusivo de Mostrador */
+    .topbar {
+      background: rgba(17, 24, 39, 0.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--tt-border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 10px 18px;
+    }
+
+    .topbar-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .brand-logo-svg {
+      width: 170px;
+      height: 40px;
+      max-width: 100%;
+    }
+
+    .badge-pos {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      background: #B30000;
+      color: #FFFFFF;
+      border: 1px solid #E60000;
+      padding: 4px 10px;
+      border-radius: 99px;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .container {
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 10px 16px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    @media (min-width: 960px) {
+      .container {
+        padding: 10px 18px 14px;
+        overflow: hidden;
+      }
+    }
+
+    .card {
+      background: #111827;
+      border: 1px solid var(--tt-border);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--tt-white);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      letter-spacing: 0.02em;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge-cashback {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--tt-amber);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      padding: 4px 10px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+
+    .badge-success {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      background: rgba(16, 185, 129, 0.18);
+      color: var(--tt-emerald);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      padding: 4px 10px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 800;
+      color: #94A3B8;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .input-field {
+      width: 100%;
+      background: #1E293B;
+      border: 1px solid var(--tt-border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      color: #FFFFFF;
+      outline: none;
+      min-height: 44px;
+      transition: all 150ms ease;
+    }
+
+    .input-field:focus {
+      border-color: var(--tt-red);
+      box-shadow: 0 0 0 3px rgba(230, 0, 0, 0.25);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 12.5px;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      border: none;
+      min-height: 42px;
+      transition: all var(--transition);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-red {
+      background: linear-gradient(135deg, #E60000, #B30000);
+      color: #FFFFFF;
+      box-shadow: var(--shadow-red);
+    }
+
+    .btn-red:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-amber {
+      background: linear-gradient(135deg, #F59E0B, #D97706);
+      color: #111827;
+      box-shadow: var(--shadow-amber);
+    }
+
+    .btn-secondary {
+      background: #1E293B;
+      color: #E2E8F0;
+      border: 1px solid var(--tt-border);
+    }
+
+    .btn-secondary:hover {
+      background: #334155;
+      color: #FFFFFF;
+    }
+
+    .btn-block {
+      width: 100%;
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 11.5px;
+      min-height: 34px;
+    }
+
+    /* FILA SUPERIOR: IDENTIFICACIÓN Y CLIENTE ACTIVO (CERO SCROLL) */
+    .pos-client-section {
+      flex-shrink: 0;
+      margin-bottom: 8px;
+    }
+
+    .client-search-ribbon {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .search-field-group {
+      flex: 1;
+      position: relative;
+    }
+
+    .search-addon-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 15px;
+      color: #94A3B8;
+      pointer-events: none;
+    }
+
+    .search-input-main {
+      padding-left: 40px !important;
+      font-size: 14px !important;
+      min-height: 44px;
+      background: #111827;
+      border: 1px solid var(--tt-border);
+      border-radius: var(--radius-sm);
+    }
+
+    .search-results-float {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      max-height: 260px;
+      overflow-y: auto;
+      border: 1px solid var(--tt-border);
+      border-radius: var(--radius-sm);
+      background: #0B111E;
+      margin-top: 4px;
+      display: none;
+      z-index: 1000;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .search-results-float.active {
+      display: block;
+    }
+
+    .result-item {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 120ms ease;
+    }
+
+    .result-item:hover {
+      background: rgba(230, 0, 0, 0.18);
+    }
+
+    .btn-new-client {
+      flex-shrink: 0;
+      padding: 10px 16px;
+      font-size: 12.5px;
+      min-height: 44px;
+    }
+
+    /* Ficha Compacta de Cliente Activo (0 Scroll) */
+    .active-client-ribbon {
+      background: #111827;
+      border: 1px solid rgba(230, 0, 0, 0.45);
+      border-left: 4px solid var(--tt-red);
+      border-radius: var(--radius-sm);
+      padding: 7px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .client-ribbon-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .client-avatar-badge {
+      font-size: 20px;
+      background: rgba(230, 0, 0, 0.15);
+      border: 1px solid rgba(230, 0, 0, 0.3);
+      width: 36px;
+      height: 36px;
+      border-radius: 99px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .client-name-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .client-name {
+      font-size: 15px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: 0.01em;
+    }
+
+    .client-dni-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: #94A3B8;
+      background: #1E293B;
+      padding: 1px 7px;
+      border-radius: 4px;
+    }
+
+    .client-stats-compact {
+      font-size: 11.5px;
+      color: #94A3B8;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 1px;
+    }
+
+    .sep-dot {
+      color: #475569;
+    }
+
+    .client-ribbon-points {
+      display: flex;
+      align-items: center;
+    }
+
+    .pts-pill-highlight {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      border-radius: 99px;
+      padding: 4px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pts-pill-lbl {
+      font-size: 10px;
+      font-weight: 800;
+      color: #94A3B8;
+      letter-spacing: 0.05em;
+    }
+
+    .pts-pill-val {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--tt-amber);
+    }
+
+    .pts-pill-eq {
+      font-size: 11px;
+      color: #CBD5E1;
+      font-family: var(--font-mono);
+    }
+
+    .client-ribbon-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-clear-active {
+      color: #F87171;
+      border-color: rgba(248, 113, 113, 0.25);
+    }
+
+    .btn-clear-active:hover {
+      background: rgba(239, 68, 68, 0.15);
+      color: #FFFFFF;
+    }
+
+    /* BARRA DE BOTONES DE ACCIÓN RÁPIDA (MODOS DE MOSTRADOR) */
+    .pos-action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pos-action-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pos-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      background: #111827;
+      color: #94A3B8;
+      border: 1px solid var(--tt-border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      min-height: 40px;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+
+    .pos-action-btn:hover {
+      background: #1E293B;
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .pos-action-btn.active {
+      background: linear-gradient(135deg, #E60000, #B30000);
+      color: #FFFFFF;
+      border-color: #FF2200;
+      box-shadow: 0 0 16px rgba(230, 0, 0, 0.4);
+    }
+
+    .tab-btn-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 99px;
+      background: rgba(0, 0, 0, 0.35);
+      color: #FFFFFF;
+    }
+
+    .badge-amber {
+      background: rgba(245, 158, 11, 0.2);
+      color: var(--tt-amber);
+    }
+
+    .badge-green {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--tt-emerald);
+    }
+
+    .pos-action-btn.active .tab-btn-badge {
+      background: rgba(0, 0, 0, 0.3);
+      color: #FFFFFF;
+    }
+
+    /* VIEWPORT Y PANELES OPERATIVOS */
+    .pos-action-viewport {
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .pos-panel {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* Panel 1: Registrar Venta */
+    .sale-two-col {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 14px;
+      height: 100%;
+      align-items: stretch;
+    }
+
+    @media (max-width: 960px) {
+      .sale-two-col {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+    }
+
+    .sale-card-main {
+      margin-bottom: 0 !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+    }
+
+    .sale-card-side {
+      margin-bottom: 0 !important;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .input-monto-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-monto-currency {
+      position: absolute;
+      left: 16px;
+      font-family: var(--font-mono);
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--tt-amber);
+      pointer-events: none;
+    }
+
+    .input-monto-big {
+      padding-left: 38px !important;
+      font-family: var(--font-mono);
+      font-size: clamp(22px, 3.8vw, 30px);
+      font-weight: 900;
+      color: var(--tt-amber);
+      height: 54px;
+    }
+
+    .monto-presets-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .presets-label {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-right: 2px;
+    }
+
+    .preset-chip {
+      background: #1E293B;
+      border: 1px solid var(--tt-border);
+      color: #CBD5E1;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 120ms ease;
+    }
+
+    .preset-chip:hover {
+      background: #334155;
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .preset-chip-clear {
+      color: #F87171;
+      border-color: rgba(248, 113, 113, 0.25);
+    }
+
+    .calc-banner {
+      background: #250202;
+      border: 1px solid #750000;
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .calc-pts {
+      font-family: var(--font-mono);
+      font-size: clamp(22px, 5vw, 28px);
+      font-weight: 900;
+      color: var(--tt-amber);
+      line-height: 1;
+    }
+
+    .sale-footer-quick {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      margin-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 11.5px;
+      color: #94A3B8;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .mini-transactions-list {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-right: 4px;
+    }
+
+    /* Panel 2: Canje de Premios */
+    .rewards-card-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0 !important;
+      overflow: hidden;
+    }
+
+    .rewards-header-bar {
+      flex-shrink: 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 10px;
+    }
+
+    .rewards-cat-filter {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .cat-pill {
+      background: #1E293B;
+      border: 1px solid var(--tt-border);
+      color: #94A3B8;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: all 120ms ease;
+    }
+
+    .cat-pill:hover {
+      background: #334155;
+      color: #FFFFFF;
+    }
+
+    .cat-pill.active {
+      background: rgba(245, 158, 11, 0.2);
+      border-color: rgba(245, 158, 11, 0.5);
+      color: var(--tt-amber);
+      font-weight: 800;
+    }
+
+    .rewards-scroll-area {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+      padding-right: 4px;
+      align-content: start;
+    }
+
+    .reward-item-box {
+      background: #151E2E;
+      border: 1px solid var(--tt-border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      transition: border-color 140ms ease;
+    }
+
+    .reward-item-box.can-redeem {
+      border-color: rgba(16, 185, 129, 0.4);
+      background: #101F2B;
+    }
+
+    /* Panel 3: Historial del Turno */
+    .history-card-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0 !important;
+      overflow: hidden;
+    }
+
+    .shift-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      flex-shrink: 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    @media (max-width: 768px) {
+      .shift-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .shift-stat-box {
+      background: #151E2E;
+      border: 1px solid var(--tt-border);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      text-align: center;
+    }
+
+    .shift-stat-lbl {
+      font-size: 9.5px;
+      font-weight: 800;
+      color: #94A3B8;
+      letter-spacing: 0.05em;
+    }
+
+    .shift-stat-val {
+      font-family: var(--font-mono);
+      font-size: clamp(13px, 2vw, 16px);
+      font-weight: 900;
+      color: #FFFFFF;
+      margin-top: 2px;
+    }
+
+    .history-scroll-area {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-right: 4px;
+    }
+
+    /* Modo Split View (Pantalla Dividida en 2 Columnas) */
+    @media (min-width: 1080px) {
+      .pos-action-viewport.split-grid-active {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 14px;
+      }
+
+      .pos-action-viewport.split-grid-active #pos-panel-sale {
+        display: block !important;
+      }
+
+      .pos-action-viewport.split-grid-active #pos-panel-rewards {
+        display: block !important;
+      }
+
+      .pos-action-viewport.split-grid-active .sale-two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .pos-action-viewport.split-grid-active .sale-card-side {
+        display: none;
+      }
+
+      .pos-action-viewport.split-grid-active .rewards-scroll-area {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Adaptabilidad Móvil y Tablet */
+    @media (max-width: 959px) {
+      #view-terminal {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+      }
+      .container {
+        height: auto;
+        overflow: visible;
+        padding-bottom: 80px;
+      }
+      .pos-action-viewport {
+        height: auto;
+        overflow: visible;
+      }
+      .pos-panel {
+        height: auto;
+        overflow: visible;
+      }
+      .sale-card-main {
+        height: auto;
+        overflow: visible;
+      }
+      .rewards-card-container {
+        height: auto;
+        overflow: visible;
+      }
+      .rewards-scroll-area {
+        max-height: 520px;
+        overflow-y: auto;
+      }
+      .history-card-container {
+        height: auto;
+        overflow: visible;
+      }
+      .history-scroll-area {
+        max-height: 480px;
+        overflow-y: auto;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .client-search-ribbon {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .active-client-ribbon {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .client-ribbon-info {
+        width: 100%;
+      }
+      .client-ribbon-points {
+        width: 100%;
+        justify-content: center;
+      }
+      .client-ribbon-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .pos-action-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .pos-action-tabs {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+      .pos-action-tabs > button:nth-child(3) {
+        grid-column: 1 / -1;
+      }
+      .pos-action-btn {
+        justify-content: center;
+        padding: 8px 10px;
+        font-size: 11px;
+      }
+      .pos-view-toggler {
+        display: none;
+      }
+      .monto-presets-row {
+        gap: 4px;
+      }
+      .preset-chip {
+        padding: 4px 7px;
+        font-size: 10.5px;
+      }
+    }
+
+    /* Modales Responsivos */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 14px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #111827;
+      border: 1px solid #B30000;
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      max-width: 580px;
+      width: 100%;
+      box-shadow: var(--shadow-red);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-lg {
+      max-width: 820px;
+    }
+
+    /* Grilla de Formulario de Catálogo de Premios */
+    .catalog-add-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 0.7fr 1fr auto;
+      gap: 10px;
+      align-items: end;
+    }
+
+    @media (max-width: 768px) {
+      .catalog-add-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .catalog-add-grid > div:last-child {
+        grid-column: 1 / -1;
+      }
+      .catalog-add-grid .btn {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .catalog-add-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Grilla de Formulario de Alta de Empleados (Super-Admin) */
+    .employee-add-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1.3fr 1fr auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    @media (max-width: 820px) {
+      .employee-add-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .employee-add-grid > div:last-child {
+        grid-column: 1 / -1;
+      }
+      .employee-add-grid .btn {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .employee-add-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Filas y Acciones de Catálogo y Empleados */
+    .catalog-item-row {
+      background: #151E2E;
+      border: 1px solid var(--tt-border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      transition: border-color 140ms ease;
+    }
+
+    .catalog-item-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 580px) {
+      .catalog-item-actions {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 10px;
+        margin-top: 4px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+    }
+
+    /* Media Queries Específicas de Pantallas Chicas */
+    @media (max-width: 640px) {
+      .topbar {
+        padding: 8px 12px;
+      }
+      .brand-logo-svg {
+        width: 140px;
+        height: 34px;
+      }
+      .badge-pos {
+        font-size: 9.5px;
+        padding: 3px 8px;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .header-actions .btn {
+        padding: 7px 10px;
+        font-size: 11px;
+        min-height: 38px;
+      }
+      .container {
+        padding: 14px 10px 60px;
+      }
+      .card {
+        padding: 16px 12px;
+        border-radius: 14px;
+      }
+      .modal-box {
+        padding: 16px 12px;
+      }
+    }
+
+    /* Pantalla de Login de Mostrador */
+    .login-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      background: radial-gradient(circle at 50% 30%, rgba(230, 0, 0, 0.12) 0%, rgba(9, 13, 22, 1) 75%);
+    }
+
+    .login-card {
+      background: #111827;
+      border: 1px solid var(--tt-border);
+      border-radius: var(--radius-xl);
+      padding: 36px 28px;
+      max-width: 440px;
+      width: 100%;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), var(--shadow-red);
+      text-align: center;
+    }
+
+    .badge-user {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      background: rgba(245, 158, 11, 0.14);
+      color: var(--tt-amber);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      padding: 5px 12px;
+      border-radius: 99px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .badge-user-admin {
+      background: rgba(230, 0, 0, 0.18);
+      color: #FF8888;
+      border-color: rgba(230, 0, 0, 0.45);
+    }
+
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #10B981;
+      color: #06281E;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 13px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 220ms ease;
+      z-index: 9999;
+    }
+
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="toast">¡Operación registrada con éxito!</div>
+
+  <!-- VISTA 1: INGRESO AL MOSTRADOR & CAJA (DNI + CONTRASEÑA) -->
+  <div id="view-login" class="login-wrap">
+    <div class="login-card">
+      <div style="margin-bottom:18px;">
+        <svg viewBox="0 0 280 64" width="200" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 12 34 L 14 50 Q 16 57 28 57 L 210 52 Q 222 51 224 41 L 225 31 Q 226 25 235 25 L 250 25 Q 264 25 264 16 Q 264 7 250 9 L 227 12" stroke="#FFFFFF" stroke-width="4.2" stroke-linecap="round" fill="none"/>
+          <circle cx="252" cy="17" r="3.8" stroke="#FFFFFF" stroke-width="2.6" fill="none"/>
+          <circle cx="252" cy="17" r="1.5" fill="#F59E0B"/>
+          <text x="20" y="34" font-family="'Kaushan Script', cursive" font-size="34" fill="#FFFFFF">Tu Tablita</text>
+          <text x="52" y="50" font-family="'Montserrat', sans-serif" font-size="11" font-weight="900" font-style="italic" fill="#E60000" letter-spacing="2.6">AUTOSERVICIO</text>
+        </svg>
+      </div>
+
+      <h1 style="font-family:var(--font-display);font-size:18px;font-weight:900;color:#FFFFFF;margin-bottom:6px;">
+        Terminal de Mostrador &amp; Caja
+      </h1>
+      <p style="font-size:12.5px;color:#94A3B8;margin-bottom:24px;">
+        Ingresá con tu documento y clave para operar el turno.
+      </p>
+
+      <form id="form-login" onsubmit="event.preventDefault(); handleLogin();" style="text-align:left;">
+        <div class="form-group">
+          <label class="form-label">Número de Documento (DNI)</label>
+          <input type="number" id="login-dni" class="input-field" placeholder="Ingresá tu DNI (sin puntos)" required autocomplete="username">
+        </div>
+
+        <div class="form-group" style="margin-bottom:20px;">
+          <label class="form-label">Contraseña</label>
+          <input type="password" id="login-pass" class="input-field" placeholder="Ingresá tu contraseña" required autocomplete="current-password">
+        </div>
+
+        <button type="submit" class="btn btn-red btn-block" style="padding:14px;font-size:14px;letter-spacing:0.04em;">
+          INGRESAR A LA TERMINAL &rarr;
+        </button>
+      </form>
+
+      <!-- Accesos Rápidos para Prueba / Demostración -->
+      <div style="margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.08);text-align:center;">
+        <div style="font-size:11px;font-weight:800;color:#64748B;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;">
+          Perfiles de Prueba Pre-cargados:
+        </div>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+          <button class="btn btn-secondary" style="font-size:11.5px;padding:6px 12px;border-color:rgba(230,0,0,0.4);" onclick="fillQuickLogin('35120450', 'admin123')">
+            👑 Dueño (Luciano)
+          </button>
+          <button class="btn btn-secondary" style="font-size:11.5px;padding:6px 12px;border-color:rgba(245,158,11,0.4);" onclick="fillQuickLogin('38901234', 'caja123')">
+            🧑‍💼 Cajera (Romina)
+          </button>
+        </div>
+        <div style="font-size:11px;color:#64748B;margin-top:8px;font-family:var(--font-mono);">
+          El sistema detecta automáticamente el rol al validar la contraseña.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VISTA 2: TERMINAL OPERATIVA (PROTEGIDA POR LOGIN) -->
+  <div id="view-terminal" style="display:none;">
+
+    <!-- Header Exclusivo Mostrador -->
+    <header class="topbar">
+      <div class="topbar-content">
+        <div class="brand-lockup">
+          <svg class="brand-logo-svg" viewBox="0 0 280 64" width="180" height="42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 12 34 L 14 50 Q 16 57 28 57 L 210 52 Q 222 51 224 41 L 225 31 Q 226 25 235 25 L 250 25 Q 264 25 264 16 Q 264 7 250 9 L 227 12" stroke="#FFFFFF" stroke-width="4.2" stroke-linecap="round" fill="none"/>
+            <circle cx="252" cy="17" r="3.8" stroke="#FFFFFF" stroke-width="2.6" fill="none"/>
+            <circle cx="252" cy="17" r="1.5" fill="#F59E0B"/>
+            <text x="20" y="34" font-family="'Kaushan Script', cursive" font-size="34" fill="#FFFFFF">Tu Tablita</text>
+            <text x="52" y="50" font-family="'Montserrat', sans-serif" font-size="11" font-weight="900" font-style="italic" fill="#E60000" letter-spacing="2.6">AUTOSERVICIO</text>
+          </svg>
+          <span class="badge-pos">TERMINAL DE MOSTRADOR · CAJA 1</span>
+        </div>
+
+        <div class="header-actions">
+          <div id="user-badge" class="badge-user">
+            <!-- Operador actual -->
+          </div>
+
+          <button id="btn-manage-employees" class="btn btn-secondary" style="font-size:12px;padding:8px 14px;display:none;" onclick="openEmployeesModal()">
+            👥 Empleados
+          </button>
+          
+          <button class="btn btn-secondary" style="font-size:12px;padding:8px 14px;" onclick="openCatalogManagerModal()">
+            📦 Gestor de Catálogo
+          </button>
+
+          <button class="btn btn-secondary" style="font-size:12px;padding:8px 12px;color:#F87171;" onclick="handleLogout()" title="Cerrar sesión de este turno">
+            🔒 Salir
+          </button>
+        </div>
+      </div>
+    </header>
+
+  <main class="container">
+    <!-- FILA SUPERIOR: IDENTIFICACIÓN Y ESTADO DE CLIENTE (CERO SCROLL) -->
+    <section id="pos-client-bar-container" class="pos-client-section">
+      <!-- 1A: Modo Búsqueda (Sin cliente activo) -->
+      <div id="pos-search-box" class="client-search-ribbon">
+        <div class="search-field-group">
+          <span class="search-addon-icon">🔍</span>
+          <input type="text" id="pos-search" class="input-field search-input-main" placeholder="Buscar cliente por DNI o apellido (ej: 18345901, Gómez...)" oninput="handleSearchClient(this.value)" autocomplete="off">
+          <div id="search-dropdown" class="search-results-float"></div>
+        </div>
+        <button class="btn btn-red btn-new-client" onclick="openNewClientModal()">
+          ＋ Nuevo Cliente
+        </button>
+      </div>
+
+      <!-- 1B: Modo Ficha Cliente Activo (Compacta, Alta Visibilidad) -->
+      <div id="active-client-panel" class="active-client-ribbon" style="display:none;">
+        <div class="client-ribbon-info">
+          <div class="client-avatar-badge">👤</div>
+          <div>
+            <div class="client-name-line">
+              <strong id="pos-client-name" class="client-name">--</strong>
+              <span id="pos-client-dni" class="client-dni-badge">DNI: --</span>
+            </div>
+            <div class="client-stats-compact">
+              <span>Compras: <strong id="pos-client-total-bought" style="color:#FFF;">$0</strong></span>
+              <span class="sep-dot">·</span>
+              <span><strong id="pos-client-txs-count" style="color:#FFF;">0</strong> visitas</span>
+              <span class="sep-dot">·</span>
+              <span><strong id="pos-client-canjes-count" style="color:var(--tt-emerald);">0</strong> canjes</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="client-ribbon-points">
+          <div class="pts-pill-highlight">
+            <span class="pts-pill-lbl">SALDO DISPONIBLE</span>
+            <span id="pos-client-pts" class="pts-pill-val">0 PTS</span>
+            <span id="pos-client-equiv" class="pts-pill-eq">($0 ARS)</span>
+          </div>
+        </div>
+
+        <div class="client-ribbon-actions">
+          <button class="btn btn-secondary btn-sm" onclick="openClientHistoryModal()" title="Ver historial completo">
+            📜 Historial
+          </button>
+          <button class="btn btn-secondary btn-sm btn-clear-active" onclick="clearActiveClient()" title="Cambiar de cliente">
+            ✕ Cambiar
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BARRA DE BOTONES DE ACCIÓN RÁPIDA (MODOS DE MOSTRADOR) -->
+    <div class="pos-action-bar">
+      <div class="pos-action-tabs">
+        <button id="btn-action-sale" class="pos-action-btn active" onclick="switchPosAction('sale')">
+          <span class="tab-btn-icon">💰</span>
+          <span class="tab-btn-text">1. REGISTRAR VENTA</span>
+          <span class="tab-btn-badge">+5% PUNTOS</span>
+        </button>
+        <button id="btn-action-rewards" class="pos-action-btn" onclick="switchPosAction('rewards')">
+          <span class="tab-btn-icon">🎁</span>
+          <span class="tab-btn-text">2. CANJEAR PREMIOS</span>
+          <span id="tab-rewards-badge" class="tab-btn-badge badge-amber">Catálogo</span>
+        </button>
+        <button id="btn-action-history" class="pos-action-btn" onclick="switchPosAction('history')">
+          <span class="tab-btn-icon">📋</span>
+          <span class="tab-btn-text">3. OPERACIONES TURNO</span>
+          <span id="pos-tx-badge" class="tab-btn-badge badge-green">0 ops</span>
+        </button>
+      </div>
+
+      <div class="pos-view-toggler">
+        <button id="btn-toggle-split" class="btn btn-secondary btn-sm" onclick="toggleSplitView()" title="Alternar entre pantalla dividida y pestañas individuales">
+          <span id="split-mode-icon">🔲</span> <span id="split-mode-label">Vista Dividida</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- CONTENEDOR OPERATIVO (VIEWPORT CERO SCROLL) -->
+    <div id="pos-action-viewport" class="pos-action-viewport">
+
+      <!-- PESTAÑA 1: CARGAR VENTA (+5% CASHBACK) -->
+      <div id="pos-panel-sale" class="pos-panel active">
+        <div class="sale-two-col">
+          <!-- Columna Principal de Venta -->
+          <div class="card sale-card-main">
+            <div class="card-title">
+              <span>CARGA DE VENTA &amp; SUMA DE PUNTOS</span>
+              <span class="badge-cashback">5% EN PUNTOS (1 PTO = $1 ARS)</span>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 10px;">
+              <label class="form-label">Total en mostrador ($ ARS)</label>
+              <div class="input-monto-wrapper">
+                <span class="input-monto-currency">$</span>
+                <input type="number" id="pos-monto" class="input-field input-monto-big" placeholder="0" value="20000" oninput="calculatePosCashback()">
+              </div>
+            </div>
+
+            <!-- Botones Rápidos de Monto (Presets de 1 Toque) -->
+            <div class="monto-presets-row">
+              <span class="presets-label">Suma rápida:</span>
+              <button type="button" class="preset-chip" onclick="addMontoPreset(2000)">+$2.000</button>
+              <button type="button" class="preset-chip" onclick="addMontoPreset(5000)">+$5.000</button>
+              <button type="button" class="preset-chip" onclick="addMontoPreset(10000)">+$10.000</button>
+              <button type="button" class="preset-chip" onclick="addMontoPreset(20000)">+$20.000</button>
+              <button type="button" class="preset-chip" onclick="addMontoPreset(50000)">+$50.000</button>
+              <button type="button" class="preset-chip preset-chip-clear" onclick="clearMonto()">⌫ Limpiar</button>
+            </div>
+
+            <!-- Banner de Cálculo en Vivo -->
+            <div class="calc-banner">
+              <div>
+                <div style="font-size:12.5px;color:#CBD5E1;font-weight:700;">Cashback a acreditar en el cliente:</div>
+                <div id="pos-calc-sub" style="font-size:11px;color:#94A3B8;">Monto Bruto × 5% en puntos enteros</div>
+              </div>
+              <div id="pos-calc-display" class="calc-pts">+1.000 PTS</div>
+            </div>
+
+            <!-- Botón de Confirmación Principal -->
+            <button class="btn btn-red btn-block btn-lg" onclick="submitSale()" style="font-size:15px;padding:15px;letter-spacing:0.03em;">
+              ＋ REGISTRAR VENTA &amp; CARGAR PUNTOS (Enter)
+            </button>
+
+            <!-- Acceso Directo de 1 Clic a Canjes -->
+            <div class="sale-footer-quick">
+              <span>¿El cliente quiere usar sus puntos en esta compra?</span>
+              <button class="btn btn-secondary btn-sm" onclick="switchPosAction('rewards')" style="border-color:rgba(245,158,11,0.4);color:var(--tt-amber);">
+                🎁 Ir a Canjear Premios →
+              </button>
+            </div>
+          </div>
+
+          <!-- Columna Lateral: Resumen de Últimos Movimientos -->
+          <div class="card sale-card-side">
+            <div class="card-title">
+              <span>ÚLTIMAS EN CAJA</span>
+              <span id="pos-mini-tx-count" class="badge-success">0 ops</span>
+            </div>
+            <div id="pos-mini-transactions" class="mini-transactions-list">
+              <!-- Dinámico -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PESTAÑA 2: CANJEAR PREMIOS -->
+      <div id="pos-panel-rewards" class="pos-panel" style="display:none;">
+        <div class="card rewards-card-container">
+          <div class="rewards-header-bar">
+            <div>
+              <div class="card-title" style="margin-bottom:2px;">
+                <span>CANJE DE PREMIOS EN CAJA</span>
+                <span id="rewards-client-status" class="badge-cashback">Saldo disponible</span>
+              </div>
+              <div style="font-size:11.5px;color:#94A3B8;">
+                Tocá <strong>"Canjear"</strong> en el premio elegido: se descuentan los puntos al instante y se asienta la entrega.
+              </div>
+            </div>
+
+            <!-- Filtros por Categoría -->
+            <div class="rewards-cat-filter">
+              <button class="cat-pill active" onclick="filterRewardsCat('Todos', this)">Todos</button>
+              <button class="cat-pill" onclick="filterRewardsCat('Fiambres', this)">🧀 Fiambres</button>
+              <button class="cat-pill" onclick="filterRewardsCat('Tablas', this)">🍱 Tablas</button>
+              <button class="cat-pill" onclick="filterRewardsCat('Bebidas', this)">🍺 Bebidas</button>
+              <button class="cat-pill" onclick="filterRewardsCat('Panificados', this)">🥖 Pan</button>
+              <button class="cat-pill" onclick="filterRewardsCat('Vouchers', this)">🎟️ Vouchers</button>
+              <button class="btn btn-secondary btn-sm" style="padding:4px 8px;font-size:11px;margin-left:auto;" onclick="openCatalogManagerModal()">
+                + Editar Catálogo
+              </button>
+            </div>
+          </div>
+
+          <!-- Grilla / Lista de Premios (Scroll Interno Autónomo) -->
+          <div id="pos-rewards-list" class="rewards-scroll-area">
+            <!-- Dinámico -->
+          </div>
+        </div>
+      </div>
+
+      <!-- PESTAÑA 3: OPERACIONES DEL TURNO -->
+      <div id="pos-panel-history" class="pos-panel" style="display:none;">
+        <div class="card history-card-container">
+          <!-- Resumen Numérico del Turno -->
+          <div class="shift-stats-grid">
+            <div class="shift-stat-box">
+              <div class="shift-stat-lbl">TOTAL VENTAS EN MOSTRADOR</div>
+              <div id="shift-total-monto" class="shift-stat-val">$0</div>
+            </div>
+            <div class="shift-stat-box">
+              <div class="shift-stat-lbl">PUNTOS EMITIDOS (+5%)</div>
+              <div id="shift-total-pts-in" class="shift-stat-val" style="color:var(--tt-amber);">+0 PTS</div>
+            </div>
+            <div class="shift-stat-box">
+              <div class="shift-stat-lbl">PUNTOS CANJEADOS</div>
+              <div id="shift-total-pts-out" class="shift-stat-val" style="color:var(--tt-emerald);">-0 PTS</div>
+            </div>
+            <div class="shift-stat-box">
+              <div class="shift-stat-lbl">OPERACIONES TOTALES</div>
+              <div id="shift-total-ops" class="shift-stat-val">0</div>
+            </div>
+          </div>
+
+          <div class="card-title" style="margin-top:14px;margin-bottom:8px;">
+            <span>HISTORIAL DE OPERACIONES DEL TURNO</span>
+            <span id="pos-tx-count" class="badge-success">0 ops</span>
+          </div>
+
+          <!-- Lista de Operaciones (Scroll Interno Autónomo) -->
+          <div id="pos-transactions" class="history-scroll-area">
+            <!-- Dinámico -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+  </div> <!-- Fin de #view-terminal -->
+
+  <!-- MODAL: ALTA EXPRESS DE CLIENTE -->
+  <div id="modal-new-client" class="modal-overlay">
+    <div class="modal-box">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+        <h3 style="font-family:var(--font-display);font-size:18px;font-weight:900;color:#FFF;">
+          + Alta Express de Cliente
+        </h3>
+        <button onclick="closeModal('modal-new-client')" style="background:none;border:none;color:#94A3B8;font-size:20px;cursor:pointer;">✕</button>
+      </div>
+
+      <p style="font-size:13px;color:#94A3B8;margin-bottom:16px;">
+        Pedile solo el Nombre y DNI. En 3 segundos ya puede sumar el 5% de su compra.
+      </p>
+
+      <div class="form-group">
+        <label class="form-label">Nombre Completo o Familia *</label>
+        <input type="text" id="new-client-name" class="input-field" placeholder="Ej: Marta Gómez / Familia Rossi">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Número de DNI (Sin puntos) *</label>
+        <input type="number" id="new-client-dni" class="input-field" placeholder="Ej: 32450118">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Teléfono / WhatsApp (Opcional)</label>
+        <input type="tel" id="new-client-tel" class="input-field" placeholder="Ej: 3515123456">
+      </div>
+
+      <button class="btn btn-red btn-block" style="margin-top:14px;" onclick="submitNewClient()">
+        CREAR Y SELECCIONAR EN CAJA
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL: HISTORIAL DETALLADO DEL CLIENTE -->
+  <div id="modal-client-history" class="modal-overlay">
+    <div class="modal-box modal-lg">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+        <div>
+          <h3 style="font-family:var(--font-display);font-size:18px;font-weight:900;color:#FFF;" id="modal-history-title">
+            Historial de Puntos del Cliente
+          </h3>
+          <div style="font-size:12px;color:#94A3B8;" id="modal-history-sub">--</div>
+        </div>
+        <button onclick="closeModal('modal-client-history')" style="background:none;border:none;color:#94A3B8;font-size:20px;cursor:pointer;">✕</button>
+      </div>
+
+      <div id="modal-history-body" style="display:flex;flex-direction:column;gap:8px;max-height:420px;overflow-y:auto;margin-top:12px;">
+        <!-- Dinámico -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: GESTOR DE CATÁLOGO (ABM) -->
+  <div id="modal-catalog-manager" class="modal-overlay">
+    <div class="modal-box modal-lg">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+        <div>
+          <h3 style="font-family:var(--font-display);font-size:18px;font-weight:900;color:#FFF;">
+            📦 Gestor del Catálogo de Premios
+          </h3>
+          <div style="font-size:12px;color:#94A3B8;">Administrá los productos disponibles para canjear por puntos (1 Pto = $1 ARS)</div>
+        </div>
+        <button onclick="closeModal('modal-catalog-manager')" style="background:none;border:none;color:#94A3B8;font-size:20px;cursor:pointer;">✕</button>
+      </div>
+
+      <!-- Formulario para Agregar Nuevo Premio -->
+      <div style="background:#151E2E;border:1px solid var(--tt-border);border-radius:10px;padding:16px;margin-bottom:20px;">
+        <div style="font-size:13px;font-weight:800;color:#FFF;margin-bottom:10px;">+ AGREGAR NUEVO PRODUCTO AL CATÁLOGO</div>
+        <div class="catalog-add-grid">
+          <div>
+            <label class="form-label">Nombre del Producto</label>
+            <input type="text" id="new-reward-name" class="input-field" placeholder="Ej: Queso Tybo 250g">
+          </div>
+          <div>
+            <label class="form-label">Categoría</label>
+            <select id="new-reward-cat" class="input-field" style="height:44px;">
+              <option value="Fiambres">Fiambres &amp; Quesos</option>
+              <option value="Tablas">Tablas &amp; Picadas</option>
+              <option value="Bebidas">Bebidas &amp; Frescos</option>
+              <option value="Panificados">Panificados</option>
+              <option value="Vouchers">Vouchers Descuento</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Emoji</label>
+            <input type="text" id="new-reward-icon" class="input-field" value="🧀" style="text-align:center;">
+          </div>
+          <div>
+            <label class="form-label">Puntos Requeridos</label>
+            <input type="number" id="new-reward-pts" class="input-field" placeholder="6000" oninput="document.getElementById('new-reward-price').value = this.value">
+          </div>
+          <div>
+            <input type="hidden" id="new-reward-price" value="6000">
+            <button class="btn btn-red" style="height:44px;" onclick="addNewReward()">+ Guardar</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size:12.5px;font-weight:800;color:#94A3B8;margin-bottom:8px;">PREMIOS ACTIVOS EN CATÁLOGO:</div>
+      <div id="catalog-manager-list" style="display:flex;flex-direction:column;gap:8px;max-height:340px;overflow-y:auto;">
+        <!-- Dinámico -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: GESTIÓN DE EMPLEADOS & CAJEROS (EXCLUSIVO SUPER-ADMIN / DUEÑO) -->
+  <div id="modal-employees" class="modal-overlay">
+    <div class="modal-box modal-lg">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+        <div>
+          <h3 style="font-family:var(--font-display);font-size:18px;font-weight:900;color:#FFF;">
+            👥 Gestión de Empleados &amp; Perfiles de Caja
+          </h3>
+          <div style="font-size:12px;color:#94A3B8;">Panel exclusivo del dueño para auditar quién carga y canjea puntos en cada turno.</div>
+        </div>
+        <button onclick="closeModal('modal-employees')" style="background:none;border:none;color:#94A3B8;font-size:20px;cursor:pointer;">✕</button>
+      </div>
+
+      <!-- Formulario para Alta de Empleado -->
+      <div style="background:#151E2E;border:1px solid var(--tt-border);border-radius:10px;padding:16px;margin-bottom:20px;">
+        <div style="font-size:13px;font-weight:800;color:#FFF;margin-bottom:10px;">+ ALTA DE NUEVO EMPLEADO / CAJERO</div>
+        <div class="employee-add-grid">
+          <div>
+            <label class="form-label">Nombre Completo</label>
+            <input type="text" id="new-emp-name" class="input-field" placeholder="Ej: Marcos Silva">
+          </div>
+          <div>
+            <label class="form-label">Número de DNI</label>
+            <input type="number" id="new-emp-dni" class="input-field" placeholder="Ej: 39120455">
+          </div>
+          <div>
+            <label class="form-label">Rol en Caja</label>
+            <select id="new-emp-rol" class="input-field" style="height:46px;min-width:145px;cursor:pointer;">
+              <option value="cajero">🧑‍💼 Cajero</option>
+              <option value="super-admin">👑 Administrador</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Contraseña</label>
+            <input type="text" id="new-emp-pass" class="input-field" placeholder="Clave inicial">
+          </div>
+          <div>
+            <button class="btn btn-red" style="height:46px;" onclick="addNewEmployee()">+ Crear</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size:12.5px;font-weight:800;color:#94A3B8;margin-bottom:8px;">USUARIOS Y EMPLEADOS ACTIVOS:</div>
+      <div id="employees-manager-list" style="display:flex;flex-direction:column;gap:8px;max-height:340px;overflow-y:auto;">
+        <!-- Dinámico -->
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    const DEFAULT_USERS = [
+      {
+        id: "u-1",
+        dni: "35120450",
+        nombre: "Luciano Sosa",
+        rol: "super-admin", // Dueño de Tu Tablita
+        password: "admin123",
+        activo: true
+      },
+      {
+        id: "u-2",
+        dni: "38901234",
+        nombre: "Romina Paz",
+        rol: "cajero", // Empleada de Caja
+        password: "caja123",
+        activo: true
+      }
+    ];
+
+    const DEFAULT_CLIENTS = [
+      { id: "c-1", dni: "35120450", nombre: "Luciano Sosa", telefono: "3513000000", puntos: 14200, compras: 284000, txs: 14, canjes: 2 },
+      { id: "c-2", dni: "18345901", nombre: "Marta Gómez", telefono: "3515123456", puntos: 6450, compras: 129000, txs: 8, canjes: 1 },
+      { id: "c-3", dni: "28904332", nombre: "Carlos Benítez", telefono: "3517894561", puntos: 2100, compras: 42000, txs: 3, canjes: 0 },
+      { id: "c-4", dni: "31789210", nombre: "Familia Rossi", telefono: "3514567890", puntos: 8900, compras: 178000, txs: 11, canjes: 2 },
+      { id: "c-5", dni: "40221890", nombre: "Juan Pablo Díaz", telefono: "3516549870", puntos: 950, compras: 19000, txs: 1, canjes: 0 }
+    ];
+
+    const DEFAULT_REWARDS = [
+      { id: "r-1", nombre: "Pan Casero de Campo", cat: "Panificados", icono: "🥖", pts: 1500, precio: 1500, stock: true },
+      { id: "r-2", nombre: "Cerveza Quilmes Clásica 1L", cat: "Bebidas", icono: "🍺", pts: 3000, precio: 3000, stock: true },
+      { id: "r-3", nombre: "Coca-Cola 2.25L Retornable", cat: "Bebidas", icono: "🥤", pts: 3200, precio: 3200, stock: true },
+      { id: "r-4", nombre: "Voucher Descuento $5.000", cat: "Vouchers", icono: "🎟️", pts: 5000, precio: 5000, stock: true },
+      { id: "r-5", nombre: "Queso Pategrás Criollo 250g", cat: "Fiambres", icono: "🧀", pts: 5500, precio: 5500, stock: true },
+      { id: "r-6", nombre: "Salamín Picado Fino", cat: "Fiambres", icono: "🥓", pts: 6000, precio: 6000, stock: true },
+      { id: "r-7", nombre: "Tablita Picada p/ 2 Personas", cat: "Tablas", icono: "🍱", pts: 12000, precio: 12000, stock: true },
+      { id: "r-8", nombre: "Tablita Especial p/ 4 Personas", cat: "Tablas", icono: "🍽️", pts: 22000, precio: 22000, stock: true }
+    ];
+
+    let state = {
+      users: JSON.parse(localStorage.getItem('tt_users')) || DEFAULT_USERS,
+      currentUser: JSON.parse(sessionStorage.getItem('tt_session_user')) || null,
+      clients: JSON.parse(localStorage.getItem('tt_clients')) || DEFAULT_CLIENTS,
+      rewards: JSON.parse(localStorage.getItem('tt_rewards')) || DEFAULT_REWARDS,
+      transactions: JSON.parse(localStorage.getItem('tt_txs')) || [
+        { id: "tx-init-1", clienteId: "c-2", cliente: "Marta Gómez", dni: "18345901", tipo: "COMPRA", monto: 20000, puntos: 1000, detalle: "Compra mostrador", fecha: "10:14", operador: "Luciano Sosa", operadorRol: "super-admin", operadorDni: "35120450" },
+        { id: "tx-init-2", clienteId: "c-2", cliente: "Marta Gómez", dni: "18345901", tipo: "CANJE", monto: 0, puntos: -1500, detalle: "Pan Casero de Campo", fecha: "09:30", operador: "Romina Paz", operadorRol: "cajero", operadorDni: "38901234" }
+      ],
+      activeClient: null,
+      cashbackPct: 5.0
+    };
+
+    function saveState() {
+      localStorage.setItem('tt_users', JSON.stringify(state.users));
+      localStorage.setItem('tt_clients', JSON.stringify(state.clients));
+      localStorage.setItem('tt_rewards', JSON.stringify(state.rewards));
+      localStorage.setItem('tt_txs', JSON.stringify(state.transactions));
+    }
+
+    function showToast(msg, isSuccess = true) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.background = isSuccess ? '#10B981' : '#B30000';
+      t.style.color = isSuccess ? '#06281E' : '#FFFFFF';
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2600);
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    /* Autenticación Unificada (Dueño Super-Admin + Empleados Cajeros) */
+    function handleLogin() {
+      const dniInput = document.getElementById('login-dni').value.trim();
+      const passInput = document.getElementById('login-pass').value.trim();
+
+      if (!dniInput || !passInput) {
+        showToast('⚠️ Ingresá tu número de documento y contraseña.', false);
+        return;
+      }
+
+      const user = state.users.find(u => u.dni === dniInput && u.password === passInput);
+
+      if (!user) {
+        showToast('❌ Documento o contraseña incorrectos.', false);
+        return;
+      }
+
+      if (!user.activo) {
+        showToast('⚠️ Tu usuario fue desactivado por el administrador.', false);
+        return;
+      }
+
+      state.currentUser = user;
+      sessionStorage.setItem('tt_session_user', JSON.stringify(user));
+      applySessionUi();
+      showToast(`¡Bienvenido/a, ${user.nombre}!`);
+    }
+
+    function fillQuickLogin(dni, pass) {
+      document.getElementById('login-dni').value = dni;
+      document.getElementById('login-pass').value = pass;
+      handleLogin();
+    }
+
+    function handleLogout() {
+      if (confirm('¿Cerrar la sesión de este turno?')) {
+        sessionStorage.removeItem('tt_session_user');
+        state.currentUser = null;
+        state.activeClient = null;
+        applySessionUi();
+        document.getElementById('login-pass').value = '';
+        showToast('Sesión cerrada. Terminal bloqueada.');
+      }
+    }
+
+    let currentAction = 'sale'; // 'sale' | 'rewards' | 'history'
+    let isSplitView = false;
+    let activeRewardCat = 'Todos';
+
+    function applySessionUi() {
+      const loginView = document.getElementById('view-login');
+      const termView = document.getElementById('view-terminal');
+      const badge = document.getElementById('user-badge');
+      const btnEmp = document.getElementById('btn-manage-employees');
+
+      if (!state.currentUser) {
+        document.body.classList.remove('term-active');
+        if (termView) termView.style.display = 'none';
+        if (loginView) loginView.style.display = 'flex';
+        return;
+      }
+
+      document.body.classList.add('term-active');
+      if (loginView) loginView.style.display = 'none';
+      if (termView) termView.style.display = 'flex';
+
+      const u = state.currentUser;
+      const isSuper = u.rol === 'super-admin';
+
+      if (badge) {
+        badge.className = 'badge-user ' + (isSuper ? 'badge-user-admin' : '');
+        badge.innerHTML = `
+          <span>${isSuper ? '👑' : '🧑‍💼'}</span>
+          <span>${u.nombre} <strong>(${isSuper ? 'Dueño' : 'Cajero'})</strong></span>
+        `;
+      }
+
+      if (btnEmp) {
+        btnEmp.style.display = isSuper ? 'inline-flex' : 'none';
+      }
+
+      switchPosAction(currentAction);
+      renderPosRewards();
+      renderPosTransactions();
+      calculatePosCashback();
+    }
+
+    /* Navegación por Acciones Rápidas (Cero Scroll) */
+    function switchPosAction(action) {
+      currentAction = action;
+      if (isSplitView) {
+        isSplitView = false;
+        const viewport = document.getElementById('pos-action-viewport');
+        if (viewport) viewport.classList.remove('split-grid-active');
+        updateSplitToggleButton();
+      }
+
+      document.querySelectorAll('.pos-action-btn').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.getElementById(`btn-action-${action}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      document.querySelectorAll('.pos-panel').forEach(p => p.style.display = 'none');
+      const activePanel = document.getElementById(`pos-panel-${action}`);
+      if (activePanel) activePanel.style.display = 'block';
+
+      if (action === 'sale') {
+        setTimeout(() => {
+          const input = document.getElementById('pos-monto');
+          if (input) {
+            input.focus();
+            input.select();
+          }
+        }, 50);
+      } else if (action === 'rewards') {
+        renderPosRewards();
+      } else if (action === 'history') {
+        renderPosTransactions();
+      }
+    }
+
+    function toggleSplitView() {
+      isSplitView = !isSplitView;
+      const viewport = document.getElementById('pos-action-viewport');
+      updateSplitToggleButton();
+
+      if (isSplitView) {
+        viewport.classList.add('split-grid-active');
+        document.getElementById('pos-panel-sale').style.display = 'block';
+        document.getElementById('pos-panel-rewards').style.display = 'block';
+        document.getElementById('pos-panel-history').style.display = 'none';
+        document.querySelectorAll('.pos-action-btn').forEach(b => b.classList.remove('active'));
+        renderPosRewards();
+      } else {
+        viewport.classList.remove('split-grid-active');
+        switchPosAction('sale');
+      }
+    }
+
+    function updateSplitToggleButton() {
+      const icon = document.getElementById('split-mode-icon');
+      const label = document.getElementById('split-mode-label');
+      if (icon && label) {
+        icon.textContent = isSplitView ? '📑' : '🔲';
+        label.textContent = isSplitView ? 'Modo Pestañas' : 'Vista Dividida';
+      }
+    }
+
+    function filterRewardsCat(cat, btnEl) {
+      activeRewardCat = cat;
+      document.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      renderPosRewards();
+    }
+
+    function addMontoPreset(amount) {
+      const input = document.getElementById('pos-monto');
+      const current = parseFloat(input.value) || 0;
+      input.value = current + amount;
+      calculatePosCashback();
+    }
+
+    function clearMonto() {
+      const input = document.getElementById('pos-monto');
+      input.value = '';
+      calculatePosCashback();
+      input.focus();
+    }
+
+    function handleSearchClient(query) {
+      const box = document.getElementById('search-dropdown');
+      const q = query.trim().toLowerCase();
+      if (!q) {
+        box.classList.remove('active');
+        return;
+      }
+
+      const matches = state.clients.filter(c => 
+        c.nombre.toLowerCase().includes(q) || c.dni.includes(q)
+      );
+
+      if (matches.length === 0) {
+        box.innerHTML = `
+          <div style="padding:12px;font-size:13px;color:#94A3B8;text-align:center;">
+            No se encontró ningún cliente con "${query}".<br>
+            <button class="btn btn-red" style="margin-top:8px;font-size:11px;padding:6px 12px;" onclick="openNewClientModal('${query}')">
+              + Crear a este cliente ahora
+            </button>
+          </div>
+        `;
+        box.classList.add('active');
+        return;
+      }
+
+      box.innerHTML = matches.map(c => `
+        <div class="result-item" onclick="selectClient('${c.id}')">
+          <div>
+            <div style="font-weight:700;color:#FFF;">${c.nombre}</div>
+            <div style="font-size:12px;color:#94A3B8;font-family:var(--font-mono);">DNI: ${c.dni}</div>
+          </div>
+          <div style="font-family:var(--font-mono);font-size:13px;font-weight:800;color:var(--tt-amber);">${c.puntos.toLocaleString('es-AR')} PTS</div>
+        </div>
+      `).join('');
+      box.classList.add('active');
+    }
+
+    function selectClient(id) {
+      const c = state.clients.find(x => x.id === id);
+      if (!c) return;
+      state.activeClient = c;
+
+      document.getElementById('pos-client-name').textContent = c.nombre;
+      document.getElementById('pos-client-dni').textContent = 'DNI: ' + c.dni;
+      document.getElementById('pos-client-pts').textContent = c.puntos.toLocaleString('es-AR') + ' PTS';
+      document.getElementById('pos-client-equiv').textContent = '($' + c.puntos.toLocaleString('es-AR') + ' ARS)';
+      
+      document.getElementById('pos-client-total-bought').textContent = '$' + (c.compras || 0).toLocaleString('es-AR');
+      document.getElementById('pos-client-txs-count').textContent = c.txs || 0;
+      document.getElementById('pos-client-canjes-count').textContent = c.canjes || 0;
+
+      // Ocultar barra de búsqueda y mostrar ficha compacta de cliente activo
+      document.getElementById('pos-search-box').style.display = 'none';
+      document.getElementById('active-client-panel').style.display = 'flex';
+      document.getElementById('search-dropdown').classList.remove('active');
+      document.getElementById('pos-search').value = '';
+
+      renderPosRewards();
+      calculatePosCashback();
+
+      // Si estamos en la pestaña de venta, enfocar el monto
+      if (currentAction === 'sale') {
+        const montoInput = document.getElementById('pos-monto');
+        if (montoInput) {
+          montoInput.focus();
+          montoInput.select();
+        }
+      }
+    }
+
+    function clearActiveClient() {
+      state.activeClient = null;
+      document.getElementById('active-client-panel').style.display = 'none';
+      document.getElementById('pos-search-box').style.display = 'flex';
+      document.getElementById('pos-search').value = '';
+      renderPosRewards();
+      calculatePosCashback();
+      setTimeout(() => {
+        const s = document.getElementById('pos-search');
+        if (s) s.focus();
+      }, 50);
+    }
+
+    function calculatePosCashback() {
+      const input = document.getElementById('pos-monto');
+      const display = document.getElementById('pos-calc-display');
+      const sub = document.getElementById('pos-calc-sub');
+      const val = parseFloat(input.value) || 0;
+      const pts = Math.floor(val * (state.cashbackPct / 100.0));
+      display.textContent = '+' + pts.toLocaleString('es-AR') + ' PTS';
+      
+      if (state.activeClient) {
+        const projected = state.activeClient.puntos + pts;
+        sub.textContent = `Saldo tras la compra: ${projected.toLocaleString('es-AR')} PTS ($${projected.toLocaleString('es-AR')} ARS)`;
+      } else {
+        sub.textContent = 'Monto Bruto × 5% en puntos enteros (1 Pto = $1 ARS)';
+      }
+    }
+
+    function submitSale() {
+      if (!state.activeClient) {
+        showToast('⚠️ Seleccioná un cliente antes de registrar la venta.', false);
+        clearActiveClient();
+        return;
+      }
+
+      const input = document.getElementById('pos-monto');
+      const monto = parseFloat(input.value) || 0;
+      if (monto <= 0) {
+        showToast('⚠️ Ingresá un monto de compra mayor a $0.', false);
+        input.focus();
+        return;
+      }
+
+      const puntosGanados = Math.floor(monto * (state.cashbackPct / 100.0));
+      state.activeClient.puntos += puntosGanados;
+      state.activeClient.compras = (state.activeClient.compras || 0) + monto;
+      state.activeClient.txs = (state.activeClient.txs || 0) + 1;
+
+      const tx = {
+        id: 'tx-' + Date.now(),
+        clienteId: state.activeClient.id,
+        cliente: state.activeClient.nombre,
+        dni: state.activeClient.dni,
+        tipo: 'COMPRA',
+        monto: monto,
+        puntos: puntosGanados,
+        detalle: 'Compra mostrador',
+        fecha: new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' }),
+        operador: state.currentUser ? state.currentUser.nombre : 'Caja 1',
+        operadorDni: state.currentUser ? state.currentUser.dni : '',
+        operadorRol: state.currentUser ? state.currentUser.rol : 'cajero'
+      };
+      state.transactions.unshift(tx);
+      saveState();
+
+      selectClient(state.activeClient.id);
+      renderPosTransactions();
+      showToast(`¡Venta de $${monto.toLocaleString('es-AR')} registrada! (+${puntosGanados} pts acreditados)`);
+    }
+
+    function renderPosRewards() {
+      const container = document.getElementById('pos-rewards-list');
+      const statusBadge = document.getElementById('rewards-client-status');
+      const tabBadge = document.getElementById('tab-rewards-badge');
+      const pts = state.activeClient ? state.activeClient.puntos : 0;
+
+      if (statusBadge) {
+        if (state.activeClient) {
+          statusBadge.textContent = `${state.activeClient.nombre}: ${pts.toLocaleString('es-AR')} PTS ($${pts.toLocaleString('es-AR')} ARS)`;
+        } else {
+          statusBadge.textContent = 'Sin cliente activo';
+        }
+      }
+
+      if (tabBadge) {
+        tabBadge.textContent = state.activeClient ? `${pts.toLocaleString('es-AR')} pts` : 'Catálogo';
+      }
+
+      const filtered = activeRewardCat === 'Todos' 
+        ? state.rewards 
+        : state.rewards.filter(r => r.cat === activeRewardCat);
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<div style="color:#64748B;padding:20px;text-align:center;grid-column:1/-1;">No hay productos en esta categoría.</div>';
+        return;
+      }
+
+      container.innerHTML = filtered.map(r => {
+        const canRedeem = pts >= r.pts && r.stock;
+        return `
+          <div class="reward-item-box ${canRedeem ? 'can-redeem' : ''}">
+            <div style="display:flex;align-items:center;gap:10px;min-width:0;flex:1;">
+              <span style="font-size:24px;line-height:1;flex-shrink:0;">${r.icono}</span>
+              <div style="min-width:0;">
+                <div style="font-weight:700;font-size:13px;color:#FFF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                  ${r.nombre}
+                  ${!r.stock ? '<span style="font-size:9.5px;background:#B30000;padding:2px 5px;border-radius:4px;margin-left:4px;">AGOTADO</span>' : ''}
+                </div>
+                <div style="font-family:var(--font-mono);font-size:11px;color:var(--tt-amber);margin-top:1px;">
+                  ${r.pts.toLocaleString('es-AR')} Pts <span style="color:#94A3B8;">($${r.precio.toLocaleString('es-AR')})</span>
+                </div>
+              </div>
+            </div>
+            <div style="flex-shrink:0;">
+              ${canRedeem ? `
+                <button class="btn btn-amber btn-sm" onclick="redeemReward('${r.id}')" title="Canjear por puntos">
+                  🎁 Canjear
+                </button>
+              ` : `
+                <span style="font-family:var(--font-mono);font-size:10px;color:#64748B;background:rgba(255,255,255,0.04);padding:4px 8px;border-radius:4px;white-space:nowrap;">
+                  ${!r.stock ? 'Sin stock' : (state.activeClient ? `Faltan ${(r.pts - pts).toLocaleString('es-AR')}` : 'Sin cliente')}
+                </span>
+              `}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function redeemReward(rewardId) {
+      if (!state.activeClient) {
+        showToast('⚠️ Seleccioná un cliente antes de canjear premios.', false);
+        return;
+      }
+      const r = state.rewards.find(x => x.id === rewardId);
+      if (!r || !r.stock) return;
+
+      if (state.activeClient.puntos < r.pts) {
+        showToast('⚠️ Puntos insuficientes para este canje.', false);
+        return;
+      }
+
+      state.activeClient.puntos -= r.pts;
+      state.activeClient.canjes = (state.activeClient.canjes || 0) + 1;
+
+      const tx = {
+        id: 'tx-' + Date.now(),
+        clienteId: state.activeClient.id,
+        cliente: state.activeClient.nombre,
+        dni: state.activeClient.dni,
+        tipo: 'CANJE',
+        monto: 0,
+        puntos: -r.pts,
+        detalle: r.nombre,
+        fecha: new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' }),
+        operador: state.currentUser ? state.currentUser.nombre : 'Caja 1',
+        operadorDni: state.currentUser ? state.currentUser.dni : '',
+        operadorRol: state.currentUser ? state.currentUser.rol : 'cajero'
+      };
+      state.transactions.unshift(tx);
+      saveState();
+
+      selectClient(state.activeClient.id);
+      renderPosTransactions();
+      showToast(`🎁 ¡Canje de "${r.nombre}" realizado con éxito! (-${r.pts} pts)`);
+    }
+
+    function renderPosTransactions() {
+      const container = document.getElementById('pos-transactions');
+      const miniContainer = document.getElementById('pos-mini-transactions');
+      const countEl = document.getElementById('pos-tx-count');
+      const miniCountEl = document.getElementById('pos-mini-tx-count');
+      const badgeEl = document.getElementById('pos-tx-badge');
+
+      const totalOps = state.transactions.length;
+      if (countEl) countEl.textContent = totalOps + ' ops';
+      if (miniCountEl) miniCountEl.textContent = totalOps + ' ops';
+      if (badgeEl) badgeEl.textContent = totalOps + ' ops';
+
+      // Calcular Resumen Numérico de Turno
+      let totalMonto = 0;
+      let totalPtsIn = 0;
+      let totalPtsOut = 0;
+
+      state.transactions.forEach(t => {
+        if (t.tipo === 'COMPRA') {
+          totalMonto += (t.monto || 0);
+          totalPtsIn += (t.puntos || 0);
+        } else if (t.tipo === 'CANJE') {
+          totalPtsOut += Math.abs(t.puntos || 0);
+        }
+      });
+
+      const shiftMontoEl = document.getElementById('shift-total-monto');
+      const shiftPtsInEl = document.getElementById('shift-total-pts-in');
+      const shiftPtsOutEl = document.getElementById('shift-total-pts-out');
+      const shiftOpsEl = document.getElementById('shift-total-ops');
+
+      if (shiftMontoEl) shiftMontoEl.textContent = '$' + totalMonto.toLocaleString('es-AR');
+      if (shiftPtsInEl) shiftPtsInEl.textContent = '+' + totalPtsIn.toLocaleString('es-AR') + ' PTS';
+      if (shiftPtsOutEl) shiftPtsOutEl.textContent = '-' + totalPtsOut.toLocaleString('es-AR') + ' PTS';
+      if (shiftOpsEl) shiftOpsEl.textContent = totalOps;
+
+      if (totalOps === 0) {
+        if (container) container.innerHTML = '<div style="color:#64748B;text-align:center;padding:24px 0;">No hay movimientos en este turno aún.</div>';
+        if (miniContainer) miniContainer.innerHTML = '<div style="color:#64748B;text-align:center;padding:16px 0;font-size:12px;">Sin operaciones recientes.</div>';
+        return;
+      }
+
+      // Historial Completo (Pestaña 3)
+      if (container) {
+        container.innerHTML = state.transactions.slice(0, 25).map(t => {
+          const isCompra = t.tipo === 'COMPRA';
+          return `
+            <div style="background:#0F172A;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:9px 12px;display:flex;justify-content:space-between;align-items:center;">
+              <div>
+                <span style="font-weight:700;color:#FFF;font-size:13.5px;">${t.cliente}</span>
+                <span style="font-size:11px;color:#94A3B8;margin-left:6px;font-family:var(--font-mono);">${t.fecha}</span>
+                <div style="font-size:11px;color:#64748B;margin-top:2px;">
+                  ${isCompra ? `Compra de $${t.monto.toLocaleString('es-AR')}` : `Canje: ${t.detalle}`} · 
+                  <span style="color:#CBD5E1;">Op: <strong style="color:#FFF;">${t.operador || 'Caja'}</strong> <span style="font-size:10px;color:var(--tt-amber);">(${t.operadorRol === 'super-admin' ? 'Dueño' : 'Cajero'})</span></span>
+                </div>
+              </div>
+              <div style="font-family:var(--font-mono);font-weight:800;font-size:13.5px;color:${isCompra ? 'var(--tt-amber)' : 'var(--tt-emerald)'};">
+                ${isCompra ? '+' : ''}${t.puntos.toLocaleString('es-AR')} PTS
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Resumen Rápido Lateral (Panel 1 Venta)
+      if (miniContainer) {
+        miniContainer.innerHTML = state.transactions.slice(0, 4).map(t => {
+          const isCompra = t.tipo === 'COMPRA';
+          return `
+            <div style="background:#0F172A;border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:7px 10px;display:flex;justify-content:space-between;align-items:center;">
+              <div style="min-width:0;">
+                <div style="font-weight:700;color:#FFF;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${t.cliente}</div>
+                <div style="font-size:10.5px;color:#94A3B8;">${t.fecha} · ${isCompra ? `$${t.monto.toLocaleString('es-AR')}` : t.detalle}</div>
+              </div>
+              <div style="font-family:var(--font-mono);font-weight:800;font-size:12px;color:${isCompra ? 'var(--tt-amber)' : 'var(--tt-emerald)'};flex-shrink:0;">
+                ${isCompra ? '+' : ''}${t.puntos.toLocaleString('es-AR')} PTS
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
+    function openClientHistoryModal() {
+      if (!state.activeClient) return;
+      const c = state.activeClient;
+      document.getElementById('modal-history-title').textContent = `Historial de Puntos: ${c.nombre}`;
+      document.getElementById('modal-history-sub').textContent = `DNI: ${c.dni} · Saldo Actual: ${c.puntos.toLocaleString('es-AR')} Puntos`;
+
+      const userTxs = state.transactions.filter(t => t.clienteId === c.id || t.dni === c.dni);
+      const container = document.getElementById('modal-history-body');
+
+      if (userTxs.length === 0) {
+        container.innerHTML = '<div style="padding:20px;text-align:center;color:#94A3B8;">Este cliente aún no registra compras ni canjes históricos.</div>';
+      } else {
+        container.innerHTML = userTxs.map(t => {
+          const isCompra = t.tipo === 'COMPRA';
+          return `
+            <div style="background:#151E2E;border:1px solid var(--tt-border);border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;">
+              <div>
+                <span style="font-size:11px;font-weight:800;padding:2px 8px;border-radius:4px;background:${isCompra ? 'rgba(245,158,11,0.2)' : 'rgba(16,185,129,0.2)'};color:${isCompra ? 'var(--tt-amber)' : 'var(--tt-emerald)'};">
+                  ${t.tipo}
+                </span>
+                <span style="font-size:12px;color:#94A3B8;margin-left:8px;">${t.fecha}</span>
+                <div style="font-size:13px;color:#E2E8F0;margin-top:4px;">${isCompra ? `Compra bruta: $${t.monto.toLocaleString('es-AR')}` : `Canje: ${t.detalle}`}</div>
+                <div style="font-size:11px;color:#94A3B8;margin-top:2px;">
+                  Operado por: <strong style="color:#CBD5E1;">${t.operador || 'Caja'}</strong> <span style="font-size:10px;color:var(--tt-amber);">(${t.operadorRol === 'super-admin' ? 'Dueño' : 'Cajero'})</span>
+                </div>
+              </div>
+              <div style="font-family:var(--font-mono);font-size:16px;font-weight:900;color:${isCompra ? 'var(--tt-amber)' : 'var(--tt-emerald)'};">
+                ${isCompra ? '+' : ''}${t.puntos.toLocaleString('es-AR')} PTS
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      document.getElementById('modal-client-history').classList.add('active');
+    }
+
+    function openCatalogManagerModal() {
+      renderCatalogManagerList();
+      document.getElementById('modal-catalog-manager').classList.add('active');
+    }
+
+    function renderCatalogManagerList() {
+      const container = document.getElementById('catalog-manager-list');
+      container.innerHTML = state.rewards.map(r => `
+        <div class="catalog-item-row">
+          <div style="display:flex;align-items:center;gap:12px;min-width:200px;flex:1;">
+            <span style="font-size:26px;line-height:1;">${r.icono}</span>
+            <div>
+              <div style="font-weight:700;color:#FFF;font-size:14px;">${r.nombre}</div>
+              <div style="font-size:11.5px;color:#94A3B8;font-family:var(--font-mono);margin-top:2px;">${r.cat} · $${r.precio.toLocaleString('es-AR')} ARS</div>
+            </div>
+          </div>
+          <div class="catalog-item-actions">
+            <span style="font-family:var(--font-mono);font-weight:800;color:var(--tt-amber);font-size:14px;white-space:nowrap;">
+              ${r.pts.toLocaleString('es-AR')} PTS
+            </span>
+            <div style="display:inline-flex;align-items:center;gap:6px;">
+              <button class="btn btn-secondary" style="padding:6px 12px;font-size:11.5px;min-height:34px;" onclick="toggleRewardStock('${r.id}')">
+                ${r.stock ? '🟢 Activo' : '🔴 Pausado'}
+              </button>
+              <button class="btn btn-secondary" style="padding:6px 10px;font-size:11.5px;min-height:34px;color:#EF4444;border-color:rgba(239,68,68,0.25);" onclick="deleteReward('${r.id}')" title="Eliminar producto">
+                ✕
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleRewardStock(rewardId) {
+      const r = state.rewards.find(x => x.id === rewardId);
+      if (r) {
+        r.stock = !r.stock;
+        saveState();
+        renderCatalogManagerList();
+        renderPosRewards();
+        showToast(`Stock de "${r.nombre}" actualizado.`);
+      }
+    }
+
+    function deleteReward(rewardId) {
+      if (confirm('¿Eliminar este producto del catálogo?')) {
+        state.rewards = state.rewards.filter(x => x.id !== rewardId);
+        saveState();
+        renderCatalogManagerList();
+        renderPosRewards();
+        showToast('Producto eliminado del catálogo.');
+      }
+    }
+
+    function addNewReward() {
+      const name = document.getElementById('new-reward-name').value.trim();
+      const cat = document.getElementById('new-reward-cat').value;
+      const icon = document.getElementById('new-reward-icon').value.trim() || '🧀';
+      const pts = parseInt(document.getElementById('new-reward-pts').value) || 0;
+
+      if (!name || pts <= 0) {
+        showToast('⚠️ Ingresá el nombre y los puntos del premio.', false);
+        return;
+      }
+
+      const newR = {
+        id: 'r-' + Date.now(),
+        nombre: name,
+        cat: cat,
+        icono: icon,
+        pts: pts,
+        precio: pts,
+        stock: true
+      };
+
+      state.rewards.push(newR);
+      saveState();
+
+      document.getElementById('new-reward-name').value = '';
+      document.getElementById('new-reward-pts').value = '';
+
+      renderCatalogManagerList();
+      renderPosRewards();
+      showToast(`¡"${name}" agregado al catálogo con éxito!`);
+    }
+
+    function openNewClientModal(prefill = '') {
+      document.getElementById('modal-new-client').classList.add('active');
+      document.getElementById('new-client-name').value = isNaN(prefill) ? prefill : '';
+      document.getElementById('new-client-dni').value = !isNaN(prefill) ? prefill : '';
+      document.getElementById('new-client-name').focus();
+    }
+
+    function submitNewClient() {
+      const name = document.getElementById('new-client-name').value.trim();
+      const dni = document.getElementById('new-client-dni').value.trim();
+      const tel = document.getElementById('new-client-tel').value.trim();
+
+      if (!name || !dni) {
+        showToast('⚠️ Completá Nombre y DNI.', false);
+        return;
+      }
+
+      if (state.clients.some(c => c.dni === dni)) {
+        showToast('⚠️ Ya existe un cliente con ese DNI.', false);
+        return;
+      }
+
+      const newC = {
+        id: 'c-' + Date.now(),
+        dni: dni,
+        nombre: name,
+        telefono: tel || '',
+        puntos: 0,
+        compras: 0,
+        txs: 0,
+        canjes: 0
+      };
+
+      state.clients.push(newC);
+      saveState();
+
+      closeModal('modal-new-client');
+      selectClient(newC.id);
+      showToast(`¡Cliente "${name}" dado de alta con éxito!`);
+    }
+
+    /* Gestión de Empleados (Super-Admin / Dueño) */
+    function openEmployeesModal() {
+      if (!state.currentUser || state.currentUser.rol !== 'super-admin') {
+        showToast('⚠️ Solo el dueño (super-admin) puede gestionar empleados.', false);
+        return;
+      }
+      renderEmployeesList();
+      document.getElementById('modal-employees').classList.add('active');
+    }
+
+    function renderEmployeesList() {
+      const container = document.getElementById('employees-manager-list');
+      container.innerHTML = state.users.map(u => {
+        const isSuper = u.rol === 'super-admin';
+        const isMe = state.currentUser && state.currentUser.id === u.id;
+        const txCount = state.transactions.filter(t => t.operadorDni === u.dni || t.operador === u.nombre).length;
+        return `
+          <div class="catalog-item-row">
+            <div style="display:flex;align-items:center;gap:12px;min-width:240px;flex:1;">
+              <span style="font-size:26px;line-height:1;">${isSuper ? '👑' : '🧑‍💼'}</span>
+              <div>
+                <div style="font-weight:700;color:#FFF;font-size:14px;display:flex;align-items:center;gap:6px;">
+                  ${u.nombre} ${isMe ? '<span style="font-size:10px;font-family:var(--font-mono);background:#334155;color:#E2E8F0;padding:2px 6px;border-radius:4px;">(Tu Sesión)</span>' : ''}
+                </div>
+                <div style="font-size:11.5px;color:#94A3B8;font-family:var(--font-mono);margin-top:2px;">
+                  DNI: <strong style="color:#CBD5E1;">${u.dni}</strong> · <span style="color:${isSuper ? 'var(--tt-amber)' : '#CBD5E1'};">${isSuper ? 'Dueño / Super-Admin' : 'Cajero Mostrador'}</span> · ${txCount} ops registradas
+                </div>
+              </div>
+            </div>
+            <div class="catalog-item-actions">
+              <span style="font-family:var(--font-mono);font-size:11px;font-weight:700;padding:4px 10px;border-radius:99px;background:${u.activo ? 'rgba(16,185,129,0.15)' : 'rgba(239,68,68,0.15)'};color:${u.activo ? 'var(--tt-emerald)' : '#EF4444'};border:1px solid ${u.activo ? 'rgba(16,185,129,0.3)' : 'rgba(239,68,68,0.3)'};white-space:nowrap;">
+                ● ${u.activo ? 'Activo' : 'Inactivo'}
+              </span>
+              <div style="display:inline-flex;align-items:center;gap:6px;">
+                ${!isMe ? `
+                  <button class="btn btn-secondary" style="padding:6px 12px;font-size:11.5px;min-height:34px;" onclick="toggleUserStatus('${u.id}')">
+                    ${u.activo ? 'Desactivar' : 'Activar'}
+                  </button>
+                  <button class="btn btn-secondary" style="padding:6px 10px;font-size:11.5px;min-height:34px;color:#EF4444;border-color:rgba(239,68,68,0.25);" onclick="deleteUser('${u.id}')" title="Eliminar usuario">
+                    ✕
+                  </button>
+                ` : `
+                  <span style="font-size:11px;font-family:var(--font-mono);color:#94A3B8;padding:6px 10px;background:rgba(255,255,255,0.05);border-radius:6px;border:1px solid rgba(255,255,255,0.08);white-space:nowrap;">
+                    Sesión activa
+                  </span>
+                `}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function addNewEmployee() {
+      const name = document.getElementById('new-emp-name').value.trim();
+      const dni = document.getElementById('new-emp-dni').value.trim();
+      const rol = document.getElementById('new-emp-rol').value;
+      const pass = document.getElementById('new-emp-pass').value.trim();
+
+      if (!name || !dni || !pass) {
+        showToast('⚠️ Completá Nombre, DNI y Contraseña.', false);
+        return;
+      }
+      if (state.users.some(u => u.dni === dni)) {
+        showToast('⚠️ Ya existe un usuario con ese DNI.', false);
+        return;
+      }
+
+      const newU = {
+        id: 'u-' + Date.now(),
+        dni: dni,
+        nombre: name,
+        rol: rol,
+        password: pass,
+        activo: true
+      };
+
+      state.users.push(newU);
+      saveState();
+      document.getElementById('new-emp-name').value = '';
+      document.getElementById('new-emp-dni').value = '';
+      document.getElementById('new-emp-pass').value = '';
+      renderEmployeesList();
+      showToast(`¡Usuario "${name}" creado con éxito!`);
+    }
+
+    function toggleUserStatus(userId) {
+      const u = state.users.find(x => x.id === userId);
+      if (u) {
+        u.activo = !u.activo;
+        saveState();
+        renderEmployeesList();
+        showToast(`Usuario "${u.nombre}" ${u.activo ? 'activado' : 'desactivado'}.`);
+      }
+    }
+
+    function deleteUser(userId) {
+      const u = state.users.find(x => x.id === userId);
+      if (!u) return;
+      if (confirm(`¿Eliminar al usuario "${u.nombre}"?`)) {
+        state.users = state.users.filter(x => x.id !== userId);
+        saveState();
+        renderEmployeesList();
+        showToast(`Usuario "${u.nombre}" eliminado.`);
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      // Si hay un modal abierto, Escape lo cierra
+      const activeModal = document.querySelector('.modal-overlay.active');
+      if (activeModal) {
+        if (e.key === 'Escape') {
+          activeModal.classList.remove('active');
+        }
+        return;
+      }
+
+      if (!state.currentUser) return;
+
+      // Atajos rápidos de mostrador
+      if (e.key === 'F1' || (e.altKey && e.key === '1')) {
+        e.preventDefault();
+        switchPosAction('sale');
+      } else if (e.key === 'F2' || (e.altKey && e.key === '2')) {
+        e.preventDefault();
+        switchPosAction('rewards');
+      } else if (e.key === 'F3' || (e.altKey && e.key === '3')) {
+        e.preventDefault();
+        switchPosAction('history');
+      } else if (e.key === 'Escape') {
+        const searchDropdown = document.getElementById('search-dropdown');
+        if (searchDropdown && searchDropdown.classList.contains('active')) {
+          searchDropdown.classList.remove('active');
+        }
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      applySessionUi();
+      if (state.currentUser) {
+        selectClient('c-2');
+      }
+
+      const montoInput = document.getElementById('pos-monto');
+      if (montoInput) {
+        montoInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            submitSale();
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

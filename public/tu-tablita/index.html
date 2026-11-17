@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Tu Tablita Autoservicio — Simulación Interactiva del Sistema de Puntos</title>
+  <meta name="description" content="Centro de demostración interactiva de Tu Tablita Autoservicio: Terminal de Mostrador & Caja y Portal de Socios Club Tu Tablita por FuturizaTech.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23111827'/><path d='M10 38 L12 49 Q14 54 22 54 L42 51 Q48 50 49 42 L50 35 Q51 30 56 30 Q60 30 60 23 Q60 17 53 18 L46 20' stroke='%23E60000' stroke-width='4' fill='none' stroke-linecap='round'/><circle cx='54' cy='24' r='2.5' fill='%23F59E0B'/><text x='14' y='35' font-family='sans-serif' font-weight='900' font-size='20' fill='%23FFFFFF'>TT</text></svg>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800;900&family=Kaushan+Script&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --tt-charcoal: #111827;
+      --tt-night: #090D16;
+      --tt-concrete: #1E293B;
+      --tt-red: #E60000;
+      --tt-red-dark: #B30000;
+      --tt-amber: #F59E0B;
+      --tt-emerald: #10B981;
+      --tt-border: rgba(255, 255, 255, 0.12);
+      
+      --font-script: 'Kaushan Script', cursive;
+      --font-display: 'Montserrat', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 26px;
+      --shadow-red: 0 0 30px rgba(230, 0, 0, 0.35);
+      --shadow-card: 0 16px 36px rgba(0, 0, 0, 0.5);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--tt-night);
+      color: #E2E8F0;
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+      background-image: radial-gradient(circle at 50% 15%, rgba(230, 0, 0, 0.12) 0%, rgba(9, 13, 22, 1) 70%);
+    }
+
+    .topbar {
+      background: rgba(17, 24, 39, 0.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--tt-border);
+      padding: 14px 20px;
+    }
+
+    .topbar-content {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge-demo {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--tt-amber);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      padding: 4px 10px;
+      border-radius: 99px;
+      letter-spacing: 0.05em;
+    }
+
+    .co-brand {
+      font-size: 12px;
+      color: #94A3B8;
+    }
+
+    .co-brand strong {
+      color: #FFFFFF;
+    }
+
+    .container {
+      max-width: 1080px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 36px 18px 60px;
+      flex: 1;
+    }
+
+    .hero-banner {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 5px 14px;
+      background: rgba(230, 0, 0, 0.16);
+      border: 1px solid rgba(230, 0, 0, 0.4);
+      color: #FF7777;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 800;
+      border-radius: 99px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 5vw, 36px);
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: #CBD5E1;
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .grid-apps {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 768px) {
+      .grid-apps {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    .app-card {
+      background: #111827;
+      border: 1px solid var(--tt-border);
+      border-radius: var(--radius-xl);
+      padding: 28px 24px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 220ms ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-card:hover {
+      border-color: rgba(230, 0, 0, 0.5);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-red);
+    }
+
+    .app-card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .app-icon {
+      font-size: 32px;
+      width: 58px;
+      height: 58px;
+      background: #1E293B;
+      border: 1px solid var(--tt-border);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .app-title {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 900;
+      color: #FFFFFF;
+    }
+
+    .app-badge-role {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 800;
+      color: var(--tt-amber);
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 2px 8px;
+      border-radius: 99px;
+      display: inline-block;
+      margin-top: 3px;
+    }
+
+    .app-desc {
+      font-size: 13.5px;
+      color: #94A3B8;
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .feature-item {
+      font-size: 13px;
+      color: #CBD5E1;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .feature-item span.bullet {
+      color: var(--tt-red);
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    .credentials-box {
+      background: #0B111E;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      font-size: 12px;
+    }
+
+    .credentials-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .credential-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      color: #94A3B8;
+      font-family: var(--font-mono);
+    }
+
+    .credential-row strong {
+      color: #FFFFFF;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 13.5px;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: all 180ms ease;
+      width: 100%;
+    }
+
+    .btn-red {
+      background: linear-gradient(135deg, #E60000, #B30000);
+      color: #FFFFFF;
+      box-shadow: 0 0 20px rgba(230, 0, 0, 0.4);
+    }
+
+    .btn-red:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    .btn-amber {
+      background: linear-gradient(135deg, #F59E0B, #D97706);
+      color: #111827;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.35);
+    }
+
+    .btn-amber:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .brandbook-box {
+      background: #111827;
+      border: 1px solid var(--tt-border);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brandbook-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .footer {
+      border-top: 1px solid var(--tt-border);
+      padding: 24px 18px;
+      text-align: center;
+      font-size: 12px;
+      color: #64748B;
+    }
+
+    .footer a {
+      color: #94A3B8;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-content">
+      <div class="brand-lockup">
+        <svg viewBox="0 0 280 64" width="160" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 12 34 L 14 50 Q 16 57 28 57 L 210 52 Q 222 51 224 41 L 225 31 Q 226 25 235 25 L 250 25 Q 264 25 264 16 Q 264 7 250 9 L 227 12" stroke="#FFFFFF" stroke-width="4.2" stroke-linecap="round" fill="none"/>
+          <circle cx="252" cy="17" r="3.8" stroke="#FFFFFF" stroke-width="2.6" fill="none"/>
+          <circle cx="252" cy="17" r="1.5" fill="#F59E0B"/>
+          <text x="20" y="34" font-family="'Kaushan Script', cursive" font-size="34" fill="#FFFFFF">Tu Tablita</text>
+          <text x="52" y="50" font-family="'Montserrat', sans-serif" font-size="11" font-weight="900" font-style="italic" fill="#E60000" letter-spacing="2.6">AUTOSERVICIO</text>
+        </svg>
+        <span class="badge-demo">SIMULACIÓN INTERACTIVA</span>
+      </div>
+      <div class="co-brand">
+        Desarrollado por <strong>FuturizaTech</strong>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="hero-banner">
+      <div class="hero-badge">SISTEMA DE FIDELIZACIÓN &amp; CASHBACK 5%</div>
+      <h1 class="hero-title">Club Tu Tablita Autoservicio</h1>
+      <p class="hero-sub">
+        ¡Hola Luciano! Acá tenés la maqueta interactiva completa y funcional del sistema de fidelización de Tu Tablita. Podés probar ambos entornos desde cualquier teléfono, tablet o computadora para ver exactamente cómo operará en el negocio:
+      </p>
+    </div>
+
+    <div class="grid-apps">
+
+      <!-- APP 1: TERMINAL DE MOSTRADOR & CAJA -->
+      <div class="app-card">
+        <div>
+          <div class="app-card-header">
+            <div class="app-icon">🖥️</div>
+            <div>
+              <h2 class="app-title">Terminal de Mostrador</h2>
+              <span class="app-badge-role">USO EN CAJA · DUEÑO &amp; EMPLEADOS</span>
+            </div>
+          </div>
+
+          <p class="app-desc">
+            Diseñada para la velocidad real del mostrador: pantalla completa libre de scroll vertical, carga ágil de compras con suma del 5% en puntos y canje instantáneo de premios.
+          </p>
+
+          <ul class="features-list">
+            <li class="feature-item">
+              <span class="bullet">✦</span>
+              <span><strong>Cero scroll en caja:</strong> Monto, cálculo de cashback y botón principal siempre visibles sin desplazar la pantalla.</span>
+            </li>
+            <li class="feature-item">
+              <span class="bullet">✦</span>
+              <span><strong>Botones rápidos de suma:</strong> <code>+$2.000</code>, <code>+$5.000</code>, <code>+$10.000</code> y confirmación con tecla <code>Enter</code>.</span>
+            </li>
+            <li class="feature-item">
+              <span class="bullet">✦</span>
+              <span><strong>Auditoría de cajero:</strong> Perfil Super-Admin para vos (Dueño) y perfiles individuales para empleados para rastrear cada operación.</span>
+            </li>
+            <li class="feature-item">
+              <span class="bullet">✦</span>
+              <span><strong>Canje en 1 clic:</strong> Catálogo organizado por categorías (Fiambres, Tablas, Bebidas, Vouchers).</span>
+            </li>
+          </ul>
+
+          <div class="credentials-box">
+            <div class="credentials-title">Accesos de Prueba Disponibles:</div>
+            <div class="credential-row">
+              <span>👑 Dueño (Luciano):</span>
+              <span>DNI <strong>35120450</strong> · Clave <strong>admin123</strong></span>
+            </div>
+            <div class="credential-row">
+              <span>🧑‍💼 Cajera (Romina):</span>
+              <span>DNI <strong>38901234</strong> · Clave <strong>caja123</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <a href="./mostrador/" class="btn btn-red">
+          ABRIR TERMINAL DE MOSTRADOR &rarr;
+        </a>
+      </div>
+
+      <!-- APP 2: PORTAL DE SOCIOS CLUB TU TABLITA -->
+      <div class="app-card">
+        <div>
+          <div class="app-card-header">
+            <div class="app-icon">📱</div>
+            <div>
+              <h2 class="app-title">Portal del Cliente</h2>
+              <span class="app-badge-role" style="color:var(--tt-emerald);background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.3);">USO PÚBLICO · CLIENTES Y VECINOS</span>
+            </div>
+          </div>
+
+          <p class="app-desc">
+            Web ultraligera para que los clientes consulten su saldo desde su propio celular simplemente ingresando su DNI, sin necesidad de contraseñas complicadas ni descargas pesadas.
+          </p>
+
+          <ul class="features-list">
+            <li class="feature-item">
+              <span class="bullet">✦</span>
+              <span><strong>Acceso solo con DNI:</strong> Cero contraseñas, cero olvidos de clave. Entran directo en 2 segundos.</span>
+            </li>
+            <li class="feature-item">
+              <span class="bullet">✦</span>
+              <span><strong>Tarjeta digital de socio:</strong> Saldo de puntos acumulados en vivo (1 Punto = $1 ARS) y equivalencia en pesos.</span>
+            </li>
+            <li class="feature-item">
+              <span class="bullet">✦</span>
+              <span><strong>Catálogo interactivo con barra de progreso:</strong> Les indica qué premios ya pueden retirar hoy y cuánto les falta para los demás.</span>
+            </li>
+            <li class="feature-item">
+              <span class="bullet">✦</span>
+              <span><strong>Instalable en el teléfono (PWA):</strong> Puede guardarse con icono propio en la pantalla de inicio.</span>
+            </li>
+          </ul>
+
+          <div class="credentials-box">
+            <div class="credentials-title">Clientes Pre-cargados para Probar:</div>
+            <div class="credential-row">
+              <span>Marta Gómez:</span>
+              <span>DNI <strong>18345901</strong> · <strong>6.450 PTS</strong></span>
+            </div>
+            <div class="credential-row">
+              <span>Familia Rossi:</span>
+              <span>DNI <strong>31789210</strong> · <strong>8.900 PTS</strong></span>
+            </div>
+            <div class="credential-row">
+              <span>Carlos Benítez:</span>
+              <span>DNI <strong>28904332</strong> · <strong>2.100 PTS</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <a href="./club/" class="btn btn-amber">
+          ABRIR PORTAL DEL CLIENTE &rarr;
+        </a>
+      </div>
+
+    </div>
+
+    <!-- ACCESO EXTRA: BRAND BOOK INTERACTIVO -->
+    <div class="brandbook-box">
+      <div class="brandbook-info">
+        <span style="font-size:28px;">📘</span>
+        <div>
+          <strong style="color:#FFF;font-size:15px;display:block;">Manual de Identidad Visual (Brand Book)</strong>
+          <span style="font-size:12.5px;color:#94A3B8;">Revisá los tokens de diseño, tipografías, colores oficiales de fachada y cartelería QR para el mostrador.</span>
+        </div>
+      </div>
+      <div>
+        <a href="./brandbook/" class="btn btn-red" style="width:auto;padding:10px 18px;font-size:12px;background:#1E293B;border:1px solid var(--tt-border);box-shadow:none;">
+          Ver Brand Book &rarr;
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p>
+      Tu Tablita Autoservicio &copy; 2026 &middot; Gral. Bustos 699, Córdoba, Argentina.<br>
+      Plataforma desarrollada por <a href="https://futurizatech.com" target="_blank" rel="noopener"><strong>FuturizaTech</strong></a> &middot; Software a Medida &amp; Automatización Comercial.
+    </p>
+  </footer>
+
+</body>
+</html>

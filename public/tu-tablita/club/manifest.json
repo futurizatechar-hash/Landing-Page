@@ -1,0 +1,18 @@
+{
+  "name": "Club Tu Tablita — Consulta de Puntos",
+  "short_name": "Club Tu Tablita",
+  "description": "Portal oficial de beneficios y puntos para clientes de Tu Tablita Autoservicio.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#090D16",
+  "theme_color": "#E60000",
+  "icons": [
+    {
+      "src": "../../assets-marca/logo-dark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

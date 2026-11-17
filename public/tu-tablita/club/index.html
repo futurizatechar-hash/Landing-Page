@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Club Tu Tablita — Consulta de Puntos &amp; Catálogo</title>
+  <meta name="description" content="Portal de consulta de puntos, cashback del 5% y catálogo de premios de Tu Tablita Autoservicio (Gral. Bustos 699, Córdoba).">
+  
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#E60000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Tu Tablita">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23111827'/><path d='M10 38 L12 49 Q14 54 22 54 L42 51 Q48 50 49 42 L50 35 Q51 30 56 30 Q60 30 60 23 Q60 17 53 18 L46 20' stroke='%23E60000' stroke-width='4' fill='none' stroke-linecap='round'/><circle cx='54' cy='24' r='2.5' fill='%23F59E0B'/><text x='14' y='35' font-family='sans-serif' font-weight='900' font-size='20' fill='%23FFFFFF'>TT</text></svg>">
+
+  <!-- Google Fonts: Kaushan Script + Montserrat + Plus Jakarta Sans + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700;800;900&family=Kaushan+Script&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --tt-charcoal: #111827;
+      --tt-night: #090D16;
+      --tt-concrete: #1E293B;
+      --tt-red: #E60000;
+      --tt-red-dark: #B30000;
+      --tt-amber: #F59E0B;
+      --tt-amber-soft: #FDE68A;
+      --tt-emerald: #10B981;
+      --tt-white: #FFFFFF;
+      --tt-border: rgba(255, 255, 255, 0.12);
+      
+      --font-script: 'Kaushan Script', cursive;
+      --font-display: 'Montserrat', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 26px;
+      --shadow-red: 0 0 24px rgba(230, 0, 0, 0.35);
+      --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--tt-night);
+      color: #E2E8F0;
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+    }
+
+    /* Header Exclusivo para el Cliente */
+    .topbar {
+      background: rgba(17, 24, 39, 0.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--tt-border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 12px 18px;
+      padding-top: max(10px, env(safe-area-inset-top));
+    }
+
+    .topbar-content {
+      max-width: 680px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .container {
+      max-width: 680px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px 16px max(60px, env(safe-area-inset-bottom));
+      flex: 1;
+    }
+
+    .card {
+      background: #111827;
+      border: 1px solid var(--tt-border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      margin-bottom: 20px;
+    }
+
+    .input-field {
+      width: 100%;
+      background: #1E293B;
+      border: 1px solid var(--tt-border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-family: var(--font-sans);
+      font-size: 16px; /* Previene auto-zoom en iOS Safari */
+      color: #FFFFFF;
+      outline: none;
+      min-height: 46px;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+    }
+
+    .input-field:focus {
+      border-color: var(--tt-red);
+      box-shadow: 0 0 0 3px rgba(230, 0, 0, 0.25);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+      border: none;
+      min-height: 44px; /* Touch target móvil ergonómico */
+      transition: all var(--transition);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-red {
+      background: linear-gradient(135deg, #E60000, #B30000);
+      color: #FFFFFF;
+      box-shadow: var(--shadow-red);
+    }
+
+    .btn-secondary {
+      background: #1E293B;
+      color: #E2E8F0;
+      border: 1px solid var(--tt-border);
+    }
+
+    .badge-success {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 800;
+      background: rgba(16, 185, 129, 0.18);
+      color: var(--tt-emerald);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      padding: 3px 8px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+
+    /* Tarjeta Digital de Socio */
+    .membership-card {
+      background: linear-gradient(135deg, #450000 0%, #150000 65%, #0B111E 100%);
+      border: 2px solid #B30000;
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+
+    .pts-big {
+      font-family: var(--font-mono);
+      font-size: clamp(34px, 8.5vw, 52px);
+      font-weight: 900;
+      color: var(--tt-amber);
+      line-height: 1.05;
+      margin: 8px 0 4px;
+      word-break: break-all;
+    }
+
+    /* Formulario de Búsqueda Flexible */
+    .search-group-client {
+      display: flex;
+      gap: 8px;
+    }
+
+    @media (max-width: 360px) {
+      .search-group-client {
+        flex-direction: column;
+      }
+      .search-group-client .btn {
+        width: 100%;
+      }
+    }
+
+    /* Filtros de Categoría */
+    .filter-pills {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .filter-pills::-webkit-scrollbar {
+      display: none;
+    }
+
+    .pill-btn {
+      padding: 8px 14px;
+      border-radius: 99px;
+      background: #111827;
+      border: 1px solid var(--tt-border);
+      color: #94A3B8;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      transition: all 140ms ease;
+    }
+
+    .pill-btn.active {
+      background: #B30000;
+      border-color: #E60000;
+      color: #FFFFFF;
+    }
+
+    /* Grilla Adaptativa Móvil / Tablet */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 520px) {
+      .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+    }
+
+    .product-card {
+      background: #111827;
+      border: 1px solid var(--tt-border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--transition);
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: #1E293B;
+      border-radius: 99px;
+      overflow: hidden;
+      margin: 10px 0 6px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #F59E0B, #10B981);
+      border-radius: 99px;
+      transition: width 300ms ease;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 14px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #111827;
+      border: 1px solid #B30000;
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      max-width: 520px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+    }
+
+    @media (max-width: 480px) {
+      .topbar {
+        padding: 10px 14px;
+      }
+      .brand-logo-svg {
+        width: 135px;
+        height: 32px;
+      }
+      .topbar .btn {
+        padding: 6px 10px;
+        font-size: 11px;
+        min-height: 36px;
+      }
+      .membership-card {
+        padding: 18px 14px;
+      }
+      .modal-box {
+        padding: 16px 12px;
+      }
+    }
+
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #10B981;
+      color: #06281E;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 13px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 220ms ease;
+      z-index: 9999;
+    }
+
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Pantalla de Ingreso / Bienvenida */
+    .welcome-screen {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px max(40px, env(safe-area-inset-bottom));
+      background: radial-gradient(circle at 50% 25%, rgba(230, 0, 0, 0.15) 0%, rgba(9, 13, 22, 1) 75%);
+    }
+
+    .welcome-card {
+      background: #111827;
+      border: 1px solid var(--tt-border);
+      border-radius: var(--radius-xl);
+      padding: 36px 24px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    .welcome-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 99px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--tt-amber);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .welcome-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 900;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+
+    .welcome-desc {
+      font-size: 13.5px;
+      color: #CBD5E1;
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
+
+    .welcome-input-lg {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-align: center;
+      min-height: 48px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="toast">¡Operación exitosa!</div>
+
+  <!-- VISTA 1: INGRESO CON DNI -->
+  <section id="view-welcome" class="welcome-screen">
+    <div class="welcome-card">
+      <div style="display:flex;justify-content:center;margin-bottom:16px;">
+        <svg class="brand-logo-svg" viewBox="0 0 280 64" width="200" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 12 34 L 14 50 Q 16 57 28 57 L 210 52 Q 222 51 224 41 L 225 31 Q 226 25 235 25 L 250 25 Q 264 25 264 16 Q 264 7 250 9 L 227 12" stroke="#FFFFFF" stroke-width="4.2" stroke-linecap="round" fill="none"/>
+          <circle cx="252" cy="17" r="3.8" stroke="#FFFFFF" stroke-width="2.6" fill="none"/>
+          <circle cx="252" cy="17" r="1.5" fill="#F59E0B"/>
+          <text x="20" y="34" font-family="'Kaushan Script', cursive" font-size="34" fill="#FFFFFF">Tu Tablita</text>
+          <text x="52" y="50" font-family="'Montserrat', sans-serif" font-size="11" font-weight="900" font-style="italic" fill="#E60000" letter-spacing="2.6">AUTOSERVICIO</text>
+        </svg>
+      </div>
+
+      <div class="welcome-badge">
+        CLUB DE BENEFICIOS
+      </div>
+
+      <h1 class="welcome-title">
+        ¡Bienvenido a Tu Tablita Club!
+      </h1>
+
+      <p class="welcome-desc">
+        Nos alegra tenerte acá. Ingresá tu DNI para ver tus puntos acumulados y los premios que podés canjear hoy.
+      </p>
+
+      <form onsubmit="event.preventDefault(); submitWelcomeDni();">
+        <div style="margin-bottom:14px;">
+          <input type="text" id="welcome-dni-input" class="input-field welcome-input-lg" placeholder="Ingresá tu DNI (sin puntos)" inputmode="numeric" pattern="[0-9]*" autocomplete="off" autofocus>
+        </div>
+
+        <button type="submit" class="btn btn-red btn-block" style="min-height:48px;font-size:14px;">
+          Ver Mis Puntos &amp; Premios →
+        </button>
+      </form>
+
+      <div style="font-size:11.5px;color:#64748B;font-family:var(--font-mono);margin-top:22px;">
+        Gral. Bustos 699, Córdoba
+      </div>
+    </div>
+  </section>
+
+  <!-- VISTA 2: PORTAL PRINCIPAL (PUNTOS + CATÁLOGO) -->
+  <div id="view-portal" style="display:none;">
+
+    <header class="topbar">
+      <div class="topbar-content">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <svg class="brand-logo-svg" viewBox="0 0 280 64" width="160" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 12 34 L 14 50 Q 16 57 28 57 L 210 52 Q 222 51 224 41 L 225 31 Q 226 25 235 25 L 250 25 Q 264 25 264 16 Q 264 7 250 9 L 227 12" stroke="#FFFFFF" stroke-width="4.2" stroke-linecap="round" fill="none"/>
+            <circle cx="252" cy="17" r="3.8" stroke="#FFFFFF" stroke-width="2.6" fill="none"/>
+            <circle cx="252" cy="17" r="1.5" fill="#F59E0B"/>
+            <text x="20" y="34" font-family="'Kaushan Script', cursive" font-size="34" fill="#FFFFFF">Tu Tablita</text>
+            <text x="52" y="50" font-family="'Montserrat', sans-serif" font-size="11" font-weight="900" font-style="italic" fill="#E60000" letter-spacing="2.6">AUTOSERVICIO</text>
+          </svg>
+        </div>
+
+        <div style="display:flex;gap:8px;align-items:center;">
+          <button class="btn btn-secondary" style="font-size:11.5px;padding:6px 12px;" onclick="showWelcomeScreen()" title="Salir o consultar otro DNI">
+            ← Cambiar DNI
+          </button>
+          <button id="btn-topbar-install" class="btn btn-secondary" style="font-size:11px;padding:6px 12px;" onclick="handleInstallClick()">
+            📲 Guardar App
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+
+      <!-- Tarjeta Digital de Socio -->
+      <div class="membership-card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div>
+            <span style="font-family:var(--font-mono);font-size:10px;font-weight:800;background:#B30000;color:#FFF;border:1px solid #E60000;padding:3px 8px;border-radius:99px;">
+              SOCIO CLUB
+            </span>
+            <div style="font-size:22px;font-weight:900;color:#FFF;margin-top:8px;" id="portal-client-name">--</div>
+            <div style="font-family:var(--font-mono);font-size:12px;color:#CBD5E1;" id="portal-client-dni">DNI: --</div>
+          </div>
+          <div style="text-align:right;">
+            <span style="font-family:var(--font-script);font-size:24px;color:#FFF;">Tu Tablita</span>
+            <div style="font-family:var(--font-display);font-size:9px;font-weight:900;color:var(--tt-red);letter-spacing:2px;">AUTOSERVICIO</div>
+          </div>
+        </div>
+
+        <div style="margin-top:20px;">
+          <div style="font-size:11px;color:#FDE68A;font-family:var(--font-mono);font-weight:700;">SALDO DE PUNTOS:</div>
+          <div class="pts-big" id="portal-client-pts">0 PTS</div>
+          <div style="font-size:13px;color:#E2E8F0;">
+            Equivalen a <strong style="color:var(--tt-amber);font-family:var(--font-mono);" id="portal-equiv-ars">$0 ARS</strong> en mercadería.
+          </div>
+        </div>
+
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;">
+          <button class="btn btn-secondary" style="font-size:11px;padding:6px 12px;" onclick="openHistoryModal()">
+            📜 Ver Movimientos
+          </button>
+          <span style="font-size:11px;color:#94A3B8;">Gral. Bustos 699</span>
+        </div>
+      </div>
+
+      <!-- Catálogo de Premios -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <h2 style="font-family:var(--font-display);font-size:17px;font-weight:900;color:#FFF;">
+          Premios Disponibles
+        </h2>
+        <span style="font-size:11.5px;color:var(--tt-amber);font-family:var(--font-mono);font-weight:700;">1 Punto = $1 ARS</span>
+      </div>
+
+      <!-- Filtros de Categoría -->
+      <div class="filter-pills" id="category-pills">
+        <button class="pill-btn active" onclick="filterCatalog('Todos', this)">Todos</button>
+        <button class="pill-btn" onclick="filterCatalog('Fiambres', this)">Fiambres</button>
+        <button class="pill-btn" onclick="filterCatalog('Tablas', this)">Tablas</button>
+        <button class="pill-btn" onclick="filterCatalog('Bebidas', this)">Bebidas</button>
+        <button class="pill-btn" onclick="filterCatalog('Vouchers', this)">Vouchers</button>
+        <button class="pill-btn" onclick="filterCatalog('Panificados', this)">Panificados</button>
+      </div>
+
+      <!-- Grilla de Premios -->
+      <div id="portal-catalog-grid" class="catalog-grid">
+        <!-- Dinámico -->
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Modal Guía de Instalación según Dispositivo -->
+  <div id="modal-install-guide" class="modal-overlay">
+    <div class="modal-box" style="max-width:480px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:20px;">📲</span>
+          <h3 style="font-family:var(--font-display);font-size:16px;font-weight:900;color:#FFF;">
+            Cómo guardar Tu Tablita
+          </h3>
+        </div>
+        <button onclick="closeInstallGuideModal()" style="background:none;border:none;color:#94A3B8;font-size:20px;cursor:pointer;">✕</button>
+      </div>
+
+      <!-- Selector de Dispositivo -->
+      <div style="display:flex;gap:6px;background:#090D16;padding:4px;border-radius:10px;margin-bottom:16px;">
+        <button id="tab-ios" class="pill-btn active" style="flex:1;justify-content:center;font-size:11.5px;min-height:36px;" onclick="switchInstallTab('ios')">
+          🍏 iPhone / iPad
+        </button>
+        <button id="tab-android" class="pill-btn" style="flex:1;justify-content:center;font-size:11.5px;min-height:36px;" onclick="switchInstallTab('android')">
+          🤖 Android
+        </button>
+      </div>
+
+      <!-- Instrucciones iPhone / Safari -->
+      <div id="guide-ios" style="display:block;">
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;line-height:1.5;">
+          <div style="display:flex;gap:12px;align-items:flex-start;background:#151E2E;padding:12px;border-radius:10px;border:1px solid var(--tt-border);">
+            <div style="font-size:18px;line-height:1;font-weight:900;color:var(--tt-amber);">1</div>
+            <div>
+              En Safari, tocá el botón <strong>Compartir</strong>
+              <span style="display:inline-block;padding:2px 6px;background:#334155;border-radius:6px;font-size:11px;margin:0 2px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+              </span>
+              (cuadrado con flecha hacia arriba).
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start;background:#151E2E;padding:12px;border-radius:10px;border:1px solid var(--tt-border);">
+            <div style="font-size:18px;line-height:1;font-weight:900;color:var(--tt-amber);">2</div>
+            <div>
+              En la lista de opciones, seleccioná <strong>"Agregar al inicio"</strong> ➕ (o <em>"Añadir a pantalla de inicio"</em>).
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start;background:#151E2E;padding:12px;border-radius:10px;border:1px solid var(--tt-border);">
+            <div style="font-size:18px;line-height:1;font-weight:900;color:var(--tt-amber);">3</div>
+            <div>
+              Tocá <strong>"Agregar"</strong> arriba a la derecha. ¡Listo! Ya tenés el acceso directo en tu celular.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Instrucciones Android / Chrome -->
+      <div id="guide-android" style="display:none;">
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;line-height:1.5;">
+          <div style="display:flex;gap:12px;align-items:flex-start;background:#151E2E;padding:12px;border-radius:10px;border:1px solid var(--tt-border);">
+            <div style="font-size:18px;line-height:1;font-weight:900;color:var(--tt-amber);">1</div>
+            <div>
+              Si tu navegador muestra el aviso de instalación en pantalla, tocá <strong>"Instalar"</strong>.
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start;background:#151E2E;padding:12px;border-radius:10px;border:1px solid var(--tt-border);">
+            <div style="font-size:18px;line-height:1;font-weight:900;color:var(--tt-amber);">2</div>
+            <div>
+              O abrí el menú de tu navegador y elegí <strong>"Instalar aplicación"</strong> (o <strong>"Agregar a la pantalla principal"</strong>).
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-red btn-block" style="margin-top:16px;" onclick="closeInstallGuideModal()">
+        Entendido
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal Historial del Cliente -->
+  <div id="modal-history" class="modal-overlay">
+    <div class="modal-box">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+        <h3 style="font-family:var(--font-display);font-size:17px;font-weight:900;color:#FFF;">
+          Mis Movimientos de Puntos
+        </h3>
+        <button onclick="closeHistoryModal()" style="background:none;border:none;color:#94A3B8;font-size:20px;cursor:pointer;">✕</button>
+      </div>
+
+      <div id="history-items-list" style="display:flex;flex-direction:column;gap:8px;max-height:360px;overflow-y:auto;">
+        <!-- Dinámico -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: DNI No Encontrado -->
+  <div id="modal-not-found" class="modal-overlay">
+    <div class="modal-box" style="text-align:center;max-width:380px;">
+      <h3 style="font-family:var(--font-display);font-size:18px;font-weight:900;color:#FFF;margin-bottom:8px;">
+        DNI No Encontrado
+      </h3>
+      <p style="font-size:13.5px;color:#CBD5E1;line-height:1.5;margin-bottom:18px;">
+        No registramos puntos con el DNI <strong id="not-found-dni-text" style="color:var(--tt-amber);font-family:var(--font-mono);">--</strong>.<br>
+        Podés solicitar tu alta en caja al realizar tu compra.
+      </p>
+      <button class="btn btn-red btn-block" onclick="closeNotFoundModal()">
+        Volver a intentar
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const DEFAULT_CLIENTS = [
+      { id: "c-1", dni: "35120450", nombre: "Luciano Sosa", telefono: "3513000000", puntos: 14200, compras: 284000, txs: 14, canjes: 2 },
+      { id: "c-2", dni: "18345901", nombre: "Marta Gómez", telefono: "3515123456", puntos: 6450, compras: 129000, txs: 8, canjes: 1 },
+      { id: "c-3", dni: "28904332", nombre: "Carlos Benítez", telefono: "3517894561", puntos: 2100, compras: 42000, txs: 3, canjes: 0 },
+      { id: "c-4", dni: "31789210", nombre: "Familia Rossi", telefono: "3514567890", puntos: 8900, compras: 178000, txs: 11, canjes: 2 },
+      { id: "c-5", dni: "40221890", nombre: "Juan Pablo Díaz", telefono: "3516549870", puntos: 950, compras: 19000, txs: 1, canjes: 0 }
+    ];
+
+    const DEFAULT_REWARDS = [
+      { id: "r-1", nombre: "Pan Casero de Campo", cat: "Panificados", icono: "🥖", pts: 1500, precio: 1500, stock: true },
+      { id: "r-2", nombre: "Cerveza Quilmes Clásica 1L", cat: "Bebidas", icono: "🍺", pts: 3000, precio: 3000, stock: true },
+      { id: "r-3", nombre: "Coca-Cola 2.25L Retornable", cat: "Bebidas", icono: "🥤", pts: 3200, precio: 3200, stock: true },
+      { id: "r-4", nombre: "Voucher Descuento $5.000", cat: "Vouchers", icono: "🎟️", pts: 5000, precio: 5000, stock: true },
+      { id: "r-5", nombre: "Queso Pategrás Criollo 250g", cat: "Fiambres", icono: "🧀", pts: 5500, precio: 5500, stock: true },
+      { id: "r-6", nombre: "Salamín Picado Fino", cat: "Fiambres", icono: "🥓", pts: 6000, precio: 6000, stock: true },
+      { id: "r-7", nombre: "Tablita Picada p/ 2 Personas", cat: "Tablas", icono: "🍱", pts: 12000, precio: 12000, stock: true },
+      { id: "r-8", nombre: "Tablita Especial p/ 4 Personas", cat: "Tablas", icono: "🍽️", pts: 22000, precio: 22000, stock: true }
+    ];
+
+    let currentClient = null;
+    let selectedCat = 'Todos';
+
+    function getClients() {
+      return JSON.parse(localStorage.getItem('tt_clients')) || DEFAULT_CLIENTS;
+    }
+
+    function getRewards() {
+      return JSON.parse(localStorage.getItem('tt_rewards')) || DEFAULT_REWARDS;
+    }
+
+    function getTxs() {
+      return JSON.parse(localStorage.getItem('tt_txs')) || [];
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2600);
+    }
+
+    function submitWelcomeDni() {
+      const input = document.getElementById('welcome-dni-input');
+      const clean = (input.value || '').replace(/[\.\s-]/g, '').trim();
+
+      if (!clean) {
+        showToast('Ingresá tu número de DNI');
+        input.focus();
+        return;
+      }
+
+      const clients = getClients();
+      const match = clients.find(c => c.dni === clean);
+
+      if (!match) {
+        document.getElementById('not-found-dni-text').textContent = input.value;
+        document.getElementById('modal-not-found').classList.add('active');
+        return;
+      }
+
+      currentClient = match;
+      localStorage.setItem('tt_portal_dni', match.dni);
+
+      document.getElementById('portal-client-name').textContent = match.nombre;
+      document.getElementById('portal-client-dni').textContent = 'DNI: ' + match.dni;
+      document.getElementById('portal-client-pts').textContent = match.puntos.toLocaleString('es-AR') + ' PTS';
+      document.getElementById('portal-equiv-ars').textContent = '$' + match.puntos.toLocaleString('es-AR') + ' ARS';
+
+      document.getElementById('view-welcome').style.display = 'none';
+      document.getElementById('view-portal').style.display = 'block';
+
+      renderPortalCatalog();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showWelcomeScreen() {
+      document.getElementById('view-portal').style.display = 'none';
+      document.getElementById('view-welcome').style.display = 'flex';
+      const input = document.getElementById('welcome-dni-input');
+      if (input) {
+        input.focus();
+        input.select();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function closeNotFoundModal() {
+      document.getElementById('modal-not-found').classList.remove('active');
+      const input = document.getElementById('welcome-dni-input');
+      if (input) input.focus();
+    }
+
+    function filterCatalog(cat, btn) {
+      selectedCat = cat;
+      document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderPortalCatalog();
+    }
+
+    function renderPortalCatalog() {
+      const grid = document.getElementById('portal-catalog-grid');
+      const userPts = currentClient ? currentClient.puntos : 0;
+      let list = getRewards();
+
+      if (selectedCat !== 'Todos') {
+        list = list.filter(r => r.cat === selectedCat);
+      }
+
+      grid.innerHTML = list.map(r => {
+        const canRedeem = userPts >= r.pts && r.stock;
+        const pct = Math.min(100, Math.round((userPts / r.pts) * 100));
+        const faltan = r.pts - userPts;
+
+        return `
+          <div class="product-card" style="border-color:${canRedeem ? 'rgba(16,185,129,0.45)' : 'var(--tt-border)'};">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+                <span style="font-size:28px;">${r.icono}</span>
+                ${!r.stock ? `
+                  <span style="font-size:10px;background:#B30000;color:#FFF;padding:2px 6px;border-radius:4px;">AGOTADO</span>
+                ` : canRedeem ? `
+                  <span class="badge-success">¡TE ALCANZA!</span>
+                ` : `
+                  <span style="font-family:var(--font-mono);font-size:11px;color:var(--tt-amber);font-weight:700;">${pct}%</span>
+                `}
+              </div>
+              <div style="font-weight:800;font-size:14.5px;color:#FFF;">${r.nombre}</div>
+              <div style="font-size:11px;color:#94A3B8;">${r.cat} · $${r.precio.toLocaleString('es-AR')} ARS</div>
+            </div>
+
+            <div style="margin-top:12px;">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width:${pct}%;"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:11.5px;">
+                <span style="font-family:var(--font-mono);font-weight:800;color:var(--tt-amber);">${r.pts.toLocaleString('es-AR')} PTS</span>
+                <span style="color:${canRedeem ? 'var(--tt-emerald)' : '#94A3B8'};">
+                  ${!r.stock ? 'Sin stock' : canRedeem ? 'Retiralo gratis en caja' : `Faltan ${faltan.toLocaleString('es-AR')} pts`}
+                </span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openHistoryModal() {
+      if (!currentClient) return;
+      const txs = getTxs().filter(t => t.clienteId === currentClient.id || t.dni === currentClient.dni);
+      const container = document.getElementById('history-items-list');
+
+      if (txs.length === 0) {
+        container.innerHTML = '<div style="padding:16px;text-align:center;color:#94A3B8;font-size:13px;">No hay movimientos registrados para esta cuenta aún.</div>';
+      } else {
+        container.innerHTML = txs.map(t => {
+          const isCompra = t.tipo === 'COMPRA';
+          return `
+            <div style="background:#151E2E;border:1px solid var(--tt-border);border-radius:8px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;">
+              <div>
+                <span style="font-size:10.5px;font-weight:800;padding:2px 6px;border-radius:4px;background:${isCompra ? 'rgba(245,158,11,0.2)' : 'rgba(16,185,129,0.2)'};color:${isCompra ? 'var(--tt-amber)' : 'var(--tt-emerald)'};">
+                  ${t.tipo}
+                </span>
+                <span style="font-size:11.5px;color:#94A3B8;margin-left:6px;">${t.fecha}</span>
+                <div style="font-size:12.5px;color:#E2E8F0;margin-top:3px;">${isCompra ? `Compra de $${t.monto.toLocaleString('es-AR')}` : `Canje: ${t.detalle}`}</div>
+              </div>
+              <div style="font-family:var(--font-mono);font-size:15px;font-weight:900;color:${isCompra ? 'var(--tt-amber)' : 'var(--tt-emerald)'};">
+                ${isCompra ? '+' : ''}${t.puntos.toLocaleString('es-AR')} PTS
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      document.getElementById('modal-history').classList.add('active');
+    }
+
+    function closeHistoryModal() {
+      document.getElementById('modal-history').classList.remove('active');
+    }
+
+    /* Motor de Instalación PWA Multiplataforma (iOS / Android / Desktop) */
+    let deferredPrompt = null;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+    });
+
+    function isStandalone() {
+      return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    }
+
+    function handleInstallClick() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            showToast('¡Club Tu Tablita guardado en tu pantalla!');
+          }
+          deferredPrompt = null;
+        });
+        return;
+      }
+      openInstallGuideModal();
+    }
+
+    function openInstallGuideModal() {
+      const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      switchInstallTab(isIos ? 'ios' : 'android');
+      document.getElementById('modal-install-guide').classList.add('active');
+    }
+
+    function closeInstallGuideModal() {
+      document.getElementById('modal-install-guide').classList.remove('active');
+    }
+
+    function switchInstallTab(platform) {
+      const tabIos = document.getElementById('tab-ios');
+      const tabAndroid = document.getElementById('tab-android');
+      const guideIos = document.getElementById('guide-ios');
+      const guideAndroid = document.getElementById('guide-android');
+
+      if (platform === 'ios') {
+        tabIos.classList.add('active');
+        tabAndroid.classList.remove('active');
+        guideIos.style.display = 'block';
+        guideAndroid.style.display = 'none';
+      } else {
+        tabAndroid.classList.add('active');
+        tabIos.classList.remove('active');
+        guideAndroid.style.display = 'block';
+        guideIos.style.display = 'none';
+      }
+    }
+
+    function updateInstallUiIfStandalone() {
+      if (isStandalone()) {
+        const topBtn = document.getElementById('btn-topbar-install');
+        if (topBtn) {
+          topBtn.innerHTML = '✅ App Instalada';
+          topBtn.style.opacity = '0.7';
+          topBtn.onclick = () => showToast('¡Ya estás usando el Club Tu Tablita instalado!');
+        }
+        const banner = document.getElementById('pwa-install-section');
+        if (banner) banner.style.display = 'none';
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedDni = localStorage.getItem('tt_portal_dni');
+      if (savedDni) {
+        const welcomeInput = document.getElementById('welcome-dni-input');
+        if (welcomeInput) welcomeInput.value = savedDni;
+      }
+
+      // La primera vista siempre da la bienvenida cálida y solicita el DNI
+      document.getElementById('view-welcome').style.display = 'flex';
+      document.getElementById('view-portal').style.display = 'none';
+
+      updateInstallUiIfStandalone();
+
+      if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      }
+    });
+  </script>
+</body>
+</html>
