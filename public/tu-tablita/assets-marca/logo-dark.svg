@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 88" fill="none">
+  <defs>
+    <linearGradient id="ttRed" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E60000"/>
+      <stop offset="100%" stop-color="#FF2200"/>
+    </linearGradient>
+    <filter id="neonGlow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+  <!-- Trazo de la Tablita con mango (Blanco Luminoso) -->
+  <path d="M 18 46 L 21 69 Q 23 78 38 78 L 274 71 Q 290 70 292 56 L 294 42 Q 295 34 307 34 L 327 34 Q 345 34 345 21 Q 345 9 327 11 L 296 15" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#neonGlow)"/>
+  <!-- Orificio del mango de la tablita -->
+  <circle cx="328" cy="22" r="5" stroke="#FFFFFF" stroke-width="3.5" fill="none"/>
+  <circle cx="328" cy="22" r="1.8" fill="#F59E0B"/>
+  <!-- Caligrafía principal "Tu Tablita" -->
+  <text x="28" y="45" font-family="'Kaushan Script', 'Brush Script MT', cursive, sans-serif" font-size="45" font-weight="400" fill="#FFFFFF" letter-spacing="0.5" filter="url(#neonGlow)">Tu Tablita</text>
+  <!-- Subtítulo corpóreo "AUTOSERVICIO" en Rojo Cartel -->
+  <text x="68" y="67" font-family="'Montserrat', 'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="900" font-style="italic" fill="url(#ttRed)" letter-spacing="3.2">AUTOSERVICIO</text>
+</svg>

@@ -2,9 +2,9 @@
 <html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Club Tu Tablita — Consulta de Puntos &amp; Catálogo</title>
-  <meta name="description" content="Portal de consulta de puntos, cashback del 5% y catálogo de premios de Tu Tablita Autoservicio (Gral. Bustos 699, Córdoba).">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>¡Bienvenido a Tu Tablita Club! — Consultá tus Puntos</title>
+  <meta name="description" content="Portal oficial de consulta de puntos, 5% de cashback y catálogo de premios de Tu Tablita Autoservicio (Gral. Bustos 699, Córdoba).">
   
   <link rel="manifest" href="./manifest.json">
   <meta name="theme-color" content="#E60000">
@@ -51,6 +51,12 @@
       -webkit-tap-highlight-color: transparent;
     }
 
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
+    }
+
     body {
       background-color: var(--tt-night);
       color: #E2E8F0;
@@ -70,7 +76,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      padding: 12px 18px;
+      padding: 10px 16px;
       padding-top: max(10px, env(safe-area-inset-top));
     }
 
@@ -80,14 +86,14 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
     }
 
     .container {
       max-width: 680px;
       width: 100%;
       margin: 0 auto;
-      padding: 20px 16px max(60px, env(safe-area-inset-bottom));
+      padding: 16px 14px max(60px, env(safe-area-inset-bottom));
       flex: 1;
     }
 
@@ -110,7 +116,7 @@
       font-size: 16px; /* Previene auto-zoom en iOS Safari */
       color: #FFFFFF;
       outline: none;
-      min-height: 46px;
+      min-height: 48px;
       transition: border-color 150ms ease, box-shadow 150ms ease;
     }
 
@@ -131,7 +137,7 @@
       font-size: 13px;
       cursor: pointer;
       border: none;
-      min-height: 44px; /* Touch target móvil ergonómico */
+      min-height: 46px;
       transition: all var(--transition);
       text-decoration: none;
       white-space: nowrap;
@@ -157,6 +163,10 @@
       border: 1px solid var(--tt-border);
     }
 
+    .btn-block {
+      width: 100%;
+    }
+
     .badge-success {
       font-family: var(--font-mono);
       font-size: 10.5px;
@@ -174,36 +184,27 @@
       background: linear-gradient(135deg, #450000 0%, #150000 65%, #0B111E 100%);
       border: 2px solid #B30000;
       border-radius: var(--radius-xl);
-      padding: 24px;
+      padding: 22px 20px;
       box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
       position: relative;
       overflow: hidden;
       margin-bottom: 22px;
     }
 
+    @media (max-width: 480px) {
+      .membership-card {
+        padding: 18px 14px;
+        border-radius: var(--radius-lg);
+      }
+    }
+
     .pts-big {
       font-family: var(--font-mono);
-      font-size: clamp(34px, 8.5vw, 52px);
+      font-size: clamp(32px, 8vw, 48px);
       font-weight: 900;
       color: var(--tt-amber);
-      line-height: 1.05;
+      line-height: 1.1;
       margin: 8px 0 4px;
-      word-break: break-all;
-    }
-
-    /* Formulario de Búsqueda Flexible */
-    .search-group-client {
-      display: flex;
-      gap: 8px;
-    }
-
-    @media (max-width: 360px) {
-      .search-group-client {
-        flex-direction: column;
-      }
-      .search-group-client .btn {
-        width: 100%;
-      }
     }
 
     /* Filtros de Categoría */
@@ -231,7 +232,7 @@
       font-weight: 700;
       white-space: nowrap;
       cursor: pointer;
-      min-height: 40px;
+      min-height: 38px;
       display: inline-flex;
       align-items: center;
       transition: all 140ms ease;
@@ -243,7 +244,7 @@
       color: #FFFFFF;
     }
 
-    /* Grilla Adaptativa Móvil / Tablet */
+    /* Grilla Adaptativa */
     .catalog-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -308,7 +309,7 @@
       border: 1px solid #B30000;
       border-radius: var(--radius-lg);
       padding: 22px;
-      max-width: 520px;
+      max-width: 500px;
       width: 100%;
       max-height: 88vh;
       overflow-y: auto;
@@ -316,10 +317,10 @@
 
     @media (max-width: 480px) {
       .topbar {
-        padding: 10px 14px;
+        padding: 8px 12px;
       }
       .brand-logo-svg {
-        width: 135px;
+        width: 130px;
         height: 32px;
       }
       .topbar .btn {
@@ -327,11 +328,8 @@
         font-size: 11px;
         min-height: 36px;
       }
-      .membership-card {
-        padding: 18px 14px;
-      }
       .modal-box {
-        padding: 16px 12px;
+        padding: 16px 14px;
       }
     }
 
@@ -350,6 +348,7 @@
       opacity: 0;
       transition: all 220ms ease;
       z-index: 9999;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     }
 
     #toast.show {
@@ -357,14 +356,14 @@
       opacity: 1;
     }
 
-    /* Pantalla de Ingreso / Bienvenida */
+    /* Pantalla de Bienvenida */
     .welcome-screen {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px 16px max(40px, env(safe-area-inset-bottom));
+      padding: 24px 14px max(40px, env(safe-area-inset-bottom));
       background: radial-gradient(circle at 50% 25%, rgba(230, 0, 0, 0.15) 0%, rgba(9, 13, 22, 1) 75%);
     }
 
@@ -372,11 +371,18 @@
       background: #111827;
       border: 1px solid var(--tt-border);
       border-radius: var(--radius-xl);
-      padding: 36px 24px;
+      padding: clamp(24px, 6vw, 36px) clamp(16px, 5vw, 26px);
       max-width: 420px;
       width: 100%;
       text-align: center;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    @media (max-width: 380px) {
+      .welcome-card {
+        padding: 20px 14px;
+        border-radius: var(--radius-lg);
+      }
     }
 
     .welcome-badge {
@@ -396,16 +402,17 @@
 
     .welcome-title {
       font-family: var(--font-display);
-      font-size: 24px;
+      font-size: clamp(20px, 5.5vw, 25px);
       font-weight: 900;
       color: #FFFFFF;
       margin-bottom: 8px;
+      line-height: 1.25;
     }
 
     .welcome-desc {
       font-size: 13.5px;
       color: #CBD5E1;
-      line-height: 1.5;
+      line-height: 1.55;
       margin-bottom: 22px;
     }
 
@@ -415,7 +422,7 @@
       font-weight: 700;
       letter-spacing: 1px;
       text-align: center;
-      min-height: 48px;
+      min-height: 50px;
     }
   </style>
 </head>
@@ -423,11 +430,11 @@
 
   <div id="toast">¡Operación exitosa!</div>
 
-  <!-- VISTA 1: INGRESO CON DNI -->
+  <!-- VISTA 1: BIENVENIDA & CONSULTA CON DNI -->
   <section id="view-welcome" class="welcome-screen">
     <div class="welcome-card">
       <div style="display:flex;justify-content:center;margin-bottom:16px;">
-        <svg class="brand-logo-svg" viewBox="0 0 280 64" width="200" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="brand-logo-svg" viewBox="0 0 280 64" width="200" height="48" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;">
           <path d="M 12 34 L 14 50 Q 16 57 28 57 L 210 52 Q 222 51 224 41 L 225 31 Q 226 25 235 25 L 250 25 Q 264 25 264 16 Q 264 7 250 9 L 227 12" stroke="#FFFFFF" stroke-width="4.2" stroke-linecap="round" fill="none"/>
           <circle cx="252" cy="17" r="3.8" stroke="#FFFFFF" stroke-width="2.6" fill="none"/>
           <circle cx="252" cy="17" r="1.5" fill="#F59E0B"/>
@@ -445,7 +452,7 @@
       </h1>
 
       <p class="welcome-desc">
-        Nos alegra tenerte acá. Ingresá tu DNI para ver tus puntos acumulados y los premios que podés canjear hoy.
+        Consultá tus puntos acumulados con tu DNI y descubrí los premios que podés canjear hoy en el local.
       </p>
 
       <form onsubmit="event.preventDefault(); submitWelcomeDni();">
@@ -453,8 +460,8 @@
           <input type="text" id="welcome-dni-input" class="input-field welcome-input-lg" placeholder="Ingresá tu DNI (sin puntos)" inputmode="numeric" pattern="[0-9]*" autocomplete="off" autofocus>
         </div>
 
-        <button type="submit" class="btn btn-red btn-block" style="min-height:48px;font-size:14px;">
-          Ver Mis Puntos &amp; Premios →
+        <button type="submit" class="btn btn-red btn-block" style="min-height:50px;font-size:14px;">
+          Consultá tus Puntos →
         </button>
       </form>
 
@@ -464,13 +471,13 @@
     </div>
   </section>
 
-  <!-- VISTA 2: PORTAL PRINCIPAL (PUNTOS + CATÁLOGO) -->
+  <!-- VISTA 2: PORTAL PRINCIPAL (TARJETA + CATÁLOGO) -->
   <div id="view-portal" style="display:none;">
 
     <header class="topbar">
       <div class="topbar-content">
         <div style="display:flex;align-items:center;gap:10px;">
-          <svg class="brand-logo-svg" viewBox="0 0 280 64" width="160" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="brand-logo-svg" viewBox="0 0 280 64" width="150" height="36" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;">
             <path d="M 12 34 L 14 50 Q 16 57 28 57 L 210 52 Q 222 51 224 41 L 225 31 Q 226 25 235 25 L 250 25 Q 264 25 264 16 Q 264 7 250 9 L 227 12" stroke="#FFFFFF" stroke-width="4.2" stroke-linecap="round" fill="none"/>
             <circle cx="252" cy="17" r="3.8" stroke="#FFFFFF" stroke-width="2.6" fill="none"/>
             <circle cx="252" cy="17" r="1.5" fill="#F59E0B"/>
@@ -479,11 +486,11 @@
           </svg>
         </div>
 
-        <div style="display:flex;gap:8px;align-items:center;">
-          <button class="btn btn-secondary" style="font-size:11.5px;padding:6px 12px;" onclick="showWelcomeScreen()" title="Salir o consultar otro DNI">
-            ← Cambiar DNI
+        <div style="display:flex;gap:6px;align-items:center;">
+          <button class="btn btn-secondary" style="font-size:11px;padding:6px 10px;min-height:36px;" onclick="showWelcomeScreen()" title="Consultar otro DNI">
+            ← Salir
           </button>
-          <button id="btn-topbar-install" class="btn btn-secondary" style="font-size:11px;padding:6px 12px;" onclick="handleInstallClick()">
+          <button id="btn-topbar-install" class="btn btn-secondary" style="font-size:11px;padding:6px 10px;min-height:36px;" onclick="handleInstallClick()">
             📲 Guardar App
           </button>
         </div>
@@ -494,21 +501,21 @@
 
       <!-- Tarjeta Digital de Socio -->
       <div class="membership-card">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">
           <div>
             <span style="font-family:var(--font-mono);font-size:10px;font-weight:800;background:#B30000;color:#FFF;border:1px solid #E60000;padding:3px 8px;border-radius:99px;">
               SOCIO CLUB
             </span>
-            <div style="font-size:22px;font-weight:900;color:#FFF;margin-top:8px;" id="portal-client-name">--</div>
+            <div style="font-size:clamp(17px, 4.5vw, 22px);font-weight:900;color:#FFF;margin-top:6px;" id="portal-client-name">--</div>
             <div style="font-family:var(--font-mono);font-size:12px;color:#CBD5E1;" id="portal-client-dni">DNI: --</div>
           </div>
-          <div style="text-align:right;">
-            <span style="font-family:var(--font-script);font-size:24px;color:#FFF;">Tu Tablita</span>
-            <div style="font-family:var(--font-display);font-size:9px;font-weight:900;color:var(--tt-red);letter-spacing:2px;">AUTOSERVICIO</div>
+          <div style="text-align:right;flex-shrink:0;">
+            <span style="font-family:var(--font-script);font-size:22px;color:#FFF;display:block;line-height:1;">Tu Tablita</span>
+            <span style="font-family:var(--font-display);font-size:9px;font-weight:900;color:var(--tt-red);letter-spacing:1.8px;">AUTOSERVICIO</span>
           </div>
         </div>
 
-        <div style="margin-top:20px;">
+        <div style="margin-top:18px;">
           <div style="font-size:11px;color:#FDE68A;font-family:var(--font-mono);font-weight:700;">SALDO DE PUNTOS:</div>
           <div class="pts-big" id="portal-client-pts">0 PTS</div>
           <div style="font-size:13px;color:#E2E8F0;">
@@ -516,16 +523,16 @@
           </div>
         </div>
 
-        <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;">
-          <button class="btn btn-secondary" style="font-size:11px;padding:6px 12px;" onclick="openHistoryModal()">
-            📜 Ver Movimientos
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+          <button class="btn btn-secondary" style="font-size:11px;padding:6px 12px;min-height:34px;" onclick="openHistoryModal()">
+            📜 Mis Movimientos
           </button>
           <span style="font-size:11px;color:#94A3B8;">Gral. Bustos 699</span>
         </div>
       </div>
 
       <!-- Catálogo de Premios -->
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:6px;">
         <h2 style="font-family:var(--font-display);font-size:17px;font-weight:900;color:#FFF;">
           Premios Disponibles
         </h2>
@@ -552,15 +559,15 @@
 
   <!-- Modal Guía de Instalación según Dispositivo -->
   <div id="modal-install-guide" class="modal-overlay">
-    <div class="modal-box" style="max-width:480px;">
+    <div class="modal-box">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
         <div style="display:flex;align-items:center;gap:8px;">
           <span style="font-size:20px;">📲</span>
           <h3 style="font-family:var(--font-display);font-size:16px;font-weight:900;color:#FFF;">
-            Cómo guardar Tu Tablita
+            Cómo guardar Tu Tablita en tu celular
           </h3>
         </div>
-        <button onclick="closeInstallGuideModal()" style="background:none;border:none;color:#94A3B8;font-size:20px;cursor:pointer;">✕</button>
+        <button onclick="closeInstallGuideModal()" style="background:none;border:none;color:#94A3B8;font-size:20px;cursor:pointer;padding:4px;">✕</button>
       </div>
 
       <!-- Selector de Dispositivo -->
@@ -590,7 +597,7 @@
           <div style="display:flex;gap:12px;align-items:flex-start;background:#151E2E;padding:12px;border-radius:10px;border:1px solid var(--tt-border);">
             <div style="font-size:18px;line-height:1;font-weight:900;color:var(--tt-amber);">2</div>
             <div>
-              En la lista de opciones, seleccioná <strong>"Agregar al inicio"</strong> ➕ (o <em>"Añadir a pantalla de inicio"</em>).
+              En la lista de opciones, seleccioná <strong>"Agregar al inicio"</strong> ➕.
             </div>
           </div>
 
@@ -616,7 +623,7 @@
           <div style="display:flex;gap:12px;align-items:flex-start;background:#151E2E;padding:12px;border-radius:10px;border:1px solid var(--tt-border);">
             <div style="font-size:18px;line-height:1;font-weight:900;color:var(--tt-amber);">2</div>
             <div>
-              O abrí el menú de tu navegador y elegí <strong>"Instalar aplicación"</strong> (o <strong>"Agregar a la pantalla principal"</strong>).
+              O abrí el menú de tu navegador (los tres puntos ⋮) y elegí <strong>"Instalar aplicación"</strong> (o <strong>"Agregar a pantalla principal"</strong>).
             </div>
           </div>
         </div>
@@ -635,7 +642,7 @@
         <h3 style="font-family:var(--font-display);font-size:17px;font-weight:900;color:#FFF;">
           Mis Movimientos de Puntos
         </h3>
-        <button onclick="closeHistoryModal()" style="background:none;border:none;color:#94A3B8;font-size:20px;cursor:pointer;">✕</button>
+        <button onclick="closeHistoryModal()" style="background:none;border:none;color:#94A3B8;font-size:20px;cursor:pointer;padding:4px;">✕</button>
       </div>
 
       <div id="history-items-list" style="display:flex;flex-direction:column;gap:8px;max-height:360px;overflow-y:auto;">
@@ -652,7 +659,7 @@
       </h3>
       <p style="font-size:13.5px;color:#CBD5E1;line-height:1.5;margin-bottom:18px;">
         No registramos puntos con el DNI <strong id="not-found-dni-text" style="color:var(--tt-amber);font-family:var(--font-mono);">--</strong>.<br>
-        Podés solicitar tu alta en caja al realizar tu compra.
+        Podés solicitar tu alta en caja al realizar tu compra en el autoservicio.
       </p>
       <button class="btn btn-red btn-block" onclick="closeNotFoundModal()">
         Volver a intentar
@@ -904,8 +911,6 @@
           topBtn.style.opacity = '0.7';
           topBtn.onclick = () => showToast('¡Ya estás usando el Club Tu Tablita instalado!');
         }
-        const banner = document.getElementById('pwa-install-section');
-        if (banner) banner.style.display = 'none';
       }
     }
 
@@ -916,7 +921,6 @@
         if (welcomeInput) welcomeInput.value = savedDni;
       }
 
-      // La primera vista siempre da la bienvenida cálida y solicita el DNI
       document.getElementById('view-welcome').style.display = 'flex';
       document.getElementById('view-portal').style.display = 'none';
 
