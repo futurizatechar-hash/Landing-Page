@@ -50,9 +50,11 @@
     }
 
     html, body {
-      overflow-x: hidden;
-      width: 100%;
-      max-width: 100vw;
+      overflow-x: hidden !important;
+      width: 100% !important;
+      max-width: 100vw !important;
+      position: relative;
+      -webkit-text-size-adjust: 100%;
     }
 
     body {
@@ -63,13 +65,40 @@
       display: flex;
       flex-direction: column;
       line-height: 1.5;
+      overflow-x: hidden !important;
     }
 
     #view-terminal {
-      width: 100%;
+      width: 100% !important;
+      max-width: 100vw !important;
       min-height: 100vh;
       display: flex;
       flex-direction: column !important;
+      overflow-x: hidden !important;
+      box-sizing: border-box !important;
+    }
+
+    .container,
+    .topbar,
+    .pos-action-viewport,
+    .pos-panel,
+    .sale-two-col,
+    .card {
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    .text-short {
+      display: none;
+    }
+    .text-long {
+      display: inline;
+    }
+    .btn-text-mobile {
+      display: none;
+    }
+    .btn-text-desktop {
+      display: inline;
     }
 
     @media (min-width: 960px) {
@@ -934,56 +963,7 @@
       }
     }
 
-    @media (max-width: 680px) {
-      .client-search-ribbon {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .active-client-ribbon {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-      }
-      .client-ribbon-info {
-        width: 100%;
-      }
-      .client-ribbon-points {
-        width: 100%;
-        justify-content: center;
-      }
-      .client-ribbon-actions {
-        width: 100%;
-        justify-content: space-between;
-      }
-      .pos-action-bar {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .pos-action-tabs {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 6px;
-      }
-      .pos-action-tabs > button:nth-child(3) {
-        grid-column: 1 / -1;
-      }
-      .pos-action-btn {
-        justify-content: center;
-        padding: 8px 10px;
-        font-size: 11px;
-      }
-      .pos-view-toggler {
-        display: none;
-      }
-      .monto-presets-row {
-        gap: 4px;
-      }
-      .preset-chip {
-        padding: 4px 7px;
-        font-size: 10.5px;
-      }
-    }
+
 
     /* Modales Responsivos */
     .modal-overlay {
@@ -1386,51 +1366,215 @@
         gap: 6px;
       }
       .topbar {
-        padding: 8px 12px;
+        padding: 8px 12px !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
       }
       .topbar-content {
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        gap: 8px;
+        flex-wrap: nowrap !important;
+        justify-content: space-between !important;
+        gap: 8px !important;
+        width: 100% !important;
       }
       .brand-lockup {
-        flex-wrap: nowrap;
-        gap: 6px;
+        flex-wrap: nowrap !important;
+        gap: 6px !important;
+        min-width: 0 !important;
       }
       .brand-logo-svg {
-        width: 130px;
-        height: 30px;
+        width: 120px !important;
+        height: 28px !important;
       }
       .badge-pos {
-        font-size: 9px;
-        padding: 2px 7px;
-        letter-spacing: 0;
+        font-size: 9px !important;
+        padding: 2px 6px !important;
+        letter-spacing: 0 !important;
       }
       .container {
-        padding: 12px 10px 60px;
+        padding: 10px 10px 70px !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box !important;
       }
       .card {
-        padding: 14px 12px;
-        border-radius: 12px;
+        padding: 14px 12px !important;
+        border-radius: 12px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box !important;
       }
       .modal-box {
-        padding: 16px 12px;
+        padding: 16px 12px !important;
+        width: 100% !important;
+        max-width: 95vw !important;
       }
-      .tab-btn-badge {
-        display: none;
+
+      /* Barra de búsqueda y cliente activo */
+      .client-search-ribbon {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 8px !important;
+      }
+      .btn-new-client {
+        width: 100% !important;
+      }
+      .active-client-ribbon {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 10px !important;
+      }
+      .client-ribbon-info {
+        width: 100% !important;
+      }
+      .client-ribbon-points {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .client-ribbon-actions {
+        width: 100% !important;
+        display: flex !important;
+        gap: 8px !important;
+      }
+      .client-ribbon-actions .btn {
+        flex: 1 !important;
+      }
+
+      /* Pestañas de Acción Rápidas (3 columnas iguales 100% ancho) */
+      .pos-action-bar {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 8px !important;
+      }
+      .pos-action-tabs {
+        width: 100% !important;
+        display: flex !important;
+        gap: 4px !important;
       }
       .pos-action-btn {
-        padding: 8px 6px;
-        font-size: 11px;
-        gap: 4px;
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        padding: 9px 4px !important;
+        font-size: 11.5px !important;
+        justify-content: center !important;
+        gap: 4px !important;
+        white-space: nowrap !important;
+        border-radius: 8px !important;
       }
-      .input-monto-big {
-        height: 48px;
-        font-size: 22px;
+      .pos-action-btn .tab-btn-icon {
+        font-size: 13px !important;
+      }
+      .tab-btn-badge {
+        display: none !important;
+      }
+      .pos-view-toggler {
+        display: none !important;
+      }
+
+      /* Texto adaptativo corto / largo */
+      .text-short {
+        display: inline !important;
+      }
+      .text-long {
+        display: none !important;
+      }
+      .btn-text-mobile {
+        display: inline !important;
+      }
+      .btn-text-desktop {
+        display: none !important;
+      }
+
+      /* Botones y Keypad de Presets */
+      .btn {
+        white-space: normal !important;
+        word-break: break-word;
+      }
+      .monto-presets-row {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 6px !important;
+        width: 100% !important;
+        margin-bottom: 12px !important;
+      }
+      .presets-label {
+        grid-column: 1 / -1 !important;
+        margin-bottom: 2px !important;
+        font-size: 11px !important;
+        color: #94A3B8 !important;
+      }
+      .preset-chip {
+        width: 100% !important;
+        padding: 9px 4px !important;
+        font-size: 12px !important;
+        text-align: center !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 38px !important;
+        box-sizing: border-box !important;
+      }
+
+      /* Encabezados y banners de cálculo */
+      .card-title {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+      }
+      .card-title .badge-cashback,
+      .card-title .badge-success {
+        align-self: flex-start !important;
+      }
+      .calc-banner {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+        padding: 10px 14px !important;
+      }
+      .calc-pts {
+        align-self: flex-start !important;
+        font-size: 24px !important;
+      }
+
+      /* Input de monto */
+      .input-monto-wrapper {
+        position: relative !important;
+        width: 100% !important;
       }
       .input-monto-currency {
-        font-size: 20px;
-        left: 12px;
+        font-size: 22px !important;
+        left: 14px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+      }
+      .input-monto-big {
+        width: 100% !important;
+        padding-left: 42px !important;
+        font-size: 22px !important;
+        height: 50px !important;
+        box-sizing: border-box !important;
+      }
+
+      /* Botón de confirmar venta en móvil */
+      #btn-submit-sale {
+        font-size: 13.5px !important;
+        padding: 13px 8px !important;
+        letter-spacing: 0.02em !important;
+        white-space: normal !important;
+        min-height: 48px !important;
+      }
+
+      /* Acceso inferior a canjes */
+      .sale-footer-quick {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 8px !important;
+        text-align: center !important;
+      }
+      .sale-footer-quick .btn {
+        width: 100% !important;
       }
     }
 
@@ -1684,17 +1828,20 @@
       <div class="pos-action-tabs">
         <button id="btn-action-sale" class="pos-action-btn active" onclick="switchPosAction('sale')">
           <span class="tab-btn-icon">💰</span>
-          <span class="tab-btn-text">1. REGISTRAR VENTA</span>
+          <span class="tab-btn-text text-long">1. REGISTRAR VENTA</span>
+          <span class="tab-btn-text text-short">1. Venta</span>
           <span class="tab-btn-badge">+5% PUNTOS</span>
         </button>
         <button id="btn-action-rewards" class="pos-action-btn" onclick="switchPosAction('rewards')">
           <span class="tab-btn-icon">🎁</span>
-          <span class="tab-btn-text">2. CANJEAR PREMIOS</span>
+          <span class="tab-btn-text text-long">2. CANJEAR PREMIOS</span>
+          <span class="tab-btn-text text-short">2. Canjes</span>
           <span id="tab-rewards-badge" class="tab-btn-badge badge-amber">Catálogo</span>
         </button>
         <button id="btn-action-history" class="pos-action-btn" onclick="switchPosAction('history')">
           <span class="tab-btn-icon">📋</span>
-          <span class="tab-btn-text">3. OPERACIONES TURNO</span>
+          <span class="tab-btn-text text-long">3. OPERACIONES TURNO</span>
+          <span class="tab-btn-text text-short">3. Turno</span>
           <span id="pos-tx-badge" class="tab-btn-badge badge-green">0 ops</span>
         </button>
       </div>
@@ -1748,8 +1895,9 @@
             </div>
 
             <!-- Botón de Confirmación Principal -->
-            <button class="btn btn-red btn-block btn-lg" onclick="submitSale()" style="font-size:15px;padding:15px;letter-spacing:0.03em;">
-              ＋ REGISTRAR VENTA &amp; CARGAR PUNTOS (Enter)
+            <button id="btn-submit-sale" class="btn btn-red btn-block btn-lg" onclick="submitSale()">
+              <span class="btn-text-desktop">＋ REGISTRAR VENTA &amp; CARGAR PUNTOS (Enter)</span>
+              <span class="btn-text-mobile">＋ REGISTRAR VENTA</span>
             </button>
 
             <!-- Acceso Directo de 1 Clic a Canjes -->
@@ -2227,13 +2375,15 @@
       if (activePanel) activePanel.style.display = 'block';
 
       if (action === 'sale') {
-        setTimeout(() => {
-          const input = document.getElementById('pos-monto');
-          if (input) {
-            input.focus();
-            input.select();
-          }
-        }, 50);
+        if (window.innerWidth > 768) {
+          setTimeout(() => {
+            const input = document.getElementById('pos-monto');
+            if (input) {
+              input.focus();
+              input.select();
+            }
+          }, 50);
+        }
       } else if (action === 'rewards') {
         renderPosRewards();
       } else if (action === 'history') {
