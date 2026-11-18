@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Terminal de Mostrador &amp; Caja — Tu Tablita Autoservicio</title>
-  <meta name="description" content="Software interno de mostrador y caja para carga de ventas, cálculo del 5% de cashback en puntos y canjes de Tu Tablita Autoservicio.">
+  <meta name="description" content="Software interno de mostrador y caja para carga de ventas, cálculo del 3% de cashback en puntos y canjes de Tu Tablita Autoservicio (Gral. Bustos 699, Malagueño).">
   
   <link rel="manifest" href="./manifest.json">
   <meta name="theme-color" content="#E60000">
@@ -1808,7 +1808,6 @@
           <div class="pts-pill-highlight">
             <span class="pts-pill-lbl">SALDO DISPONIBLE</span>
             <span id="pos-client-pts" class="pts-pill-val">0 PTS</span>
-            <span id="pos-client-equiv" class="pts-pill-eq">($0 ARS)</span>
           </div>
         </div>
 
@@ -1830,7 +1829,7 @@
           <span class="tab-btn-icon">💰</span>
           <span class="tab-btn-text text-long">1. REGISTRAR VENTA</span>
           <span class="tab-btn-text text-short">1. Venta</span>
-          <span class="tab-btn-badge">+5% PUNTOS</span>
+          <span class="tab-btn-badge">+3% PUNTOS</span>
         </button>
         <button id="btn-action-rewards" class="pos-action-btn" onclick="switchPosAction('rewards')">
           <span class="tab-btn-icon">🎁</span>
@@ -1856,21 +1855,21 @@
     <!-- CONTENEDOR OPERATIVO (VIEWPORT CERO SCROLL) -->
     <div id="pos-action-viewport" class="pos-action-viewport">
 
-      <!-- PESTAÑA 1: CARGAR VENTA (+5% CASHBACK) -->
+      <!-- PESTAÑA 1: CARGAR VENTA (+3% CASHBACK) -->
       <div id="pos-panel-sale" class="pos-panel active">
         <div class="sale-two-col">
           <!-- Columna Principal de Venta -->
           <div class="card sale-card-main">
             <div class="card-title">
               <span>CARGA DE VENTA &amp; SUMA DE PUNTOS</span>
-              <span class="badge-cashback">5% EN PUNTOS (1 PTO = $1 ARS)</span>
+              <span class="badge-cashback">3% EN PUNTOS</span>
             </div>
 
             <div class="form-group" style="margin-bottom: 10px;">
               <label class="form-label">Total en mostrador ($ ARS)</label>
               <div class="input-monto-wrapper">
                 <span class="input-monto-currency">$</span>
-                <input type="number" id="pos-monto" class="input-field input-monto-big" placeholder="0" value="20000" oninput="calculatePosCashback()">
+                <input type="number" id="pos-monto" class="input-field input-monto-big" placeholder="0" value="" oninput="calculatePosCashback()">
               </div>
             </div>
 
@@ -1889,9 +1888,9 @@
             <div class="calc-banner">
               <div>
                 <div style="font-size:12.5px;color:#CBD5E1;font-weight:700;">Cashback a acreditar en el cliente:</div>
-                <div id="pos-calc-sub" style="font-size:11px;color:#94A3B8;">Monto Bruto × 5% en puntos enteros</div>
+                <div id="pos-calc-sub" style="font-size:11px;color:#94A3B8;">Monto Bruto × 3% en puntos enteros</div>
               </div>
-              <div id="pos-calc-display" class="calc-pts">+1.000 PTS</div>
+              <div id="pos-calc-display" class="calc-pts">+0 PTS</div>
             </div>
 
             <!-- Botón de Confirmación Principal -->
@@ -2007,7 +2006,7 @@
       </div>
 
       <p style="font-size:13px;color:#94A3B8;margin-bottom:16px;">
-        Pedile solo el Nombre y DNI. En 3 segundos ya puede sumar el 5% de su compra.
+        Pedile solo el Nombre y DNI. En 3 segundos ya puede sumar el 3% de su compra.
       </p>
 
       <div class="form-group">
@@ -2058,7 +2057,7 @@
           <h3 style="font-family:var(--font-display);font-size:18px;font-weight:900;color:#FFF;">
             📦 Gestor del Catálogo de Premios
           </h3>
-          <div style="font-size:12px;color:#94A3B8;">Administrá los productos disponibles para canjear por puntos (1 Pto = $1 ARS)</div>
+          <div style="font-size:12px;color:#94A3B8;">Administrá los productos disponibles para canjear por puntos acumulados</div>
         </div>
         <button onclick="closeModal('modal-catalog-manager')" style="background:none;border:none;color:#94A3B8;font-size:20px;cursor:pointer;">✕</button>
       </div>
@@ -2074,11 +2073,19 @@
           <div>
             <label class="form-label">Categoría</label>
             <select id="new-reward-cat" class="input-field" style="height:44px;">
-              <option value="Fiambres">Fiambres &amp; Quesos</option>
-              <option value="Tablas">Tablas &amp; Picadas</option>
-              <option value="Bebidas">Bebidas &amp; Frescos</option>
-              <option value="Panificados">Panificados</option>
-              <option value="Vouchers">Vouchers Descuento</option>
+              <option value="Fiambres">🧀 Fiambres &amp; Quesos</option>
+              <option value="Tablas">🍱 Tablas &amp; Picadas</option>
+              <option value="Almacén">🥫 Almacén General</option>
+              <option value="Bebidas">🍺 Bebidas &amp; Frescos</option>
+              <option value="Panificados">🥖 Panadería</option>
+              <option value="Lácteos">🥛 Lácteos &amp; Derivados</option>
+              <option value="Congelados">❄️ Congelados</option>
+              <option value="Limpieza">🧼 Artículos de Limpieza</option>
+              <option value="Perfumería">🧴 Perfumería &amp; Cuidado</option>
+              <option value="Bazar">🍽️ Bazar &amp; Hogar</option>
+              <option value="Mascotas">🐶 Alimentos Mascotas</option>
+              <option value="Tabaco">🚬 Tabaco &amp; Kiosco</option>
+              <option value="Vouchers">🎟️ Vouchers Descuento</option>
             </select>
           </div>
           <div>
@@ -2192,7 +2199,9 @@
       { id: "r-5", nombre: "Queso Pategrás Criollo 250g", cat: "Fiambres", icono: "🧀", pts: 5500, precio: 5500, stock: true },
       { id: "r-6", nombre: "Salamín Picado Fino", cat: "Fiambres", icono: "🥓", pts: 6000, precio: 6000, stock: true },
       { id: "r-7", nombre: "Tablita Picada p/ 2 Personas", cat: "Tablas", icono: "🍱", pts: 12000, precio: 12000, stock: true },
-      { id: "r-8", nombre: "Tablita Especial p/ 4 Personas", cat: "Tablas", icono: "🍽️", pts: 22000, precio: 22000, stock: true }
+      { id: "r-8", nombre: "Tablita Especial p/ 4 Personas", cat: "Tablas", icono: "🍽️", pts: 22000, precio: 22000, stock: true },
+      { id: "r-9", nombre: "Yerba Mate Selección 1kg", cat: "Almacén", icono: "🧉", pts: 4500, precio: 4500, stock: true },
+      { id: "r-10", nombre: "Dulce de Leche Colonial 400g", cat: "Lácteos", icono: "🥛", pts: 2800, precio: 2800, stock: true }
     ];
 
     let state = {
@@ -2201,11 +2210,11 @@
       clients: JSON.parse(localStorage.getItem('tt_clients')) || DEFAULT_CLIENTS,
       rewards: JSON.parse(localStorage.getItem('tt_rewards')) || DEFAULT_REWARDS,
       transactions: JSON.parse(localStorage.getItem('tt_txs')) || [
-        { id: "tx-init-1", clienteId: "c-2", cliente: "Marta Gómez", dni: "18345901", tipo: "COMPRA", monto: 20000, puntos: 1000, detalle: "Compra mostrador", fecha: "10:14", operador: "Luciano Sosa", operadorRol: "super-admin", operadorDni: "35120450" },
+        { id: "tx-init-1", clienteId: "c-2", cliente: "Marta Gómez", dni: "18345901", tipo: "COMPRA", monto: 20000, puntos: 600, detalle: "Compra mostrador", fecha: "10:14", operador: "Luciano Sosa", operadorRol: "super-admin", operadorDni: "35120450" },
         { id: "tx-init-2", clienteId: "c-2", cliente: "Marta Gómez", dni: "18345901", tipo: "CANJE", monto: 0, puntos: -1500, detalle: "Pan Casero de Campo", fecha: "09:30", operador: "Romina Paz", operadorRol: "cajero", operadorDni: "38901234" }
       ],
       activeClient: null,
-      cashbackPct: 5.0
+      cashbackPct: 3.0
     };
 
     function saveState() {
@@ -2484,7 +2493,8 @@
       document.getElementById('pos-client-name').textContent = c.nombre;
       document.getElementById('pos-client-dni').textContent = 'DNI: ' + c.dni;
       document.getElementById('pos-client-pts').textContent = c.puntos.toLocaleString('es-AR') + ' PTS';
-      document.getElementById('pos-client-equiv').textContent = '($' + c.puntos.toLocaleString('es-AR') + ' ARS)';
+      const equivEl = document.getElementById('pos-client-equiv');
+      if (equivEl) equivEl.textContent = '';
       
       document.getElementById('pos-client-total-bought').textContent = '$' + (c.compras || 0).toLocaleString('es-AR');
       document.getElementById('pos-client-txs-count').textContent = c.txs || 0;
@@ -2532,9 +2542,9 @@
       
       if (state.activeClient) {
         const projected = state.activeClient.puntos + pts;
-        sub.textContent = `Saldo tras la compra: ${projected.toLocaleString('es-AR')} PTS ($${projected.toLocaleString('es-AR')} ARS)`;
+        sub.textContent = `Saldo tras la compra: ${projected.toLocaleString('es-AR')} PTS`;
       } else {
-        sub.textContent = 'Monto Bruto × 5% en puntos enteros (1 Pto = $1 ARS)';
+        sub.textContent = 'Monto Bruto × 3% en puntos enteros';
       }
     }
 
@@ -2588,7 +2598,7 @@
 
       if (statusBadge) {
         if (state.activeClient) {
-          statusBadge.textContent = `${state.activeClient.nombre}: ${pts.toLocaleString('es-AR')} PTS ($${pts.toLocaleString('es-AR')} ARS)`;
+          statusBadge.textContent = `${state.activeClient.nombre}: ${pts.toLocaleString('es-AR')} PTS`;
         } else {
           statusBadge.textContent = 'Sin cliente activo';
         }
@@ -2619,7 +2629,7 @@
                   ${!r.stock ? '<span style="font-size:9.5px;background:#B30000;padding:2px 5px;border-radius:4px;margin-left:4px;">AGOTADO</span>' : ''}
                 </div>
                 <div style="font-family:var(--font-mono);font-size:11px;color:var(--tt-amber);margin-top:1px;">
-                  ${r.pts.toLocaleString('es-AR')} Pts <span style="color:#94A3B8;">($${r.precio.toLocaleString('es-AR')})</span>
+                  ${r.pts.toLocaleString('es-AR')} Pts <span style="color:#94A3B8;">· ${r.cat}</span>
                 </div>
               </div>
             </div>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>¡Bienvenido a Tu Tablita Club! — Consultá tus Puntos</title>
-  <meta name="description" content="Portal oficial de consulta de puntos, 5% de cashback y catálogo de premios de Tu Tablita Autoservicio (Gral. Bustos 699, Córdoba).">
+  <meta name="description" content="Portal oficial de consulta de puntos y catálogo de premios de Tu Tablita Autoservicio (Gral. Bustos 699, Malagueño).">
   
   <link rel="manifest" href="./manifest.json">
   <meta name="theme-color" content="#E60000">
@@ -466,7 +466,7 @@
       </form>
 
       <div style="font-size:11.5px;color:#64748B;font-family:var(--font-mono);margin-top:22px;">
-        Gral. Bustos 699, Córdoba
+        Gral. Bustos 699, Malagueño
       </div>
     </div>
   </section>
@@ -516,10 +516,10 @@
         </div>
 
         <div style="margin-top:18px;">
-          <div style="font-size:11px;color:#FDE68A;font-family:var(--font-mono);font-weight:700;">SALDO DE PUNTOS:</div>
+          <div style="font-size:11px;color:#FDE68A;font-family:var(--font-mono);font-weight:700;">SALDO DE PUNTOS DISPONIBLE:</div>
           <div class="pts-big" id="portal-client-pts">0 PTS</div>
-          <div style="font-size:13px;color:#E2E8F0;">
-            Equivalen a <strong style="color:var(--tt-amber);font-family:var(--font-mono);" id="portal-equiv-ars">$0 ARS</strong> en mercadería.
+          <div style="font-size:12.5px;color:#E2E8F0;">
+            Canjeá tus puntos acumulados por premios directamente en mostrador.
           </div>
         </div>
 
@@ -527,7 +527,7 @@
           <button class="btn btn-secondary" style="font-size:11px;padding:6px 12px;min-height:34px;" onclick="openHistoryModal()">
             📜 Mis Movimientos
           </button>
-          <span style="font-size:11px;color:#94A3B8;">Gral. Bustos 699</span>
+          <span style="font-size:11px;color:#94A3B8;">Gral. Bustos 699 · Malagueño</span>
         </div>
       </div>
 
@@ -536,7 +536,7 @@
         <h2 style="font-family:var(--font-display);font-size:17px;font-weight:900;color:#FFF;">
           Premios Disponibles
         </h2>
-        <span style="font-size:11.5px;color:var(--tt-amber);font-family:var(--font-mono);font-weight:700;">1 Punto = $1 ARS</span>
+        <span style="font-size:11.5px;color:var(--tt-amber);font-family:var(--font-mono);font-weight:700;">Canjeá tus puntos en caja</span>
       </div>
 
       <!-- Filtros de Categoría -->
@@ -544,9 +544,11 @@
         <button class="pill-btn active" onclick="filterCatalog('Todos', this)">Todos</button>
         <button class="pill-btn" onclick="filterCatalog('Fiambres', this)">Fiambres</button>
         <button class="pill-btn" onclick="filterCatalog('Tablas', this)">Tablas</button>
+        <button class="pill-btn" onclick="filterCatalog('Almacén', this)">Almacén</button>
+        <button class="pill-btn" onclick="filterCatalog('Lácteos', this)">Lácteos</button>
         <button class="pill-btn" onclick="filterCatalog('Bebidas', this)">Bebidas</button>
+        <button class="pill-btn" onclick="filterCatalog('Panificados', this)">Pan</button>
         <button class="pill-btn" onclick="filterCatalog('Vouchers', this)">Vouchers</button>
-        <button class="pill-btn" onclick="filterCatalog('Panificados', this)">Panificados</button>
       </div>
 
       <!-- Grilla de Premios -->
@@ -684,7 +686,9 @@
       { id: "r-5", nombre: "Queso Pategrás Criollo 250g", cat: "Fiambres", icono: "🧀", pts: 5500, precio: 5500, stock: true },
       { id: "r-6", nombre: "Salamín Picado Fino", cat: "Fiambres", icono: "🥓", pts: 6000, precio: 6000, stock: true },
       { id: "r-7", nombre: "Tablita Picada p/ 2 Personas", cat: "Tablas", icono: "🍱", pts: 12000, precio: 12000, stock: true },
-      { id: "r-8", nombre: "Tablita Especial p/ 4 Personas", cat: "Tablas", icono: "🍽️", pts: 22000, precio: 22000, stock: true }
+      { id: "r-8", nombre: "Tablita Especial p/ 4 Personas", cat: "Tablas", icono: "🍽️", pts: 22000, precio: 22000, stock: true },
+      { id: "r-9", nombre: "Yerba Mate Selección 1kg", cat: "Almacén", icono: "🧉", pts: 4500, precio: 4500, stock: true },
+      { id: "r-10", nombre: "Dulce de Leche Colonial 400g", cat: "Lácteos", icono: "🥛", pts: 2800, precio: 2800, stock: true }
     ];
 
     let currentClient = null;
@@ -734,7 +738,8 @@
       document.getElementById('portal-client-name').textContent = match.nombre;
       document.getElementById('portal-client-dni').textContent = 'DNI: ' + match.dni;
       document.getElementById('portal-client-pts').textContent = match.puntos.toLocaleString('es-AR') + ' PTS';
-      document.getElementById('portal-equiv-ars').textContent = '$' + match.puntos.toLocaleString('es-AR') + ' ARS';
+      const equivEl = document.getElementById('portal-equiv-ars');
+      if (equivEl) equivEl.textContent = '';
 
       document.getElementById('view-welcome').style.display = 'none';
       document.getElementById('view-portal').style.display = 'block';
@@ -795,7 +800,7 @@
                 `}
               </div>
               <div style="font-weight:800;font-size:14.5px;color:#FFF;">${r.nombre}</div>
-              <div style="font-size:11px;color:#94A3B8;">${r.cat} · $${r.precio.toLocaleString('es-AR')} ARS</div>
+              <div style="font-size:11.5px;color:#94A3B8;margin-top:2px;">${r.cat}</div>
             </div>
 
             <div style="margin-top:12px;">
@@ -811,6 +816,8 @@
             </div>
           </div>
         `;
+      }).join('');
+    }
       }).join('');
     }
 
