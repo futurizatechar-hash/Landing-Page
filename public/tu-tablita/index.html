@@ -3,10 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Tu Tablita Autoservicio — Sistema de Fidelización &amp; Gestión</title>
-  <meta name="description" content="Acceso a la Terminal de Mostrador & Caja y Portal de Socios Club Tu Tablita Autoservicio (Gral. Bustos 699, Malagueño).">
+  <title>Tu Tablita Autoservicio — Fiambrería, Picadas y Almacén en Malagueño</title>
+  <meta name="description" content="Autoservicio integral y fiambrería en Gral. Bustos 699, Malagueño. Abierto todos los días de 08:00 a 23:00 hs de corrido. Picadas artesanales, 11 departamentos y Club de Puntos 3% cashback.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23111827'/><path d='M10 38 L12 49 Q14 54 22 54 L42 51 Q48 50 49 42 L50 35 Q51 30 56 30 Q60 30 60 23 Q60 17 53 18 L46 20' stroke='%23E60000' stroke-width='4' fill='none' stroke-linecap='round'/><circle cx='54' cy='24' r='2.5' fill='%23F59E0B'/><text x='14' y='35' font-family='sans-serif' font-weight='900' font-size='20' fill='%23FFFFFF'>TT</text></svg>">
-  
+
+  <!-- OpenGraph / Social Meta -->
+  <meta property="og:title" content="Tu Tablita Autoservicio — Malagueño, Córdoba">
+  <meta property="og:description" content="Autoservicio integral y fiambrería. Abierto todos los días de 08:00 a 23:00 hs de corrido en Gral. Bustos 699.">
+  <meta property="og:image" content="/tu-tablita/assets-marca/fachada-local-tu-tablita.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts Oficiales del Brandbook -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800;900&family=Kaushan+Script&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,9 +23,12 @@
       --tt-charcoal: #111827;
       --tt-night: #090D16;
       --tt-concrete: #1E293B;
+      --tt-concrete-light: #334155;
       --tt-red: #E60000;
       --tt-red-dark: #B30000;
+      --tt-red-glow: #FF2200;
       --tt-amber: #F59E0B;
+      --tt-amber-soft: #FDE68A;
       --tt-emerald: #10B981;
       --tt-border: rgba(255, 255, 255, 0.12);
       
@@ -33,6 +43,7 @@
       --radius-xl: 26px;
       --shadow-red: 0 0 30px rgba(230, 0, 0, 0.35);
       --shadow-card: 0 16px 36px rgba(0, 0, 0, 0.5);
+      --transition: 200ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     *, *::before, *::after {
@@ -41,10 +52,8 @@
       padding: 0;
     }
 
-    html, body {
-      overflow-x: hidden;
-      width: 100%;
-      max-width: 100vw;
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -52,444 +61,1398 @@
       color: #E2E8F0;
       font-family: var(--font-sans);
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      line-height: 1.5;
-      background-image: radial-gradient(circle at 50% 15%, rgba(230, 0, 0, 0.12) 0%, rgba(9, 13, 22, 1) 70%);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    .topbar {
-      background: rgba(17, 24, 39, 0.95);
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* CONTENEDOR MAESTRO */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* HEADER STICKY */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(9, 13, 22, 0.92);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--tt-border);
-      padding: 14px 20px;
+      padding: 12px 0;
     }
 
-    .topbar-content {
-      max-width: 1080px;
-      margin: 0 auto;
+    .header-content {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
     }
 
     .brand-lockup {
       display: flex;
       align-items: center;
       gap: 12px;
-      flex-wrap: wrap;
+      text-decoration: none;
     }
 
-    .badge-status {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 800;
-      background: rgba(16, 185, 129, 0.15);
-      color: var(--tt-emerald);
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      padding: 4px 10px;
-      border-radius: 99px;
-      letter-spacing: 0.05em;
+    .brand-logo-svg {
+      height: 40px;
+      width: auto;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
     }
 
-    .co-brand {
-      font-size: 12px;
-      color: #94A3B8;
+    .nav-desktop {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 13.5px;
+      font-weight: 600;
     }
 
-    .co-brand strong {
+    .nav-link {
+      color: #CBD5E1;
+      transition: color var(--transition);
+      position: relative;
+    }
+
+    .nav-link:hover {
       color: #FFFFFF;
     }
 
-    .container {
-      max-width: 1080px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 36px 18px 60px;
-      flex: 1;
+    .nav-link.active {
+      color: var(--tt-amber);
     }
 
-    .hero-banner {
-      text-align: center;
-      margin-bottom: 36px;
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .hero-badge {
-      display: inline-block;
-      padding: 5px 14px;
-      background: rgba(230, 0, 0, 0.16);
-      border: 1px solid rgba(230, 0, 0, 0.4);
-      color: #FF7777;
+    /* BOTONES */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 700;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      transition: all var(--transition);
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .btn-red {
+      background: var(--tt-red);
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(230, 0, 0, 0.4);
+    }
+
+    .btn-red:hover {
+      background: #FF1A1A;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-red);
+    }
+
+    .btn-amber {
+      background: var(--tt-amber);
+      color: #090D16;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+    }
+
+    .btn-amber:hover {
+      background: #FBBF24;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: rgba(30, 41, 59, 0.6);
+      border-color: var(--tt-border);
+      color: #FFFFFF;
+    }
+
+    .btn-outline:hover {
+      background: #1E293B;
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: #072612;
+      font-weight: 800;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-whatsapp:hover {
+      background: #2EE673;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+    }
+
+    .btn-hamburger {
+      display: none;
+      background: #1E293B;
+      border: 1px solid var(--tt-border);
+      color: #FFFFFF;
+      font-size: 20px;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+    }
+
+    /* BADGE DE ESTADO DEL LOCAL EN VIVO */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: var(--tt-emerald);
+      padding: 4px 12px;
+      border-radius: 99px;
       font-family: var(--font-mono);
       font-size: 11.5px;
       font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .status-badge.closed {
+      background: rgba(248, 113, 113, 0.12);
+      border-color: rgba(248, 113, 113, 0.35);
+      color: #F87171;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--tt-emerald);
+      box-shadow: 0 0 8px var(--tt-emerald);
+      animation: pulseDot 2s infinite ease-in-out;
+    }
+
+    .status-badge.closed .status-dot {
+      background: #F87171;
+      box-shadow: 0 0 8px #F87171;
+      animation: none;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* HERO SECTION */
+    .hero {
+      position: relative;
+      padding: 60px 0 70px;
+      background: radial-gradient(circle at 50% 20%, rgba(230, 0, 0, 0.15) 0%, rgba(9, 13, 22, 1) 75%);
+      border-bottom: 1px solid var(--tt-border);
+      overflow: hidden;
+    }
+
+    .hero-bg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('/tu-tablita/assets-marca/fachada-local-tu-tablita.jpg') center/cover no-repeat;
+      opacity: 0.18;
+      filter: saturate(1.2) contrast(1.1);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-container {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--tt-amber);
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      padding: 6px 14px;
       border-radius: 99px;
-      letter-spacing: 0.05em;
+      margin-bottom: 20px;
       text-transform: uppercase;
-      margin-bottom: 14px;
     }
 
     .hero-title {
       font-family: var(--font-display);
-      font-size: clamp(24px, 5vw, 36px);
       font-weight: 900;
+      font-size: clamp(32px, 5.5vw, 56px);
+      line-height: 1.12;
       color: #FFFFFF;
-      letter-spacing: 0.02em;
-      margin-bottom: 12px;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
     }
 
-    .hero-sub {
-      font-size: 15px;
+    .hero-title span.highlight-red {
+      color: var(--tt-red);
+      text-shadow: 0 0 30px rgba(230, 0, 0, 0.45);
+    }
+
+    .hero-title span.highlight-amber {
+      color: var(--tt-amber);
+    }
+
+    .hero-desc {
+      font-size: clamp(16px, 2.2vw, 19px);
       color: #CBD5E1;
+      margin-bottom: 32px;
+      line-height: 1.6;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions .btn {
+      padding: 14px 24px;
+      font-size: 15px;
+    }
+
+    /* CINTA DE CONFIANZA / 4 PILARES */
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .trust-item {
+      background: rgba(17, 24, 39, 0.7);
+      border: 1px solid var(--tt-border);
+      border-radius: var(--radius-md);
+      padding: 18px 14px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+      transition: all var(--transition);
+    }
+
+    .trust-item:hover {
+      border-color: rgba(245, 158, 11, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .trust-icon {
+      font-size: 26px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .trust-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+
+    .trust-desc {
+      font-size: 12px;
+      color: #94A3B8;
+      line-height: 1.4;
+    }
+
+    /* SECCIONES GENERALES */
+    .section {
+      padding: 70px 0;
+      border-bottom: 1px solid var(--tt-border);
+    }
+
+    .section-header {
+      text-align: center;
       max-width: 680px;
-      margin: 0 auto;
+      margin: 0 auto 46px;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--tt-amber);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 900;
+      color: #FFFFFF;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      font-size: 15px;
+      color: #94A3B8;
       line-height: 1.6;
     }
 
-    .grid-apps {
+    /* SECCIÓN 1: PICADAS & FIAMBRERÍA */
+    .picadas-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
-      margin-bottom: 32px;
     }
 
-    @media (max-width: 768px) {
-      .grid-apps {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      .container {
-        padding: 24px 14px 40px;
-      }
-      .topbar {
-        padding: 10px 14px;
-      }
-      .topbar-content {
-        gap: 8px;
-      }
-    }
-
-    .app-card {
+    .picada-card {
       background: #111827;
       border: 1px solid var(--tt-border);
-      border-radius: var(--radius-xl);
-      padding: 28px 24px;
-      box-shadow: var(--shadow-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: all 220ms ease;
+      transition: all var(--transition);
+      box-shadow: var(--shadow-card);
+    }
+
+    .picada-card:hover {
+      border-color: var(--tt-red);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), var(--shadow-red);
+    }
+
+    .picada-card.featured {
+      border-color: rgba(245, 158, 11, 0.6);
+      background: linear-gradient(180deg, #182234 0%, #111827 100%);
       position: relative;
-      overflow: hidden;
     }
 
-    @media (max-width: 480px) {
-      .app-card {
-        padding: 20px 16px;
-        border-radius: var(--radius-lg);
-      }
+    .picada-badge-top {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: var(--tt-amber);
+      color: #090D16;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 900;
+      padding: 4px 10px;
+      border-radius: 99px;
+      text-transform: uppercase;
     }
 
-    .app-card:hover {
-      border-color: rgba(230, 0, 0, 0.5);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-red);
+    .picada-body {
+      padding: 26px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
 
-    .app-card-header {
+    .picada-icon-box {
+      font-size: 40px;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .picada-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+
+    .picada-serves {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--tt-amber);
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+
+    .picada-ingredients {
+      list-style: none;
+      margin-bottom: 22px;
+      flex: 1;
+    }
+
+    .picada-ingredients li {
+      font-size: 13.5px;
+      color: #CBD5E1;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .picada-ingredients li span.bullet {
+      color: var(--tt-red);
+      font-weight: 900;
+    }
+
+    .picada-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 16px 22px 22px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    /* SECCIÓN 2: LOS 11 DEPARTAMENTOS */
+    .depts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .dept-card {
+      background: #111827;
+      border: 1px solid var(--tt-border);
+      border-radius: var(--radius-md);
+      padding: 18px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: all var(--transition);
+    }
+
+    .dept-card:hover {
+      background: #1E293B;
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .dept-icon {
+      font-size: 30px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .dept-name {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+
+    .dept-desc {
+      font-size: 12px;
+      color: #94A3B8;
+      line-height: 1.4;
+    }
+
+    /* SECCIÓN 3: CLUB TU TABLITA */
+    .club-banner {
+      background: radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.15) 0%, rgba(17, 24, 39, 1) 70%);
+      border: 2px solid rgba(245, 158, 11, 0.4);
+      border-radius: var(--radius-xl);
+      padding: 44px 36px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .club-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid var(--tt-amber);
+      color: var(--tt-amber-soft);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 900;
+      padding: 5px 12px;
+      border-radius: 99px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .club-title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 900;
+      color: #FFFFFF;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .club-desc {
+      font-size: 15px;
+      color: #CBD5E1;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .club-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .club-step-item {
       display: flex;
       align-items: center;
-      gap: 14px;
-      margin-bottom: 18px;
+      gap: 12px;
+      font-size: 14px;
+      color: #E2E8F0;
     }
 
-    .app-icon {
-      font-size: 30px;
-      width: 54px;
-      height: 54px;
-      background: #1E293B;
-      border: 1px solid var(--tt-border);
-      border-radius: 14px;
+    .club-step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--tt-amber);
+      color: #090D16;
+      font-family: var(--font-mono);
+      font-weight: 900;
+      font-size: 13px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
     }
 
-    .app-title {
-      font-family: var(--font-display);
-      font-size: 19px;
-      font-weight: 900;
-      color: #FFFFFF;
+    .club-card-preview {
+      background: linear-gradient(135deg, #450000 0%, #150000 100%);
+      border: 2px solid var(--tt-red);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7), var(--shadow-red);
+      text-align: center;
     }
 
-    .app-badge-role {
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      font-weight: 800;
-      color: var(--tt-amber);
-      background: rgba(245, 158, 11, 0.12);
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      padding: 2px 8px;
-      border-radius: 99px;
-      display: inline-block;
-      margin-top: 3px;
-    }
-
-    .app-desc {
-      font-size: 13.5px;
-      color: #94A3B8;
-      line-height: 1.55;
+    .club-card-chip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 18px;
     }
 
-    .features-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 24px;
-    }
-
-    .feature-item {
-      font-size: 13px;
-      color: #CBD5E1;
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-    }
-
-    .feature-item span.bullet {
-      color: var(--tt-red);
+    .club-card-pts {
+      font-family: var(--font-mono);
+      font-size: 42px;
       font-weight: 900;
-      font-size: 14px;
+      color: var(--tt-amber);
+      line-height: 1;
+      margin-bottom: 6px;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px 20px;
-      border-radius: var(--radius-sm);
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 13.5px;
-      letter-spacing: 0.03em;
-      cursor: pointer;
-      border: none;
-      text-decoration: none;
-      transition: all 180ms ease;
-      width: 100%;
-      min-height: 48px;
-    }
-
-    .btn-red {
-      background: linear-gradient(135deg, #E60000, #B30000);
-      color: #FFFFFF;
-      box-shadow: 0 0 20px rgba(230, 0, 0, 0.4);
-    }
-
-    .btn-red:hover {
-      filter: brightness(1.1);
-      transform: translateY(-1px);
-    }
-
-    .btn-amber {
-      background: linear-gradient(135deg, #F59E0B, #D97706);
-      color: #111827;
-      box-shadow: 0 0 20px rgba(245, 158, 11, 0.35);
-    }
-
-    .btn-amber:hover {
-      filter: brightness(1.08);
-      transform: translateY(-1px);
-    }
-
-    .brandbook-box {
+    /* SECCIÓN 4: UBICACIÓN Y HORARIOS */
+    .location-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
       background: #111827;
       border: 1px solid var(--tt-border);
-      border-radius: var(--radius-lg);
-      padding: 20px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      box-shadow: var(--shadow-card);
     }
 
-    @media (max-width: 600px) {
-      .brandbook-box {
-        padding: 16px;
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .brandbook-box .btn {
-        width: 100%;
-      }
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
-    .brandbook-info {
+    .info-item {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 14px;
     }
 
-    .footer {
-      border-top: 1px solid var(--tt-border);
-      padding: 24px 18px;
-      text-align: center;
-      font-size: 12px;
-      color: #64748B;
+    .info-icon {
+      font-size: 24px;
+      line-height: 1;
+      padding: 10px;
+      background: #1E293B;
+      border: 1px solid var(--tt-border);
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
     }
 
-    .footer a {
+    .info-label {
+      font-size: 12px;
       color: #94A3B8;
-      text-decoration: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 2px;
+    }
+
+    .info-value {
+      font-size: 16px;
+      color: #FFFFFF;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .info-sub {
+      font-size: 13px;
+      color: #94A3B8;
+      margin-top: 2px;
+    }
+
+    .map-embed-card {
+      background: #090D16;
+      border: 1px solid var(--tt-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #050811;
+      border-top: 1px solid var(--tt-border);
+      padding: 44px 0 30px;
+      font-size: 13px;
+      color: #94A3B8;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 24px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12px;
+    }
+
+    .internal-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #64748B;
+      background: #0F172A;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 4px 10px;
+      border-radius: 6px;
+      transition: all var(--transition);
+    }
+
+    .internal-badge:hover {
+      color: var(--tt-amber);
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+
+    /* DRAWER MÓVIL */
+    .mobile-drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 1999;
+      display: none;
+    }
+
+    .mobile-drawer-overlay.active {
+      display: block;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 280px;
+      height: 100vh;
+      background: #0B111E;
+      border-left: 1px solid var(--tt-border);
+      z-index: 2000;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: right 240ms ease;
+    }
+
+    .mobile-drawer.active {
+      right: 0;
+    }
+
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .mobile-nav-link {
+      font-size: 16px;
+      font-weight: 700;
+      color: #E2E8F0;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* RESPONSIVE BREAKPOINTS */
+    @media (max-width: 960px) {
+      .nav-desktop {
+        display: none;
+      }
+      .btn-hamburger {
+        display: inline-flex;
+      }
+      .trust-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .picadas-grid {
+        grid-template-columns: 1fr;
+      }
+      .depts-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .club-banner {
+        grid-template-columns: 1fr;
+      }
+      .location-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .trust-strip {
+        grid-template-columns: 1fr;
+      }
+      .depts-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-actions .btn {
+        width: 100%;
+      }
+      .footer-top, .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="topbar-content">
-      <div class="brand-lockup">
-        <svg viewBox="0 0 280 64" width="160" height="38" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;">
+  <!-- HEADER NAVEGACIÓN STICKY -->
+  <header class="header">
+    <div class="container header-content">
+      <a href="#inicio" class="brand-lockup">
+        <svg class="brand-logo-svg" viewBox="0 0 280 64" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M 12 34 L 14 50 Q 16 57 28 57 L 210 52 Q 222 51 224 41 L 225 31 Q 226 25 235 25 L 250 25 Q 264 25 264 16 Q 264 7 250 9 L 227 12" stroke="#FFFFFF" stroke-width="4.2" stroke-linecap="round" fill="none"/>
           <circle cx="252" cy="17" r="3.8" stroke="#FFFFFF" stroke-width="2.6" fill="none"/>
           <circle cx="252" cy="17" r="1.5" fill="#F59E0B"/>
           <text x="20" y="34" font-family="'Kaushan Script', cursive" font-size="34" fill="#FFFFFF">Tu Tablita</text>
           <text x="52" y="50" font-family="'Montserrat', sans-serif" font-size="11" font-weight="900" font-style="italic" fill="#E60000" letter-spacing="2.6">AUTOSERVICIO</text>
         </svg>
-        <span class="badge-status">● SISTEMA OPERATIVO</span>
-      </div>
-      <div class="co-brand">
-        Desarrollado por <strong>FuturizaTech</strong>
+      </a>
+
+      <!-- Menú Desktop -->
+      <nav class="nav-desktop">
+        <a href="#picadas" class="nav-link">Picadas</a>
+        <a href="#departamentos" class="nav-link">Departamentos</a>
+        <a href="#club" class="nav-link">Club de Puntos</a>
+        <a href="#horarios" class="nav-link">Horarios &amp; Ubicación</a>
+      </nav>
+
+      <!-- Acciones de Cabecera -->
+      <div class="header-actions">
+        <!-- Indicador dinámico de estado en vivo -->
+        <div id="store-status-pill" class="status-badge">
+          <span class="status-dot"></span>
+          <span id="store-status-text">Abierto de corrido</span>
+        </div>
+
+        <a href="https://wa.me/?text=Hola%20Luciano,%20te%20escribo%20desde%20la%20web%20de%20Tu%20Tablita%20para%20hacerte%20una%20consulta" target="_blank" rel="noopener" class="btn btn-whatsapp" style="padding:8px 14px;font-size:12.5px;">
+          <span>💬</span> <span class="hide-mobile">WhatsApp</span>
+        </a>
+
+        <a href="./club/" class="btn btn-amber" style="padding:8px 14px;font-size:12.5px;">
+          <span>🎁</span> <span>Mis Puntos</span>
+        </a>
+
+        <button class="btn-hamburger" onclick="toggleMobileMenu()" aria-label="Abrir menú de navegación">
+          ☰
+        </button>
       </div>
     </div>
   </header>
 
-  <main class="container">
+  <!-- DRAWER MÓVIL RETRÁCTIL -->
+  <div id="drawer-overlay" class="mobile-drawer-overlay" onclick="closeMobileMenu()"></div>
+  <aside id="drawer" class="mobile-drawer">
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--tt-border);padding-bottom:14px;">
+        <span style="font-family:var(--font-script);font-size:24px;color:#FFF;">Tu Tablita</span>
+        <button onclick="closeMobileMenu()" style="background:none;border:none;color:#FFF;font-size:22px;cursor:pointer;">✕</button>
+      </div>
 
-    <div class="hero-banner">
-      <div class="hero-badge">PROGRAMA DE FIDELIZACIÓN &amp; CASHBACK 3%</div>
-      <h1 class="hero-title">Tu Tablita Autoservicio</h1>
-      <p class="hero-sub">
-        Plataforma central del programa de puntos y cashback de Tu Tablita (Gral. Bustos 699, Malagueño). Accedé a la terminal de caja para operar el mostrador o al portal de clientes para consultar saldos y beneficios.
-      </p>
+      <div class="mobile-nav-links">
+        <a href="#picadas" class="mobile-nav-link" onclick="closeMobileMenu()">🧀 Tablas de Picadas</a>
+        <a href="#departamentos" class="mobile-nav-link" onclick="closeMobileMenu()">🛒 11 Departamentos</a>
+        <a href="#club" class="mobile-nav-link" onclick="closeMobileMenu()">🎁 Club de Puntos</a>
+        <a href="#horarios" class="mobile-nav-link" onclick="closeMobileMenu()">📍 Horarios &amp; Dónde Estamos</a>
+      </div>
     </div>
 
-    <div class="grid-apps">
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <a href="./club/" class="btn btn-amber btn-block" style="text-align:center;">
+        🎁 Consultar mis Puntos
+      </a>
+      <a href="https://wa.me/?text=Hola%20Luciano,%20te%20escribo%20desde%20la%20web%20de%20Tu%20Tablita" target="_blank" rel="noopener" class="btn btn-whatsapp btn-block" style="text-align:center;">
+        💬 Contactar por WhatsApp
+      </a>
+      <div style="text-align:center;font-size:11px;color:#64748B;font-family:var(--font-mono);margin-top:4px;">
+        Gral. Bustos 699 · Malagueño
+      </div>
+    </div>
+  </aside>
 
-      <!-- APP 1: TERMINAL DE MOSTRADOR & CAJA -->
-      <div class="app-card">
-        <div>
-          <div class="app-card-header">
-            <div class="app-icon">🖥️</div>
-            <div>
-              <h2 class="app-title">Terminal de Mostrador</h2>
-              <span class="app-badge-role">OPERATORIA DE CAJA</span>
+  <main>
+
+    <!-- ====================================================================
+         HERO SECTION: IMPACTO + PROPUESTA DE VALOR + HORARIO CORRIDO
+         ==================================================================== -->
+    <section id="inicio" class="hero">
+      <div class="hero-bg-overlay"></div>
+      <div class="container hero-container">
+        
+        <div class="hero-kicker">
+          📍 Gral. Bustos 699 · Malagueño · 08:00 a 23:00 hs de corrido
+        </div>
+
+        <h1 class="hero-title">
+          El autoservicio integral y fiambrería que <span class="highlight-red">no te cierra</span> la persiana.
+        </h1>
+
+        <p class="hero-desc">
+          Abiertos todos los días de <strong>08:00 a 23:00 hs sin cortar al mediodía</strong>. Fiambres al corte de primera línea, tablas de picadas listas para llevar, almacén completo y <strong>3% de cashback en puntos</strong> en todas tus compras.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#picadas" class="btn btn-red">
+            🧀 ENCARGAR PICADA POR WHATSAPP &rarr;
+          </a>
+          <a href="./club/" class="btn btn-amber">
+            🎁 CONSULTAR MIS PUNTOS CLUB
+          </a>
+        </div>
+
+        <!-- 4 PILARES EN CINTA RESUMEN -->
+        <div class="trust-strip">
+          <div class="trust-item">
+            <span class="trust-icon">⏰</span>
+            <div class="trust-title">De 08:00 a 23:00 hs</div>
+            <div class="trust-desc">De corrido todo el día, de lunes a domingos sin corte de siesta.</div>
+          </div>
+
+          <div class="trust-item">
+            <span class="trust-icon">🧀</span>
+            <div class="trust-title">Picadas &amp; Fiambres</div>
+            <div class="trust-desc">Tablas artesanales listas o a pedido con fiambres seleccionados.</div>
+          </div>
+
+          <div class="trust-item">
+            <span class="trust-icon">🛒</span>
+            <div class="trust-title">11 Departamentos</div>
+            <div class="trust-desc">Almacén, carnicería congelada, panadería, bebidas frías y bazar.</div>
+          </div>
+
+          <div class="trust-item">
+            <span class="trust-icon">🎁</span>
+            <div class="trust-title">3% en Puntos</div>
+            <div class="trust-desc">Todas tus compras suman saldo directo para retirar premios en caja.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECCIÓN 1: PICADAS ARTESANALES (PRODUCTO ESTRELLA / TICKET ALTO)
+         ==================================================================== -->
+    <section id="picadas" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">ESPECIALIDAD DE LA CASA</span>
+          <h2 class="section-title">Nuestras Tablas de Picadas</h2>
+          <p class="section-desc">
+            Elaboradas en el momento con los mejores embutidos y quesos de la región. Ideales para compartir en familia, previas de fútbol, reuniones con amigos o eventos.
+          </p>
+        </div>
+
+        <div class="picadas-grid">
+
+          <!-- TABLA 1: CLÁSICA (2 PERSONAS) -->
+          <div class="picada-card">
+            <div class="picada-body">
+              <span class="picada-icon-box">🍱</span>
+              <h3 class="picada-title">Tablita Picada Clásica</h3>
+              <div class="picada-serves">👥 Rinde: 2 personas (comen 2, pican 3)</div>
+              
+              <ul class="picada-ingredients">
+                <li><span class="bullet">✦</span> Salamín picado fino artesanal</li>
+                <li><span class="bullet">✦</span> Queso Pategrás Criollo estacionado</li>
+                <li><span class="bullet">✦</span> Jamón cocido natural seleccionado</li>
+                <li><span class="bullet">✦</span> Aceitunas verdes condimentadas</li>
+                <li><span class="bullet">✦</span> Acompañada con pan casero de campo</li>
+              </ul>
+            </div>
+            
+            <div class="picada-footer">
+              <a href="https://wa.me/?text=Hola%20Luciano,%20quiero%20encargar%20la%20Tablita%20Picada%20Cl%C3%A1sica%20(2%20personas)%20para%20retirar%20hoy" target="_blank" rel="noopener" class="btn btn-red btn-block" style="width:100%;text-align:center;">
+                📲 Encargar por WhatsApp &rarr;
+              </a>
             </div>
           </div>
 
-          <p class="app-desc">
-            Diseñada para la velocidad real del mostrador: pantalla completa libre de scroll vertical, carga ágil de compras con suma del 3% en puntos y canje instantáneo de premios.
-          </p>
-
-          <ul class="features-list">
-            <li class="feature-item">
-              <span class="bullet">✦</span>
-              <span><strong>Cero scroll en caja:</strong> Monto, cálculo de cashback y botón principal siempre visibles sin desplazar la pantalla.</span>
-            </li>
-            <li class="feature-item">
-              <span class="bullet">✦</span>
-              <span><strong>Botones rápidos de suma:</strong> <code>+$1.000</code>, <code>+$2.000</code>, <code>+$5.000</code>, <code>+$10.000</code> y confirmación con tecla <code>Enter</code>.</span>
-            </li>
-            <li class="feature-item">
-              <span class="bullet">✦</span>
-              <span><strong>Control por roles:</strong> Perfil Administrador y perfiles de cajeros para auditoría del turno.</span>
-            </li>
-            <li class="feature-item">
-              <span class="bullet">✦</span>
-              <span><strong>Canje en 1 clic:</strong> Catálogo organizado por categorías (Fiambres, Tablas, Bebidas, Vouchers).</span>
-            </li>
-          </ul>
-        </div>
-
-        <a href="./mostrador/" class="btn btn-red">
-          ABRIR TERMINAL DE MOSTRADOR &rarr;
-        </a>
-      </div>
-
-      <!-- APP 2: PORTAL DE SOCIOS CLUB TU TABLITA -->
-      <div class="app-card">
-        <div>
-          <div class="app-card-header">
-            <div class="app-icon">📱</div>
-            <div>
-              <h2 class="app-title">Portal del Cliente</h2>
-              <span class="app-badge-role" style="color:var(--tt-emerald);background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.3);">CONSULTA PÚBLICA</span>
+          <!-- TABLA 2: ESPECIAL DE CAMPO (4 PERSONAS - DESTACADA) -->
+          <div class="picada-card featured">
+            <span class="picada-badge-top">⭐ LA MÁS PEDIDA</span>
+            <div class="picada-body">
+              <span class="picada-icon-box">🍽️</span>
+              <h3 class="picada-title">Tablita Especial de Campo</h3>
+              <div class="picada-serves">👥 Rinde: 4 a 5 personas</div>
+              
+              <ul class="picada-ingredients">
+                <li><span class="bullet">✦</span> Jamón crudo tipo serrano estacionado</li>
+                <li><span class="bullet">✦</span> Bondiola casera a las finas hierbas</li>
+                <li><span class="bullet">✦</span> Queso azul + Queso Sardo picante</li>
+                <li><span class="bullet">✦</span> Salamín picado grueso de Colonia</li>
+                <li><span class="bullet">✦</span> Mix de frutos secos y aceitunas negras</li>
+                <li><span class="bullet">✦</span> Pan criollo fresco del día</li>
+              </ul>
+            </div>
+            
+            <div class="picada-footer">
+              <a href="https://wa.me/?text=Hola%20Luciano,%20quiero%20encargar%20la%20Tablita%20Especial%20de%20Campo%20(4%20personas)%20para%20retirar%20hoy" target="_blank" rel="noopener" class="btn btn-amber btn-block" style="width:100%;text-align:center;">
+                📲 Encargar Especial por WhatsApp &rarr;
+              </a>
             </div>
           </div>
 
-          <p class="app-desc">
-            Web ultraligera para que los clientes consulten su saldo desde su propio celular simplemente ingresando su DNI, sin necesidad de contraseñas complicadas ni descargas pesadas.
+          <!-- TABLA 3: A MEDIDA PARA EVENTOS -->
+          <div class="picada-card">
+            <div class="picada-body">
+              <span class="picada-icon-box">🎉</span>
+              <h3 class="picada-title">Tablas para Eventos &amp; Cumpleaños</h3>
+              <div class="picada-serves">👥 Rinde: Para grupos de 10 a 50+ personas</div>
+              
+              <ul class="picada-ingredients">
+                <li><span class="bullet">✦</span> Combinación personalizada a tu gusto</li>
+                <li><span class="bullet">✦</span> Variedad de fiambres, quesos y panes</li>
+                <li><span class="bullet">✦</span> Bebidas frías a temperatura lista para servir</li>
+                <li><span class="bullet">✦</span> Presentación lista para colocar en la mesa</li>
+                <li><span class="bullet">✦</span> Pedidos con 24 horas de anticipación</li>
+              </ul>
+            </div>
+            
+            <div class="picada-footer">
+              <a href="https://wa.me/?text=Hola%20Luciano,%20quiero%20consultarte%20por%20tablas%20de%20picadas%20personalizadas%20para%20un%20evento" target="_blank" rel="noopener" class="btn btn-outline btn-block" style="width:100%;text-align:center;">
+                💬 Cotizar Evento por WhatsApp &rarr;
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECCIÓN 2: LOS 11 DEPARTAMENTOS DEL AUTOSERVICIO
+         ==================================================================== -->
+    <section id="departamentos" class="section" style="background:#0B101D;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">TODO EN UN SOLO LUGAR</span>
+          <h2 class="section-title">Los 11 Rubros de Tu Tablita</h2>
+          <p class="section-desc">
+            Resolvé tus compras diarias completas sin dar vueltas ni pagar de más. Desde el pan de la mañana hasta el asado del domingo y los artículos esenciales del hogar.
           </p>
-
-          <ul class="features-list">
-            <li class="feature-item">
-              <span class="bullet">✦</span>
-              <span><strong>Acceso solo con DNI:</strong> Cero contraseñas, consulta instantánea en 2 segundos.</span>
-            </li>
-            <li class="feature-item">
-              <span class="bullet">✦</span>
-              <span><strong>Tarjeta digital de socio:</strong> Saldo de puntos acumulados en vivo y progreso visual para canjear en mostrador.</span>
-            </li>
-            <li class="feature-item">
-              <span class="bullet">✦</span>
-              <span><strong>Catálogo interactivo con barra de progreso:</strong> Indica qué premios ya pueden retirar hoy y cuánto les falta para los demás.</span>
-            </li>
-            <li class="feature-item">
-              <span class="bullet">✦</span>
-              <span><strong>Instalable en el teléfono (PWA):</strong> Puede guardarse con icono propio en la pantalla de inicio.</span>
-            </li>
-          </ul>
         </div>
 
-        <a href="./club/" class="btn btn-amber">
-          ABRIR PORTAL DEL CLIENTE &rarr;
-        </a>
-      </div>
+        <div class="depts-grid">
 
-    </div>
+          <div class="dept-card">
+            <span class="dept-icon">🧀</span>
+            <div>
+              <h3 class="dept-name">Fiambres &amp; Quesos</h3>
+              <p class="dept-desc">Al corte fresco en el acto: jamón, paleta, bondiola, salamines, pategrás y cremosos.</p>
+            </div>
+          </div>
 
-    <!-- ACCESO EXTRA: MANUAL DE MARCA -->
-    <div class="brandbook-box">
-      <div class="brandbook-info">
-        <span style="font-size:28px;">📘</span>
-        <div>
-          <strong style="color:#FFF;font-size:15px;display:block;">Manual de Marca</strong>
-          <span style="font-size:12.5px;color:#94A3B8;">Tokens de diseño, tipografías, colores oficiales de fachada y cartelería QR para el mostrador.</span>
+          <div class="dept-card">
+            <span class="dept-icon">🥫</span>
+            <div>
+              <h3 class="dept-name">Almacén General</h3>
+              <p class="dept-desc">Yerbas, aceites, harinas, fideos, salsas, conservas, condimentos y primeras marcas.</p>
+            </div>
+          </div>
+
+          <div class="dept-card">
+            <span class="dept-icon">🥖</span>
+            <div>
+              <h3 class="dept-name">Panadería Fresca</h3>
+              <p class="dept-desc">Pan criollo cordobés, miñón, pan de campo, facturas del día y panificados secos.</p>
+            </div>
+          </div>
+
+          <div class="dept-card">
+            <span class="dept-icon">🥛</span>
+            <div>
+              <h3 class="dept-name">Lácteos &amp; Derivados</h3>
+              <p class="dept-desc">Leches fluidas, mantecas, crema de leche, dulce de leche colonial, quesos untables y yogures.</p>
+            </div>
+          </div>
+
+          <div class="dept-card">
+            <span class="dept-icon">🍺</span>
+            <div>
+              <h3 class="dept-name">Bebidas Frías &amp; Cervezas</h3>
+              <p class="dept-desc">Cervezas de litro bien heladas, vinos de mesa y finos, gaseosas, aguas saborizadas y jugos.</p>
+            </div>
+          </div>
+
+          <div class="dept-card">
+            <span class="dept-icon">🧊</span>
+            <div>
+              <h3 class="dept-name">Congelados</h3>
+              <p class="dept-desc">Hamburguesas de carne, papas bastón prefritas, rebozados de pollo, verduras y pescados.</p>
+            </div>
+          </div>
+
+          <div class="dept-card">
+            <span class="dept-icon">🧼</span>
+            <div>
+              <h3 class="dept-name">Artículos de Limpieza</h3>
+              <p class="dept-desc">Lavandinas, detergentes, desinfectantes, suavizantes para ropa y papel higiénico/rollos.</p>
+            </div>
+          </div>
+
+          <div class="dept-card">
+            <span class="dept-icon">🧴</span>
+            <div>
+              <h3 class="dept-name">Perfumería &amp; Cuidado</h3>
+              <p class="dept-desc">Shampoo, acondicionadores, jabones de tocador, desodorantes, pastas dentales y afeitado.</p>
+            </div>
+          </div>
+
+          <div class="dept-card">
+            <span class="dept-icon">🍽️</span>
+            <div>
+              <h3 class="dept-name">Bazar &amp; Hogar</h3>
+              <p class="dept-desc">Vajilla de cocina, vasos, cubiertos, tuppers, fósforos y artículos prácticos diarios.</p>
+            </div>
+          </div>
+
+          <div class="dept-card">
+            <span class="dept-icon">🐶</span>
+            <div>
+              <h3 class="dept-name">Alimentos para Mascotas</h3>
+              <p class="dept-desc">Alimento balanceado por bolsa cerrada o fraccionado por kilo para perros y gatos.</p>
+            </div>
+          </div>
+
+          <div class="dept-card">
+            <span class="dept-icon">🚬</span>
+            <div>
+              <h3 class="dept-name">Kiosco &amp; Tabaco</h3>
+              <p class="dept-desc">Cigarrillos, encendedores, golosinas, chocolates, galletitas dulces y chicles.</p>
+            </div>
+          </div>
+
+          <div class="dept-card" style="border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.06);">
+            <span class="dept-icon">🎁</span>
+            <div>
+              <h3 class="dept-name" style="color:var(--tt-amber);">Club Tu Tablita</h3>
+              <p class="dept-desc">Todos los productos acumulan el 3% en puntos para canjear por premios en el mostrador.</p>
+            </div>
+          </div>
+
         </div>
       </div>
-      <div>
-        <a href="./manual-de-marca/" class="btn btn-red" style="width:auto;padding:10px 18px;font-size:12px;background:#1E293B;border:1px solid var(--tt-border);box-shadow:none;">
-          Ver Manual de Marca &rarr;
-        </a>
+    </section>
+
+    <!-- ====================================================================
+         SECCIÓN 3: CLUB TU TABLITA (FIDELIZACIÓN & CASHBACK 3%)
+         ==================================================================== -->
+    <section id="club" class="section">
+      <div class="container">
+        
+        <div class="club-banner">
+          <div>
+            <div class="club-badge">🎁 BENEFICIO EXCLUSIVO PARA VECINOS</div>
+            <h2 class="club-title">¿Ya conocés el Club Tu Tablita?</h2>
+            <p class="club-desc">
+              Un programa de puntos simple, familiar y sin vueltas: <strong>todas tus compras suman el 3% en puntos</strong> para que retires productos gratis en el local.
+            </p>
+
+            <div class="club-steps">
+              <div class="club-step-item">
+                <span class="club-step-num">1</span>
+                <span>Comprás cualquier producto en el local en Gral. Bustos 699.</span>
+              </div>
+              <div class="club-step-item">
+                <span class="club-step-num">2</span>
+                <span>Al pagar en caja, decís tu <strong>DNI o Nombre</strong> (también pueden decirlo tus hijos o familiares).</span>
+              </div>
+              <div class="club-step-item">
+                <span class="club-step-num">3</span>
+                <span>Se te acreditan los puntos al instante para canjearlos por fiambres, pan, bebidas o tablas.</span>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+              <a href="./club/" class="btn btn-amber">
+                📱 INGRESAR CON MI DNI AL CLUB &rarr;
+              </a>
+              <a href="#horarios" class="btn btn-outline">
+                📍 Dónde queda el local
+              </a>
+            </div>
+          </div>
+
+          <!-- Tarjeta de Demostración del Socio -->
+          <div class="club-card-preview">
+            <div class="club-card-chip">
+              <span style="font-family:var(--font-script);font-size:22px;color:#FFF;">Tu Tablita</span>
+              <span style="font-family:var(--font-mono);font-size:11px;background:rgba(255,255,255,0.15);padding:3px 8px;border-radius:4px;color:#FDE68A;">SOCIO CLUB</span>
+            </div>
+
+            <div style="font-size:12px;color:#CBD5E1;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.05em;">PUNTOS DISPONIBLES EN CAJA</div>
+            <div class="club-card-pts">6.450</div>
+            <div style="font-size:12px;color:#A7F3D0;margin-bottom:16px;">¡Alcanza para Pan Casero, Cerveza o Fiambres!</div>
+
+            <a href="./club/" class="btn btn-red btn-block" style="width:100%;font-size:12px;padding:10px;">
+              Ver Catálogo de Premios &rarr;
+            </a>
+          </div>
+        </div>
+
       </div>
-    </div>
+    </section>
+
+    <!-- ====================================================================
+         SECCIÓN 4: HORARIOS, UBICACIÓN Y CÓMO LLEGAR
+         ==================================================================== -->
+    <section id="horarios" class="section" style="background:#0B101D;">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-kicker">INFORMACIÓN DEL LOCAL</span>
+          <h2 class="section-title">Horarios &amp; Dónde Encontrarnos</h2>
+          <p class="section-desc">
+            Ubicados estratégicamente en Malagueño, con atención ininterrumpida para salvarte en cualquier momento del día.
+          </p>
+        </div>
+
+        <div class="location-box">
+          
+          <!-- Lista de Datos Oficiales -->
+          <div class="info-list">
+            
+            <div class="info-item">
+              <span class="info-icon">📍</span>
+              <div>
+                <div class="info-label">Dirección del Local</div>
+                <div class="info-value">Gral. Bustos 699, Malagueño</div>
+                <div class="info-sub">Provincia de Córdoba, Argentina (A pocas cuadras del centro).</div>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="info-icon">⏰</span>
+              <div>
+                <div class="info-label">Horario de Atención Oficial</div>
+                <div class="info-value" style="color:var(--tt-amber);">Lunes a Domingos: 08:00 a 23:00 hs</div>
+                <div class="info-sub"><strong>Horario corrido todo el día:</strong> No cerramos al mediodía ni durante la siesta.</div>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="info-icon">💳</span>
+              <div>
+                <div class="info-label">Medios de Pago Habilitados</div>
+                <div class="info-value">Efectivo, Débito, Crédito, Mercado Pago y Transferencia</div>
+                <div class="info-sub">Todos los medios de pago suman puntos en el Club Tu Tablita.</div>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="info-icon">💬</span>
+              <div>
+                <div class="info-label">Encargos &amp; Pedidos Previos</div>
+                <div class="info-value">Atención directa por WhatsApp</div>
+                <div class="info-sub">Escribinos para encargar tablas de picadas o reservar fiambres especiales.</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Mapa / Botón GPS y Fachada -->
+          <div class="map-embed-card">
+            <div>
+              <div style="display:inline-block;background:rgba(230,0,0,0.18);border:1px solid var(--tt-red);color:#FFAAAA;font-family:var(--font-mono);font-size:11px;font-weight:800;padding:4px 12px;border-radius:99px;margin-bottom:14px;">
+                🚗 CÓMO LLEGAR AL LOCAL
+              </div>
+
+              <h3 style="font-family:var(--font-display);font-size:20px;font-weight:800;color:#FFF;margin-bottom:8px;">
+                ¿Estás en Malagueño o en camino?
+              </h3>
+              <p style="font-size:13.5px;color:#94A3B8;margin-bottom:24px;">
+                Tocá el botón abajo para abrir Google Maps en tu celular con la ruta más rápida hacia Gral. Bustos 699.
+              </p>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <a href="https://www.google.com/maps/search/?api=1&query=Gral.+Bustos+699,+Malagueño,+Córdoba" target="_blank" rel="noopener" class="btn btn-red btn-block">
+                📍 Abrir en Google Maps &rarr;
+              </a>
+              <a href="https://wa.me/?text=Hola%20Luciano,%20estoy%20en%20Malague%C3%B1o%20y%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener" class="btn btn-whatsapp btn-block">
+                💬 Escribir al WhatsApp del Local
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
 
   </main>
 
+  <!-- ====================================================================
+       FOOTER CORPORATIVO
+       ==================================================================== -->
   <footer class="footer">
-    <p>
-      Tu Tablita Autoservicio &copy; 2026 &middot; Gral. Bustos 699, Malagueño, Córdoba, Argentina.<br>
-      Plataforma desarrollada por <a href="https://futurizatech.com" target="_blank" rel="noopener"><strong>FuturizaTech</strong></a> &middot; Software a Medida &amp; Automatización Comercial.
-    </p>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div style="font-family:var(--font-script);font-size:32px;color:#FFF;line-height:1;margin-bottom:4px;">Tu Tablita</div>
+          <div style="font-family:var(--font-display);font-size:11px;font-weight:900;font-style:italic;color:var(--tt-red);letter-spacing:2px;">AUTOSERVICIO · FIAMBRERÍA</div>
+          <div style="font-size:12.5px;color:#94A3B8;margin-top:8px;">Gral. Bustos 699, Malagueño, Córdoba.</div>
+        </div>
+
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+          <a href="#picadas" style="color:#CBD5E1;font-weight:600;">Picadas</a>
+          <span style="color:#475569;">·</span>
+          <a href="#departamentos" style="color:#CBD5E1;font-weight:600;">Departamentos</a>
+          <span style="color:#475569;">·</span>
+          <a href="./club/" style="color:var(--tt-amber);font-weight:700;">Club de Puntos</a>
+          <span style="color:#475569;">·</span>
+          <a href="#horarios" style="color:#CBD5E1;font-weight:600;">Horarios</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          Tu Tablita Autoservicio &copy; 2026 &middot; Todos los derechos reservados.<br>
+          Plataforma web desarrollada por <a href="https://futurizatech.com" target="_blank" rel="noopener" style="color:#FFF;font-weight:700;">FuturizaTech</a> &middot; Software &amp; Automatización Comercial.
+        </div>
+
+        <!-- Enlaces Internos Discretos de Gestión -->
+        <div style="display:flex;gap:10px;align-items:center;">
+          <a href="./mostrador/" class="internal-badge" title="Terminal de Cobro para Empleados y Dueño">
+            🖥️ Terminal Mostrador
+          </a>
+          <a href="./manual-de-marca/" class="internal-badge" title="Manual de Identidad Visual y Cartelería QR">
+            📘 Manual de Marca
+          </a>
+        </div>
+      </div>
+    </div>
   </footer>
+
+  <!-- SCRIPT LIVIANO: CONTROL DE HORARIO EN VIVO Y MENÚ MÓVIL -->
+  <script>
+    function checkStoreStatus() {
+      const now = new Date();
+      // Hora local de Argentina (UTC-3)
+      const hour = now.getHours();
+      const statusPill = document.getElementById('store-status-pill');
+      const statusText = document.getElementById('store-status-text');
+
+      // Abierto de 08:00 a 22:59:59 (cierra a las 23:00)
+      const isOpen = hour >= 8 && hour < 23;
+
+      if (statusPill && statusText) {
+        if (isOpen) {
+          statusPill.className = 'status-badge';
+          statusText.textContent = 'Abierto de corrido hasta las 23:00 hs';
+        } else {
+          statusPill.className = 'status-badge closed';
+          statusText.textContent = 'Cerrado · Abre hoy a las 08:00 hs';
+        }
+      }
+    }
+
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('drawer');
+      const overlay = document.getElementById('drawer-overlay');
+      if (drawer && overlay) {
+        drawer.classList.toggle('active');
+        overlay.classList.toggle('active');
+      }
+    }
+
+    function closeMobileMenu() {
+      const drawer = document.getElementById('drawer');
+      const overlay = document.getElementById('drawer-overlay');
+      if (drawer && overlay) {
+        drawer.classList.remove('active');
+        overlay.classList.remove('active');
+      }
+    }
+
+    // Inicializar estado de local y revisar cada 60 segundos
+    checkStoreStatus();
+    setInterval(checkStoreStatus, 60000);
+  </script>
 
 </body>
 </html>
