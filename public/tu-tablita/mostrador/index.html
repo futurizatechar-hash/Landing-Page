@@ -709,6 +709,13 @@
       border-color: rgba(248, 113, 113, 0.25);
     }
 
+    .preset-chip.active {
+      background: var(--tt-amber) !important;
+      color: #090D16 !important;
+      font-weight: 800 !important;
+      border-color: var(--tt-amber) !important;
+    }
+
     .calc-banner {
       background: #250202;
       border: 1px solid #750000;
@@ -1713,8 +1720,12 @@
             👥 Empleados
           </button>
           
-          <button class="btn btn-secondary btn-desktop-only" style="font-size:12px;padding:8px 14px;" onclick="openCatalogManagerModal()">
+          <button id="btn-manage-catalog" class="btn btn-secondary btn-desktop-only" style="font-size:12px;padding:8px 14px;display:none;" onclick="openCatalogManagerModal()">
             📦 Gestor de Catálogo
+          </button>
+
+          <button id="btn-cashback-config" class="btn btn-secondary btn-desktop-only" style="font-size:12px;padding:8px 14px;display:none;color:var(--tt-amber);border-color:rgba(245,158,11,0.35);" onclick="openCashbackModal()" title="Configurar porcentaje de cashback">
+            ⚙️ Cashback: <span id="topbar-cashback-pct">3%</span>
           </button>
 
           <button class="btn btn-secondary btn-desktop-only" style="font-size:12px;padding:8px 12px;color:#F87171;" onclick="handleLogout()" title="Cerrar sesión de este turno">
@@ -1753,8 +1764,12 @@
             <span>👥</span> <span>Administrar Empleados</span>
           </button>
 
-          <button class="btn btn-secondary drawer-btn" onclick="openCatalogManagerModal(); closeMobileMenu();">
+          <button id="btn-drawer-catalog" class="btn btn-secondary drawer-btn" style="display:none;" onclick="openCatalogManagerModal(); closeMobileMenu();">
             <span>📦</span> <span>Gestor de Catálogo</span>
+          </button>
+
+          <button id="btn-drawer-cashback" class="btn btn-secondary drawer-btn" style="display:none;color:var(--tt-amber);" onclick="openCashbackModal(); closeMobileMenu();">
+            <span>⚙️</span> <span>Modificar % Cashback (<span id="drawer-cashback-pct">3%</span>)</span>
           </button>
 
           <button class="btn btn-secondary drawer-btn btn-drawer-logout" onclick="handleLogout(); closeMobileMenu();">
@@ -1829,7 +1844,7 @@
           <span class="tab-btn-icon">💰</span>
           <span class="tab-btn-text text-long">1. REGISTRAR VENTA</span>
           <span class="tab-btn-text text-short">1. Venta</span>
-          <span class="tab-btn-badge">+3% PUNTOS</span>
+          <span id="tab-sale-badge" class="tab-btn-badge">+3% PUNTOS</span>
         </button>
         <button id="btn-action-rewards" class="pos-action-btn" onclick="switchPosAction('rewards')">
           <span class="tab-btn-icon">🎁</span>
@@ -1862,7 +1877,7 @@
           <div class="card sale-card-main">
             <div class="card-title">
               <span>CARGA DE VENTA &amp; SUMA DE PUNTOS</span>
-              <span class="badge-cashback">3% EN PUNTOS</span>
+              <span id="badge-sale-cashback" class="badge-cashback" onclick="handleBadgeCashbackClick()" title="Porcentaje de puntos activo">3% EN PUNTOS</span>
             </div>
 
             <div class="form-group" style="margin-bottom: 10px;">
@@ -1943,7 +1958,7 @@
               <button class="cat-pill" onclick="filterRewardsCat('Bebidas', this)">🍺 Bebidas</button>
               <button class="cat-pill" onclick="filterRewardsCat('Panificados', this)">🥖 Pan</button>
               <button class="cat-pill" onclick="filterRewardsCat('Vouchers', this)">🎟️ Vouchers</button>
-              <button class="btn btn-secondary btn-sm" style="padding:4px 8px;font-size:11px;margin-left:auto;" onclick="openCatalogManagerModal()">
+              <button id="btn-rewards-edit-catalog" class="btn btn-secondary btn-sm" style="padding:4px 8px;font-size:11px;margin-left:auto;display:none;" onclick="openCatalogManagerModal()">
                 + Editar Catálogo
               </button>
             </div>
@@ -2161,6 +2176,55 @@
     </div>
   </div>
 
+  <!-- MODAL: AJUSTE DE % CASHBACK (EXCLUSIVO SUPER ADMIN / DUEÑO) -->
+  <div id="modal-cashback-settings" class="modal-backdrop">
+    <div class="modal-card" style="max-width:480px;">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title">⚙️ Reglas de Cashback en Mostrador</h2>
+          <span class="badge-user badge-user-admin" style="margin-top:4px;font-size:10px;">EXCLUSIVO ADMINISTRADOR / DUEÑO</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('modal-cashback-settings')">✕</button>
+      </div>
+
+      <p style="font-size:13px;color:#94A3B8;margin-bottom:16px;">
+        Modificá el porcentaje de cashback que se aplica sobre el monto bruto de cada compra al registrar ventas en mostrador.
+      </p>
+
+      <div style="background:#151E2E;border:1px solid var(--tt-border);border-radius:12px;padding:14px;margin-bottom:18px;">
+        <label class="form-label" style="margin-bottom:8px;">Presets rápidos de un toque:</label>
+        <div style="display:grid;grid-template-columns:repeat(5, 1fr);gap:6px;margin-bottom:14px;">
+          <button type="button" class="preset-chip preset-cashback-chip" data-pct="1" onclick="selectCashbackPreset(1)">1%</button>
+          <button type="button" class="preset-chip preset-cashback-chip" data-pct="2" onclick="selectCashbackPreset(2)">2%</button>
+          <button type="button" class="preset-chip preset-cashback-chip" data-pct="3" onclick="selectCashbackPreset(3)">3%</button>
+          <button type="button" class="preset-chip preset-cashback-chip" data-pct="5" onclick="selectCashbackPreset(5)">5%</button>
+          <button type="button" class="preset-chip preset-cashback-chip" data-pct="10" onclick="selectCashbackPreset(10)">10%</button>
+        </div>
+
+        <label class="form-label">O ingresá un porcentaje personalizado (%):</label>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <input type="number" id="input-cashback-custom" class="input-field" step="0.5" min="0.5" max="50" style="font-family:var(--font-mono);font-size:20px;font-weight:800;color:var(--tt-amber);" oninput="updateCashbackSimulator(this.value)">
+          <span style="font-family:var(--font-mono);font-size:22px;font-weight:900;color:#FFF;">%</span>
+        </div>
+      </div>
+
+      <!-- Simulador de impacto -->
+      <div style="background:rgba(245,158,11,0.08);border:1px dashed rgba(245,158,11,0.35);border-radius:12px;padding:12px 16px;margin-bottom:20px;">
+        <div style="font-size:11.5px;color:#94A3B8;text-transform:uppercase;font-weight:800;letter-spacing:0.04em;margin-bottom:4px;">
+          Simulador de impacto en caja:
+        </div>
+        <div style="font-size:13.5px;color:#E2E8F0;">
+          Una compra de <strong style="color:#FFF;">$20.000</strong> sumará <strong id="sim-cashback-pts" style="color:var(--tt-amber);font-family:var(--font-mono);font-size:16px;">+600 PTS</strong> al cliente.
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <button class="btn btn-secondary" style="padding:12px;" onclick="closeModal('modal-cashback-settings')">Cancelar</button>
+        <button class="btn btn-red" style="padding:12px;font-weight:800;" onclick="saveCashbackSettings()">💾 Guardar y Aplicar</button>
+      </div>
+    </div>
+  </div>
+
 
 
   <script>
@@ -2214,7 +2278,7 @@
         { id: "tx-init-2", clienteId: "c-2", cliente: "Marta Gómez", dni: "18345901", tipo: "CANJE", monto: 0, puntos: -1500, detalle: "Pan Casero de Campo", fecha: "09:30", operador: "Romina Paz", operadorRol: "cajero", operadorDni: "38901234" }
       ],
       activeClient: null,
-      cashbackPct: 3.0
+      cashbackPct: parseFloat(localStorage.getItem('tt_cashback_pct')) || 3.0
     };
 
     function saveState() {
@@ -2222,6 +2286,7 @@
       localStorage.setItem('tt_clients', JSON.stringify(state.clients));
       localStorage.setItem('tt_rewards', JSON.stringify(state.rewards));
       localStorage.setItem('tt_txs', JSON.stringify(state.transactions));
+      localStorage.setItem('tt_cashback_pct', state.cashbackPct);
     }
 
     function showToast(msg, isSuccess = true) {
@@ -2291,6 +2356,9 @@
       const termView = document.getElementById('view-terminal');
       const badge = document.getElementById('user-badge');
       const btnEmp = document.getElementById('btn-manage-employees');
+      const btnCat = document.getElementById('btn-manage-catalog');
+      const btnCash = document.getElementById('btn-cashback-config');
+      const btnRewCat = document.getElementById('btn-rewards-edit-catalog');
 
       if (!state.currentUser) {
         document.body.classList.remove('term-active');
@@ -2317,9 +2385,10 @@
         `;
       }
 
-      if (btnEmp) {
-        btnEmp.style.display = isSuper ? 'inline-flex' : 'none';
-      }
+      if (btnEmp) btnEmp.style.display = isSuper ? 'inline-flex' : 'none';
+      if (btnCat) btnCat.style.display = isSuper ? 'inline-flex' : 'none';
+      if (btnCash) btnCash.style.display = isSuper ? 'inline-flex' : 'none';
+      if (btnRewCat) btnRewCat.style.display = isSuper ? 'inline-block' : 'none';
 
       // Sincronizar datos en la Barra Lateral Móvil Retráctil
       const drawerUserInfo = document.getElementById('drawer-user-info');
@@ -2331,10 +2400,13 @@
         `;
       }
       const drawerBtnEmp = document.getElementById('btn-drawer-employees');
-      if (drawerBtnEmp) {
-        drawerBtnEmp.style.display = isSuper ? 'flex' : 'none';
-      }
+      if (drawerBtnEmp) drawerBtnEmp.style.display = isSuper ? 'flex' : 'none';
+      const drawerBtnCat = document.getElementById('btn-drawer-catalog');
+      if (drawerBtnCat) drawerBtnCat.style.display = isSuper ? 'flex' : 'none';
+      const drawerBtnCash = document.getElementById('btn-drawer-cashback');
+      if (drawerBtnCash) drawerBtnCash.style.display = isSuper ? 'flex' : 'none';
 
+      updateCashbackBadges();
       switchPosAction(currentAction);
       renderPosRewards();
       renderPosTransactions();
@@ -2544,7 +2616,7 @@
         const projected = state.activeClient.puntos + pts;
         sub.textContent = `Saldo tras la compra: ${projected.toLocaleString('es-AR')} PTS`;
       } else {
-        sub.textContent = 'Monto Bruto × 3% en puntos enteros';
+        sub.textContent = `Monto Bruto × ${state.cashbackPct}% en puntos enteros`;
       }
     }
 
@@ -2561,6 +2633,14 @@
         showToast('⚠️ Ingresá un monto de compra mayor a $0.', false);
         input.focus();
         return;
+      }
+
+      // Prevención de doble clic accidental (cooldown 800ms)
+      const submitBtn = document.getElementById('btn-submit-sale');
+      if (submitBtn) {
+        if (submitBtn.disabled) return;
+        submitBtn.disabled = true;
+        setTimeout(() => { if (submitBtn) submitBtn.disabled = false; }, 800);
       }
 
       const puntosGanados = Math.floor(monto * (state.cashbackPct / 100.0));
@@ -2584,6 +2664,10 @@
       };
       state.transactions.unshift(tx);
       saveState();
+
+      // Limpieza automática inmediata del campo de monto (Anti-Duplicados)
+      input.value = '';
+      calculatePosCashback();
 
       selectClient(state.activeClient.id);
       renderPosTransactions();
@@ -2808,6 +2892,10 @@
     }
 
     function openCatalogManagerModal() {
+      if (!state.currentUser || state.currentUser.rol !== 'super-admin') {
+        showToast('⚠️ Solo el dueño (super-admin) puede gestionar el catálogo de premios.', false);
+        return;
+      }
       renderCatalogManagerList();
       document.getElementById('modal-catalog-manager').classList.add('active');
     }
@@ -2841,6 +2929,10 @@
     }
 
     function toggleRewardStock(rewardId) {
+      if (!state.currentUser || state.currentUser.rol !== 'super-admin') {
+        showToast('⚠️ Solo el dueño (super-admin) puede modificar el stock del catálogo.', false);
+        return;
+      }
       const r = state.rewards.find(x => x.id === rewardId);
       if (r) {
         r.stock = !r.stock;
@@ -2852,6 +2944,10 @@
     }
 
     function deleteReward(rewardId) {
+      if (!state.currentUser || state.currentUser.rol !== 'super-admin') {
+        showToast('⚠️ Solo el dueño (super-admin) puede eliminar productos del catálogo.', false);
+        return;
+      }
       if (confirm('¿Eliminar este producto del catálogo?')) {
         state.rewards = state.rewards.filter(x => x.id !== rewardId);
         saveState();
@@ -2862,6 +2958,10 @@
     }
 
     function addNewReward() {
+      if (!state.currentUser || state.currentUser.rol !== 'super-admin') {
+        showToast('⚠️ Solo el dueño (super-admin) puede agregar productos al catálogo.', false);
+        return;
+      }
       const name = document.getElementById('new-reward-name').value.trim();
       const cat = document.getElementById('new-reward-cat').value;
       const icon = document.getElementById('new-reward-icon').value.trim() || '🧀';
@@ -2932,6 +3032,113 @@
       closeModal('modal-new-client');
       selectClient(newC.id);
       showToast(`¡Cliente "${name}" dado de alta con éxito!`);
+    }
+
+    /* Gestión de Cashback Dinámico (Super-Admin / Dueño) */
+    let tempCashbackPct = 3.0;
+
+    function openCashbackModal() {
+      if (!state.currentUser || state.currentUser.rol !== 'super-admin') {
+        showToast('⚠️ Solo el dueño (super-admin) puede modificar el porcentaje de cashback.', false);
+        return;
+      }
+      tempCashbackPct = state.cashbackPct || 3.0;
+      const input = document.getElementById('input-cashback-custom');
+      if (input) input.value = tempCashbackPct;
+      updateCashbackPresetChips(tempCashbackPct);
+      updateCashbackSimulator(tempCashbackPct);
+      document.getElementById('modal-cashback-settings').classList.add('active');
+    }
+
+    function selectCashbackPreset(pct) {
+      tempCashbackPct = pct;
+      const input = document.getElementById('input-cashback-custom');
+      if (input) input.value = pct;
+      updateCashbackPresetChips(pct);
+      updateCashbackSimulator(pct);
+    }
+
+    function updateCashbackPresetChips(pct) {
+      document.querySelectorAll('.preset-cashback-chip').forEach(btn => {
+        const val = parseFloat(btn.getAttribute('data-pct'));
+        if (val === pct) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    function updateCashbackSimulator(val) {
+      const pct = parseFloat(val) || 0;
+      tempCashbackPct = pct;
+      const simPts = document.getElementById('sim-cashback-pts');
+      if (simPts) {
+        const pts = Math.floor(20000 * (pct / 100.0));
+        simPts.textContent = `+${pts.toLocaleString('es-AR')} PTS`;
+      }
+      updateCashbackPresetChips(pct);
+    }
+
+    function saveCashbackSettings() {
+      const input = document.getElementById('input-cashback-custom');
+      const newPct = parseFloat(input.value);
+
+      if (isNaN(newPct) || newPct < 0.5 || newPct > 50) {
+        showToast('⚠️ Ingresá un porcentaje válido entre 0.5% y 50%.', false);
+        return;
+      }
+
+      const oldPct = state.cashbackPct;
+      state.cashbackPct = Math.round(newPct * 10) / 10;
+      saveState();
+
+      // Auditoría en operaciones de turno
+      const tx = {
+        id: 'cfg-' + Date.now(),
+        clienteId: 'negocio',
+        cliente: 'CONFIGURACIÓN NEGOCIO',
+        dni: 'SYSTEM',
+        tipo: 'AJUSTE',
+        monto: 0,
+        puntos: 0,
+        detalle: `Cashback ajustado de ${oldPct}% a ${state.cashbackPct}%`,
+        fecha: new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' }),
+        operador: state.currentUser ? state.currentUser.nombre : 'Luciano Sosa',
+        operadorDni: state.currentUser ? state.currentUser.dni : '35120450',
+        operadorRol: 'super-admin'
+      };
+      state.transactions.unshift(tx);
+      saveState();
+
+      updateCashbackBadges();
+      calculatePosCashback();
+      renderPosTransactions();
+      closeModal('modal-cashback-settings');
+      showToast(`¡Porcentaje de cashback actualizado al ${state.cashbackPct}%!`);
+    }
+
+    function handleBadgeCashbackClick() {
+      if (state.currentUser && state.currentUser.rol === 'super-admin') {
+        openCashbackModal();
+      }
+    }
+
+    function updateCashbackBadges() {
+      const pct = state.cashbackPct;
+      const topbarEl = document.getElementById('topbar-cashback-pct');
+      if (topbarEl) topbarEl.textContent = `${pct}%`;
+      const drawerEl = document.getElementById('drawer-cashback-pct');
+      if (drawerEl) drawerEl.textContent = `${pct}%`;
+      const tabBadge = document.getElementById('tab-sale-badge');
+      if (tabBadge) tabBadge.textContent = `+${pct}% PUNTOS`;
+      const cardBadge = document.getElementById('badge-sale-cashback');
+      if (cardBadge) {
+        const isSuper = state.currentUser && state.currentUser.rol === 'super-admin';
+        cardBadge.innerHTML = `${pct}% EN PUNTOS ${isSuper ? '<span style="font-size:11px;opacity:0.85;margin-left:4px;">✏️</span>' : ''}`;
+        cardBadge.style.cursor = isSuper ? 'pointer' : 'default';
+        cardBadge.title = isSuper ? 'Clic para cambiar el % de cashback' : 'Porcentaje de cashback activo';
+      }
     }
 
     /* Gestión de Empleados (Super-Admin / Dueño) */
