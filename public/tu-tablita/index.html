@@ -2,9 +2,9 @@
 <html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>Tu Tablita Autoservicio — Fiambrería, Picadas y Almacén en Malagueño</title>
-  <meta name="description" content="Autoservicio integral y fiambrería en Gral. Bustos 699, Malagueño. Abierto todos los días de 08:00 a 23:00 hs de corrido. Picadas artesanales, 11 departamentos y Club de Puntos 3% cashback.">
+  <meta name="description" content="Autoservicio integral y fiambrería en Gral. Bustos 699, Malagueño. Abierto todos los días de 08:00 a 23:00 hs de corrido. Picadas artesanales, 11 departamentos y Club de Puntos.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23111827'/><path d='M10 38 L12 49 Q14 54 22 54 L42 51 Q48 50 49 42 L50 35 Q51 30 56 30 Q60 30 60 23 Q60 17 53 18 L46 20' stroke='%23E60000' stroke-width='4' fill='none' stroke-linecap='round'/><circle cx='54' cy='24' r='2.5' fill='%23F59E0B'/><text x='14' y='35' font-family='sans-serif' font-weight='900' font-size='20' fill='%23FFFFFF'>TT</text></svg>">
 
   <!-- OpenGraph / Social Meta -->
@@ -54,6 +54,8 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
+      width: 100%;
     }
 
     body {
@@ -63,6 +65,8 @@
       min-height: 100vh;
       line-height: 1.6;
       overflow-x: hidden;
+      width: 100%;
+      -webkit-font-smoothing: antialiased;
     }
 
     a {
@@ -70,11 +74,17 @@
       text-decoration: none;
     }
 
+    img, svg {
+      max-width: 100%;
+      display: block;
+    }
+
     /* CONTENEDOR MAESTRO */
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
+      width: 100%;
     }
 
     /* HEADER STICKY */
@@ -82,37 +92,40 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(9, 13, 22, 0.92);
+      background: rgba(9, 13, 22, 0.96);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--tt-border);
-      padding: 12px 0;
+      padding: 10px 0;
+      width: 100%;
     }
 
     .header-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
     }
 
     .brand-lockup {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
+      flex-shrink: 0;
     }
 
     .brand-logo-svg {
-      height: 40px;
+      height: 38px;
       width: auto;
+      max-width: 220px;
       filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
     }
 
     .nav-desktop {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 20px;
       font-size: 13.5px;
       font-weight: 600;
     }
@@ -134,7 +147,8 @@
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      flex-shrink: 0;
     }
 
     /* BOTONES */
@@ -152,6 +166,7 @@
       transition: all var(--transition);
       border: 1px solid transparent;
       white-space: nowrap;
+      text-align: center;
     }
 
     .btn-red {
@@ -210,6 +225,11 @@
       font-size: 20px;
       padding: 8px 12px;
       border-radius: var(--radius-sm);
+      cursor: pointer;
+      min-width: 42px;
+      min-height: 40px;
+      align-items: center;
+      justify-content: center;
     }
 
     /* BADGE DE ESTADO DEL LOCAL EN VIVO */
@@ -220,12 +240,13 @@
       background: rgba(16, 185, 129, 0.12);
       border: 1px solid rgba(16, 185, 129, 0.35);
       color: var(--tt-emerald);
-      padding: 4px 12px;
+      padding: 5px 11px;
       border-radius: 99px;
       font-family: var(--font-mono);
       font-size: 11.5px;
       font-weight: 800;
       letter-spacing: 0.02em;
+      white-space: nowrap;
     }
 
     .status-badge.closed {
@@ -241,6 +262,7 @@
       background: var(--tt-emerald);
       box-shadow: 0 0 8px var(--tt-emerald);
       animation: pulseDot 2s infinite ease-in-out;
+      flex-shrink: 0;
     }
 
     .status-badge.closed .status-dot {
@@ -257,7 +279,7 @@
     /* HERO SECTION */
     .hero {
       position: relative;
-      padding: 60px 0 70px;
+      padding: 56px 0 64px;
       background: radial-gradient(circle at 50% 20%, rgba(230, 0, 0, 0.15) 0%, rgba(9, 13, 22, 1) 75%);
       border-bottom: 1px solid var(--tt-border);
       overflow: hidden;
@@ -287,6 +309,7 @@
     .hero-kicker {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       font-family: var(--font-mono);
       font-size: 12px;
@@ -296,18 +319,21 @@
       border: 1px solid rgba(245, 158, 11, 0.35);
       padding: 6px 14px;
       border-radius: 99px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       text-transform: uppercase;
+      max-width: 100%;
+      line-height: 1.4;
     }
 
     .hero-title {
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: clamp(32px, 5.5vw, 56px);
-      line-height: 1.12;
+      font-size: clamp(26px, 5.5vw, 54px);
+      line-height: 1.15;
       color: #FFFFFF;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       letter-spacing: -0.02em;
+      word-wrap: break-word;
     }
 
     .hero-title span.highlight-red {
@@ -315,14 +341,10 @@
       text-shadow: 0 0 30px rgba(230, 0, 0, 0.45);
     }
 
-    .hero-title span.highlight-amber {
-      color: var(--tt-amber);
-    }
-
     .hero-desc {
-      font-size: clamp(16px, 2.2vw, 19px);
+      font-size: clamp(15px, 2.2vw, 18px);
       color: #CBD5E1;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       line-height: 1.6;
       max-width: 760px;
       margin-left: auto;
@@ -333,29 +355,30 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 36px;
+      margin-bottom: 34px;
+      width: 100%;
     }
 
     .hero-actions .btn {
-      padding: 14px 24px;
-      font-size: 15px;
+      padding: 13px 22px;
+      font-size: 14.5px;
     }
 
     /* CINTA DE CONFIANZA / 4 PILARES */
     .trust-strip {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-top: 20px;
+      gap: 14px;
+      margin-top: 18px;
     }
 
     .trust-item {
       background: rgba(17, 24, 39, 0.7);
       border: 1px solid var(--tt-border);
       border-radius: var(--radius-md);
-      padding: 18px 14px;
+      padding: 16px 12px;
       text-align: center;
       backdrop-filter: blur(8px);
       transition: all var(--transition);
@@ -388,14 +411,14 @@
 
     /* SECCIONES GENERALES */
     .section {
-      padding: 70px 0;
+      padding: 60px 0;
       border-bottom: 1px solid var(--tt-border);
     }
 
     .section-header {
       text-align: center;
       max-width: 680px;
-      margin: 0 auto 46px;
+      margin: 0 auto 40px;
     }
 
     .section-kicker {
@@ -411,24 +434,132 @@
 
     .section-title {
       font-family: var(--font-display);
-      font-size: clamp(26px, 4vw, 38px);
+      font-size: clamp(24px, 4vw, 36px);
       font-weight: 900;
       color: #FFFFFF;
       line-height: 1.2;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .section-desc {
-      font-size: 15px;
+      font-size: 14.5px;
       color: #94A3B8;
       line-height: 1.6;
+    }
+
+    /* SECCIÓN NUESTRO NEGOCIO / SOBRE TU TABLITA (ESTILO QUADRA PIZZA) */
+    .about-card {
+      background: #111827;
+      border: 1px solid var(--tt-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      align-items: stretch;
+    }
+
+    .about-photo-wrapper {
+      position: relative;
+      min-height: 380px;
+      background: #090D16;
+      overflow: hidden;
+    }
+
+    .about-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 400ms ease;
+    }
+
+    .about-card:hover .about-photo {
+      transform: scale(1.03);
+    }
+
+    .about-photo-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      background: linear-gradient(180deg, transparent 0%, rgba(9, 13, 22, 0.92) 80%);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .about-photo-badge {
+      background: rgba(230, 0, 0, 0.9);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 12px;
+      border-radius: 99px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 12px rgba(230, 0, 0, 0.4);
+    }
+
+    .about-body {
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .about-title {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3.2vw, 32px);
+      font-weight: 900;
+      color: #FFFFFF;
+      line-height: 1.22;
+    }
+
+    .about-text {
+      font-size: 14.5px;
+      color: #CBD5E1;
+      line-height: 1.65;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .about-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13.5px;
+      color: #E2E8F0;
+      line-height: 1.45;
+    }
+
+    .about-feature-icon {
+      font-size: 18px;
+      line-height: 1;
+      padding: 8px;
+      background: #1E293B;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--tt-amber);
+      flex-shrink: 0;
     }
 
     /* SECCIÓN 1: PICADAS & FIAMBRERÍA */
     .picadas-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      gap: 22px;
     }
 
     .picada-card {
@@ -470,21 +601,21 @@
     }
 
     .picada-body {
-      padding: 26px 22px;
+      padding: 24px 20px;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
 
     .picada-icon-box {
-      font-size: 40px;
-      margin-bottom: 14px;
+      font-size: 38px;
+      margin-bottom: 12px;
       display: block;
     }
 
     .picada-title {
       font-family: var(--font-display);
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 800;
       color: #FFFFFF;
       margin-bottom: 8px;
@@ -503,27 +634,29 @@
 
     .picada-ingredients {
       list-style: none;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       flex: 1;
     }
 
     .picada-ingredients li {
-      font-size: 13.5px;
+      font-size: 13px;
       color: #CBD5E1;
       margin-bottom: 8px;
       display: flex;
       align-items: flex-start;
       gap: 8px;
+      line-height: 1.45;
     }
 
     .picada-ingredients li span.bullet {
       color: var(--tt-red);
       font-weight: 900;
+      flex-shrink: 0;
     }
 
     .picada-footer {
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 16px 22px 22px;
+      padding: 16px 20px 20px;
       background: rgba(0, 0, 0, 0.2);
     }
 
@@ -531,17 +664,17 @@
     .depts-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+      gap: 14px;
     }
 
     .dept-card {
       background: #111827;
       border: 1px solid var(--tt-border);
       border-radius: var(--radius-md);
-      padding: 18px 16px;
+      padding: 16px 14px;
       display: flex;
       align-items: flex-start;
-      gap: 14px;
+      gap: 12px;
       transition: all var(--transition);
     }
 
@@ -552,7 +685,7 @@
     }
 
     .dept-icon {
-      font-size: 30px;
+      font-size: 28px;
       line-height: 1;
       flex-shrink: 0;
     }
@@ -576,11 +709,11 @@
       background: radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.15) 0%, rgba(17, 24, 39, 1) 70%);
       border: 2px solid rgba(245, 158, 11, 0.4);
       border-radius: var(--radius-xl);
-      padding: 44px 36px;
+      padding: 40px 32px;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
-      gap: 32px;
+      gap: 30px;
       align-items: center;
     }
 
@@ -598,21 +731,23 @@
       border-radius: 99px;
       text-transform: uppercase;
       margin-bottom: 14px;
+      max-width: 100%;
+      line-height: 1.3;
     }
 
     .club-title {
       font-family: var(--font-display);
-      font-size: clamp(24px, 3.5vw, 36px);
+      font-size: clamp(22px, 3.5vw, 34px);
       font-weight: 900;
       color: #FFFFFF;
       line-height: 1.2;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .club-desc {
-      font-size: 15px;
+      font-size: 14.5px;
       color: #CBD5E1;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       line-height: 1.6;
     }
 
@@ -620,37 +755,39 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-bottom: 28px;
+      margin-bottom: 26px;
     }
 
     .club-step-item {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 12px;
-      font-size: 14px;
+      font-size: 13.5px;
       color: #E2E8F0;
+      line-height: 1.45;
     }
 
     .club-step-num {
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background: var(--tt-amber);
       color: #090D16;
       font-family: var(--font-mono);
       font-weight: 900;
-      font-size: 13px;
+      font-size: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      margin-top: 1px;
     }
 
     .club-card-preview {
       background: linear-gradient(135deg, #450000 0%, #150000 100%);
       border: 2px solid var(--tt-red);
       border-radius: var(--radius-lg);
-      padding: 26px;
+      padding: 24px;
       box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7), var(--shadow-red);
       text-align: center;
     }
@@ -659,12 +796,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .club-card-pts {
       font-family: var(--font-mono);
-      font-size: 42px;
+      font-size: 38px;
       font-weight: 900;
       color: var(--tt-amber);
       line-height: 1;
@@ -675,28 +812,28 @@
     .location-box {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 28px;
+      gap: 26px;
       background: #111827;
       border: 1px solid var(--tt-border);
       border-radius: var(--radius-xl);
-      padding: 36px;
+      padding: 32px;
       box-shadow: var(--shadow-card);
     }
 
     .info-list {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
     }
 
     .info-item {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
+      gap: 12px;
     }
 
     .info-icon {
-      font-size: 24px;
+      font-size: 22px;
       line-height: 1;
       padding: 10px;
       background: #1E293B;
@@ -706,7 +843,7 @@
     }
 
     .info-label {
-      font-size: 12px;
+      font-size: 11.5px;
       color: #94A3B8;
       font-weight: 700;
       text-transform: uppercase;
@@ -715,34 +852,35 @@
     }
 
     .info-value {
-      font-size: 16px;
+      font-size: 15px;
       color: #FFFFFF;
       font-weight: 700;
       line-height: 1.4;
     }
 
     .info-sub {
-      font-size: 13px;
+      font-size: 12.5px;
       color: #94A3B8;
       margin-top: 2px;
+      line-height: 1.4;
     }
 
     .map-embed-card {
       background: #090D16;
       border: 1px solid var(--tt-border);
       border-radius: var(--radius-lg);
-      padding: 24px;
+      padding: 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       text-align: center;
     }
 
-    /* FOOTER */
+    /* FOOTER OFICIAL PARA CLIENTES */
     .footer {
       background: #050811;
       border-top: 1px solid var(--tt-border);
-      padding: 44px 0 30px;
+      padding: 40px 0 28px;
       font-size: 13px;
       color: #94A3B8;
     }
@@ -753,9 +891,9 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 20px;
-      padding-bottom: 28px;
+      padding-bottom: 24px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .footer-bottom {
@@ -767,22 +905,6 @@
       font-size: 12px;
     }
 
-    .internal-badge {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: #64748B;
-      background: #0F172A;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 4px 10px;
-      border-radius: 6px;
-      transition: all var(--transition);
-    }
-
-    .internal-badge:hover {
-      color: var(--tt-amber);
-      border-color: rgba(245, 158, 11, 0.4);
-    }
-
     /* DRAWER MÓVIL */
     .mobile-drawer-overlay {
       position: fixed;
@@ -790,7 +912,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.75);
       backdrop-filter: blur(4px);
       z-index: 1999;
       display: none;
@@ -803,8 +925,9 @@
     .mobile-drawer {
       position: fixed;
       top: 0;
-      right: -300px;
-      width: 280px;
+      right: -310px;
+      width: 290px;
+      max-width: 85vw;
       height: 100vh;
       background: #0B111E;
       border-left: 1px solid var(--tt-border);
@@ -813,7 +936,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: right 240ms ease;
+      transition: right 240ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .mobile-drawer.active {
@@ -823,19 +946,54 @@
     .mobile-nav-links {
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      margin-top: 24px;
+      gap: 8px;
+      margin-top: 22px;
     }
 
     .mobile-nav-link {
-      font-size: 16px;
+      font-size: 15.5px;
       font-weight: 700;
       color: #E2E8F0;
-      padding: 8px 0;
+      padding: 12px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    /* RESPONSIVE BREAKPOINTS */
+    /* BARRA FLOTANTE FIJA INFERIOR PARA CELULARES (STICKY MOBILE BAR) */
+    .mobile-bottom-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(9, 13, 22, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px));
+      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    .mobile-bottom-bar-inner {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 8px;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .mobile-bottom-bar .btn {
+      padding: 10px 8px;
+      font-size: 12px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+
+    /* RESPONSIVE BREAKPOINTS EXHAUSTIVOS PARA CELULARES Y TABLETS */
     @media (max-width: 960px) {
       .nav-desktop {
         display: none;
@@ -845,6 +1003,16 @@
       }
       .trust-strip {
         grid-template-columns: repeat(2, 1fr);
+      }
+      .about-card {
+        grid-template-columns: 1fr;
+      }
+      .about-photo-wrapper {
+        min-height: 260px;
+        max-height: 320px;
+      }
+      .about-body {
+        padding: 28px 22px;
       }
       .picadas-grid {
         grid-template-columns: 1fr;
@@ -860,19 +1028,149 @@
       }
     }
 
-    @media (max-width: 640px) {
-      .trust-strip {
-        grid-template-columns: 1fr;
+    @media (max-width: 768px) {
+      body {
+        padding-bottom: 74px; /* Espacio para que la barra inferior flotante no tape contenido */
       }
-      .depts-grid {
-        grid-template-columns: 1fr;
+      .mobile-bottom-bar {
+        display: block;
+      }
+      .header {
+        padding: 8px 0;
+      }
+      .brand-logo-svg {
+        height: 32px;
+        max-width: 140px;
+      }
+      .header-actions .desktop-cta {
+        display: none !important;
+      }
+      .status-badge {
+        padding: 4px 8px;
+        font-size: 10.5px;
+      }
+      .status-text-desktop {
+        display: none;
+      }
+      .status-text-mobile {
+        display: inline;
+      }
+      .hero {
+        padding: 38px 0 46px;
+      }
+      .hero-title {
+        font-size: clamp(25px, 7vw, 34px);
+      }
+      .hero-desc {
+        font-size: 14.5px;
+        margin-bottom: 22px;
+      }
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
       }
       .hero-actions .btn {
         width: 100%;
+        padding: 13px 16px;
+        font-size: 14px;
+      }
+      .section {
+        padding: 46px 0;
+      }
+      .section-header {
+        margin-bottom: 30px;
+      }
+      .section-title {
+        font-size: 24px;
+      }
+      .about-body {
+        padding: 24px 18px;
+      }
+      .club-banner {
+        padding: 26px 18px;
+        border-radius: var(--radius-lg);
+      }
+      .club-card-preview {
+        padding: 20px 16px;
+      }
+      .club-card-pts {
+        font-size: 32px;
+      }
+      .location-box {
+        padding: 22px 16px;
+        border-radius: var(--radius-lg);
+      }
+      .map-embed-card {
+        padding: 18px 14px;
+      }
+      .footer {
+        padding: 32px 0 calc(90px + env(safe-area-inset-bottom, 0px));
       }
       .footer-top, .footer-bottom {
         flex-direction: column;
         text-align: center;
+        gap: 16px;
+      }
+      .footer-bottom {
+        gap: 14px;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .status-text-mobile {
+        display: none;
+      }
+      .status-text-desktop {
+        display: inline;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .container {
+        padding: 0 16px;
+      }
+      .trust-strip {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .trust-item {
+        padding: 12px 8px;
+      }
+      .trust-icon {
+        font-size: 22px;
+        margin-bottom: 4px;
+      }
+      .trust-title {
+        font-size: 12.5px;
+      }
+      .trust-desc {
+        font-size: 11px;
+      }
+      .depts-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .dept-card {
+        padding: 14px 12px;
+      }
+      .picada-body {
+        padding: 18px 14px;
+      }
+      .picada-footer {
+        padding: 14px 14px 16px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .trust-strip {
+        grid-template-columns: 1fr;
+      }
+      .mobile-bottom-bar-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+      .mobile-bottom-bar-inner .btn-maps {
+        display: none;
       }
     }
   </style>
@@ -894,6 +1192,7 @@
 
       <!-- Menú Desktop -->
       <nav class="nav-desktop">
+        <a href="#sobre-nosotros" class="nav-link">El Local</a>
         <a href="#picadas" class="nav-link">Picadas</a>
         <a href="#departamentos" class="nav-link">Departamentos</a>
         <a href="#club" class="nav-link">Club de Puntos</a>
@@ -903,16 +1202,17 @@
       <!-- Acciones de Cabecera -->
       <div class="header-actions">
         <!-- Indicador dinámico de estado en vivo -->
-        <div id="store-status-pill" class="status-badge">
+        <div id="store-status-pill" class="status-badge" title="Horario: Lunes a Domingos de 08:00 a 23:00 hs de corrido">
           <span class="status-dot"></span>
-          <span id="store-status-text">Abierto de corrido</span>
+          <span id="store-status-text" class="status-text-desktop">Abierto de corrido</span>
+          <span id="store-status-text-mobile" class="status-text-mobile">08 a 23 hs</span>
         </div>
 
-        <a href="https://wa.me/?text=Hola%20Luciano,%20te%20escribo%20desde%20la%20web%20de%20Tu%20Tablita%20para%20hacerte%20una%20consulta" target="_blank" rel="noopener" class="btn btn-whatsapp" style="padding:8px 14px;font-size:12.5px;">
-          <span>💬</span> <span class="hide-mobile">WhatsApp</span>
+        <a href="https://wa.me/5493515178136?text=Hola%20Luciano,%20te%20escribo%20desde%20la%20web%20de%20Tu%20Tablita" target="_blank" rel="noopener" class="btn btn-whatsapp desktop-cta" style="padding:7px 12px;font-size:12px;">
+          <span>💬</span> <span>WhatsApp</span>
         </a>
 
-        <a href="./club/" class="btn btn-amber" style="padding:8px 14px;font-size:12.5px;">
+        <a href="./club/" class="btn btn-amber desktop-cta" style="padding:7px 12px;font-size:12px;">
           <span>🎁</span> <span>Mis Puntos</span>
         </a>
 
@@ -923,16 +1223,17 @@
     </div>
   </header>
 
-  <!-- DRAWER MÓVIL RETRÁCTIL -->
+  <!-- DRAWER MÓVIL RETRÁCTIL (EXCLUSIVO PARA CLIENTES) -->
   <div id="drawer-overlay" class="mobile-drawer-overlay" onclick="closeMobileMenu()"></div>
   <aside id="drawer" class="mobile-drawer">
     <div>
       <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--tt-border);padding-bottom:14px;">
         <span style="font-family:var(--font-script);font-size:24px;color:#FFF;">Tu Tablita</span>
-        <button onclick="closeMobileMenu()" style="background:none;border:none;color:#FFF;font-size:22px;cursor:pointer;">✕</button>
+        <button onclick="closeMobileMenu()" style="background:none;border:none;color:#FFF;font-size:22px;cursor:pointer;padding:4px 8px;">✕</button>
       </div>
 
       <div class="mobile-nav-links">
+        <a href="#sobre-nosotros" class="mobile-nav-link" onclick="closeMobileMenu()">🏪 Nuestro Negocio</a>
         <a href="#picadas" class="mobile-nav-link" onclick="closeMobileMenu()">🧀 Tablas de Picadas</a>
         <a href="#departamentos" class="mobile-nav-link" onclick="closeMobileMenu()">🛒 11 Departamentos</a>
         <a href="#club" class="mobile-nav-link" onclick="closeMobileMenu()">🎁 Club de Puntos</a>
@@ -941,17 +1242,32 @@
     </div>
 
     <div style="display:flex;flex-direction:column;gap:10px;">
-      <a href="./club/" class="btn btn-amber btn-block" style="text-align:center;">
+      <a href="./club/" class="btn btn-amber" style="width:100%;text-align:center;">
         🎁 Consultar mis Puntos
       </a>
-      <a href="https://wa.me/?text=Hola%20Luciano,%20te%20escribo%20desde%20la%20web%20de%20Tu%20Tablita" target="_blank" rel="noopener" class="btn btn-whatsapp btn-block" style="text-align:center;">
-        💬 Contactar por WhatsApp
+      <a href="https://wa.me/5493515178136?text=Hola%20Luciano,%20te%20escribo%20desde%20la%20web%20de%20Tu%20Tablita" target="_blank" rel="noopener" class="btn btn-whatsapp" style="width:100%;text-align:center;">
+        💬 WhatsApp Luciano
       </a>
       <div style="text-align:center;font-size:11px;color:#64748B;font-family:var(--font-mono);margin-top:4px;">
         Gral. Bustos 699 · Malagueño
       </div>
     </div>
   </aside>
+
+  <!-- BARRA FLOTANTE FIJA INFERIOR PARA MÓVILES (STICKY BOTTOM BAR) -->
+  <div class="mobile-bottom-bar">
+    <div class="mobile-bottom-bar-inner">
+      <a href="https://wa.me/5493515178136?text=Hola%20Luciano,%20te%20escribo%20desde%20la%20web%20de%20Tu%20Tablita" target="_blank" rel="noopener" class="btn btn-whatsapp" title="Escribir a Luciano por WhatsApp">
+        💬 WhatsApp
+      </a>
+      <a href="./club/" class="btn btn-amber" title="Consultar puntos del club con tu DNI">
+        🎁 Puntos
+      </a>
+      <a href="https://www.google.com/maps/search/?api=1&query=Gral.+Bustos+699,+Malagueño,+Córdoba" target="_blank" rel="noopener" class="btn btn-outline btn-maps" title="Abrir ubicación en Google Maps">
+        📍 Mapa
+      </a>
+    </div>
+  </div>
 
   <main>
 
@@ -971,11 +1287,11 @@
         </h1>
 
         <p class="hero-desc">
-          Abiertos todos los días de <strong>08:00 a 23:00 hs sin cortar al mediodía</strong>. Fiambres al corte de primera línea, tablas de picadas listas para llevar, almacén completo y <strong>3% de cashback en puntos</strong> en todas tus compras.
+          Abiertos todos los días de <strong>08:00 a 23:00 hs sin cortar al mediodía</strong>. Fiambres al corte de primera línea, tablas de picadas listas para llevar, almacén completo y <strong>puntos acumulables en todas tus compras</strong> para canjear por productos gratis.
         </p>
 
         <div class="hero-actions">
-          <a href="#picadas" class="btn btn-red">
+          <a href="https://wa.me/5493515178136?text=Hola%20Luciano,%20quiero%20consultarte%20por%20las%20tablas%20de%20picadas" target="_blank" rel="noopener" class="btn btn-red">
             🧀 ENCARGAR PICADA POR WHATSAPP &rarr;
           </a>
           <a href="./club/" class="btn btn-amber">
@@ -1000,13 +1316,82 @@
           <div class="trust-item">
             <span class="trust-icon">🛒</span>
             <div class="trust-title">11 Departamentos</div>
-            <div class="trust-desc">Almacén, carnicería congelada, panadería, bebidas frías y bazar.</div>
+            <div class="trust-desc">Almacén, panadería, bebidas frías, congelados, limpieza y bazar.</div>
           </div>
 
           <div class="trust-item">
             <span class="trust-icon">🎁</span>
-            <div class="trust-title">3% en Puntos</div>
+            <div class="trust-title">Club de Puntos</div>
             <div class="trust-desc">Todas tus compras suman saldo directo para retirar premios en caja.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECCIÓN SOBRE EL NEGOCIO: PRESENTACIÓN REAL + FOTO DE FACHADA
+         ==================================================================== -->
+    <section id="sobre-nosotros" class="section" style="background:#0B101D;">
+      <div class="container">
+        
+        <div class="about-card">
+          <!-- Foto Real de la Fachada de Tu Tablita -->
+          <div class="about-photo-wrapper">
+            <img src="/tu-tablita/assets-marca/fachada-local-tu-tablita.jpg" alt="Fachada del local Tu Tablita Autoservicio en Malagueño" class="about-photo" loading="lazy">
+            <div class="about-photo-overlay">
+              <span class="about-photo-badge">
+                📍 Gral. Bustos 699 · Malagueño
+              </span>
+            </div>
+          </div>
+
+          <!-- Breve Presentación Institucional y Comercial -->
+          <div class="about-body">
+            <div>
+              <span class="section-kicker">NUESTRO NEGOCIO</span>
+              <h2 class="about-title">Tu autoservicio de confianza, todos los días y a toda hora.</h2>
+            </div>
+
+            <p class="about-text">
+              En <strong>Tu Tablita</strong> nacimos con una idea clara: ser el punto de encuentro del barrio donde siempre encontrás mercadería fresca, excelente atención y la tranquilidad de saber que no te cerramos la persiana cuando más lo necesitás.
+            </p>
+
+            <p class="about-text">
+              Atendido por sus propios dueños en el corazón de <strong>Malagueño</strong>, combinamos la calidez y el corte artesanal de una fiambrería especializada con la comodidad de un autoservicio integral con <strong>11 departamentos</strong>, para que resuelvas tus compras completas en un solo lugar y sin demoras.
+            </p>
+
+            <div class="about-features">
+              <div class="about-feature-item">
+                <span class="about-feature-icon">🏪</span>
+                <div>
+                  <strong>Atención Familiar y Cercana:</strong>
+                  <span>Cuidamos a cada vecino con la mejor predisposición y asesoramiento personalizado.</span>
+                </div>
+              </div>
+
+              <div class="about-feature-item">
+                <span class="about-feature-icon">🧀</span>
+                <div>
+                  <strong>Fiambres al Corte y Picadas:</strong>
+                  <span>Embutidos seleccionados, quesos criollos de campo y tablas listas para llevar a tu mesa.</span>
+                </div>
+              </div>
+
+              <div class="about-feature-item">
+                <span class="about-feature-icon">⏰</span>
+                <div>
+                  <strong>15 Horas de Corrido Sin Siesta:</strong>
+                  <span>De lunes a domingos de 08:00 a 23:00 hs para salvarte en cualquier momento del día.</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:8px;">
+              <a href="https://wa.me/5493515178136?text=Hola%20Luciano,%20vi%20la%20web%20del%20local%20y%20quer%C3%ADa%20hacerte%20una%20consulta" target="_blank" rel="noopener" class="btn btn-whatsapp" style="display:inline-flex;">
+                💬 Contactar a Luciano por WhatsApp
+              </a>
+            </div>
           </div>
         </div>
 
@@ -1022,7 +1407,7 @@
           <span class="section-kicker">ESPECIALIDAD DE LA CASA</span>
           <h2 class="section-title">Nuestras Tablas de Picadas</h2>
           <p class="section-desc">
-            Elaboradas en el momento con los mejores embutidos y quesos de la región. Ideales para compartir en familia, previas de fútbol, reuniones con amigos o eventos.
+            Elaboradas en el momento con los mejores embutidos y quesos de la región. Ideales para compartir en familia, previas, reuniones con amigos o eventos.
           </p>
         </div>
 
@@ -1045,7 +1430,7 @@
             </div>
             
             <div class="picada-footer">
-              <a href="https://wa.me/?text=Hola%20Luciano,%20quiero%20encargar%20la%20Tablita%20Picada%20Cl%C3%A1sica%20(2%20personas)%20para%20retirar%20hoy" target="_blank" rel="noopener" class="btn btn-red btn-block" style="width:100%;text-align:center;">
+              <a href="https://wa.me/5493515178136?text=Hola%20Luciano,%20quiero%20encargar%20la%20Tablita%20Picada%20Cl%C3%A1sica%20(2%20personas)%20para%20retirar%20hoy" target="_blank" rel="noopener" class="btn btn-red" style="width:100%;text-align:center;">
                 📲 Encargar por WhatsApp &rarr;
               </a>
             </div>
@@ -1070,7 +1455,7 @@
             </div>
             
             <div class="picada-footer">
-              <a href="https://wa.me/?text=Hola%20Luciano,%20quiero%20encargar%20la%20Tablita%20Especial%20de%20Campo%20(4%20personas)%20para%20retirar%20hoy" target="_blank" rel="noopener" class="btn btn-amber btn-block" style="width:100%;text-align:center;">
+              <a href="https://wa.me/5493515178136?text=Hola%20Luciano,%20quiero%20encargar%20la%20Tablita%20Especial%20de%20Campo%20(4%20personas)%20para%20retirar%20hoy" target="_blank" rel="noopener" class="btn btn-amber" style="width:100%;text-align:center;">
                 📲 Encargar Especial por WhatsApp &rarr;
               </a>
             </div>
@@ -1093,7 +1478,7 @@
             </div>
             
             <div class="picada-footer">
-              <a href="https://wa.me/?text=Hola%20Luciano,%20quiero%20consultarte%20por%20tablas%20de%20picadas%20personalizadas%20para%20un%20evento" target="_blank" rel="noopener" class="btn btn-outline btn-block" style="width:100%;text-align:center;">
+              <a href="https://wa.me/5493515178136?text=Hola%20Luciano,%20quiero%20consultarte%20por%20tablas%20de%20picadas%20personalizadas%20para%20un%20evento" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;text-align:center;">
                 💬 Cotizar Evento por WhatsApp &rarr;
               </a>
             </div>
@@ -1112,7 +1497,7 @@
           <span class="section-kicker">TODO EN UN SOLO LUGAR</span>
           <h2 class="section-title">Los 11 Rubros de Tu Tablita</h2>
           <p class="section-desc">
-            Resolvé tus compras diarias completas sin dar vueltas ni pagar de más. Desde el pan de la mañana hasta el asado del domingo y los artículos esenciales del hogar.
+            Resolvé tus compras diarias completas sin dar vueltas ni pagar de más. Desde el pan de la mañana hasta el asado del fin de semana y los artículos esenciales del hogar.
           </p>
         </div>
 
@@ -1210,7 +1595,7 @@
             <span class="dept-icon">🎁</span>
             <div>
               <h3 class="dept-name" style="color:var(--tt-amber);">Club Tu Tablita</h3>
-              <p class="dept-desc">Todos los productos acumulan el 3% en puntos para canjear por premios en el mostrador.</p>
+              <p class="dept-desc">Todas tus compras suman puntos para canjear por premios y productos gratis en el mostrador.</p>
             </div>
           </div>
 
@@ -1219,7 +1604,7 @@
     </section>
 
     <!-- ====================================================================
-         SECCIÓN 3: CLUB TU TABLITA (FIDELIZACIÓN & CASHBACK 3%)
+         SECCIÓN 3: CLUB TU TABLITA (FIDELIZACIÓN & PUNTOS EN CADA COMPRA)
          ==================================================================== -->
     <section id="club" class="section">
       <div class="container">
@@ -1229,7 +1614,7 @@
             <div class="club-badge">🎁 BENEFICIO EXCLUSIVO PARA VECINOS</div>
             <h2 class="club-title">¿Ya conocés el Club Tu Tablita?</h2>
             <p class="club-desc">
-              Un programa de puntos simple, familiar y sin vueltas: <strong>todas tus compras suman el 3% en puntos</strong> para que retires productos gratis en el local.
+              Un programa de puntos simple, familiar y sin vueltas: <strong>todas tus compras acumulan puntos</strong> para que retires productos gratis en el local.
             </p>
 
             <div class="club-steps">
@@ -1268,7 +1653,7 @@
             <div class="club-card-pts">6.450</div>
             <div style="font-size:12px;color:#A7F3D0;margin-bottom:16px;">¡Alcanza para Pan Casero, Cerveza o Fiambres!</div>
 
-            <a href="./club/" class="btn btn-red btn-block" style="width:100%;font-size:12px;padding:10px;">
+            <a href="./club/" class="btn btn-red" style="width:100%;font-size:12px;padding:10px;text-align:center;">
               Ver Catálogo de Premios &rarr;
             </a>
           </div>
@@ -1327,7 +1712,7 @@
               <span class="info-icon">💬</span>
               <div>
                 <div class="info-label">Encargos &amp; Pedidos Previos</div>
-                <div class="info-value">Atención directa por WhatsApp</div>
+                <div class="info-value">Atención directa por WhatsApp: 351 517-8136</div>
                 <div class="info-sub">Escribinos para encargar tablas de picadas o reservar fiambres especiales.</div>
               </div>
             </div>
@@ -1341,20 +1726,20 @@
                 🚗 CÓMO LLEGAR AL LOCAL
               </div>
 
-              <h3 style="font-family:var(--font-display);font-size:20px;font-weight:800;color:#FFF;margin-bottom:8px;">
+              <h3 style="font-family:var(--font-display);font-size:19px;font-weight:800;color:#FFF;margin-bottom:8px;">
                 ¿Estás en Malagueño o en camino?
               </h3>
-              <p style="font-size:13.5px;color:#94A3B8;margin-bottom:24px;">
+              <p style="font-size:13px;color:#94A3B8;margin-bottom:20px;">
                 Tocá el botón abajo para abrir Google Maps en tu celular con la ruta más rápida hacia Gral. Bustos 699.
               </p>
             </div>
 
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <a href="https://www.google.com/maps/search/?api=1&query=Gral.+Bustos+699,+Malagueño,+Córdoba" target="_blank" rel="noopener" class="btn btn-red btn-block">
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <a href="https://www.google.com/maps/search/?api=1&query=Gral.+Bustos+699,+Malagueño,+Córdoba" target="_blank" rel="noopener" class="btn btn-red" style="width:100%;text-align:center;">
                 📍 Abrir en Google Maps &rarr;
               </a>
-              <a href="https://wa.me/?text=Hola%20Luciano,%20estoy%20en%20Malague%C3%B1o%20y%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener" class="btn btn-whatsapp btn-block">
-                💬 Escribir al WhatsApp del Local
+              <a href="https://wa.me/5493515178136?text=Hola%20Luciano,%20estoy%20en%20Malague%C3%B1o%20y%20quiero%20hacerte%20una%20consulta" target="_blank" rel="noopener" class="btn btn-whatsapp" style="width:100%;text-align:center;">
+                💬 Escribir al WhatsApp de Luciano
               </a>
             </div>
           </div>
@@ -1367,18 +1752,20 @@
   </main>
 
   <!-- ====================================================================
-       FOOTER CORPORATIVO
+       FOOTER OFICIAL EXCLUSIVO PARA CLIENTES
        ==================================================================== -->
   <footer class="footer">
     <div class="container">
       <div class="footer-top">
         <div>
-          <div style="font-family:var(--font-script);font-size:32px;color:#FFF;line-height:1;margin-bottom:4px;">Tu Tablita</div>
+          <div style="font-family:var(--font-script);font-size:30px;color:#FFF;line-height:1;margin-bottom:4px;">Tu Tablita</div>
           <div style="font-family:var(--font-display);font-size:11px;font-weight:900;font-style:italic;color:var(--tt-red);letter-spacing:2px;">AUTOSERVICIO · FIAMBRERÍA</div>
-          <div style="font-size:12.5px;color:#94A3B8;margin-top:8px;">Gral. Bustos 699, Malagueño, Córdoba.</div>
+          <div style="font-size:12.5px;color:#94A3B8;margin-top:6px;">Gral. Bustos 699, Malagueño, Córdoba.</div>
         </div>
 
-        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center;">
+          <a href="#sobre-nosotros" style="color:#CBD5E1;font-weight:600;">El Local</a>
+          <span style="color:#475569;">·</span>
           <a href="#picadas" style="color:#CBD5E1;font-weight:600;">Picadas</a>
           <span style="color:#475569;">·</span>
           <a href="#departamentos" style="color:#CBD5E1;font-weight:600;">Departamentos</a>
@@ -1391,18 +1778,11 @@
 
       <div class="footer-bottom">
         <div>
-          Tu Tablita Autoservicio &copy; 2026 &middot; Todos los derechos reservados.<br>
-          Plataforma web desarrollada por <a href="https://futurizatech.com" target="_blank" rel="noopener" style="color:#FFF;font-weight:700;">FuturizaTech</a> &middot; Software &amp; Automatización Comercial.
+          Tu Tablita Autoservicio &copy; 2026 &middot; Gral. Bustos 699, Malagueño, Córdoba.<br>
+          Todos los días de 08:00 a 23:00 hs de corrido.
         </div>
-
-        <!-- Enlaces Internos Discretos de Gestión -->
-        <div style="display:flex;gap:10px;align-items:center;">
-          <a href="./mostrador/" class="internal-badge" title="Terminal de Cobro para Empleados y Dueño">
-            🖥️ Terminal Mostrador
-          </a>
-          <a href="./manual-de-marca/" class="internal-badge" title="Manual de Identidad Visual y Cartelería QR">
-            📘 Manual de Marca
-          </a>
+        <div style="font-size:11px;color:#64748B;">
+          Desarrollado por <a href="https://futurizatech.com" target="_blank" rel="noopener" style="color:#94A3B8;font-weight:600;">FuturizaTech</a> &middot; Software &amp; Automatización Comercial
         </div>
       </div>
     </div>
@@ -1416,17 +1796,20 @@
       const hour = now.getHours();
       const statusPill = document.getElementById('store-status-pill');
       const statusText = document.getElementById('store-status-text');
+      const statusTextMobile = document.getElementById('store-status-text-mobile');
 
       // Abierto de 08:00 a 22:59:59 (cierra a las 23:00)
       const isOpen = hour >= 8 && hour < 23;
 
-      if (statusPill && statusText) {
+      if (statusPill) {
         if (isOpen) {
           statusPill.className = 'status-badge';
-          statusText.textContent = 'Abierto de corrido hasta las 23:00 hs';
+          if (statusText) statusText.textContent = 'Abierto de corrido hasta las 23:00 hs';
+          if (statusTextMobile) statusTextMobile.textContent = 'Abierto 08-23 hs';
         } else {
           statusPill.className = 'status-badge closed';
-          statusText.textContent = 'Cerrado · Abre hoy a las 08:00 hs';
+          if (statusText) statusText.textContent = 'Cerrado · Abre hoy a las 08:00 hs';
+          if (statusTextMobile) statusTextMobile.textContent = 'Abre 08:00 hs';
         }
       }
     }
