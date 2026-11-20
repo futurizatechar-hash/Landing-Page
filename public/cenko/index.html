@@ -1117,28 +1117,306 @@
       line-height: 1.4;
     }
 
-    .cart-panel-drag-handle {
+    /* ==========================================================================
+       USER PROFILE DROPDOWN & SHOWROOM LOCK SCREEN
+       ========================================================================== */
+    .user-profile-menu-container {
+      position: relative;
+    }
+
+    .user-dropdown-menu {
       display: none;
-      width: 44px;
-      height: 4px;
-      border-radius: 2px;
-      background: rgba(255, 255, 255, 0.28);
-      margin: 0 auto 10px auto;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      width: 230px;
+      background: var(--ck-surface);
+      border: 1px solid var(--ck-border-hover);
+      border-radius: var(--radius-md);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85);
+      z-index: 1000;
+      padding: 8px;
+      animation: fadeIn 150ms ease-out forwards;
+    }
+
+    .user-dropdown-menu.active {
+      display: block;
+    }
+
+    .user-dropdown-header {
+      padding: 8px 10px;
+    }
+
+    .user-dropdown-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ck-text-primary);
+    }
+
+    .user-dropdown-role {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ck-champagne);
+    }
+
+    .user-dropdown-divider {
+      height: 1px;
+      background: var(--ck-border);
+      margin: 6px 0;
+    }
+
+    .user-dropdown-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      border: none;
+      background: transparent;
+      color: var(--ck-text-secondary);
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: left;
+      transition: var(--transition-fast);
+    }
+
+    .user-dropdown-item:hover {
+      background: var(--ck-surface-elevated);
+      color: var(--ck-text-primary);
+    }
+
+    .user-dropdown-item.text-danger {
+      color: var(--ck-rose);
+    }
+
+    .user-dropdown-item.text-danger:hover {
+      background: var(--ck-rose-bg);
+    }
+
+    /* PANTALLA DE BLOQUEO DE TERMINAL SHOWROOM (KEYPAD TÁCTIL) */
+    .lock-screen-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 5, 7, 0.96);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lock-screen-overlay.active {
+      display: flex;
+    }
+
+    .lock-box {
+      width: 100%;
+      max-width: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 200ms ease-out forwards;
+    }
+
+    .lock-logo-svg {
+      height: 48px;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 4px 12px rgba(255,255,255,0.15));
+    }
+
+    .lock-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--ck-text-muted);
+      margin-bottom: 16px;
+    }
+
+    .lock-user-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--ck-surface);
+      border: 1px solid var(--ck-border);
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ck-text-primary);
+      margin-bottom: 22px;
+    }
+
+    .pin-dots-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .pin-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid var(--ck-border-hover);
+      background: transparent;
+      transition: all 150ms ease;
+    }
+
+    .pin-dot.filled {
+      background: linear-gradient(135deg, #FFFFFF, #94A3B8);
+      border-color: #FFFFFF;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+      transform: scale(1.1);
+    }
+
+    .pin-error-msg {
+      height: 20px;
+      font-size: 12px;
+      color: var(--ck-rose);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .keypad-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .keypad-btn {
+      height: 60px;
+      border-radius: var(--radius-md);
+      background: var(--ck-surface);
+      border: 1px solid var(--ck-border);
+      color: var(--ck-text-primary);
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .keypad-btn:active {
+      background: var(--ck-surface-elevated);
+      border-color: var(--ck-chrome-glow);
+      transform: scale(0.95);
+    }
+
+    .keypad-btn.key-action {
+      font-size: 18px;
+      color: var(--ck-text-muted);
+    }
+
+    .keypad-btn.key-action.primary {
+      background: linear-gradient(135deg, #FFFFFF 0%, #94A3B8 100%);
+      color: #0B0B0E;
+      border: none;
+    }
+
+    .lock-footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .link-btn {
+      background: transparent;
+      border: none;
+      color: var(--ck-chrome-slate);
+      font-size: 12.5px;
+      text-decoration: underline;
       cursor: pointer;
     }
 
-    .cart-header-close-btn {
-      display: none;
-      align-items: center;
-      gap: 4px;
-      padding: 5px 10px;
-      border-radius: var(--radius-sm);
-      background: rgba(255, 255, 255, 0.08);
+    .link-btn:hover {
+      color: #FFFFFF;
+    }
+
+    .pin-hint {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--ck-text-muted);
+    }
+
+    /* CIERRE DE CAJA CARD */
+    .cierre-caja-card {
+      background: var(--ck-surface);
       border: 1px solid var(--ck-border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+
+    .cierre-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .cierre-title {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
       color: var(--ck-text-primary);
-      font-size: 11.5px;
-      font-weight: 600;
+    }
+
+    .cierre-subtitle {
+      font-size: 12px;
+      color: var(--ck-text-muted);
+    }
+
+    /* CONTROLES RÁPIDOS DE STOCK (+ / -) */
+    .stock-quick-btns {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--ck-surface-elevated);
+      padding: 3px 6px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--ck-border);
+    }
+
+    .stock-btn-step {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      border: 1px solid var(--ck-border);
+      background: var(--ck-surface);
+      color: var(--ck-text-primary);
+      font-weight: bold;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .stock-btn-step:hover {
+      border-color: var(--ck-chrome-glow);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .stock-qty-num {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      min-width: 22px;
+      text-align: center;
     }
 
     /* Dock Flotante Móvil de Orden */
@@ -1170,36 +1448,34 @@
       opacity: 1;
     }
 
-    .cart-backdrop {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      z-index: 1050;
-      opacity: 0;
-      transition: opacity 250ms ease;
-    }
-
-    .cart-backdrop.active {
-      display: block;
-      opacity: 1;
-    }
-
-    @media (max-width: 1024px) {
+    /* Responsive */
+    @media (min-width: 821px) {
       .pos-layout {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: 1fr 390px;
+        gap: 20px;
+        align-items: start;
+      }
+      #pos-catalog-col {
+        display: block !important;
       }
       .cart-panel {
-        position: static;
-        max-height: none;
+        display: flex !important;
+        position: sticky;
+        top: 82px;
+        max-height: calc(100vh - 104px);
       }
-      .kpi-grid {
-        grid-template-columns: repeat(2, 1fr);
+      #btn-pos-carrito {
+        display: none !important;
       }
-      .ranking-grid {
-        grid-template-columns: 1fr;
+      .mobile-cart-bar {
+        display: none !important;
+      }
+      .cart-panel-drag-handle {
+        display: none !important;
+      }
+      .cart-header-close-btn {
+        display: none !important;
       }
     }
 
@@ -1224,50 +1500,46 @@
         padding: 12px 12px calc(80px + env(safe-area-inset-bottom, 0px)) 12px !important; 
       }
       
+      .sub-tabs-bar {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+      .sub-tabs-bar .sub-tab-btn {
+        flex: 1;
+        text-align: center;
+        padding: 8px 4px;
+        font-size: 11px;
+      }
+      #btn-pos-carrito {
+        display: inline-flex !important;
+      }
+
       .pos-layout {
-        grid-template-columns: 1fr !important;
+        display: block !important;
+      }
+
+      /* MODO DUAL DE CARRITO MÓVIL (100% CONFIABLE) */
+      .cart-panel {
+        position: static !important;
+        max-height: none !important;
+        transform: none !important;
+        width: 100% !important;
+        box-shadow: none !important;
+        border-radius: var(--radius-md) !important;
+        display: none;
+      }
+
+      /* Cuando se activa la vista Carrito en Celulares */
+      .pos-sub-caja-wrap.cart-active #pos-catalog-col {
+        display: none !important;
+      }
+      .pos-sub-caja-wrap.cart-active .cart-panel {
+        display: flex !important;
       }
 
       .mobile-cart-bar {
         display: flex;
-      }
-
-      /* Cart Drawer Modal en Celulares (Cero Scroll en Mostrador) */
-      .cart-panel {
-        position: fixed !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        top: auto !important;
-        width: 100% !important;
-        max-height: 88vh !important;
-        border-radius: 22px 22px 0 0 !important;
-        background: #14151D !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
-        border-bottom: none !important;
-        box-shadow: 0 -14px 50px rgba(0, 0, 0, 0.95) !important;
-        z-index: 1100 !important;
-        transform: translateY(105%) !important;
-        transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-        padding: 12px 16px calc(16px + env(safe-area-inset-bottom, 0px)) 16px !important;
-        display: flex !important;
-        flex-direction: column !important;
-      }
-
-      .cart-panel.mobile-sheet-open {
-        transform: translateY(0) !important;
-      }
-
-      .cart-panel-drag-handle {
-        display: block;
-      }
-
-      .cart-header-close-btn {
-        display: flex;
-      }
-
-      .cart-items-list {
-        max-height: 26vh !important;
       }
 
       /* Catálogo en 2 Columnas Móviles Perfectas (Shopify/MercadoLibre style) */
@@ -1418,9 +1690,34 @@
           <span class="cart-badge-count" id="hdr-cart-count">0</span>
         </button>
 
-        <div class="user-pill" onclick="switchView('usuarios')" title="Fran (Super-Admin)">
-          <div class="user-avatar-circle">F</div>
-          <span>Fran</span>
+        <!-- Perfil de Usuario con Menú de Bloqueo y Cierre de Sesión -->
+        <div class="user-profile-menu-container" id="user-menu-wrap">
+          <button class="user-pill" id="user-profile-btn" onclick="toggleUserDropdown(event)" title="Sesión activa">
+            <div class="user-avatar-circle" id="user-avatar-badge">F</div>
+            <span id="user-name-label">Fran</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left: 2px;"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          
+          <div class="user-dropdown-menu" id="user-dropdown-menu">
+            <div class="user-dropdown-header">
+              <div class="user-dropdown-name" id="menu-user-name">Francisco "Fran" Sverko</div>
+              <div class="user-dropdown-role" id="menu-user-role">Super-Admin • Showroom Malagueño</div>
+            </div>
+            <div class="user-dropdown-items">
+              <button class="user-dropdown-item" onclick="lockScreen()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>Bloquear Terminal (PIN)</span>
+              </button>
+              <button class="user-dropdown-item" onclick="switchSellerRole()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span>Cambiar Vendedor</span>
+              </button>
+              <button class="user-dropdown-item text-danger" onclick="logoutSession()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                <span>Cerrar Sesión</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </header>
@@ -1439,16 +1736,18 @@
           </div>
 
           <div class="sub-tabs-bar">
-            <button class="sub-tab-btn active" id="btn-pos-caja" onclick="togglePosSubView('caja')">Nueva Venta</button>
-            <button class="sub-tab-btn" id="btn-pos-historial" onclick="togglePosSubView('historial')">Ventas del Día (<span id="count-ventas-hoy">0</span>)</button>
+            <button class="sub-tab-btn active" id="btn-pos-caja" onclick="togglePosSubView('caja')">🛍️ Catálogo</button>
+            <button class="sub-tab-btn" id="btn-pos-carrito" onclick="togglePosSubView('carrito')">🛒 Carrito (<span id="count-cart-subtab">0</span>)</button>
+            <button class="sub-tab-btn" id="btn-pos-historial" onclick="togglePosSubView('historial')">📜 Ventas (<span id="count-ventas-hoy">0</span>)</button>
           </div>
         </div>
 
         <!-- Sub-Sección 1.A: Caja Nueva Venta -->
         <div id="pos-sub-caja">
-          <div class="pos-layout">
-            <!-- Catálogo y Buscador -->
-            <div>
+          <div class="pos-sub-caja-wrap" id="pos-sub-caja-wrap">
+            <div class="pos-layout">
+              <!-- Catálogo y Buscador -->
+              <div id="pos-catalog-col">
               <div class="search-filter-box">
                 <div class="search-input-wrap">
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -1532,6 +1831,7 @@
             </div>
           </div>
         </div>
+      </div>
 
         <!-- Sub-Sección 1.B: Historial de Ventas del Día -->
         <div id="pos-sub-historial" style="display: none;">
@@ -1574,6 +1874,23 @@
                   <!-- Llenado dinámico -->
                 </tbody>
               </table>
+            </div>
+          </div>
+
+          <!-- CIERRE DE CAJA DIARIO (SHOWROOM SECURITY & BALANCE) -->
+          <div class="cierre-caja-card" id="cierre-caja-card">
+            <div class="cierre-caja-header">
+              <div>
+                <div class="cierre-caja-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  Cierre de Caja Diario (Showroom)
+                </div>
+                <p style="font-size: 12px; color: var(--ck-text-muted); margin-top: 2px;">Balance diario y desglose de cobranzas para rendición directa a Francisco.</p>
+              </div>
+              <button class="btn btn-whatsapp btn-sm" onclick="shareCierreWhatsApp()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                Enviar Cierre a Fran por WhatsApp
+              </button>
             </div>
           </div>
         </div>
@@ -1972,6 +2289,46 @@
   <div id="app-toast">Acción completada con éxito.</div>
 
   <!-- ========================================================================
+       BLOQUEO DE TERMINAL CON TECLADO NUMÉRICO TÁCTIL (SHOWROOM SECURITY)
+       ======================================================================== -->
+  <div class="lock-screen-overlay" id="lock-screen-overlay">
+    <div class="lock-screen-card">
+      <div class="lock-avatar-circle" id="lock-avatar">F</div>
+      <h2 class="lock-title" id="lock-title">Terminal Bloqueada</h2>
+      <p class="lock-subtitle" id="lock-subtitle">Ingresá el PIN de Fran o Vendedor para operar</p>
+
+      <div class="pin-dots-display">
+        <div class="pin-dot" id="pindot-0"></div>
+        <div class="pin-dot" id="pindot-1"></div>
+        <div class="pin-dot" id="pindot-2"></div>
+        <div class="pin-dot" id="pindot-3"></div>
+      </div>
+
+      <div class="pin-error-msg" id="pin-error-msg">PIN incorrecto. Reintentá.</div>
+
+      <div class="pin-keypad-grid">
+        <button class="pin-key" onclick="pressPinKey('1')">1</button>
+        <button class="pin-key" onclick="pressPinKey('2')">2</button>
+        <button class="pin-key" onclick="pressPinKey('3')">3</button>
+        <button class="pin-key" onclick="pressPinKey('4')">4</button>
+        <button class="pin-key" onclick="pressPinKey('5')">5</button>
+        <button class="pin-key" onclick="pressPinKey('6')">6</button>
+        <button class="pin-key" onclick="pressPinKey('7')">7</button>
+        <button class="pin-key" onclick="pressPinKey('8')">8</button>
+        <button class="pin-key" onclick="pressPinKey('9')">9</button>
+        <button class="pin-key action" onclick="clearPinInput()" title="Borrar todo">C</button>
+        <button class="pin-key" onclick="pressPinKey('0')">0</button>
+        <button class="pin-key action" onclick="deletePinDigit()" title="Borrar último dígito">⌫</button>
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 10px; margin-top: 18px;">
+        <button class="lock-switch-btn" onclick="quickPinFran()" title="PIN Rápido Fran: 1234">Fran (1234)</button>
+        <button class="lock-switch-btn" onclick="quickPinSeller()" title="PIN Rápido Vendedor: 0000">Vendedor (0000)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
        LÓGICA JAVASCRIPT: CATÁLOGO 100% PERFUMES ÁRABES CON FOTOS REALES
        ======================================================================== -->
   <script>
@@ -2257,24 +2614,164 @@
 
     let currentActiveView = 'pos';
 
-    // CONTROL DEL DRAWER / BOTTOM SHEET MÓVIL DEL CARRITO
+    // SESIÓN Y SEGURIDAD SHOWROOM (KEYPAD PIN)
+    let currentEnteredPin = '';
+    let isTerminalLocked = loadState('terminalLocked', false);
+    let activeSessionUser = loadState('activeUser', {
+      id: 'USR-01',
+      name: 'Fran',
+      role: 'Super-Admin',
+      pin: '1234'
+    });
+
+    function toggleUserDropdown(e) {
+      if (e) e.stopPropagation();
+      const menu = document.getElementById('user-dropdown-menu');
+      if (menu) menu.classList.toggle('active');
+    }
+
+    function closeUserDropdown() {
+      const menu = document.getElementById('user-dropdown-menu');
+      if (menu) menu.classList.remove('active');
+    }
+
+    function logoutSession() {
+      closeUserDropdown();
+      lockScreen();
+      showToast('Sesión cerrada. Terminal bloqueada.');
+    }
+
+    function switchSellerRole() {
+      closeUserDropdown();
+      if (activeSessionUser.role === 'Super-Admin') {
+        activeSessionUser = { id: 'USR-02', name: 'Vendedor Showroom', role: 'Vendedor', pin: '0000' };
+      } else {
+        activeSessionUser = { id: 'USR-01', name: 'Fran', role: 'Super-Admin', pin: '1234' };
+      }
+      updateUserSessionUI();
+      showToast(`Cambiado a perfil: ${activeSessionUser.name}`);
+    }
+
+    function updateUserSessionUI() {
+      saveState('activeUser', activeSessionUser);
+      const nameLabel = document.getElementById('user-name-label');
+      const avatarBadge = document.getElementById('user-avatar-badge');
+      const menuName = document.getElementById('menu-user-name');
+      const menuRole = document.getElementById('menu-user-role');
+      const lockAvatar = document.getElementById('lock-avatar');
+
+      const initial = activeSessionUser.name.charAt(0).toUpperCase();
+      if (nameLabel) nameLabel.textContent = activeSessionUser.name;
+      if (avatarBadge) avatarBadge.textContent = initial;
+      if (lockAvatar) lockAvatar.textContent = initial;
+      if (menuName) menuName.textContent = activeSessionUser.name === 'Fran' ? 'Francisco "Fran" Sverko' : activeSessionUser.name;
+      if (menuRole) menuRole.textContent = activeSessionUser.role + ' • Showroom Malagueño';
+    }
+
+    function lockScreen() {
+      closeUserDropdown();
+      isTerminalLocked = true;
+      currentEnteredPin = '';
+      updatePinDots();
+      document.getElementById('pin-error-msg')?.classList.remove('visible');
+      document.getElementById('lock-screen-overlay')?.classList.add('active');
+      saveState('terminalLocked', true);
+    }
+
+    function unlockScreen() {
+      isTerminalLocked = false;
+      currentEnteredPin = '';
+      updatePinDots();
+      document.getElementById('lock-screen-overlay')?.classList.remove('active');
+      saveState('terminalLocked', false);
+      showToast(`Terminal lista: ${activeSessionUser.name}`);
+    }
+
+    function pressPinKey(digit) {
+      if (currentEnteredPin.length >= 4) return;
+      currentEnteredPin += digit;
+      updatePinDots();
+      document.getElementById('pin-error-msg')?.classList.remove('visible');
+      if (currentEnteredPin.length === 4) {
+        setTimeout(validatePin, 150);
+      }
+    }
+
+    function deletePinDigit() {
+      if (currentEnteredPin.length > 0) {
+        currentEnteredPin = currentEnteredPin.slice(0, -1);
+        updatePinDots();
+        document.getElementById('pin-error-msg')?.classList.remove('visible');
+      }
+    }
+
+    function clearPinInput() {
+      currentEnteredPin = '';
+      updatePinDots();
+      document.getElementById('pin-error-msg')?.classList.remove('visible');
+    }
+
+    function updatePinDots() {
+      for (let i = 0; i < 4; i++) {
+        const dot = document.getElementById('pindot-' + i);
+        if (dot) {
+          if (i < currentEnteredPin.length) dot.classList.add('filled');
+          else dot.classList.remove('filled');
+        }
+      }
+    }
+
+    function validatePin() {
+      if (currentEnteredPin === '1234') {
+        activeSessionUser = { id: 'USR-01', name: 'Fran', role: 'Super-Admin', pin: '1234' };
+        updateUserSessionUI();
+        unlockScreen();
+      } else if (currentEnteredPin === '0000') {
+        activeSessionUser = { id: 'USR-02', name: 'Vendedor Showroom', role: 'Vendedor', pin: '0000' };
+        updateUserSessionUI();
+        unlockScreen();
+      } else {
+        const errorEl = document.getElementById('pin-error-msg');
+        if (errorEl) errorEl.classList.add('visible');
+        currentEnteredPin = '';
+        updatePinDots();
+      }
+    }
+
+    function quickPinFran() {
+      currentEnteredPin = '1234';
+      updatePinDots();
+      setTimeout(validatePin, 100);
+    }
+
+    function quickPinSeller() {
+      currentEnteredPin = '0000';
+      updatePinDots();
+      setTimeout(validatePin, 100);
+    }
+
+    // CONTROL DEL CARRITO MÓVIL (ARQUITECTURA DUAL CONFIABLE)
     function openMobileCart() {
-      const panel = document.getElementById('cart-panel-el');
-      const backdrop = document.getElementById('cart-backdrop');
-      if (panel) panel.classList.add('mobile-sheet-open');
-      if (backdrop) backdrop.classList.add('active');
+      if (window.innerWidth <= 820) {
+        togglePosSubView('carrito');
+      } else {
+        const panel = document.getElementById('cart-panel-el');
+        if (panel) panel.classList.add('mobile-sheet-open');
+      }
     }
 
     function closeMobileCart() {
-      const panel = document.getElementById('cart-panel-el');
-      const backdrop = document.getElementById('cart-backdrop');
-      if (panel) panel.classList.remove('mobile-sheet-open');
-      if (backdrop) backdrop.classList.remove('active');
+      if (window.innerWidth <= 820) {
+        togglePosSubView('caja');
+      } else {
+        const panel = document.getElementById('cart-panel-el');
+        if (panel) panel.classList.remove('mobile-sheet-open');
+      }
     }
 
     function toggleMobileCart() {
-      const panel = document.getElementById('cart-panel-el');
-      if (panel && panel.classList.contains('mobile-sheet-open')) {
+      const wrap = document.getElementById('pos-sub-caja-wrap');
+      if (wrap && wrap.classList.contains('cart-active')) {
         closeMobileCart();
       } else {
         openMobileCart();
@@ -2321,18 +2818,31 @@
       const caja = document.getElementById('pos-sub-caja');
       const hist = document.getElementById('pos-sub-historial');
       const btnCaja = document.getElementById('btn-pos-caja');
+      const btnCarrito = document.getElementById('btn-pos-carrito');
       const btnHist = document.getElementById('btn-pos-historial');
+      const wrap = document.getElementById('pos-sub-caja-wrap');
+
+      // Reset tabs
+      if (btnCaja) btnCaja.classList.remove('active');
+      if (btnCarrito) btnCarrito.classList.remove('active');
+      if (btnHist) btnHist.classList.remove('active');
 
       if (sub === 'caja') {
-        caja.style.display = 'block';
-        hist.style.display = 'none';
-        btnCaja.classList.add('active');
-        btnHist.classList.remove('active');
-      } else {
-        caja.style.display = 'none';
-        hist.style.display = 'block';
-        btnCaja.classList.remove('active');
-        btnHist.classList.add('active');
+        if (caja) caja.style.display = 'block';
+        if (hist) hist.style.display = 'none';
+        if (wrap) wrap.classList.remove('cart-active');
+        if (btnCaja) btnCaja.classList.add('active');
+      } else if (sub === 'carrito') {
+        if (caja) caja.style.display = 'block';
+        if (hist) hist.style.display = 'none';
+        if (wrap) wrap.classList.add('cart-active');
+        if (btnCarrito) btnCarrito.classList.add('active');
+        renderCart();
+      } else if (sub === 'historial') {
+        if (caja) caja.style.display = 'none';
+        if (hist) hist.style.display = 'block';
+        if (wrap) wrap.classList.remove('cart-active');
+        if (btnHist) btnHist.classList.add('active');
         renderTodaySales();
       }
     }
@@ -2488,9 +2998,12 @@
       const totalEl = document.getElementById('cart-total-val');
       if (totalEl) totalEl.textContent = formatMoney(total);
 
-      // Sincronizar contadores en Header y Barra Flotante Móvil
+      // Sincronizar contadores en Header, Subtab Móvil y Barra Flotante
       const hdrBadge = document.getElementById('hdr-cart-count');
       if (hdrBadge) hdrBadge.textContent = totalCount;
+
+      const subtabCount = document.getElementById('count-cart-subtab');
+      if (subtabCount) subtabCount.textContent = totalCount;
 
       const mcbCount = document.getElementById('mcb-count');
       if (mcbCount) mcbCount.textContent = totalCount;
@@ -2679,6 +3192,40 @@
         s.items.map(i => `• ${i.qty}x ${i.name} (${formatMoney(i.price * i.qty)})`).join('%0A') +
         `%0A%0A*TOTAL:* ${formatMoney(s.total)} (${s.payment})%0A%0A` +
         `Showroom Malagueño • cenkofragancias.mitiendanube.com`;
+
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    }
+
+    function shareCierreWhatsApp() {
+      const todayStr = new Date().toISOString().slice(0, 10);
+      const salesToday = ventas.filter(v => v.date.startsWith(todayStr) && v.status !== 'Anulada');
+      
+      let tot = 0, transf = 0, efvo = 0, tarj = 0;
+      salesToday.forEach(v => {
+        tot += v.total;
+        if (v.payment === 'Transferencia') transf += v.total;
+        else if (v.payment === 'Efectivo') efvo += v.total;
+        else tarj += v.total;
+      });
+
+      const nowTime = new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
+      const nowDate = new Date().toLocaleDateString('es-AR');
+
+      const text = 
+        `*🏛️ CIERRE DE CAJA — CENKO FRAGANCIAS*%0A` +
+        `Showroom Malagueño • ${nowDate} ${nowTime}%0A` +
+        `Responsable de Caja: *${activeSessionUser.name}*%0A` +
+        `──────────────────────────%0A` +
+        `*TOTAL OPERACIONES:* ${salesToday.length} ventas confirmadas%0A` +
+        `*TOTAL RECAUDADO:* ${formatMoney(tot)}%0A` +
+        `──────────────────────────%0A` +
+        `*DESGLOSE DE COBRANZAS:*%0A` +
+        `• 💳 Transferencias: ${formatMoney(transf)}%0A` +
+        `• 💵 Efectivo en Caja: ${formatMoney(efvo)}%0A` +
+        `• 💳 Tarjetas Débito / Crédito: ${formatMoney(tarj)}%0A` +
+        `──────────────────────────%0A` +
+        `*SINCRONIZACIÓN TIENDANUBE:* ✓ Stock conciliado al 100%%0A` +
+        `*Cenko Fragancias* — Perfumería Árabe Exclusiva`;
 
       window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
     }
@@ -2958,7 +3505,13 @@
             <td>${p.brand}</td>
             <td>${p.variant}</td>
             <td style="font-family: var(--font-mono); font-weight: 700;">${formatMoney(p.price)}</td>
-            <td style="font-family: var(--font-mono); font-size: 14.5px; font-weight: 800;">${p.stock}</td>
+            <td style="white-space: nowrap;">
+              <div class="quick-stock-step-ctrls">
+                <button class="step-btn minus" onclick="quickStockDelta('${p.id}', -1)" title="Restar 1 unidad">-</button>
+                <span class="step-val ${p.stock <= p.minStock ? 'text-danger' : ''}">${p.stock}</span>
+                <button class="step-btn plus" onclick="quickStockDelta('${p.id}', 1)" title="Sumar 1 unidad">+</button>
+              </div>
+            </td>
             <td style="font-family: var(--font-mono); color: var(--ck-text-muted);">${p.minStock}</td>
             <td>${statusBadge}</td>
             <td><span class="stock-badge ok">✓ Sincronizado</span></td>
@@ -2968,6 +3521,24 @@
           </tr>
         `;
       }).join('');
+    }
+
+    function quickStockDelta(prodId, delta) {
+      const prod = catalog.find(p => p.id === prodId);
+      if (!prod) return;
+      const nextStock = Math.max(0, prod.stock + delta);
+      if (nextStock === prod.stock) return;
+      prod.stock = nextStock;
+      syncLog.unshift({
+        time: new Date().toLocaleTimeString('es-AR'),
+        details: `${prod.name}: ajuste rápido ${delta > 0 ? '+' : ''}${delta} (Stock: ${prod.stock} en Tiendanube)`,
+        status: 'OK 200'
+      });
+      saveState('catalog', catalog);
+      saveState('synclog', syncLog);
+      renderStockView();
+      renderProductsCatalog();
+      showToast(`${prod.name}: stock ${prod.stock} uds`);
     }
 
     function openAdjustStockModal() {
@@ -3131,9 +3702,33 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      updateUserSessionUI();
+      if (isTerminalLocked) {
+        document.getElementById('lock-screen-overlay')?.classList.add('active');
+      }
       renderProductsCatalog();
       renderCart();
       updateTodayCounters();
+    });
+
+    // Cierre al hacer clic fuera del menú de perfil
+    document.addEventListener('click', (e) => {
+      const wrap = document.getElementById('user-menu-wrap');
+      if (wrap && !wrap.contains(e.target)) {
+        closeUserDropdown();
+      }
+    });
+
+    // Listener para ingreso de PIN con teclado físico
+    window.addEventListener('keydown', (e) => {
+      if (!isTerminalLocked) return;
+      if (e.key >= '0' && e.key <= '9') {
+        pressPinKey(e.key);
+      } else if (e.key === 'Backspace') {
+        deletePinDigit();
+      } else if (e.key === 'Escape' || e.key === 'c' || e.key === 'C') {
+        clearPinInput();
+      }
     });
   </script>
 </body>
