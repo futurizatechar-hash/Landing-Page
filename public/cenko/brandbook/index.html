@@ -243,6 +243,86 @@
       border-color: var(--ck-border-hover);
     }
 
+    /* Barra Móvil Superior y Drawer (Responsive Mobile Header) */
+    .mobile-bar {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: var(--ck-noir);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--ck-border);
+      padding: 12px 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mobile-menu-btn {
+      background: var(--ck-surface);
+      border: 1px solid var(--ck-border);
+      color: var(--ck-text-primary);
+      border-radius: var(--radius-sm);
+      width: 38px;
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .mobile-menu-btn:active {
+      transform: scale(0.92);
+      border-color: var(--ck-chrome-glow);
+    }
+
+    .mobile-nav-drawer {
+      display: none;
+      position: fixed;
+      top: 59px;
+      left: 0;
+      width: 100%;
+      background: var(--ck-noir);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 2px solid var(--ck-chrome);
+      padding: 16px 18px 26px;
+      z-index: 999;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.85);
+      max-height: calc(100vh - 65px);
+      overflow-y: auto;
+    }
+
+    .mobile-nav-drawer.open {
+      display: block;
+      animation: drawerSlideDown 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes drawerSlideDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .mobile-nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--ck-border);
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--ck-border);
+      margin-bottom: 24px;
+    }
+
     /* Contenido Principal */
     .main-content {
       flex: 1;
@@ -911,44 +991,92 @@
     }
 
     /* Responsive */
-    @media (max-width: 1024px) {
+    @media (max-width: 980px) {
       .brandbook-shell {
-        flex-direction: column;
+        display: block;
       }
       .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        border-right: none;
-        border-bottom: 1px solid var(--ck-border);
+        display: none !important;
       }
-      .nav-list {
+      .mobile-bar {
         display: flex;
-        overflow-x: auto;
-        padding: 10px;
-        white-space: nowrap;
       }
       .main-content {
-        padding: 24px 20px 80px;
+        padding: 24px 16px 80px;
+        max-width: 100vw;
+        width: 100%;
       }
       .grid-3, .grid-4 {
         grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+      .type-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      .section-wrap {
+        scroll-margin-top: 76px;
       }
     }
 
     @media (max-width: 640px) {
       .grid-2, .grid-3, .grid-4, .social-mock-grid, .logo-stage-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
       }
       .hero-banner {
-        padding: 28px 20px;
+        padding: 26px 16px;
+        margin-bottom: 28px;
+        border-radius: var(--radius-md);
       }
       .hero-brand {
-        font-size: 32px;
+        font-size: clamp(26px, 7vw, 36px);
       }
-      .type-row {
-        grid-template-columns: 1fr;
-        gap: 6px;
+      .hero-tagline {
+        font-size: 16px;
+      }
+      .hero-manifesto {
+        font-size: 13.5px;
+      }
+      .section-title {
+        font-size: clamp(22px, 5.5vw, 28px);
+      }
+      .section-wrap {
+        margin-bottom: 48px;
+      }
+      .card {
+        padding: 18px 14px;
+      }
+      .color-preview {
+        height: 76px;
+      }
+      .logo-stage {
+        padding: 24px 14px;
+        min-height: 160px;
+      }
+      .logo-stage svg {
+        max-width: 100%;
+        height: auto;
+      }
+      .t-display {
+        font-size: 30px;
+      }
+      .t-h1 {
+        font-size: 24px;
+      }
+      .t-h2 {
+        font-size: 20px;
+      }
+      .t-h3 {
+        font-size: 17px;
+      }
+      .voice-table th, .voice-table td {
+        padding: 12px 14px;
+        font-size: 12.5px;
+      }
+      .code-box pre {
+        white-space: pre-wrap;
+        word-break: break-word;
       }
     }
   </style>
@@ -960,6 +1088,43 @@
 
   <!-- Toast de Notificación -->
   <div id="copy-toast">¡Copiado al portapapeles!</div>
+
+  <!-- Barra Móvil Superior (Sticky en Smartphones y Tablets) -->
+  <header class="mobile-bar">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Abrir menú de módulos" id="mobile-menu-btn">
+        <span id="mobile-menu-icon">☰</span>
+      </button>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="5" y="7" width="14" height="15" rx="3" stroke="currentColor"/>
+          <rect x="9" y="3" width="6" height="4" rx="1" fill="currentColor"/>
+        </svg>
+        <span style="font-family:var(--font-heading);font-weight:700;font-size:15px;color:var(--ck-text-primary);letter-spacing:0.3px;">Cenko</span>
+      </div>
+      <span class="brand-badge" style="margin:0;font-size:9.5px;padding:2px 6px;">MANUAL v1.0</span>
+    </div>
+    <button class="mobile-menu-btn" onclick="toggleTheme()" title="Cambiar tema">🌓</button>
+  </header>
+
+  <!-- Drawer Móvil de Navegación -->
+  <div id="mobile-nav-drawer" class="mobile-nav-drawer">
+    <div class="mobile-nav-header">
+      <span style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--ck-chrome);text-transform:uppercase;letter-spacing:1px;">Navegación del Manual</span>
+      <button class="mobile-menu-btn" onclick="toggleMobileNav()" style="width:32px;height:32px;font-size:14px;">✕</button>
+    </div>
+    <ul class="nav-list" style="padding:0;overflow:visible;">
+      <li class="nav-item"><a href="#modulo-01" class="nav-link" onclick="toggleMobileNav()"><span class="nav-num">01</span> Identidad &amp; Propósito</a></li>
+      <li class="nav-item"><a href="#modulo-02" class="nav-link" onclick="toggleMobileNav()"><span class="nav-num">02</span> Logotipo &amp; Activos</a></li>
+      <li class="nav-item"><a href="#modulo-03" class="nav-link" onclick="toggleMobileNav()"><span class="nav-num">03</span> Colorimetría &amp; Tokens</a></li>
+      <li class="nav-item"><a href="#modulo-04" class="nav-link" onclick="toggleMobileNav()"><span class="nav-num">04</span> Tipografía &amp; Escala</a></li>
+      <li class="nav-item"><a href="#modulo-05" class="nav-link" onclick="toggleMobileNav()"><span class="nav-num">05</span> Familias Olfativas</a></li>
+      <li class="nav-item"><a href="#modulo-06" class="nav-link" onclick="toggleMobileNav()"><span class="nav-num">06</span> Experiencia Showroom</a></li>
+      <li class="nav-item"><a href="#modulo-07" class="nav-link" onclick="toggleMobileNav()"><span class="nav-num">07</span> Matriz de Voz &amp; Tono</a></li>
+      <li class="nav-item"><a href="#modulo-08" class="nav-link" onclick="toggleMobileNav()"><span class="nav-num">08</span> Formatos Redes</a></li>
+      <li class="nav-item"><a href="#modulo-09" class="nav-link" onclick="toggleMobileNav()"><span class="nav-num">09</span> Laboratorio UI</a></li>
+    </ul>
+  </div>
 
   <div class="brandbook-shell">
 
@@ -1361,32 +1526,34 @@
           Voz en <strong>voseo argentino</strong> cálido, educado y transparente. Hablamos como un apasionado de los perfumes que aconseja a un amigo para que haga una buena inversión, jamás como un vendedor agresivo.
         </p>
 
-        <table class="voice-table" style="margin-bottom: 24px;">
-          <thead>
-            <tr>
-              <th>Criterio</th>
-              <th>Lo que decimos (Aprobado)</th>
-              <th>Lo que evitamos (Prohibido)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Autenticidad</strong></td>
-              <td><span class="voice-badge-good">✓</span> "Fragancia 100% original en caja sellada con batch verificable."</td>
-              <td><span class="voice-badge-bad">✗</span> "Calidad AAA", "réplica premium", "inspiración 1 a 1".</td>
-            </tr>
-            <tr>
-              <td><strong>Venta / Decisión</strong></td>
-              <td><span class="voice-badge-good">✓</span> "Venite al showroom a probarlo en piel o pedite un decant."</td>
-              <td><span class="voice-badge-bad">✗</span> "Llevalo ya que quedan pocos", "último en stock no te lo pierdas".</td>
-            </tr>
-            <tr>
-              <td><strong>Rendimiento</strong></td>
-              <td><span class="voice-badge-good">✓</span> "Tiene una proyección moderada de 2 horas y dura unas 7 horas en piel."</td>
-              <td><span class="voice-badge-bad">✗</span> "Dura 48 horas como una bomba atómica".</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-wrap">
+          <table class="voice-table" style="min-width: 580px; width: 100%; margin-bottom: 0;">
+            <thead>
+              <tr>
+                <th>Criterio</th>
+                <th>Lo que decimos (Aprobado)</th>
+                <th>Lo que evitamos (Prohibido)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Autenticidad</strong></td>
+                <td><span class="voice-badge-good">✓</span> "Fragancia 100% original en caja sellada con batch verificable."</td>
+                <td><span class="voice-badge-bad">✗</span> "Calidad AAA", "réplica premium", "inspiración 1 a 1".</td>
+              </tr>
+              <tr>
+                <td><strong>Venta / Decisión</strong></td>
+                <td><span class="voice-badge-good">✓</span> "Venite al showroom a probarlo en piel o pedite un decant."</td>
+                <td><span class="voice-badge-bad">✗</span> "Llevalo ya que quedan pocos", "último en stock no te lo pierdas".</td>
+              </tr>
+              <tr>
+                <td><strong>Rendimiento</strong></td>
+                <td><span class="voice-badge-good">✓</span> "Tiene una proyección moderada de 2 horas y dura unas 7 horas en piel."</td>
+                <td><span class="voice-badge-bad">✗</span> "Dura 48 horas como una bomba atómica".</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="card">
           <div class="statement-title">Mensaje Tipo para WhatsApp (Respuesta Automática / Primer Contacto)</div>
@@ -1517,17 +1684,45 @@ Soy Fran. ¿Buscás alguna fragancia en específico o te gustaría que te asesor
   </div>
 
   <script>
-    // Conmutador de Tema Dark / Light
+    // Navegación Móvil (Drawer)
+    function toggleMobileNav() {
+      const drawer = document.getElementById('mobile-nav-drawer');
+      const icon = document.getElementById('mobile-menu-icon');
+      if (!drawer) return;
+      if (drawer.classList.contains('open')) {
+        drawer.classList.remove('open');
+        if (icon) icon.textContent = '☰';
+      } else {
+        drawer.classList.add('open');
+        if (icon) icon.textContent = '✕';
+      }
+    }
+
+    // Cerrar drawer al presionar Escape o al hacer clic fuera
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const drawer = document.getElementById('mobile-nav-drawer');
+        if (drawer && drawer.classList.contains('open')) toggleMobileNav();
+      }
+    });
+
+    // Conmutador de Tema Dark / Light Unificado
     const themeBtn = document.getElementById('theme-btn');
     const themeLabel = document.getElementById('theme-label');
     const htmlEl = document.documentElement;
 
-    themeBtn.addEventListener('click', () => {
+    function toggleTheme() {
       const current = htmlEl.getAttribute('data-theme');
       const target = current === 'dark' ? 'light' : 'dark';
       htmlEl.setAttribute('data-theme', target);
-      themeLabel.textContent = target === 'dark' ? 'Tema Oscuro' : 'Tema Claro';
-    });
+      if (themeLabel) {
+        themeLabel.textContent = target === 'dark' ? 'Tema Oscuro' : 'Tema Claro';
+      }
+    }
+
+    if (themeBtn) {
+      themeBtn.addEventListener('click', toggleTheme);
+    }
 
     // Barra de Progreso de Scroll
     const progressBar = document.getElementById('progress-bar');
