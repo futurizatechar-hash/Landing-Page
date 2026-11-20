@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <rect width="512" height="512" rx="112" fill="#0B0B0E"/>
+  <rect x="4" y="4" width="504" height="504" rx="108" stroke="#CBD5E1" stroke-opacity="0.25" stroke-width="8"/>
+  <defs>
+    <linearGradient id="pwaGrad512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="50%" stop-color="#E2E8F0" />
+      <stop offset="100%" stop-color="#94A3B8" />
+    </linearGradient>
+  </defs>
+  <!-- Botella minimalista con Monograma C -->
+  <rect x="138" y="165" width="236" height="256" rx="58" stroke="url(#pwaGrad512)" stroke-width="16" fill="#17181F"/>
+  <rect x="202" y="102" width="108" height="64" rx="16" fill="url(#pwaGrad512)"/>
+  <!-- C estilizada -->
+  <path d="M284 240 C254 240 228 258 228 293 C228 328 254 346 284 346 C302 346 316 338 326 326 L310 312 C304 320 295 326 284 326 C266 326 250 313 250 293 C250 274 266 261 284 261 C295 261 304 266 310 274 L326 261 C316 248 302 240 284 240 Z" fill="url(#pwaGrad512)"/>
+</svg>
