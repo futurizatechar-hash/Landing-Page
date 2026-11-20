@@ -41,24 +41,24 @@ Tu Tablita Autoservicio · Malagueño
 
 ## 3. Opciones de Biografía (Máximo 150 caracteres — Sin porcentajes y con dialecto argentino)
 
-> **Criterios aplicados:** 100% en voseo argentino, resalta las **15 horas continuas sin siesta (08:00 a 23:00 hs)**, fiambrería al corte y picadas, variedad de **11 rubros**, el **Club de Puntos** con DNI y llamado a la acción al enlace.
+> **Criterios aplicados:** 100% en voseo argentino, resalta el **horario de corrido sin siesta (Lun a Vie 08 a 23 hs · Sáb y Dom 09 a 23 hs)**, fiambrería al corte y picadas, variedad de **11 rubros**, el **Club de Puntos** con DNI y llamado a la acción al enlace.
 
 ### Opción 1 (Recomendada — Balanceada y comercial)
 ```text
 🥩 Fiambrería al corte & 11 rubros
-🕒 Abierto 08 a 23 hs de corrido
+🕒 Lun-Vie 8 a 23 · Sáb-Dom 9 a 23 hs
 🎁 Sumá puntos con tu DNI
 📍 Gral. Bustos 699, Malagueño
 👇 Pedí o mirá la web:
 ```
-*(Exactamente 148 caracteres con saltos de línea)*
+*(Exactamente 149 caracteres con saltos de línea)*
 
 ---
 
 ### Opción 2 (Enfocada en Picadas y Fiambrería Especializada)
 ```text
 🧀 Picadas listas y fiambrería
-🕒 Todos los días 08 a 23 hs corrido
+🕒 Lun-Vie 8 a 23 · Sáb-Dom 9 a 23 hs
 🛒 Almacén completo (11 rubros)
 🎁 Sumá puntos con cada compra
 👇 Hacé tu pedido:
@@ -70,12 +70,12 @@ Tu Tablita Autoservicio · Malagueño
 ### Opción 3 (Enfocada en Solución y Autoservicio de Confianza)
 ```text
 🥖 Autoservicio y fiambrería
-🕒 08 a 23 hs de corrido (sin siesta)
+🕒 De corrido: L-V 8 a 23 · S-D 9 a 23
 🧀 Picadas artesanales al corte
 🎁 Sumá puntos y canjeá premios
 👇 Pedidos & Web:
 ```
-*(Exactamente 147 caracteres con saltos de línea)*
+*(Exactamente 146 caracteres con saltos de línea)*
 
 ---
 
@@ -107,7 +107,7 @@ Instagram permite agregar hasta 5 enlaces directos en el perfil o un enlace prin
 
 1. **`HORARIOS`**  
    * **Portada:** [`01-horarios-1080x1920.png`](./activos/destacadas/01-horarios-1080x1920.png)  
-   * **Contenido interno:** 2 historias. Foto de la fachada iluminada de noche + texto: *"No te cerramos la persiana. De lunes a domingos de 08:00 a 23:00 hs de corrido, sin cortar a la siesta. Cuando los demás cierran, Tu Tablita está abierto."*
+   * **Contenido interno:** 2 historias. Foto de la fachada iluminada de noche + texto: *"No te cerramos la persiana. Lunes a Viernes de 08:00 a 23:00 hs y Sábados y Domingos de 09:00 a 23:00 hs de corrido, sin cortar a la siesta. Cuando los demás cierran, Tu Tablita está abierto."*
 2. **`PICADAS`**  
    * **Portada:** [`02-picadas-1080x1920.png`](./activos/destacadas/02-picadas-1080x1920.png)  
    * **Contenido interno:** Fotos reales de las tablas armada (Clásica, Especial, Premium), lista de variedades de fiambres y quesos, y botón de enlace directo a WhatsApp para encargar con anticipación.
@@ -132,7 +132,7 @@ Instagram permite agregar hasta 5 enlaces directos en el perfil o un enlace prin
 ```text
 ¡Renovamos Tu Tablita para estar más cerca tuyo! 🥖🧀
 
-En Malagueño sabemos lo que vale tu tiempo. Por eso no solo te esperamos todos los días de 08:00 a 23:00 hs de corrido (sí, no cerramos a la siesta), sino que ahora podés resolver tus compras completas en un solo lugar:
+En Malagueño sabemos lo que vale tu tiempo. Por eso no solo te esperamos de corrido (Lun a Vie 08 a 23 hs · Sáb y Dom 09 a 23 hs sin siesta), sino que ahora podés resolver tus compras completas en un solo lugar:
 
 🥩 Fiambrería de primera línea al corte
 🧀 Tablas de picadas listas para llevar
@@ -152,12 +152,12 @@ En Malagueño sabemos lo que vale tu tiempo. Por eso no solo te esperamos todos 
 ```text
 ¿Se te hizo tarde y en todos lados ya cerraron? 🌙🚪
 
-En Tu Tablita no te cerramos la persiana. Estamos abiertos de LUNES a DOMINGOS de 08:00 a 23:00 hs sin cortar al mediodía.
+En Tu Tablita no te cerramos la persiana. De corrido sin cortar al mediodía: LUNES a VIERNES de 08:00 a 23:00 hs y SÁBADOS y DOMINGOS de 09:00 a 23:00 hs.
 
 Si te olvidaste un ingrediente para la cena, si te cayó visita sorpresa y necesitás una picada al instante, o si salís tarde de trabajar, pasá tranquilo: tenemos fiambrería al corte, bebidas frías y 11 rubros completos esperándote.
 
 📍 Gral. Bustos 699, Malagueño.
-🕒 15 horas de corrido todos los días.
+🕒 De corrido todos los días.
 
 #Malagueño #HorarioCorrido #TuTablita #SiempreAbierto #Cordoba
 ```
