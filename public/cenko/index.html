@@ -3,8 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Cenko — Sistema de Stock &amp; Punto de Venta</title>
   <meta name="description" content="Sistema de Punto de Venta, Gestión de Stock e Inteligencia Comercial para Perfumería Árabe — Cenko Fragancias">
+  
+  <script>
+    // Purgado preventivo de caches de PWA obsoletas y auto-actualización
+    (function() {
+      const APP_VER = 'cenko-v5-20261120-1730';
+      if (localStorage.getItem('cenko_build_ver') !== APP_VER) {
+        localStorage.setItem('cenko_build_ver', APP_VER);
+        if ('caches' in window) {
+          caches.keys().then(function(names) {
+            names.forEach(function(n) { caches.delete(n); });
+          });
+        }
+      }
+    })();
+  </script>
   
   <link rel="manifest" href="./manifest.json">
   <meta name="theme-color" content="#0B0B0E">
@@ -1511,6 +1529,16 @@
       opacity: 1;
     }
 
+    /* Ocultar dock flotante cuando el usuario está dentro de la vista Carrito */
+    body.in-cart-subview #mobile-cart-bar,
+    body.in-cart-subview .mobile-cart-bar {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transform: translateY(200%) !important;
+    }
+
     /* Responsive */
     @media (min-width: 821px) {
       .pos-layout {
@@ -2863,26 +2891,18 @@
       const totalCount = cart.reduce((acc, i) => acc + i.qty, 0);
       const wrap = document.getElementById('pos-sub-caja-wrap');
       const isCartActiveOnMobile = wrap && wrap.classList.contains('cart-active');
+      const isInsideCart = (currentPosSubView === 'carrito' || isCartActiveOnMobile || currentActiveView !== 'pos');
 
-      // Solo mostrar la barra flotante si:
-      // 1. Estamos en POS (currentActiveView === 'pos')
-      // 2. Estamos en el catálogo (currentPosSubView === 'caja' y NO está activa la vista de carrito)
-      // 3. Hay al menos 1 producto en la orden (totalCount > 0)
-      const shouldShow = (
-        currentActiveView === 'pos' &&
-        currentPosSubView === 'caja' &&
-        !isCartActiveOnMobile &&
-        totalCount > 0
-      );
+      // Estado en body para que el CSS aplique display: none !important
+      document.body.classList.toggle('in-cart-subview', isInsideCart);
 
-      if (shouldShow) {
-        mcb.classList.add('visible');
-      } else {
+      if (isInsideCart || totalCount === 0) {
         mcb.classList.remove('visible');
+        mcb.style.display = 'none';
+      } else {
+        mcb.style.display = 'flex';
+        mcb.classList.add('visible');
       }
-
-      // Clase en body para que el CSS también garantice que se oculte
-      document.body.classList.toggle('in-cart-subview', currentPosSubView === 'carrito' || isCartActiveOnMobile);
     }
 
     function openMobileCart() {
@@ -3820,7 +3840,22 @@
     }
 
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js').catch(() => {});
+      navigator.serviceWorker.getRegistrations().then(function(regs) {
+        for (let r of regs) {
+          r.update();
+        }
+      });
+      navigator.serviceWorker.register('./sw.js?v=20261120_v5').then(function(reg) {
+        reg.update();
+      }).catch(function() {});
+
+      let isRefreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', function() {
+        if (!isRefreshing) {
+          isRefreshing = true;
+          window.location.reload();
+        }
+      });
     }
 
     window.addEventListener('DOMContentLoaded', () => {

@@ -1,30 +1,40 @@
-// Service Worker — Cenko Stock & Ventas PWA
-const CACHE_NAME = 'cenko-stock-v1';
-const ASSETS = [
-  './',
-  './index.html',
-  './manifest.json',
-  './icons/icon-192.svg',
-  './icons/icon-512.svg'
-];
+// Service Worker — Cenko Fragancias Stock & Ventas PWA (v5)
+const CACHE_NAME = 'cenko-stock-v5';
 
+// Install: activar inmediatamente sin esperar a que cierren pestañas
 self.addEventListener('install', (e) => {
-  e.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)).then(() => self.skipWaiting())
-  );
+  self.skipWaiting();
 });
 
+// Activate: purgar 100% de caches anteriores de forma incondicional
 self.addEventListener('activate', (e) => {
   e.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.map((k) => (k !== CACHE_NAME ? caches.delete(k) : null)))
-    ).then(() => self.clients.claim())
+    caches.keys().then((keys) => {
+      return Promise.all(
+        keys.map((k) => caches.delete(k))
+      );
+    }).then(() => self.clients.claim())
   );
 });
 
+// Fetch: NETWORK-FIRST estricto
+// Siempre pide la versión fresca de la red en vivo; si no hay internet (offline), recurre al cache local
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
+
   e.respondWith(
-    caches.match(e.request).then((res) => res || fetch(e.request).catch(() => caches.match('./index.html')))
+    fetch(e.request)
+      .then((networkRes) => {
+        if (networkRes && networkRes.status === 200 && networkRes.type === 'basic') {
+          const clone = networkRes.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
+        }
+        return networkRes;
+      })
+      .catch(() => {
+        return caches.match(e.request).then((cachedRes) => {
+          return cachedRes || caches.match('./index.html');
+        });
+      })
   );
 });
