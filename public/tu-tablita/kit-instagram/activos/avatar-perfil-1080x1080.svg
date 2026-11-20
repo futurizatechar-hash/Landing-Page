@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
+  <defs>
+    <!-- Fondo Gradiente Premium -->
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#141E33"/>
+      <stop offset="55%" stop-color="#090E1A"/>
+      <stop offset="100%" stop-color="#04070D"/>
+    </radialGradient>
+    
+    <!-- Gradiente Rojo Tablita -->
+    <linearGradient id="redAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF3333"/>
+      <stop offset="100%" stop-color="#D90000"/>
+    </linearGradient>
+
+    <!-- Resplandor Cálido Fiambrería -->
+    <radialGradient id="warmLight" cx="50%" cy="46%" r="40%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.18"/>
+      <stop offset="60%" stop-color="#E60000" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Sombra Profunda de Realce -->
+    <filter id="shadowDeep" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.75"/>
+    </filter>
+
+    <filter id="neonSubtle" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- 1. Fondo Oscuro Elegante -->
+  <rect width="1080" height="1080" fill="url(#bgGlow)"/>
+  
+  <!-- 2. Luz de atmósfera central -->
+  <circle cx="540" cy="540" r="440" fill="url(#warmLight)"/>
+
+  <!-- 3. Anillo de Contorno Circular Exterior (Guía Segura de Instagram) -->
+  <circle cx="540" cy="540" r="510" fill="none" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="4"/>
+  <circle cx="540" cy="540" r="490" fill="none" stroke="#E60000" stroke-opacity="0.35" stroke-width="3" stroke-dasharray="16 12"/>
+
+  <!-- 4. GRUPO CENTRAL ESCALADO Y CENTRADO MATEMÁTICAMENTE (Safe Zone 780px) -->
+  <g transform="translate(540, 520) scale(2.45) translate(-180, -44)" filter="url(#shadowDeep)">
+    
+    <!-- Trazo de la Tablita con mango -->
+    <path d="M 18 46 L 21 69 Q 23 78 38 78 L 274 71 Q 290 70 292 56 L 294 42 Q 295 34 307 34 L 327 34 Q 345 34 345 21 Q 345 9 327 11 L 296 15" 
+          stroke="#FFFFFF" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    
+    <!-- Orificio del mango de la tablita con acento ámbar -->
+    <circle cx="328" cy="22" r="5.5" stroke="#FFFFFF" stroke-width="3.8" fill="none"/>
+    <circle cx="328" cy="22" r="2.2" fill="#F59E0B"/>
+
+    <!-- Caligrafía principal "Tu Tablita" -->
+    <text x="28" y="45" font-family="'Kaushan Script', 'Brush Script MT', cursive, sans-serif" 
+          font-size="46" font-weight="400" fill="#FFFFFF" letter-spacing="0.5">Tu Tablita</text>
+
+    <!-- Subtítulo corpóreo "AUTOSERVICIO" en Rojo Cartel -->
+    <text x="68" y="67" font-family="'Montserrat', 'Arial Black', sans-serif" 
+          font-size="14.5" font-weight="900" font-style="italic" fill="url(#redAccent)" letter-spacing="3.2">AUTOSERVICIO</text>
+  </g>
+
+  <!-- 5. Tagline Inferior Centrado (Visible dentro de la máscara circular de Instagram) -->
+  <g transform="translate(540, 810)">
+    <!-- Pastilla de Localidad y Corrido -->
+    <rect x="-190" y="-22" width="380" height="44" rx="22" fill="#111A2E" stroke="#E60000" stroke-opacity="0.4" stroke-width="1.5"/>
+    <circle cx="-150" cy="0" r="5" fill="#22C55E"/>
+    <text x="8" y="6" font-family="'Montserrat', sans-serif" font-size="16" font-weight="700" fill="#CBD5E1" text-anchor="middle" letter-spacing="2">
+      MALAGUEÑO · 8 A 23 HS
+    </text>
+  </g>
+</svg>

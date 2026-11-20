@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>Tu Tablita Autoservicio — Fiambrería, Picadas y Almacén en Malagueño</title>
-  <meta name="description" content="Autoservicio integral y fiambrería en Gral. Bustos 699, Malagueño. Abierto todos los días de 08:00 a 23:00 hs de corrido. Picadas artesanales, 11 departamentos y Club de Puntos.">
+  <meta name="description" content="Autoservicio integral y fiambrería en Gral. Bustos 699, Malagueño. Abierto todos los días de 08:00 a 23:00 hs de corrido. Picadas artesanales, 11 rubros comerciales y Club de Puntos.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23111827'/><path d='M10 38 L12 49 Q14 54 22 54 L42 51 Q48 50 49 42 L50 35 Q51 30 56 30 Q60 30 60 23 Q60 17 53 18 L46 20' stroke='%23E60000' stroke-width='4' fill='none' stroke-linecap='round'/><circle cx='54' cy='24' r='2.5' fill='%23F59E0B'/><text x='14' y='35' font-family='sans-serif' font-weight='900' font-size='20' fill='%23FFFFFF'>TT</text></svg>">
 
   <!-- OpenGraph / Social Meta -->
@@ -87,7 +87,120 @@
       width: 100%;
     }
 
-    /* HEADER STICKY */
+    /* ====================================================================
+       TOP ANNOUNCEMENT BAR (HORARIO CORRIDO + CONTACTO RÁPIDO)
+       ==================================================================== */
+    .top-bar {
+      background: #050811;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 7px 0;
+      font-size: 12px;
+      color: #94A3B8;
+      width: 100%;
+    }
+
+    .top-bar-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .top-bar-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .top-bar-divider {
+      color: rgba(255, 255, 255, 0.2);
+      margin: 0 2px;
+    }
+
+    .top-bar-address {
+      color: #94A3B8;
+      font-size: 11.5px;
+    }
+
+    .top-bar-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+    }
+
+    .top-bar-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #CBD5E1;
+      transition: color var(--transition);
+      font-weight: 600;
+    }
+
+    .top-bar-link:hover {
+      color: #FFFFFF;
+    }
+
+    .top-bar-link.whatsapp:hover {
+      color: #25D366;
+    }
+
+    .top-bar-link.club {
+      color: var(--tt-amber);
+    }
+
+    .top-bar-link.club:hover {
+      color: var(--tt-amber-soft);
+    }
+
+    /* BADGE DE ESTADO DEL LOCAL EN VIVO */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: var(--tt-emerald);
+      padding: 4px 10px;
+      border-radius: 99px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .status-badge.closed {
+      background: rgba(248, 113, 113, 0.12);
+      border-color: rgba(248, 113, 113, 0.35);
+      color: #F87171;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--tt-emerald);
+      box-shadow: 0 0 8px var(--tt-emerald);
+      animation: pulseDot 2s infinite ease-in-out;
+      flex-shrink: 0;
+    }
+
+    .status-badge.closed .status-dot {
+      background: #F87171;
+      box-shadow: 0 0 8px #F87171;
+      animation: none;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* ====================================================================
+       HEADER NAVEGACIÓN STICKY (RESPONSIVO Y LIMPIO)
+       ==================================================================== */
     .header {
       position: sticky;
       top: 0;
@@ -96,7 +209,7 @@
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--tt-border);
-      padding: 10px 0;
+      padding: 12px 0;
       width: 100%;
     }
 
@@ -104,13 +217,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      gap: 20px;
     }
 
     .brand-lockup {
       display: flex;
       align-items: center;
-      gap: 10px;
       text-decoration: none;
       flex-shrink: 0;
     }
@@ -125,14 +237,16 @@
     .nav-desktop {
       display: flex;
       align-items: center;
-      gap: 20px;
-      font-size: 13.5px;
-      font-weight: 600;
+      gap: 24px;
     }
 
     .nav-link {
       color: #CBD5E1;
+      font-size: 13.5px;
+      font-weight: 600;
+      white-space: nowrap !important;
       transition: color var(--transition);
+      padding: 4px 0;
       position: relative;
     }
 
@@ -147,7 +261,7 @@
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       flex-shrink: 0;
     }
 
@@ -226,57 +340,20 @@
       padding: 8px 12px;
       border-radius: var(--radius-sm);
       cursor: pointer;
-      min-width: 42px;
+      min-width: 44px;
       min-height: 40px;
       align-items: center;
       justify-content: center;
+      transition: background var(--transition);
     }
 
-    /* BADGE DE ESTADO DEL LOCAL EN VIVO */
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      color: var(--tt-emerald);
-      padding: 5px 11px;
-      border-radius: 99px;
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
+    .btn-hamburger:hover {
+      background: #334155;
     }
 
-    .status-badge.closed {
-      background: rgba(248, 113, 113, 0.12);
-      border-color: rgba(248, 113, 113, 0.35);
-      color: #F87171;
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--tt-emerald);
-      box-shadow: 0 0 8px var(--tt-emerald);
-      animation: pulseDot 2s infinite ease-in-out;
-      flex-shrink: 0;
-    }
-
-    .status-badge.closed .status-dot {
-      background: #F87171;
-      box-shadow: 0 0 8px #F87171;
-      animation: none;
-    }
-
-    @keyframes pulseDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-
-    /* HERO SECTION */
+    /* ====================================================================
+       HERO SECTION
+       ==================================================================== */
     .hero {
       position: relative;
       padding: 56px 0 64px;
@@ -328,12 +405,12 @@
     .hero-title {
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: clamp(26px, 5.5vw, 54px);
+      font-size: clamp(26px, 5.2vw, 52px);
       line-height: 1.15;
       color: #FFFFFF;
       margin-bottom: 18px;
       letter-spacing: -0.02em;
-      word-wrap: break-word;
+      text-wrap: balance;
     }
 
     .hero-title span.highlight-red {
@@ -342,13 +419,14 @@
     }
 
     .hero-desc {
-      font-size: clamp(15px, 2.2vw, 18px);
+      font-size: clamp(15px, 2vw, 18px);
       color: #CBD5E1;
       margin-bottom: 28px;
       line-height: 1.6;
       max-width: 760px;
       margin-left: auto;
       margin-right: auto;
+      text-wrap: pretty;
     }
 
     .hero-actions {
@@ -409,7 +487,9 @@
       line-height: 1.4;
     }
 
-    /* SECCIONES GENERALES */
+    /* ====================================================================
+       SECCIONES GENERALES
+       ==================================================================== */
     .section {
       padding: 60px 0;
       border-bottom: 1px solid var(--tt-border);
@@ -447,7 +527,9 @@
       line-height: 1.6;
     }
 
-    /* SECCIÓN NUESTRO NEGOCIO / SOBRE TU TABLITA (ESTILO QUADRA PIZZA) */
+    /* ====================================================================
+       SECCIÓN NUESTRO NEGOCIO / SOBRE TU TABLITA (ESTILO QUADRA PIZZA)
+       ==================================================================== */
     .about-card {
       background: #111827;
       border: 1px solid var(--tt-border);
@@ -555,7 +637,9 @@
       flex-shrink: 0;
     }
 
-    /* SECCIÓN 1: PICADAS & FIAMBRERÍA */
+    /* ====================================================================
+       SECCIÓN 1: PICADAS & FIAMBRERÍA
+       ==================================================================== */
     .picadas-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -660,7 +744,9 @@
       background: rgba(0, 0, 0, 0.2);
     }
 
-    /* SECCIÓN 2: LOS 11 DEPARTAMENTOS */
+    /* ====================================================================
+       SECCIÓN 2: LOS 11 DEPARTAMENTOS
+       ==================================================================== */
     .depts-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -704,7 +790,9 @@
       line-height: 1.4;
     }
 
-    /* SECCIÓN 3: CLUB TU TABLITA */
+    /* ====================================================================
+       SECCIÓN 3: CLUB TU TABLITA
+       ==================================================================== */
     .club-banner {
       background: radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.15) 0%, rgba(17, 24, 39, 1) 70%);
       border: 2px solid rgba(245, 158, 11, 0.4);
@@ -808,7 +896,9 @@
       margin-bottom: 6px;
     }
 
-    /* SECCIÓN 4: UBICACIÓN Y HORARIOS */
+    /* ====================================================================
+       SECCIÓN 4: UBICACIÓN Y HORARIOS
+       ==================================================================== */
     .location-box {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -876,7 +966,9 @@
       text-align: center;
     }
 
-    /* FOOTER OFICIAL PARA CLIENTES */
+    /* ====================================================================
+       FOOTER OFICIAL EXCLUSIVO PARA CLIENTES
+       ==================================================================== */
     .footer {
       background: #050811;
       border-top: 1px solid var(--tt-border);
@@ -905,7 +997,9 @@
       font-size: 12px;
     }
 
-    /* DRAWER MÓVIL */
+    /* ====================================================================
+       DRAWER MÓVIL
+       ==================================================================== */
     .mobile-drawer-overlay {
       position: fixed;
       top: 0;
@@ -946,12 +1040,12 @@
     .mobile-nav-links {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      margin-top: 22px;
+      gap: 6px;
+      margin-top: 20px;
     }
 
     .mobile-nav-link {
-      font-size: 15.5px;
+      font-size: 15px;
       font-weight: 700;
       color: #E2E8F0;
       padding: 12px 0;
@@ -961,7 +1055,9 @@
       gap: 10px;
     }
 
-    /* BARRA FLOTANTE FIJA INFERIOR PARA CELULARES (STICKY MOBILE BAR) */
+    /* ====================================================================
+       BARRA FLOTANTE FIJA INFERIOR PARA MÓVILES (STICKY MOBILE BAR)
+       ==================================================================== */
     .mobile-bottom-bar {
       display: none;
       position: fixed;
@@ -993,14 +1089,32 @@
       white-space: nowrap;
     }
 
-    /* RESPONSIVE BREAKPOINTS EXHAUSTIVOS PARA CELULARES Y TABLETS */
-    @media (max-width: 960px) {
+    /* ====================================================================
+       RESPONSIVE BREAKPOINTS RIGUROSOS Y SIN DESBORDES
+       ==================================================================== */
+
+    /* Pantallas Medianas y Laptops (<= 1080px) */
+    @media (max-width: 1080px) {
       .nav-desktop {
-        display: none;
+        display: none !important;
+      }
+      .header-cta {
+        display: none !important;
       }
       .btn-hamburger {
-        display: inline-flex;
+        display: inline-flex !important;
       }
+      .top-bar-links {
+        display: none;
+      }
+      .top-bar-content {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+
+    /* Tablets y Pantallas Medias (<= 960px) */
+    @media (max-width: 960px) {
       .trust-strip {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -1028,12 +1142,22 @@
       }
     }
 
+    /* Celulares y Tablets Pequeñas (<= 768px) */
     @media (max-width: 768px) {
       body {
-        padding-bottom: 74px; /* Espacio para que la barra inferior flotante no tape contenido */
+        padding-bottom: 74px; /* Espacio para barra inferior flotante */
       }
       .mobile-bottom-bar {
         display: block;
+      }
+      .top-bar-address {
+        display: none;
+      }
+      .top-bar-divider {
+        display: none;
+      }
+      .top-bar {
+        padding: 5px 0;
       }
       .header {
         padding: 8px 0;
@@ -1041,19 +1165,6 @@
       .brand-logo-svg {
         height: 32px;
         max-width: 140px;
-      }
-      .header-actions .desktop-cta {
-        display: none !important;
-      }
-      .status-badge {
-        padding: 4px 8px;
-        font-size: 10.5px;
-      }
-      .status-text-desktop {
-        display: none;
-      }
-      .status-text-mobile {
-        display: inline;
       }
       .hero {
         padding: 38px 0 46px;
@@ -1117,15 +1228,7 @@
       }
     }
 
-    @media (min-width: 769px) {
-      .status-text-mobile {
-        display: none;
-      }
-      .status-text-desktop {
-        display: inline;
-      }
-    }
-
+    /* Celulares Angostos (<= 540px) */
     @media (max-width: 540px) {
       .container {
         padding: 0 16px;
@@ -1162,6 +1265,7 @@
       }
     }
 
+    /* Celulares Ultra-Compactos (<= 360px) */
     @media (max-width: 360px) {
       .trust-strip {
         grid-template-columns: 1fr;
@@ -1177,9 +1281,37 @@
 </head>
 <body>
 
-  <!-- HEADER NAVEGACIÓN STICKY -->
+  <!-- ====================================================================
+       1. TOP ANNOUNCEMENT BAR: HORARIO CORRIDO + CONTACTO DIRECTO
+       ==================================================================== -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="top-bar-status">
+        <div id="store-status-pill" class="status-badge" title="Horario: Lunes a Domingos de 08:00 a 23:00 hs de corrido">
+          <span class="status-dot"></span>
+          <span id="store-status-text">Abierto de corrido hasta las 23:00 hs</span>
+        </div>
+        <span class="top-bar-divider">·</span>
+        <span class="top-bar-address">📍 Gral. Bustos 699, Malagueño</span>
+      </div>
+
+      <div class="top-bar-links">
+        <a href="https://wa.me/5493515178136?text=Hola,%20les%20escribo%20desde%20la%20web%20de%20Tu%20Tablita" target="_blank" rel="noopener" class="top-bar-link whatsapp">
+          <span>💬</span> Pedidos: <strong>351 517-8136</strong>
+        </a>
+        <a href="./club/" class="top-bar-link club">
+          <span>🎁</span> Club de Puntos
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       2. HEADER NAVEGACIÓN STICKY
+       ==================================================================== -->
   <header class="header">
     <div class="container header-content">
+      <!-- Logo Oficial Vectorial -->
       <a href="#inicio" class="brand-lockup">
         <svg class="brand-logo-svg" viewBox="0 0 280 64" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M 12 34 L 14 50 Q 16 57 28 57 L 210 52 Q 222 51 224 41 L 225 31 Q 226 25 235 25 L 250 25 Q 264 25 264 16 Q 264 7 250 9 L 227 12" stroke="#FFFFFF" stroke-width="4.2" stroke-linecap="round" fill="none"/>
@@ -1190,30 +1322,19 @@
         </svg>
       </a>
 
-      <!-- Menú Desktop -->
+      <!-- Menú Desktop (Sin wrap, con espaciado limpio) -->
       <nav class="nav-desktop">
         <a href="#sobre-nosotros" class="nav-link">El Local</a>
         <a href="#picadas" class="nav-link">Picadas</a>
-        <a href="#departamentos" class="nav-link">Departamentos</a>
+        <a href="#rubros" class="nav-link">Rubros</a>
         <a href="#club" class="nav-link">Club de Puntos</a>
         <a href="#horarios" class="nav-link">Horarios &amp; Ubicación</a>
       </nav>
 
       <!-- Acciones de Cabecera -->
       <div class="header-actions">
-        <!-- Indicador dinámico de estado en vivo -->
-        <div id="store-status-pill" class="status-badge" title="Horario: Lunes a Domingos de 08:00 a 23:00 hs de corrido">
-          <span class="status-dot"></span>
-          <span id="store-status-text" class="status-text-desktop">Abierto de corrido</span>
-          <span id="store-status-text-mobile" class="status-text-mobile">08 a 23 hs</span>
-        </div>
-
-        <a href="https://wa.me/5493515178136?text=Hola%20Luciano,%20te%20escribo%20desde%20la%20web%20de%20Tu%20Tablita" target="_blank" rel="noopener" class="btn btn-whatsapp desktop-cta" style="padding:7px 12px;font-size:12px;">
-          <span>💬</span> <span>WhatsApp</span>
-        </a>
-
-        <a href="./club/" class="btn btn-amber desktop-cta" style="padding:7px 12px;font-size:12px;">
-          <span>🎁</span> <span>Mis Puntos</span>
+        <a href="https://wa.me/5493515178136?text=Hola,%20les%20escribo%20desde%20la%20web%20de%20Tu%20Tablita" target="_blank" rel="noopener" class="btn btn-whatsapp header-cta">
+          <span>💬</span> <span>Pedir por WhatsApp</span>
         </a>
 
         <button class="btn-hamburger" onclick="toggleMobileMenu()" aria-label="Abrir menú de navegación">
@@ -1223,7 +1344,9 @@
     </div>
   </header>
 
-  <!-- DRAWER MÓVIL RETRÁCTIL (EXCLUSIVO PARA CLIENTES) -->
+  <!-- ====================================================================
+       3. DRAWER MÓVIL RETRÁCTIL (EXCLUSIVO PARA CLIENTES)
+       ==================================================================== -->
   <div id="drawer-overlay" class="mobile-drawer-overlay" onclick="closeMobileMenu()"></div>
   <aside id="drawer" class="mobile-drawer">
     <div>
@@ -1233,9 +1356,10 @@
       </div>
 
       <div class="mobile-nav-links">
+        <a href="#inicio" class="mobile-nav-link" onclick="closeMobileMenu()">🏠 Inicio</a>
         <a href="#sobre-nosotros" class="mobile-nav-link" onclick="closeMobileMenu()">🏪 Nuestro Negocio</a>
         <a href="#picadas" class="mobile-nav-link" onclick="closeMobileMenu()">🧀 Tablas de Picadas</a>
-        <a href="#departamentos" class="mobile-nav-link" onclick="closeMobileMenu()">🛒 11 Departamentos</a>
+        <a href="#rubros" class="mobile-nav-link" onclick="closeMobileMenu()">🛒 11 Rubros</a>
         <a href="#club" class="mobile-nav-link" onclick="closeMobileMenu()">🎁 Club de Puntos</a>
         <a href="#horarios" class="mobile-nav-link" onclick="closeMobileMenu()">📍 Horarios &amp; Dónde Estamos</a>
       </div>
@@ -1245,8 +1369,8 @@
       <a href="./club/" class="btn btn-amber" style="width:100%;text-align:center;">
         🎁 Consultar mis Puntos
       </a>
-      <a href="https://wa.me/5493515178136?text=Hola%20Luciano,%20te%20escribo%20desde%20la%20web%20de%20Tu%20Tablita" target="_blank" rel="noopener" class="btn btn-whatsapp" style="width:100%;text-align:center;">
-        💬 WhatsApp Luciano
+      <a href="https://wa.me/5493515178136?text=Hola,%20te%20escribo%20desde%20la%20web%20de%20Tu%20Tablita" target="_blank" rel="noopener" class="btn btn-whatsapp" style="width:100%;text-align:center;">
+        💬 WhatsApp del Local
       </a>
       <div style="text-align:center;font-size:11px;color:#64748B;font-family:var(--font-mono);margin-top:4px;">
         Gral. Bustos 699 · Malagueño
@@ -1254,10 +1378,12 @@
     </div>
   </aside>
 
-  <!-- BARRA FLOTANTE FIJA INFERIOR PARA MÓVILES (STICKY BOTTOM BAR) -->
+  <!-- ====================================================================
+       4. BARRA FLOTANTE FIJA INFERIOR PARA MÓVILES (STICKY BOTTOM BAR)
+       ==================================================================== -->
   <div class="mobile-bottom-bar">
     <div class="mobile-bottom-bar-inner">
-      <a href="https://wa.me/5493515178136?text=Hola%20Luciano,%20te%20escribo%20desde%20la%20web%20de%20Tu%20Tablita" target="_blank" rel="noopener" class="btn btn-whatsapp" title="Escribir a Luciano por WhatsApp">
+      <a href="https://wa.me/5493515178136?text=Hola,%20les%20escribo%20desde%20la%20web%20de%20Tu%20Tablita" target="_blank" rel="noopener" class="btn btn-whatsapp" title="Escribir por WhatsApp">
         💬 WhatsApp
       </a>
       <a href="./club/" class="btn btn-amber" title="Consultar puntos del club con tu DNI">
@@ -1291,7 +1417,7 @@
         </p>
 
         <div class="hero-actions">
-          <a href="https://wa.me/5493515178136?text=Hola%20Luciano,%20quiero%20consultarte%20por%20las%20tablas%20de%20picadas" target="_blank" rel="noopener" class="btn btn-red">
+          <a href="https://wa.me/5493515178136?text=Hola,%20quiero%20consultarles%20por%20las%20tablas%20de%20picadas" target="_blank" rel="noopener" class="btn btn-red">
             🧀 ENCARGAR PICADA POR WHATSAPP &rarr;
           </a>
           <a href="./club/" class="btn btn-amber">
@@ -1315,7 +1441,7 @@
 
           <div class="trust-item">
             <span class="trust-icon">🛒</span>
-            <div class="trust-title">11 Departamentos</div>
+            <div class="trust-title">11 Rubros</div>
             <div class="trust-desc">Almacén, panadería, bebidas frías, congelados, limpieza y bazar.</div>
           </div>
 
@@ -1358,15 +1484,15 @@
             </p>
 
             <p class="about-text">
-              Atendido por sus propios dueños en el corazón de <strong>Malagueño</strong>, combinamos la calidez y el corte artesanal de una fiambrería especializada con la comodidad de un autoservicio integral con <strong>11 departamentos</strong>, para que resuelvas tus compras completas en un solo lugar y sin demoras.
+              Ubicados en el corazón de <strong>Malagueño</strong>, combinamos la calidad y el corte artesanal de una fiambrería especializada con la comodidad de un autoservicio integral con <strong>11 rubros</strong>, para que resuelvas tus compras completas en un solo lugar y sin demoras.
             </p>
 
             <div class="about-features">
               <div class="about-feature-item">
                 <span class="about-feature-icon">🏪</span>
                 <div>
-                  <strong>Atención Familiar y Cercana:</strong>
-                  <span>Cuidamos a cada vecino con la mejor predisposición y asesoramiento personalizado.</span>
+                  <strong>Atención Cercana y de Confianza:</strong>
+                  <span>Te atendemos con la mejor predisposición, rapidez y asesoramiento en cada una de tus compras.</span>
                 </div>
               </div>
 
@@ -1388,8 +1514,8 @@
             </div>
 
             <div style="margin-top:8px;">
-              <a href="https://wa.me/5493515178136?text=Hola%20Luciano,%20vi%20la%20web%20del%20local%20y%20quer%C3%ADa%20hacerte%20una%20consulta" target="_blank" rel="noopener" class="btn btn-whatsapp" style="display:inline-flex;">
-                💬 Contactar a Luciano por WhatsApp
+              <a href="https://wa.me/5493515178136?text=Hola,%20vi%20la%20web%20del%20local%20y%20quer%C3%ADa%20hacerles%20una%20consulta" target="_blank" rel="noopener" class="btn btn-whatsapp" style="display:inline-flex;">
+                💬 Contactar por WhatsApp
               </a>
             </div>
           </div>
@@ -1430,7 +1556,7 @@
             </div>
             
             <div class="picada-footer">
-              <a href="https://wa.me/5493515178136?text=Hola%20Luciano,%20quiero%20encargar%20la%20Tablita%20Picada%20Cl%C3%A1sica%20(2%20personas)%20para%20retirar%20hoy" target="_blank" rel="noopener" class="btn btn-red" style="width:100%;text-align:center;">
+              <a href="https://wa.me/5493515178136?text=Hola,%20quiero%20encargar%20la%20Tablita%20Picada%20Cl%C3%A1sica%20(2%20personas)%20para%20retirar%20hoy" target="_blank" rel="noopener" class="btn btn-red" style="width:100%;text-align:center;">
                 📲 Encargar por WhatsApp &rarr;
               </a>
             </div>
@@ -1455,7 +1581,7 @@
             </div>
             
             <div class="picada-footer">
-              <a href="https://wa.me/5493515178136?text=Hola%20Luciano,%20quiero%20encargar%20la%20Tablita%20Especial%20de%20Campo%20(4%20personas)%20para%20retirar%20hoy" target="_blank" rel="noopener" class="btn btn-amber" style="width:100%;text-align:center;">
+              <a href="https://wa.me/5493515178136?text=Hola,%20quiero%20encargar%20la%20Tablita%20Especial%20de%20Campo%20(4%20personas)%20para%20retirar%20hoy" target="_blank" rel="noopener" class="btn btn-amber" style="width:100%;text-align:center;">
                 📲 Encargar Especial por WhatsApp &rarr;
               </a>
             </div>
@@ -1478,7 +1604,7 @@
             </div>
             
             <div class="picada-footer">
-              <a href="https://wa.me/5493515178136?text=Hola%20Luciano,%20quiero%20consultarte%20por%20tablas%20de%20picadas%20personalizadas%20para%20un%20evento" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;text-align:center;">
+              <a href="https://wa.me/5493515178136?text=Hola,%20quiero%20consultarles%20por%20tablas%20de%20picadas%20personalizadas%20para%20un%20evento" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;text-align:center;">
                 💬 Cotizar Evento por WhatsApp &rarr;
               </a>
             </div>
@@ -1489,9 +1615,9 @@
     </section>
 
     <!-- ====================================================================
-         SECCIÓN 2: LOS 11 DEPARTAMENTOS DEL AUTOSERVICIO
+         SECCIÓN 2: LOS 11 RUBROS DEL AUTOSERVICIO
          ==================================================================== -->
-    <section id="departamentos" class="section" style="background:#0B101D;">
+    <section id="rubros" class="section" style="background:#0B101D;">
       <div class="container">
         <div class="section-header">
           <span class="section-kicker">TODO EN UN SOLO LUGAR</span>
@@ -1738,8 +1864,8 @@
               <a href="https://www.google.com/maps/search/?api=1&query=Gral.+Bustos+699,+Malagueño,+Córdoba" target="_blank" rel="noopener" class="btn btn-red" style="width:100%;text-align:center;">
                 📍 Abrir en Google Maps &rarr;
               </a>
-              <a href="https://wa.me/5493515178136?text=Hola%20Luciano,%20estoy%20en%20Malague%C3%B1o%20y%20quiero%20hacerte%20una%20consulta" target="_blank" rel="noopener" class="btn btn-whatsapp" style="width:100%;text-align:center;">
-                💬 Escribir al WhatsApp de Luciano
+              <a href="https://wa.me/5493515178136?text=Hola,%20estoy%20en%20Malague%C3%B1o%20y%20quiero%20hacerles%20una%20consulta" target="_blank" rel="noopener" class="btn btn-whatsapp" style="width:100%;text-align:center;">
+                💬 Escribir al WhatsApp del Local
               </a>
             </div>
           </div>
@@ -1763,12 +1889,12 @@
           <div style="font-size:12.5px;color:#94A3B8;margin-top:6px;">Gral. Bustos 699, Malagueño, Córdoba.</div>
         </div>
 
-        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center;">
+        <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center;">
           <a href="#sobre-nosotros" style="color:#CBD5E1;font-weight:600;">El Local</a>
           <span style="color:#475569;">·</span>
           <a href="#picadas" style="color:#CBD5E1;font-weight:600;">Picadas</a>
           <span style="color:#475569;">·</span>
-          <a href="#departamentos" style="color:#CBD5E1;font-weight:600;">Departamentos</a>
+          <a href="#rubros" style="color:#CBD5E1;font-weight:600;">Rubros</a>
           <span style="color:#475569;">·</span>
           <a href="./club/" style="color:var(--tt-amber);font-weight:700;">Club de Puntos</a>
           <span style="color:#475569;">·</span>
@@ -1796,7 +1922,6 @@
       const hour = now.getHours();
       const statusPill = document.getElementById('store-status-pill');
       const statusText = document.getElementById('store-status-text');
-      const statusTextMobile = document.getElementById('store-status-text-mobile');
 
       // Abierto de 08:00 a 22:59:59 (cierra a las 23:00)
       const isOpen = hour >= 8 && hour < 23;
@@ -1805,11 +1930,9 @@
         if (isOpen) {
           statusPill.className = 'status-badge';
           if (statusText) statusText.textContent = 'Abierto de corrido hasta las 23:00 hs';
-          if (statusTextMobile) statusTextMobile.textContent = 'Abierto 08-23 hs';
         } else {
           statusPill.className = 'status-badge closed';
           if (statusText) statusText.textContent = 'Cerrado · Abre hoy a las 08:00 hs';
-          if (statusTextMobile) statusTextMobile.textContent = 'Abre 08:00 hs';
         }
       }
     }
