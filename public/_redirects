@@ -2,3 +2,7 @@
 /privacidad.html /privacidad 301
 /terminos.html /terminos 301
 /sitemap.xml /sitemap-index.xml 301
+
+# Rutas dadas de baja: Tu Tablita Autoservicio (migrado 100% al dominio tutablita.com.ar)
+/tu-tablita/* /404 404
+/tu-tablita /404 404

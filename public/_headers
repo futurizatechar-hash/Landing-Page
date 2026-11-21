@@ -15,3 +15,6 @@
 
 /projects/*
   Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/tu-tablita/*
+  Cache-Control: no-cache, no-store, must-revalidate, max-age=0
