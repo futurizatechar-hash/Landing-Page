@@ -12,7 +12,7 @@
   <script>
     // Purgado preventivo de caches de PWA obsoletas y auto-actualización
     (function() {
-      const APP_VER = 'cenko-v6-20261120-2230';
+      const APP_VER = 'cenko-v7-20261120-2300';
       if (localStorage.getItem('cenko_build_ver') !== APP_VER) {
         localStorage.setItem('cenko_build_ver', APP_VER);
         if ('caches' in window) {
@@ -127,9 +127,16 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 28px;
-      gap: 20px;
+      padding: 0 clamp(12px, 2vw, 24px);
+      gap: clamp(8px, 1.5vw, 18px);
+      max-width: 100vw;
+      box-sizing: border-box;
     }
+
+    .nav-label-short { display: none; }
+    .sync-text-short { display: none; }
+    .subtab-desktop { display: inline; }
+    .subtab-mobile { display: none; }
 
     /* Logo Vertical Cenko / Fragancias */
     .brand-wrap {
@@ -1539,6 +1546,77 @@
       transform: translateY(200%) !important;
     }
 
+    @media (max-width: 1250px) {
+      .top-header {
+        padding: 0 14px;
+        gap: 10px;
+      }
+      .brand-logo-svg {
+        height: 38px;
+      }
+      .nav-tabs {
+        gap: 4px;
+      }
+      .nav-tab-btn {
+        padding: 6px 10px;
+        font-size: 12.5px;
+        gap: 6px;
+      }
+      .nav-label-full {
+        display: none !important;
+      }
+      .nav-label-short {
+        display: inline !important;
+      }
+      .sync-status-pill {
+        padding: 5px 10px;
+        font-size: 11px;
+        gap: 6px;
+      }
+      .sync-text-full {
+        display: none !important;
+      }
+      .sync-text-short {
+        display: inline !important;
+      }
+      .header-actions {
+        gap: 10px;
+      }
+      .user-pill {
+        padding: 4px 10px 4px 5px;
+        font-size: 12px;
+        gap: 6px;
+      }
+    }
+
+    @media (max-width: 980px) and (min-width: 821px) {
+      .top-header {
+        padding: 0 10px;
+        gap: 6px;
+      }
+      .nav-tabs {
+        gap: 3px;
+      }
+      .nav-tab-btn {
+        padding: 5px 8px;
+        font-size: 11.5px;
+        gap: 5px;
+      }
+      .nav-tab-btn svg {
+        width: 14px;
+        height: 14px;
+      }
+      .sync-text-short {
+        display: none !important;
+      }
+      .sync-status-pill {
+        padding: 5px 8px;
+      }
+      .user-pill #user-name-label {
+        display: none;
+      }
+    }
+
     /* Responsive */
     @media (min-width: 821px) {
       /* Estructura fija de altura completa para POS (Cero Scroll en PC / Mostrador) */
@@ -1555,7 +1633,12 @@
       body.pos-view-active .top-header {
         height: 56px;
         flex-shrink: 0;
-        padding: 0 20px;
+        padding: 0 clamp(10px, 1.5vw, 18px);
+        gap: clamp(6px, 1.2vw, 16px);
+      }
+
+      body.pos-view-active .brand-logo-svg {
+        height: 38px;
       }
 
       body.pos-view-active .main-viewport {
@@ -1843,6 +1926,8 @@
       #btn-pos-carrito {
         display: inline-flex !important;
       }
+      .subtab-desktop { display: none !important; }
+      .subtab-mobile { display: inline !important; }
 
       .pos-layout {
         display: block !important;
@@ -1988,19 +2073,22 @@
       <nav class="nav-tabs">
         <button class="nav-tab-btn active" id="btn-tab-pos" onclick="switchView('pos')">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 15h0M2 9.5h20"/></svg>
-          Punto de Venta
+          <span class="nav-label-full">Punto de Venta</span>
+          <span class="nav-label-short">Venta</span>
         </button>
         <button class="nav-tab-btn" id="btn-tab-clientes" onclick="switchView('clientes')">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-          Clientes
+          <span>Clientes</span>
         </button>
         <button class="nav-tab-btn" id="btn-tab-stock" onclick="switchView('stock')">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-          Stock &amp; Analítica
+          <span class="nav-label-full">Stock &amp; Analítica</span>
+          <span class="nav-label-short">Stock</span>
         </button>
         <button class="nav-tab-btn" id="btn-tab-usuarios" onclick="switchView('usuarios')">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"/></svg>
-          Usuarios &amp; Permisos
+          <span class="nav-label-full">Usuarios &amp; Permisos</span>
+          <span class="nav-label-short">Usuarios</span>
         </button>
       </nav>
 
@@ -2008,7 +2096,8 @@
       <div class="header-actions">
         <div class="sync-status-pill" onclick="openSyncModal()" title="Sincronización en tiempo real con Tiendanube">
           <div class="pulse-dot"></div>
-          <span>Tiendanube Conectado</span>
+          <span class="sync-text-full">Tiendanube Conectado</span>
+          <span class="sync-text-short">Tiendanube</span>
         </div>
 
         <button class="mobile-cart-toggle-hdr" id="mobile-cart-toggle-hdr" onclick="toggleMobileCart()" title="Ver Orden Actual">
@@ -2065,9 +2154,9 @@
           </div>
 
           <div class="sub-tabs-bar">
-            <button class="sub-tab-btn active" id="btn-pos-caja" onclick="togglePosSubView('caja')">🛍️ Catálogo</button>
+            <button class="sub-tab-btn active" id="btn-pos-caja" onclick="togglePosSubView('caja')">🛍️ <span class="subtab-desktop">Nueva Venta</span><span class="subtab-mobile">Catálogo</span></button>
             <button class="sub-tab-btn" id="btn-pos-carrito" onclick="togglePosSubView('carrito')">🛒 Carrito (<span id="count-cart-subtab">0</span>)</button>
-            <button class="sub-tab-btn" id="btn-pos-historial" onclick="togglePosSubView('historial')">📜 Ventas (<span id="count-ventas-hoy">0</span>)</button>
+            <button class="sub-tab-btn" id="btn-pos-historial" onclick="togglePosSubView('historial')">📜 <span class="subtab-desktop">Ventas del Día</span><span class="subtab-mobile">Ventas</span> (<span id="count-ventas-hoy">0</span>)</button>
           </div>
         </div>
 

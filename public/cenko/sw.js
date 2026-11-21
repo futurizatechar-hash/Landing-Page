@@ -1,5 +1,5 @@
-// Service Worker — Cenko Fragancias Stock & Ventas PWA (v6)
-const CACHE_NAME = 'cenko-stock-v6';
+// Service Worker — Cenko Fragancias Stock & Ventas PWA (v7)
+const CACHE_NAME = 'cenko-stock-v7';
 
 // Install: activar inmediatamente sin esperar a que cierren pestañas
 self.addEventListener('install', (e) => {
