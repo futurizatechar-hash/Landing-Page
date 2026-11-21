@@ -12,7 +12,7 @@
   <script>
     // Purgado preventivo de caches de PWA obsoletas y auto-actualización
     (function() {
-      const APP_VER = 'cenko-v5-20261120-1730';
+      const APP_VER = 'cenko-v6-20261120-2230';
       if (localStorage.getItem('cenko_build_ver') !== APP_VER) {
         localStorage.setItem('cenko_build_ver', APP_VER);
         if ('caches' in window) {
@@ -1541,30 +1541,268 @@
 
     /* Responsive */
     @media (min-width: 821px) {
+      /* Estructura fija de altura completa para POS (Cero Scroll en PC / Mostrador) */
+      body.pos-view-active {
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      body.pos-view-active .app-shell {
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      body.pos-view-active .top-header {
+        height: 56px;
+        flex-shrink: 0;
+        padding: 0 20px;
+      }
+
+      body.pos-view-active .main-viewport {
+        padding: 8px 18px 8px 18px !important;
+        height: calc(100vh - 56px);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        max-width: 100%;
+      }
+
+      #view-pos.active {
+        display: flex !important;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      /* Cabecera ultra compacta de POS en desktop */
+      #view-pos .view-header {
+        flex-shrink: 0;
+        margin-bottom: 8px;
+        gap: 12px;
+      }
+
+      #view-pos .view-title-wrap h1 {
+        font-size: 18px;
+        line-height: 1.2;
+      }
+
+      #view-pos .view-title-wrap p {
+        font-size: 11px;
+        margin-top: 1px;
+      }
+
+      #pos-sub-caja {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .pos-sub-caja-wrap {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
       .pos-layout {
+        flex: 1;
+        min-height: 0;
+        height: 100%;
         display: grid;
-        grid-template-columns: 1fr 390px;
-        gap: 20px;
-        align-items: start;
+        grid-template-columns: 1fr 370px;
+        gap: 14px;
+        align-items: stretch;
       }
+
+      /* Columna izquierda: Catálogo con scroll interno */
       #pos-catalog-col {
-        display: block !important;
+        display: flex !important;
+        flex-direction: column;
+        min-height: 0;
+        height: 100%;
+        overflow: hidden;
       }
+
+      .search-filter-box {
+        flex-shrink: 0;
+        margin-bottom: 8px;
+        gap: 8px;
+      }
+
+      .search-input-wrap .input-field {
+        height: 34px;
+        font-size: 12.5px;
+      }
+
+      .filter-pills-wrap {
+        gap: 4px;
+      }
+
+      .pill-filter {
+        padding: 3px 10px;
+        font-size: 11px;
+      }
+
+      .products-grid {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding-right: 6px;
+        gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      }
+
+      .product-card {
+        padding: 9px;
+      }
+
+      .product-image-box {
+        height: 100px;
+      }
+
+      .product-image-box img {
+        max-height: 88px;
+      }
+
+      .product-name {
+        font-size: 12.5px;
+        min-height: 32px;
+      }
+
+      .product-variant-desc {
+        font-size: 10px;
+        margin-bottom: 4px;
+      }
+
+      .product-price {
+        font-size: 14.5px;
+      }
+
+      .product-bottom-row {
+        padding-top: 6px;
+      }
+
+      .product-bottom-row .btn {
+        padding: 4px 10px;
+        font-size: 11.5px;
+      }
+
+      /* Columna derecha: Carrito adaptado 100% a la pantalla sin scroll */
       .cart-panel {
         display: flex !important;
-        position: sticky;
-        top: 82px;
-        max-height: calc(100vh - 104px);
+        flex-direction: column !important;
+        position: static !important;
+        height: 100% !important;
+        max-height: 100% !important;
+        min-height: 0 !important;
+        padding: 10px 12px !important;
+        overflow: hidden;
+        border-radius: var(--radius-md);
       }
-      #btn-pos-carrito {
-        display: none !important;
+
+      .cart-header {
+        flex-shrink: 0;
+        padding-bottom: 6px;
+        margin-bottom: 6px;
       }
-      .mobile-cart-bar {
-        display: none !important;
+
+      .cart-title {
+        font-size: 13.5px;
       }
-      .cart-panel-drag-handle {
-        display: none !important;
+
+      /* Lista de ítems en el centro con scroll propio */
+      .cart-items-list {
+        flex: 1;
+        min-height: 48px;
+        max-height: none !important;
+        overflow-y: auto;
+        margin-bottom: 6px;
+        padding-right: 4px;
+        gap: 5px;
       }
+
+      .cart-item-row {
+        padding: 5px 8px;
+      }
+
+      .cart-item-name {
+        font-size: 12px;
+      }
+
+      .cart-item-sub {
+        font-size: 10px;
+      }
+
+      /* Controles fijos de checkout abajo: NUNCA se cortan ni requieren scroll */
+      .cart-controls-fixed {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        border-top: 1px solid var(--ck-border);
+        padding-top: 6px;
+      }
+
+      .section-mini-label {
+        font-size: 9.5px;
+        margin-bottom: 2px !important;
+      }
+
+      .client-select-wrap .input-field {
+        height: 28px;
+        font-size: 11.5px;
+      }
+
+      .client-select-wrap .btn-sm {
+        height: 28px;
+        padding: 0 8px;
+      }
+
+      .payment-row-compact {
+        gap: 4px;
+      }
+
+      .payment-btn {
+        padding: 4px 2px;
+        font-size: 10px;
+      }
+
+      .checkout-action-box {
+        flex-shrink: 0;
+        padding: 6px 8px;
+        gap: 4px;
+      }
+
+      .total-row.final {
+        font-size: 13px;
+      }
+
+      .total-row.final span:last-child {
+        font-size: 17px;
+      }
+
+      .btn-confirm-sale {
+        padding: 8px;
+        font-size: 13px;
+      }
+
+      /* Historial de ventas del día en desktop */
+      #pos-sub-historial {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding-right: 6px;
+      }
+
+      /* Ocultar elementos exclusivos de móvil en desktop */
+      #btn-pos-carrito,
+      .mobile-cart-bar,
+      .cart-panel-drag-handle,
       .cart-header-close-btn {
         display: none !important;
       }
@@ -1875,7 +2113,7 @@
 
               <!-- Lista de ítems en carrito -->
               <div class="cart-items-list" id="cart-items-container">
-                <div style="text-align: center; padding: 24px 12px; color: var(--ck-text-muted); font-size: 12.5px;">
+                <div style="text-align: center; padding: 12px 8px; color: var(--ck-text-muted); font-size: 11.5px;">
                   El carrito está vacío.<br>Hacé clic en <strong>+ Agregar</strong> en cualquier fragancia.
                 </div>
               </div>
@@ -2935,6 +3173,7 @@
     // NAVEGACIÓN ENTRE VISTAS
     function switchView(viewName) {
       currentActiveView = viewName;
+      document.body.classList.toggle('pos-view-active', viewName === 'pos');
       closeMobileCart();
 
       document.querySelectorAll('.view-container').forEach(el => el.classList.remove('active'));
@@ -3122,7 +3361,7 @@
       const container = document.getElementById('cart-items-container');
       if (cart.length === 0) {
         container.innerHTML = `
-          <div style="text-align: center; padding: 24px 12px; color: var(--ck-text-muted); font-size: 12.5px;">
+          <div style="text-align: center; padding: 12px 8px; color: var(--ck-text-muted); font-size: 11.5px;">
             El carrito está vacío.<br>Hacé clic en <strong>+ Agregar</strong> en cualquier fragancia.
           </div>
         `;
@@ -3845,7 +4084,7 @@
           r.update();
         }
       });
-      navigator.serviceWorker.register('./sw.js?v=20261120_v5').then(function(reg) {
+      navigator.serviceWorker.register('./sw.js?v=20261120_v6').then(function(reg) {
         reg.update();
       }).catch(function() {});
 
@@ -3859,6 +4098,7 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.toggle('pos-view-active', currentActiveView === 'pos');
       updateUserSessionUI();
       if (isTerminalLocked) {
         document.getElementById('lock-screen-overlay')?.classList.add('active');
