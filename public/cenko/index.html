@@ -12,7 +12,7 @@
   <script>
     // Purgado preventivo de caches de PWA obsoletas y auto-actualización
     (function() {
-      const APP_VER = 'cenko-v7-20261120-2300';
+      const APP_VER = 'cenko-v8-20261123-0535';
       if (localStorage.getItem('cenko_build_ver') !== APP_VER) {
         localStorage.setItem('cenko_build_ver', APP_VER);
         if ('caches' in window) {
@@ -127,8 +127,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 clamp(12px, 2vw, 24px);
+      padding: 0 24px;
       gap: clamp(8px, 1.5vw, 18px);
+      width: 100%;
       max-width: 100vw;
       box-sizing: border-box;
     }
@@ -201,8 +202,37 @@
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 10px;
       flex-shrink: 0;
+    }
+
+    .btn-header-lock {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 36px;
+      padding: 0 11px;
+      border-radius: var(--radius-full);
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.28);
+      color: #FCA5A5;
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .btn-header-lock:hover {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: rgba(239, 68, 68, 0.55);
+      color: #FFFFFF;
+    }
+
+    .btn-header-lock:active {
+      transform: scale(0.95);
     }
 
     .sync-status-pill {
@@ -1292,7 +1322,8 @@
     }
 
     .pin-dots-row {
-      display: flex;
+      display: flex !important;
+      flex-direction: row !important;
       justify-content: center;
       align-items: center;
       gap: 16px;
@@ -1307,6 +1338,7 @@
       border: 2px solid rgba(255, 255, 255, 0.25);
       background: transparent;
       transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
     }
 
     .pin-dot.filled {
@@ -1339,20 +1371,22 @@
       40%, 80% { transform: translateX(6px); }
     }
 
-    .keypad-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    .keypad-grid,
+    .pin-keypad {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr) !important;
       gap: 12px;
       width: 100%;
-      max-width: 270px;
+      max-width: 280px;
       margin: 0 auto 18px auto;
     }
 
     .keypad-btn {
       height: 60px;
+      min-height: 44px;
       border-radius: 50px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       color: #FFFFFF;
       font-family: var(--font-heading);
       font-size: 24px;
@@ -1364,6 +1398,7 @@
       transition: all 120ms ease;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
+      touch-action: manipulation;
     }
 
     .keypad-btn:active {
@@ -1548,11 +1583,11 @@
 
     @media (max-width: 1250px) {
       .top-header {
-        padding: 0 14px;
+        padding: 0 20px;
         gap: 10px;
       }
       .brand-logo-svg {
-        height: 38px;
+        height: 36px;
       }
       .nav-tabs {
         gap: 4px;
@@ -1580,18 +1615,24 @@
         display: inline !important;
       }
       .header-actions {
-        gap: 10px;
+        gap: 8px;
       }
       .user-pill {
         padding: 4px 10px 4px 5px;
         font-size: 12px;
         gap: 6px;
       }
+      .btn-header-lock .lock-btn-text {
+        display: none;
+      }
+      .btn-header-lock {
+        padding: 0 9px;
+      }
     }
 
     @media (max-width: 980px) and (min-width: 821px) {
       .top-header {
-        padding: 0 10px;
+        padding: 0 18px;
         gap: 6px;
       }
       .nav-tabs {
@@ -1633,17 +1674,18 @@
       body.pos-view-active .top-header {
         height: 56px;
         flex-shrink: 0;
-        padding: 0 clamp(10px, 1.5vw, 18px);
-        gap: clamp(6px, 1.2vw, 16px);
+        padding: 0 24px !important;
+        gap: clamp(8px, 1.2vw, 16px);
       }
 
       body.pos-view-active .brand-logo-svg {
-        height: 38px;
+        height: 36px;
       }
 
       body.pos-view-active .main-viewport {
-        padding: 8px 18px 8px 18px !important;
-        height: calc(100vh - 56px);
+        padding: 8px 20px 10px 20px !important;
+        height: calc(100vh - 56px) !important;
+        max-height: calc(100vh - 56px) !important;
         display: flex;
         flex-direction: column;
         overflow: hidden;
@@ -1662,12 +1704,12 @@
       /* Cabecera ultra compacta de POS en desktop */
       #view-pos .view-header {
         flex-shrink: 0;
-        margin-bottom: 8px;
-        gap: 12px;
+        margin-bottom: 6px;
+        gap: 10px;
       }
 
       #view-pos .view-title-wrap h1 {
-        font-size: 18px;
+        font-size: 17px;
         line-height: 1.2;
       }
 
@@ -1682,6 +1724,7 @@
         display: flex;
         flex-direction: column;
         height: 100%;
+        overflow: hidden;
       }
 
       .pos-sub-caja-wrap {
@@ -1690,6 +1733,7 @@
         display: flex;
         flex-direction: column;
         height: 100%;
+        overflow: hidden;
       }
 
       .pos-layout {
@@ -1698,8 +1742,10 @@
         height: 100%;
         display: grid;
         grid-template-columns: 1fr 370px;
+        grid-template-rows: minmax(0, 1fr);
         gap: 14px;
         align-items: stretch;
+        overflow: hidden;
       }
 
       /* Columna izquierda: Catálogo con scroll interno */
@@ -1713,12 +1759,12 @@
 
       .search-filter-box {
         flex-shrink: 0;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
         gap: 8px;
       }
 
       .search-input-wrap .input-field {
-        height: 34px;
+        height: 32px;
         font-size: 12.5px;
       }
 
@@ -1737,24 +1783,24 @@
         overflow-y: auto;
         padding-right: 6px;
         gap: 10px;
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
       }
 
       .product-card {
-        padding: 9px;
+        padding: 8px;
       }
 
       .product-image-box {
-        height: 100px;
+        height: 94px;
       }
 
       .product-image-box img {
-        max-height: 88px;
+        max-height: 82px;
       }
 
       .product-name {
         font-size: 12.5px;
-        min-height: 32px;
+        min-height: 30px;
       }
 
       .product-variant-desc {
@@ -1767,7 +1813,7 @@
       }
 
       .product-bottom-row {
-        padding-top: 6px;
+        padding-top: 5px;
       }
 
       .product-bottom-row .btn {
@@ -1776,15 +1822,16 @@
       }
 
       /* Columna derecha: Carrito adaptado 100% a la pantalla sin scroll */
-      .cart-panel {
+      .cart-panel,
+      .pos-cart-column {
         display: flex !important;
         flex-direction: column !important;
         position: static !important;
         height: 100% !important;
-        max-height: 100% !important;
+        max-height: calc(100vh - 116px) !important;
         min-height: 0 !important;
         padding: 10px 12px !important;
-        overflow: hidden;
+        overflow: hidden !important;
         border-radius: var(--radius-md);
       }
 
@@ -1800,9 +1847,9 @@
 
       /* Lista de ítems en el centro con scroll propio */
       .cart-items-list {
-        flex: 1;
-        min-height: 48px;
-        max-height: none !important;
+        flex: 1 1 auto;
+        min-height: 44px;
+        max-height: 220px;
         overflow-y: auto;
         margin-bottom: 6px;
         padding-right: 4px;
@@ -1811,6 +1858,7 @@
 
       .cart-item-row {
         padding: 5px 8px;
+        flex-shrink: 0;
       }
 
       .cart-item-name {
@@ -1824,6 +1872,7 @@
       /* Controles fijos de checkout abajo: NUNCA se cortan ni requieren scroll */
       .cart-controls-fixed {
         flex-shrink: 0;
+        margin-top: auto;
         display: flex;
         flex-direction: column;
         gap: 6px;
@@ -1851,14 +1900,14 @@
       }
 
       .payment-btn {
-        padding: 4px 2px;
-        font-size: 10px;
+        padding: 5px 2px;
+        font-size: 10.5px;
       }
 
       .checkout-action-box {
         flex-shrink: 0;
-        padding: 6px 8px;
-        gap: 4px;
+        padding: 7px 9px;
+        gap: 5px;
       }
 
       .total-row.final {
@@ -1954,6 +2003,47 @@
 
       .mobile-cart-bar {
         display: flex;
+      }
+
+      body.in-cart-subview .mobile-cart-bar,
+      body.in-cart-subview #mobile-cart-bar {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transform: translateY(200%) !important;
+      }
+
+      .btn-header-lock .lock-btn-text {
+        display: none !important;
+      }
+      .btn-header-lock {
+        padding: 0 9px !important;
+        height: 36px !important;
+        min-width: 36px;
+        justify-content: center;
+      }
+
+      /* Ergonomía táctil mínima de 44px en botones interactivos móviles */
+      .sub-tabs-bar .sub-tab-btn {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .cart-panel .qty-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+      }
+      .cart-panel .payment-btn {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .cart-panel .btn-confirm-sale {
+        min-height: 48px;
       }
 
       /* Catálogo en 2 Columnas Móviles Perfectas (Shopify/MercadoLibre style) */
@@ -2106,6 +2196,15 @@
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
           </svg>
           <span class="cart-badge-count" id="hdr-cart-count">0</span>
+        </button>
+
+        <!-- Botón Directo y Visible de Bloquear Terminal / Salir (PC & Mobile) -->
+        <button class="btn-header-lock" onclick="lockScreen()" title="Bloquear Terminal / Cerrar Sesión (PIN)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span class="lock-btn-text">Bloquear</span>
         </button>
 
         <!-- Perfil de Usuario con Menú de Bloqueo y Cierre de Sesión -->
@@ -2465,7 +2564,13 @@
             <h1>Control de Usuarios &amp; Permisos</h1>
             <p>Fran (Super-Admin): administración de accesos y seguridad del personal.</p>
           </div>
-          <button class="btn btn-primary" onclick="openNewUserModal()">+ Crear Nuevo Usuario</button>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="btn btn-danger" onclick="logoutSession()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Bloquear Terminal / Cerrar Sesión
+            </button>
+            <button class="btn btn-primary" onclick="openNewUserModal()">+ Crear Nuevo Usuario</button>
+          </div>
         </div>
 
         <div class="data-table-card" style="margin-bottom: 20px;">
@@ -2751,7 +2856,7 @@
       <div class="pin-error-msg" id="pin-error-msg">⚠️ PIN incorrecto. Reintentá.</div>
 
       <!-- Teclado Numérico 3x4 Táctil -->
-      <div class="keypad-grid">
+      <div class="keypad-grid pin-keypad">
         <button type="button" class="keypad-btn" onclick="pressPinKey('1')">1</button>
         <button type="button" class="keypad-btn" onclick="pressPinKey('2')">2</button>
         <button type="button" class="keypad-btn" onclick="pressPinKey('3')">3</button>
@@ -2771,8 +2876,6 @@
         <button type="button" class="lock-quick-btn" onclick="quickPinFran()" title="PIN: 1234">Fran (1234)</button>
         <button type="button" class="lock-quick-btn" onclick="quickPinSeller()" title="PIN: 0000">Vendedor (0000)</button>
       </div>
-
-      <button type="button" class="lock-dismiss-btn" onclick="unlockScreen()">Volver a la terminal</button>
     </div>
   </div>
 
@@ -3178,15 +3281,23 @@
     }
 
     function validatePin() {
-      if (currentEnteredPin === '1234') {
+      const pin = String(currentEnteredPin || '').trim();
+      if (pin === '1234') {
         activeSessionUser = { id: 'USR-01', name: 'Fran', role: 'Super-Admin', pin: '1234' };
         updateUserSessionUI();
         unlockScreen();
-      } else if (currentEnteredPin === '0000') {
+      } else if (pin === '0000') {
         activeSessionUser = { id: 'USR-02', name: 'Vendedor Showroom', role: 'Vendedor', pin: '0000' };
         updateUserSessionUI();
         unlockScreen();
       } else {
+        const matchedUser = users.find(u => u.pin && String(u.pin) === pin && u.status === 'Activo');
+        if (matchedUser) {
+          activeSessionUser = { id: matchedUser.id, name: matchedUser.name, role: matchedUser.role, pin: String(matchedUser.pin) };
+          updateUserSessionUI();
+          unlockScreen();
+          return;
+        }
         const errorEl = document.getElementById('pin-error-msg');
         if (errorEl) {
           errorEl.classList.remove('visible');
@@ -3201,13 +3312,13 @@
     function quickPinFran() {
       currentEnteredPin = '1234';
       updatePinDots();
-      setTimeout(validatePin, 80);
+      validatePin();
     }
 
     function quickPinSeller() {
       currentEnteredPin = '0000';
       updatePinDots();
-      setTimeout(validatePin, 80);
+      validatePin();
     }
 
     // CONTROL DEL CARRITO MÓVIL (ARQUITECTURA DUAL CONFIABLE)
@@ -3218,16 +3329,25 @@
       const totalCount = cart.reduce((acc, i) => acc + i.qty, 0);
       const wrap = document.getElementById('pos-sub-caja-wrap');
       const isCartActiveOnMobile = wrap && wrap.classList.contains('cart-active');
-      const isInsideCart = (currentPosSubView === 'carrito' || isCartActiveOnMobile || currentActiveView !== 'pos');
+      const isInsideCart = (currentPosSubView === 'carrito' || isCartActiveOnMobile);
 
-      // Estado en body para que el CSS aplique display: none !important
+      // Estado en body para que el CSS aplique display: none !important cuando ya estamos en el carrito
       document.body.classList.toggle('in-cart-subview', isInsideCart);
 
-      if (isInsideCart || totalCount === 0) {
+      // Solo visible si hay ítems, estamos en Punto de Venta ('pos'), sub-pestaña Catálogo ('caja'), no en carrito y en móvil
+      const shouldShowMobileBar = (
+        totalCount > 0 &&
+        currentActiveView === 'pos' &&
+        currentPosSubView === 'caja' &&
+        !isInsideCart &&
+        window.innerWidth <= 820
+      );
+
+      if (!shouldShowMobileBar) {
         mcb.classList.remove('visible');
-        mcb.style.display = 'none';
+        mcb.style.setProperty('display', 'none', 'important');
       } else {
-        mcb.style.display = 'flex';
+        mcb.style.setProperty('display', 'flex', 'important');
         mcb.classList.add('visible');
       }
     }
@@ -4173,7 +4293,7 @@
           r.update();
         }
       });
-      navigator.serviceWorker.register('./sw.js?v=20261120_v6').then(function(reg) {
+      navigator.serviceWorker.register('./sw.js?v=20261123_v8').then(function(reg) {
         reg.update();
       }).catch(function() {});
 
@@ -4197,6 +4317,10 @@
       renderProductsCatalog();
       renderCart();
       updateTodayCounters();
+      updateMobileCartBarVisibility();
+    });
+
+    window.addEventListener('resize', () => {
       updateMobileCartBarVisibility();
     });
 
