@@ -1,24 +1,21 @@
-// Service Worker — Cenko Fragancias Stock & Ventas PWA (v8)
-const CACHE_NAME = 'cenko-stock-v8';
+// Service Worker — Cenko Fragancias Stock & Ventas PWA (v9 Modular)
+const CACHE_NAME = 'cenko-stock-v9';
 
 // Install: activar inmediatamente sin esperar a que cierren pestañas
-self.addEventListener('install', (e) => {
+self.addEventListener('install', () => {
   self.skipWaiting();
 });
 
 // Activate: purgar 100% de caches anteriores de forma incondicional
 self.addEventListener('activate', (e) => {
   e.waitUntil(
-    caches.keys().then((keys) => {
-      return Promise.all(
-        keys.map((k) => caches.delete(k))
-      );
-    }).then(() => self.clients.claim())
+    caches.keys()
+      .then((keys) => Promise.all(keys.map((k) => caches.delete(k))))
+      .then(() => self.clients.claim())
   );
 });
 
-// Fetch: NETWORK-FIRST estricto
-// Siempre pide la versión fresca de la red en vivo; si no hay internet (offline), recurre al cache local
+// Fetch: NETWORK-FIRST estricto para shell, CSS y módulos ES
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
 
@@ -32,9 +29,7 @@ self.addEventListener('fetch', (e) => {
         return networkRes;
       })
       .catch(() => {
-        return caches.match(e.request).then((cachedRes) => {
-          return cachedRes || caches.match('./index.html');
-        });
+        return caches.match(e.request).then((cachedRes) => cachedRes || caches.match('./index.html'));
       })
   );
 });
