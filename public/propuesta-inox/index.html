@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Propuesta Comercial y Operativa: Puesta a Punto de Tiendanube, Analítica y Campañas | INOX × FuturizaTech</title>
+  <title>Propuesta Comercial y Operativa: Catálogo en Google y Campañas en Meta Ads | INOX × FuturizaTech</title>
   <meta name="description"
-    content="Propuesta comercial y operativa para INOX (inoxar.com.ar): encendido de Google Shopping, conexión de catálogo en Meta Ads con recupero de carritos, optimización de fichas SEO y medición exacta GA4 + CAPI sobre su Tiendanube actual.">
+    content="Propuesta comercial y operativa para INOX (inoxar.com.ar): activación del catálogo en Google Shopping y creación y publicación de campañas en Meta Ads (Instagram y Facebook).">
   <link rel="icon" type="image/png" href="./favicon.png">
   <link rel="shortcut icon" type="image/png" href="./favicon.png">
   <link rel="apple-touch-icon" type="image/png" href="./favicon.png">
@@ -17,7 +17,6 @@
     rel="stylesheet">
   <style>
     :root {
-      /* PALETA OFICIAL & TOKENS — INOX (ACERO INOXIDABLE & AMARILLO INDUSTRIAL) */
       --inox-dark: #0A0A0A;
       --inox-dark-deep: #050506;
       --inox-surface: #121721;
@@ -33,28 +32,21 @@
       --inox-border-light: #E2E8F0;
       --inox-border-dark: rgba(255, 255, 255, 0.13);
 
-      /* Acentos técnicos y comerciales por módulo */
       --mod-cyan: #0284C7;
       --mod-cyan-dark: #0369A1;
       --mod-cyan-light: #38BDF8;
       --mod-amber: #D97706;
-      --mod-amber-dark: #B45309;
-      --mod-amber-light: #FBBF24;
       --mod-emerald: #10B981;
       --mod-emerald-dark: #047857;
       --mod-whatsapp: #25D366;
-      --mod-whatsapp-dark: #15803D;
 
-      /* Gradientes de Identidad INOX */
       --grad-hero: radial-gradient(circle at 86% 18%, rgba(248, 220, 19, 0.14), transparent 46%),
         radial-gradient(circle at 14% 84%, rgba(56, 189, 248, 0.10), transparent 44%),
         linear-gradient(155deg, #09090B 0%, #121721 52%, #1A2232 100%);
-      --grad-inox-text: linear-gradient(135deg, #FFFFFF 0%, #F8DC13 55%, #38BDF8 100%);
       --grad-steel-badge: linear-gradient(135deg, #334155 0%, #0F172A 100%);
       --grad-cyan: linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%);
       --grad-amber: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
       --grad-whatsapp: linear-gradient(135deg, #25D366 0%, #1FAF54 100%);
-      --grad-dark-card: linear-gradient(180deg, #161D2A 0%, #0D1117 100%);
       --grad-brand-line: linear-gradient(90deg, #F8DC13 0%, #FFFFFF 38%, #38BDF8 72%, #10B981 100%);
 
       --grad-steel-soft: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
@@ -88,53 +80,34 @@
       background-color: var(--inox-bg-light);
       color: var(--inox-dark);
       line-height: 1.56;
-      font-size: 16.5px;
+      font-size: 16px;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
-    h1,
-    h2,
-    h3,
-    h4 {
-      font-family: var(--font-heading);
-    }
-
-    em,
-    i {
+    em, i {
       font-style: normal;
       font-weight: 600;
-      color: inherit;
     }
 
-    code {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      background: #EEF2F6;
-      border: 1px solid #CBD5E1;
-      padding: 1px 6px;
-      border-radius: 5px;
-      color: var(--inox-dark);
-      white-space: nowrap;
-      display: inline-block;
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      letter-spacing: -0.02em;
     }
 
-    /* BARRA SUPERIOR EJECUTIVA (REGLA 3: SOLO LOGOS A LA IZQUIERDA, DERECHA 100% VACÍA) */
+    /* TOPBAR: REGLA 3 DERECHA 100% VACÍA */
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(10, 10, 12, 0.96);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 2px solid;
-      border-image: var(--grad-brand-line) 1;
-      padding: 11px 5%;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--inox-border-dark);
+      padding: 12px 5%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.38);
     }
 
     .brand-cobrand {
@@ -168,48 +141,11 @@
       display: block;
     }
 
-    /* BOTONES SOLO EN EL FOOTER */
-    .btn-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--font-heading);
-      font-size: 15px;
-      font-weight: 700;
-      padding: 10px 20px;
-      border-radius: var(--radius-pill);
-      text-decoration: none;
-      transition: all 0.2s ease;
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn-cta.whatsapp {
-      background: var(--grad-whatsapp);
-      color: #FFFFFF;
-      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
-    }
-
-    .btn-cta.whatsapp:hover {
-      background: linear-gradient(135deg, #1FAF54 0%, #15803D 100%);
-      transform: translateY(-1px);
-    }
-
-    .btn-cta.dark {
-      background: var(--inox-surface);
-      color: #FFFFFF;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-    }
-
-    .btn-cta.dark:hover {
-      background: var(--inox-steel);
-    }
-
-    /* HERO PRINCIPAL */
+    /* HERO */
     .hero {
       background: var(--grad-hero);
       color: var(--inox-white);
-      padding: 48px 5% 54px;
+      padding: 46px 5% 52px;
       border-bottom: 5px solid;
       border-image: var(--grad-brand-line) 1;
       position: relative;
@@ -223,7 +159,7 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.22fr 0.98fr;
+      grid-template-columns: 1.25fr 0.95fr;
       gap: 36px;
       align-items: center;
     }
@@ -246,47 +182,40 @@
     }
 
     .hero h1 {
-      font-size: clamp(27px, 3.4vw, 42px);
+      font-size: clamp(26px, 3.2vw, 40px);
       font-weight: 800;
-      line-height: 1.14;
-      letter-spacing: -0.02em;
+      line-height: 1.15;
       margin-bottom: 16px;
-      color: #FFFFFF;
     }
 
-    .hero h1 span.highlight {
-      background: var(--grad-inox-text);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .hero h1 .highlight {
+      color: var(--inox-yellow);
     }
 
     .hero-lead {
-      font-size: 17px;
-      color: #E2E8F0;
-      max-width: 660px;
-      font-weight: 400;
-      line-height: 1.56;
+      font-size: 16px;
+      color: #CBD5E1;
+      line-height: 1.6;
+      max-width: 620px;
     }
 
-    /* FICHA EJECUTIVA EN EL HERO (REGLA 3: FT-0106 Y CERO PARÉNTESIS EN .meta-val) */
+    /* FICHA RESUMEN (.meta-card) */
     .meta-card {
-      background: var(--grad-dark-card);
-      border: 1px solid rgba(248, 220, 19, 0.28);
+      background: rgba(18, 23, 33, 0.88);
+      border: 1px solid var(--inox-border-dark);
       border-radius: var(--radius-lg);
-      padding: 22px 24px;
-      box-shadow: var(--shadow-elevated), 0 0 28px rgba(248, 220, 19, 0.06);
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow-elevated);
     }
 
     .meta-card-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      flex-wrap: nowrap;
       padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       margin-bottom: 16px;
-      border-bottom: 1px solid var(--inox-border-dark);
     }
 
     .meta-tag {
@@ -294,20 +223,17 @@
       font-size: 11px;
       font-weight: 700;
       color: var(--inox-yellow);
-      background: rgba(248, 220, 19, 0.14);
-      border: 1px solid rgba(248, 220, 19, 0.4);
-      padding: 4px 10px;
+      background: rgba(248, 220, 19, 0.15);
+      border: 1px solid rgba(248, 220, 19, 0.35);
+      padding: 3px 10px;
       border-radius: 6px;
-      letter-spacing: 0.5px;
-      white-space: nowrap;
-      flex-shrink: 0;
     }
 
     .meta-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 9px;
+      gap: 10px;
       font-size: 14px;
     }
 
@@ -315,8 +241,8 @@
       display: flex;
       justify-content: space-between;
       gap: 12px;
-      border-bottom: 1px dashed rgba(255, 255, 255, 0.09);
-      padding-bottom: 7px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+      padding-bottom: 8px;
     }
 
     .meta-list li:last-child {
@@ -326,28 +252,28 @@
 
     .meta-label {
       color: var(--inox-steel-light);
-      font-weight: 500;
+      font-family: var(--font-mono);
+      font-size: 12px;
     }
 
     .meta-val {
-      color: #FFFFFF;
+      color: var(--inox-white);
       font-weight: 600;
       text-align: right;
     }
 
     .meta-val.accent {
-      color: #4ADE80;
-      font-weight: 700;
+      color: #34D399;
     }
 
-    /* SECCIONES */
+    /* SECCIONES GENERALES */
     .section {
-      padding: 46px 5%;
+      padding: 52px 5%;
+      border-bottom: 1px solid var(--inox-border-light);
     }
 
     .section.white {
       background: #FFFFFF;
-      border-bottom: 1px solid var(--inox-border-light);
     }
 
     .section.dark {
@@ -379,14 +305,14 @@
     }
 
     .section-title {
-      font-size: clamp(25px, 2.9vw, 36px);
+      font-size: clamp(24px, 2.8vw, 34px);
       font-weight: 800;
-      line-height: 1.16;
+      line-height: 1.18;
       margin-bottom: 12px;
     }
 
     .section-sub {
-      font-size: 17px;
+      font-size: 16px;
       color: var(--inox-body);
     }
 
@@ -394,83 +320,11 @@
       color: #CBD5E1;
     }
 
-    /* 01. DOS FRENTES DIRECTOS SOBRE SU TIENDANUBE ACTUAL */
-    .diag-grid {
+    /* GRILLA DE 2 FRENTES (FOCALIZADA) */
+    .modules-flow-2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-    }
-
-    .diag-box {
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      border: 1px solid var(--inox-border-light);
-      background: #FFFFFF;
-      box-shadow: var(--shadow-card-light);
-    }
-
-    .diag-box.solution {
-      background: linear-gradient(155deg, #111621 0%, #192231 60%, #10151F 100%);
-      color: #FFFFFF;
-      border: 2px solid var(--mod-cyan);
-      box-shadow: 0 10px 30px rgba(2, 132, 199, 0.16);
-    }
-
-    .diag-badge {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 700;
-      padding: 4px 11px;
-      border-radius: var(--radius-pill);
-      margin-bottom: 14px;
-      text-transform: uppercase;
-    }
-
-    .diag-badge.current {
-      background: #FEF9C3;
-      color: #854D0E;
-      border: 1px solid #FDE047;
-    }
-
-    .diag-badge.target {
-      background: rgba(56, 189, 248, 0.18);
-      color: var(--mod-cyan-light);
-      border: 1px solid rgba(56, 189, 248, 0.45);
-    }
-
-    .diag-box h3 {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 14px;
-      line-height: 1.25;
-    }
-
-    .diag-points {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      font-size: 15.5px;
-    }
-
-    .diag-points li {
-      display: grid;
-      grid-template-columns: 20px 1fr;
-      gap: 10px;
-      align-items: baseline;
-    }
-
-    .diag-points li span.icon {
-      font-weight: 800;
-    }
-
-    /* 02. LOS 3 MÓDULOS DE PUESTA A PUNTO */
-    .modules-flow {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      position: relative;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 26px;
     }
 
     .module-card {
@@ -478,7 +332,7 @@
       border: 1px solid var(--inox-border-light);
       border-top: 5px solid var(--inox-dark);
       border-radius: var(--radius-lg);
-      padding: 24px 22px;
+      padding: 28px 26px;
       box-shadow: var(--shadow-card-light);
       display: flex;
       flex-direction: column;
@@ -491,55 +345,12 @@
       box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
     }
 
-    .module-card.module-m09 {
-      border-top-color: var(--inox-dark);
+    .module-card.module-p1 {
+      border-top-color: var(--inox-yellow-dark);
     }
 
-    .module-card.module-m09 .mod-code {
-      background: var(--grad-steel-badge);
-    }
-
-    .module-card.module-m09 .mod-purpose {
-      border-left-color: var(--inox-dark);
-      background: #F1F5F9;
-    }
-
-    .module-card.module-m09 .mod-deliverables li::before {
-      color: var(--inox-dark);
-    }
-
-    .module-card.module-m10 {
+    .module-card.module-p2 {
       border-top-color: var(--mod-cyan);
-    }
-
-    .module-card.module-m10 .mod-code {
-      background: var(--grad-cyan);
-    }
-
-    .module-card.module-m10 .mod-purpose {
-      border-left-color: var(--mod-cyan);
-      background: rgba(2, 132, 199, 0.07);
-    }
-
-    .module-card.module-m10 .mod-deliverables li::before {
-      color: var(--mod-cyan);
-    }
-
-    .module-card.module-m05 {
-      border-top-color: var(--mod-emerald);
-    }
-
-    .module-card.module-m05 .mod-code {
-      background: var(--grad-whatsapp);
-    }
-
-    .module-card.module-m05 .mod-purpose {
-      border-left-color: var(--mod-emerald);
-      background: rgba(16, 185, 129, 0.08);
-    }
-
-    .module-card.module-m05 .mod-deliverables li::before {
-      color: var(--mod-emerald-dark);
     }
 
     .mod-top {
@@ -547,8 +358,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      flex-wrap: nowrap;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       padding-bottom: 12px;
       border-bottom: 1px solid #EEF2F6;
     }
@@ -561,24 +371,19 @@
       color: #FFFFFF;
       padding: 4px 10px;
       border-radius: 6px;
-      white-space: nowrap;
-      letter-spacing: 0.5px;
-      flex-shrink: 0;
-      display: inline-flex;
-      align-items: center;
     }
+
+    .module-p1 .mod-code { background: #92400E; }
+    .module-p2 .mod-code { background: var(--mod-cyan-dark); }
 
     .mod-step {
       font-family: var(--font-mono);
       font-size: 11px;
       color: var(--inox-steel);
       font-weight: 600;
-      letter-spacing: 0.4px;
-      white-space: nowrap;
       background: #F1F5F9;
       padding: 4px 9px;
       border-radius: 6px;
-      flex-shrink: 0;
     }
 
     .module-card h3 {
@@ -586,46 +391,52 @@
       font-weight: 700;
       color: var(--inox-dark);
       margin-bottom: 10px;
-      line-height: 1.24;
+      line-height: 1.25;
     }
 
     .mod-purpose {
       font-size: 14.5px;
       font-weight: 600;
       color: #0F172A;
-      padding: 10px 13px;
-      border-radius: 10px;
-      margin-bottom: 16px;
+      padding: 11px 14px;
+      border-radius: 8px;
+      margin-bottom: 18px;
       border-left: 3px solid var(--inox-steel);
+      background: #F8FAFC;
     }
+
+    .module-p1 .mod-purpose { border-left-color: var(--inox-yellow-dark); background: #FEF3C7; color: #92400E; }
+    .module-p2 .mod-purpose { border-left-color: var(--mod-cyan); background: #E0F2FE; color: #0369A1; }
 
     .mod-deliverables {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 9px;
-      font-size: 15px;
+      gap: 12px;
+      font-size: 14.5px;
       color: var(--inox-body);
-      margin-bottom: 20px;
+      margin-bottom: 22px;
+      line-height: 1.5;
     }
 
     .mod-deliverables li::before {
       content: "✓ ";
       font-weight: 800;
+      color: var(--mod-emerald-dark);
     }
 
     .mod-footer {
-      padding-top: 14px;
+      padding-top: 16px;
       border-top: 1px solid var(--inox-border-light);
       display: flex;
       align-items: center;
       justify-content: space-between;
       font-family: var(--font-mono);
-      font-size: 11.5px;
+      font-size: 12px;
       color: var(--inox-muted);
     }
 
-    /* 03. DEMOS INTERACTIVAS DEL ANTES Y DESPUÉS EN SU TIENDANUBE */
+    /* DEMO INTERACTIVA */
     .demos-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -636,7 +447,7 @@
       background: #121721;
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: var(--radius-lg);
-      padding: 20px;
+      padding: 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -679,15 +490,8 @@
       transition: all 0.2s;
     }
 
-    .sw-btn.active-red {
-      background: rgba(239, 68, 68, 0.22);
-      color: #F87171;
-    }
-
-    .sw-btn.active-green {
-      background: rgba(16, 185, 129, 0.22);
-      color: #34D399;
-    }
+    .sw-btn.active-red { background: rgba(239, 68, 68, 0.22); color: #F87171; }
+    .sw-btn.active-green { background: rgba(16, 185, 129, 0.22); color: #34D399; }
 
     .google-mock {
       background: #0B0F17;
@@ -722,21 +526,11 @@
       padding: 9px;
       font-size: 11.5px;
       color: #E2E8F0;
-      min-width: 0;
     }
 
     .shop-card.inox-winner {
       border: 2px solid var(--inox-yellow);
       background: rgba(248, 220, 19, 0.07);
-    }
-
-    .shop-card img {
-      width: 100%;
-      height: 72px;
-      object-fit: contain;
-      background: #0A0D12;
-      border-radius: 6px;
-      margin-bottom: 6px;
     }
 
     .shop-price {
@@ -755,29 +549,7 @@
       margin-top: 2px;
     }
 
-    .flow-stage {
-      background: #0B0F17;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .flow-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #161B22;
-      padding: 10px 13px;
-      border-radius: 8px;
-      font-size: 13px;
-      color: #E2E8F0;
-      gap: 10px;
-    }
-
-    /* 04. INVERSIÓN Y MODALIDADES */
+    /* TABLA DE PRECIOS */
     .pricing-layout {
       display: grid;
       grid-template-columns: 1.25fr 0.9fr;
@@ -807,7 +579,7 @@
     }
 
     .price-card-head h3 {
-      font-size: 22px;
+      font-size: 21px;
       font-weight: 700;
     }
 
@@ -838,10 +610,10 @@
 
     .price-breakdown th,
     .price-breakdown td {
-      padding: 15px 24px;
+      padding: 16px 24px;
       text-align: left;
       border-bottom: 1px solid var(--inox-border-light);
-      font-size: 15.5px;
+      font-size: 15px;
     }
 
     .price-breakdown th {
@@ -852,12 +624,6 @@
       color: var(--inox-steel);
     }
 
-    .price-breakdown th:first-child,
-    .price-breakdown td:first-child {
-      white-space: nowrap;
-      width: 110px;
-    }
-
     .price-breakdown tr.total-row {
       background: #F0FDF4;
       font-weight: 700;
@@ -866,7 +632,7 @@
     .price-side-stack {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
     }
 
     .side-option-card {
@@ -874,18 +640,18 @@
       border: 1px solid var(--inox-border-light);
       border-left: 5px solid var(--inox-steel);
       border-radius: var(--radius-md);
-      padding: 22px 24px;
+      padding: 20px 22px;
       box-shadow: var(--shadow-card-light);
-    }
-
-    .side-option-card.cyan-border {
-      border-left-color: var(--mod-cyan);
-      background: var(--grad-cyan-soft);
     }
 
     .side-option-card.emerald-border {
       border-left-color: var(--mod-emerald);
       background: var(--grad-emerald-soft);
+    }
+
+    .side-option-card.cyan-border {
+      border-left-color: var(--mod-cyan);
+      background: var(--grad-cyan-soft);
     }
 
     .side-option-card.steel-border {
@@ -894,23 +660,23 @@
     }
 
     .side-option-card h4 {
-      font-size: 18.5px;
+      font-size: 17px;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: var(--inox-dark);
     }
 
     .side-option-card p {
-      font-size: 15px;
+      font-size: 14.5px;
       color: var(--inox-body);
-      margin-bottom: 10px;
+      line-height: 1.5;
     }
 
     /* SELLOS DE CONFIANZA */
     .trust-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
+      gap: 20px;
       margin-top: 32px;
     }
 
@@ -918,226 +684,82 @@
       background: #FFFFFF;
       border: 1px solid var(--inox-border-light);
       border-radius: var(--radius-md);
-      padding: 24px;
+      padding: 22px;
       box-shadow: var(--shadow-card-light);
     }
 
-    .trust-card.steel-top {
-      border-top: 4px solid var(--inox-dark);
-      background: var(--grad-steel-soft);
-    }
-
-    .trust-card.cyan-top {
-      border-top: 4px solid var(--mod-cyan);
-      background: var(--grad-cyan-soft);
-    }
-
-    .trust-card.emerald-top {
-      border-top: 4px solid var(--mod-emerald);
-      background: var(--grad-emerald-soft);
-    }
+    .trust-card.steel-top { border-top: 4px solid var(--inox-dark); background: var(--grad-steel-soft); }
+    .trust-card.cyan-top { border-top: 4px solid var(--mod-cyan); background: var(--grad-cyan-soft); }
+    .trust-card.emerald-top { border-top: 4px solid var(--mod-emerald); background: var(--grad-emerald-soft); }
 
     .trust-num {
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
       margin-bottom: 6px;
       display: block;
-    }
-
-    .trust-card.steel-top .trust-num {
       color: var(--inox-dark);
     }
 
-    .trust-card.cyan-top .trust-num {
-      color: var(--mod-cyan-dark);
-    }
+    .trust-card h4 { font-size: 17px; margin-bottom: 6px; }
+    .trust-card p { font-size: 14px; color: var(--inox-body); }
 
-    .trust-card.emerald-top .trust-num {
-      color: var(--mod-emerald-dark);
-    }
-
-    .trust-card h4 {
-      font-size: 18.5px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--inox-dark);
-    }
-
-    .trust-card p {
-      font-size: 15px;
-      color: var(--inox-body);
-    }
-
-    /* FOOTER CORPORATIVO (REGLA 10: SOLO WHATSAPP Y EMAIL, CERO BOTÓN PDF) */
+    /* FOOTER */
     .footer {
-      background: linear-gradient(180deg, #121721 0%, #07090E 100%);
-      color: #FFFFFF;
-      padding: 48px 5% 36px;
-      border-top: 4px solid;
-      border-image: var(--grad-brand-line) 1;
+      background: #09090B;
+      color: #94A3B8;
+      padding: 38px 5% 42px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
     }
 
     .footer-inner {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: space-between;
       flex-wrap: wrap;
-      gap: 28px;
-      padding-bottom: 26px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      gap: 20px;
     }
 
-    .footer-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 11px 22px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
     }
 
-    .footer-copy {
-      padding-top: 20px;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-      font-size: 13.5px;
-      color: var(--inox-steel-light);
+    .btn-cta.whatsapp {
+      background: var(--grad-whatsapp);
+      color: #FFFFFF;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
     }
 
-    .table-responsive {
-      width: 100%;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+    .btn-cta.whatsapp:hover {
+      background: linear-gradient(135deg, #1FAF54 0%, #15803D 100%);
+      transform: translateY(-1px);
     }
 
     @media (max-width: 980px) {
-      .hero-grid,
-      .modules-flow,
-      .demos-grid,
-      .pricing-layout,
-      .trust-grid {
+      .hero-grid, .modules-flow-2, .demos-grid, .pricing-layout, .trust-grid {
         grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 640px) {
-      body {
-        font-size: 15.5px;
-      }
-
-      .client-logo-img {
-        height: 22px;
-        max-width: 165px;
-      }
-
-      .ft-logo-img {
-        height: 18px;
-      }
-
-      .hero {
-        padding: 34px 4% 38px;
-      }
-
-      .section {
-        padding: 36px 4%;
-      }
-
-      .shopping-row {
-        grid-template-columns: 1fr;
-      }
-
-      .price-card-head {
-        padding: 20px 18px;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .price-total-box {
-        text-align: left;
-      }
-
-      .price-breakdown thead {
-        display: none;
-      }
-
-      .price-breakdown,
-      .price-breakdown tbody {
-        display: block;
-        width: 100%;
-      }
-
-      .price-breakdown tr.module-row {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        grid-template-areas:
-          "badge price"
-          "desc desc";
-        row-gap: 10px;
-        column-gap: 12px;
-        align-items: center;
-        padding: 16px 14px;
-        border-bottom: 1px solid var(--inox-border-light);
-      }
-
-      .price-breakdown tr.module-row td {
-        display: block;
-        padding: 0;
-        border: none;
-      }
-
-      .price-breakdown tr.module-row td:nth-child(1) {
-        grid-area: badge;
-      }
-
-      .price-breakdown tr.module-row td:nth-child(2) {
-        grid-area: desc;
-        font-size: 14px;
-        line-height: 1.48;
-      }
-
-      .price-breakdown tr.module-row td:nth-child(3) {
-        grid-area: price;
-        text-align: right;
-        font-family: var(--font-mono);
-        font-size: 16px;
-        color: var(--inox-dark);
-      }
-
-      .price-breakdown tr.subtotal-row,
-      .price-breakdown tr.total-row {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        padding: 16px 14px;
-      }
-
-      .price-breakdown tr.subtotal-row td,
-      .price-breakdown tr.total-row td {
-        display: block;
-        width: 100%;
-        padding: 0;
-        border: none;
-      }
-
-      .price-breakdown tr.subtotal-row td:last-child,
-      .price-breakdown tr.total-row td:last-child {
-        text-align: right;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .footer-actions {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .footer-actions .btn-cta {
-        width: 100%;
-        justify-content: center;
-      }
+      .client-logo-img { height: 22px; max-width: 165px; }
+      .ft-logo-img { height: 18px; }
+      .hero { padding: 34px 4% 38px; }
+      .section { padding: 36px 4%; }
+      .shopping-row { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: stretch; }
+      .btn-cta { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -1148,7 +770,7 @@
   <header class="topbar">
     <div class="brand-cobrand">
       <div class="inox-lockup" style="display:inline-flex;align-items:center;gap:10px;">
-        <img src="./logo-inox.png" alt="INOX" class="client-logo-img" style="height:28px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';">
+        <img src="./logo-inox.png" alt="INOX" class="client-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';">
         <span class="inox-fallback-lockup" style="display:none;align-items:center;gap:8px;font-family:var(--font-heading);font-weight:900;font-size:20px;letter-spacing:1px;color:#FFFFFF;">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="12" y="1" width="15" height="15" rx="3" transform="rotate(45 12 1)" fill="#F8DC13"/><circle cx="12" cy="12" r="3" fill="#0A0A0A"/></svg>
           INOX
@@ -1156,7 +778,7 @@
       </div>
       <div class="brand-divider"></div>
       <div class="ft-badge">
-        <svg width="130" height="26" viewBox="0 0 250 52" fill="none" xmlns="http://www.w3.org/2000/svg" class="ft-logo-img" style="height:22px;width:auto;display:block;">
+        <svg width="130" height="26" viewBox="0 0 250 52" fill="none" xmlns="http://www.w3.org/2000/svg" class="ft-logo-img">
           <g id="isotipo" transform="translate(2, 2)">
             <path d="M6 10C6 8.89543 6.89543 8 8 8H19.5L16 14.5H13V21H20.5V27H13V38C13 39.1046 12.1046 40 11 40H8C6.89543 40 6 39.1046 6 38V10Z" fill="#00E5FF"/>
             <path d="M21 8H39C40.1046 8 41 8.89543 41 10V12.5C41 13.6046 40.1046 14.5 39 14.5H34.5V38C34.5 39.1046 33.6046 40 32.5 40H29.5C28.3954 40 27.5 39.1046 27.5 38V14.5H17.5L21 8Z" fill="#FF6B35"/>
@@ -1174,13 +796,13 @@
     <div class="container hero-grid">
       <div>
         <div class="eyebrow">INOX</div>
-        <h1>Propuesta Comercial y Operativa: <span class="highlight">Puesta a Punto de su Tiendanube, Analítica y Campañas</span></h1>
+        <h1>Propuesta Comercial y Operativa: <span class="highlight">Catálogo en Google y Campañas en Meta Ads</span></h1>
         <p class="hero-lead">
-          Resolvemos los cuellos de botella detectados en el diagnóstico de <strong>inoxar.com.ar</strong> trabajando directamente sobre las herramientas que usted ya utiliza hoy: encendemos <strong>Google Shopping</strong>, vinculamos su catálogo en <strong>Meta Ads para recuperar carritos abandonados</strong>, normalizamos sus <strong>~30 fichas de bachas en Acero AISI 304 y 430, kits y griferías Piazza</strong> para posicionar gratis en Google y activamos la medición exacta de compras en <strong>GA4 y Píxel CAPI</strong>.
+          Implementación llave en mano enfocada en lo justo y necesario que su empresa necesita hoy: ponemos sus productos en la vidriera de <strong>Google Shopping</strong> y creamos, estructuramos y dejamos publicadas sus <strong>campañas de anuncios en Instagram y Facebook</strong> para salir a vender de inmediato.
         </p>
       </div>
 
-      <!-- FICHA RESUMEN EJECUTIVA (CERO PARÉNTESIS EN .meta-val) -->
+      <!-- FICHA RESUMEN EJECUTIVA -->
       <aside class="meta-card">
         <div class="meta-card-header">
           <div class="inox-lockup" style="display:inline-flex;align-items:center;gap:10px;">
@@ -1190,7 +812,7 @@
               INOX
             </span>
           </div>
-          <span class="meta-tag">FT-0107</span>
+          <span class="meta-tag">FT-0108</span>
         </div>
         <ul class="meta-list">
           <li>
@@ -1199,15 +821,15 @@
           </li>
           <li>
             <span class="meta-label">Base Operativa:</span>
-            <span class="meta-val">Su Tiendanube + Google + Meta</span>
+            <span class="meta-val">Tiendanube + Google + Meta</span>
           </li>
           <li>
-            <span class="meta-label">Alcance Etapa 1:</span>
-            <span class="meta-val">Shopping + Catálogo Meta + SEO + CAPI</span>
+            <span class="meta-label">Alcance Específico:</span>
+            <span class="meta-val">Catálogo en Google + Campañas en Meta</span>
           </li>
           <li>
             <span class="meta-label">Puesta en Marcha:</span>
-            <span class="meta-val">1 a 3 semanas</span>
+            <span class="meta-val">1 a 2 semanas</span>
           </li>
           <li>
             <span class="meta-label">Licencias por Usuario:</span>
@@ -1222,145 +844,88 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 01: OPORTUNIDAD COMERCIAL SOBRE SU TIENDANUBE ACTUAL -->
+  <!-- SECCIÓN 01: LOS 2 FRENTES DE TRABAJO -->
   <section class="section white">
     <div class="container">
       <div class="section-header">
-        <span class="section-kicker">01 · Enfoque en lo que ya tiene en marcha</span>
-        <h2 class="section-title">Su misma Tiendanube, conectada y midiendo cada venta en Google y Meta</h2>
+        <span class="section-kicker">01 · Plan Directo de Ejecución</span>
+        <h2 class="section-title">Lo Justo y Necesario: 2 Frentes Comerciales Llave en Mano</h2>
         <p class="section-sub">
-          Dejamos al 100% la configuración técnica y comercial de su tienda actual para capturar compradores listos para pagar y recuperar carritos abandonados.
+          Trabajamos 100% sobre sus cuentas oficiales y su tienda actual, sin intermediarios ni cambios de plataforma.
         </p>
       </div>
 
-      <div class="diag-grid">
-        <div class="diag-box">
-          <span class="diag-badge current">Frente 01 · Buscador de Google y Posicionamiento</span>
-          <h3>Aparecer primero con foto, precio y stock cuando buscan comprar</h3>
-          <ul class="diag-points">
-            <li><span class="icon" style="color:var(--inox-dark);">•</span> <span><strong>Google Shopping Encendido:</strong> Conectamos su Tiendanube con Google Merchant Center para que sus bachas y kits salgan arriba de todo con foto, precio actualizado y envío gratis.</span></li>
-            <li><span class="icon" style="color:var(--inox-dark);">•</span> <span><strong>Fichas Completas para Google Orgánico:</strong> Completamos marca, códigos SKU limpios y medidas en sus ~30 publicaciones para que Google muestre sus precios de forma gratuita en el buscador.</span></li>
-            <li><span class="icon" style="color:var(--inox-dark);">•</span> <span><strong>Indexación en Search Console:</strong> Dejamos conectado y verificado el mapa completo de su tienda ante Google para captar búsquedas calientes todos los días.</span></li>
-          </ul>
-        </div>
-
-        <div class="diag-box solution">
-          <span class="diag-badge target">Frente 02 · Campañas en Meta y Medición Exacta</span>
-          <h3>Recuperar carritos abandonados y registrar 10 de 10 compras</h3>
-          <ul class="diag-points">
-            <li><span class="icon" style="color:#4ADE80;">✓</span> <span><strong>Catálogo Conectado a Meta Ads:</strong> Quien entra a mirar una bacha en su tienda y sale sin pagar vuelve a ver exactamente ese modelo en su Instagram y Facebook hasta concretar la compra.</span></li>
-            <li><span class="icon" style="color:#4ADE80;">✓</span> <span><strong>Catálogo Dinámico y Kits Estrella:</strong> Conectamos sus anuncios al inventario de su tienda para recuperar automáticamente los carritos abandonados (DPA) y empujar sus kits completos de bachas con grifería y dosificador.</span></li>
-            <li><span class="icon" style="color:#4ADE80;">✓</span> <span><strong>Píxel con Servidor CAPI y Tablero GA4:</strong> Activamos Google Analytics 4 y la medición por servidor para recuperar el ~35% de compras en iPhone y ver en qué paso se abandonan los carritos.</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECCIÓN 02: LOS 3 MÓDULOS QUE SOLUCIONAN EL DIAGNÓSTICO -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-kicker">02 · Alcance Paso a Paso</span>
-        <h2 class="section-title">Qué dejamos funcionando llave en mano en 1 a 3 semanas</h2>
-        <p class="section-sub">
-          Tres módulos ejecutados directamente sobre las cuentas actuales de INOX para resolver los puntos críticos del diagnóstico.
-        </p>
-      </div>
-
-      <div class="modules-flow">
-        <!-- PASO 1: M-09 -->
-        <article class="module-card module-m09">
+      <div class="modules-flow-2">
+        <!-- FRENTE 1: GOOGLE SHOPPING -->
+        <article class="module-card module-p1">
           <div>
             <div class="mod-top">
-              <span class="mod-code">MÓDULO M-09</span>
-              <span class="mod-step">PASO 1 · MEDIR</span>
+              <span class="mod-code">FRENTE 1</span>
+              <span class="mod-step">VIDRIERA EN GOOGLE</span>
             </div>
-            <h3>Analítica GA4 + GTM y Píxel Meta CAPI</h3>
+            <h3>Catálogo de Productos en Google Shopping</h3>
             <div class="mod-purpose">
-              Soluciona el Problema 4 del diagnóstico: pérdida de ~35% de ventas en iPhone y estadísticas en blanco.
+              Presencia oficial de sus bachas, mesadas y kits en la vidriera de Google.
             </div>
             <ul class="mod-deliverables">
-              <li>Activación y configuración de su contenedor <code>GTM-WPP27H4P</code> y propiedad <strong>Google Analytics 4</strong> con embudo de comercio electrónico.</li>
-              <li>Conexión de <strong>Meta CAPI por servidor</strong> sobre el Píxel <code>1510436377767604</code> con filtro automático para no duplicar compras.</li>
-              <li>Medición limpia de vistas de producto (<code>ViewContent</code>), carritos (<code>AddToCart</code>), inicio de pago y compra real.</li>
+              <li>Habilitación y configuración del catálogo comercial de su tienda para Google Shopping.</li>
+              <li>Sincronización automática de fotos, precios directos de fábrica y disponibilidad en pesos.</li>
+              <li>Activación de la vidriera comercial para que la marca aparezca cuando los compradores buscan productos en Google.</li>
+              <li>Vinculación y preparación de la cuenta comercial para futuras campañas de adquisición.</li>
             </ul>
           </div>
           <div class="mod-footer">
-            <span>IMPACTO: CONTROL TOTAL</span>
-            <span>1 A 3 SEMANAS</span>
+            <span>IMPACTO: VIDRIERA ACTIVA</span>
+            <span>1 A 2 SEMANAS</span>
           </div>
         </article>
 
-        <!-- PASO 2: M-10 -->
-        <article class="module-card module-m10">
+        <!-- FRENTE 2: CAMPAÑAS EN META ADS -->
+        <article class="module-card module-p2">
           <div>
             <div class="mod-top">
-              <span class="mod-code">MÓDULO M-10</span>
-              <span class="mod-step">PASO 2 · POSICIONAR</span>
+              <span class="mod-code">FRENTE 2</span>
+              <span class="mod-step">VENTAS EN REDES SOCIALES</span>
             </div>
-            <h3>Normalización de Fichas y Google Orgánico</h3>
+            <h3>Creación y Publicación de Campañas en Meta Ads</h3>
             <div class="mod-purpose">
-              Soluciona el Problema 3 del diagnóstico: fichas incompletas sin precio ni stock en el buscador gratuito.
+              Campañas de anuncios activas y publicadas en Instagram y Facebook.
             </div>
             <ul class="mod-deliverables">
-              <li>Normalización de las <strong>~30 publicaciones y variantes</strong> en su Tiendanube (marcas, códigos SKU por modelo/medida y descripciones estructuradas).</li>
-              <li>Activación del marcado <code>Schema.org/Product</code> nativo para que Google lea precios y disponibilidad en vivo.</li>
-              <li>Configuración de <strong>Google Search Console</strong> y envío de mapa del sitio para acelerar la indexación orgánica.</li>
-            </ul>
-          </div>
-          <div class="mod-footer">
-            <span>IMPACTO: TRÁFICO GRATUITO</span>
-            <span>1 A 3 SEMANAS</span>
-          </div>
-        </article>
-
-        <!-- PASO 3: M-05 -->
-        <article class="module-card module-m05">
-          <div>
-            <div class="mod-top">
-              <span class="mod-code">MÓDULO M-05</span>
-              <span class="mod-step">PASO 3 · VENDER</span>
-            </div>
-            <h3>Google Shopping, Catálogo Meta y Recupero de Carritos</h3>
-            <div class="mod-purpose">
-              Soluciona los Problemas 1 y 2 del diagnóstico: vidriera apagada en Google Shopping y falta de retargeting en Meta.
-            </div>
-            <ul class="mod-deliverables">
-              <li>Conexión del Feed XML de Tiendanube con <strong>Google Merchant Center</strong> (etiqueta <code>AW-18191297327</code>) y estructuración de campañas Shopping.</li>
-              <li>Sincronización del catálogo completo con <strong>Meta Commerce</strong> para activar anuncios dinámicos de recupero de carritos (DPA).</li>
-              <li>Estructuración de campañas por categoría y kits destacados (Línea Aqua L75/L57, Kits con grifería Piazza y accesorios).</li>
+              <li>Vinculación del catálogo de productos con la plataforma publicitaria de Meta.</li>
+              <li>Creación, segmentación y diseño de la estructura de anuncios para sus modelos y kits más rentables.</li>
+              <li><strong>Publicación en vivo de las campañas publicitarias</strong> en Instagram y Facebook para generar consultas y compras directas desde el primer día.</li>
+              <li>Conexión comercial lista para recibir mensajes directos por WhatsApp y compras en la tienda online.</li>
             </ul>
           </div>
           <div class="mod-footer">
             <span>IMPACTO: VENTAS DIRECTAS</span>
-            <span>1 A 3 SEMANAS</span>
+            <span>1 A 2 SEMANAS</span>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- SECCIÓN 03: DEMOSTRACIÓN INTERACTIVA DEL ANTES Y DESPUÉS -->
+  <!-- SECCIÓN 02: DEMO INTERACTIVA -->
   <section class="section dark">
     <div class="container">
       <div class="section-header">
-        <span class="section-kicker">03 · Demostración Interactiva</span>
-        <h2 class="section-title">Así cambia su Tiendanube al aplicar esta puesta a punto</h2>
+        <span class="section-kicker">02 · Demostración Interactiva</span>
+        <h2 class="section-title">El impacto visual en Google y Redes Sociales</h2>
         <p class="section-sub">
-          Alterne entre el estado actual diagnosticado y el resultado una vez conectados sus catálogos y su medición.
+          Alterne los botones para visualizar cómo cambia la presencia comercial de INOX ante compradores activos.
         </p>
       </div>
 
       <div class="demos-grid">
-        <!-- DEMO 1: GOOGLE SHOPPING -->
         <div class="demo-box">
           <div>
             <div class="demo-head">
-              <strong>1. Vidriera en Google Shopping (`M-05` + `M-10`)</strong>
+              <strong>1. Presencia en Google Shopping</strong>
               <div class="switch-pills">
                 <button id="btnShopOff" class="sw-btn active-red" onclick="setShoppingDemo(false)">Hoy en Google</button>
-                <button id="btnShopOn" class="sw-btn" onclick="setShoppingDemo(true)">Con Puesta a Punto</button>
+                <button id="btnShopOn" class="sw-btn" onclick="setShoppingDemo(true)">Con Catálogo Activo</button>
               </div>
             </div>
             <div class="google-mock" style="margin-top:12px;">
@@ -1371,147 +936,114 @@
           <p id="shoppingCaption" style="font-size:13px; color:#F87171;"></p>
         </div>
 
-        <!-- DEMO 2: MEDICIÓN Y RETARGETING -->
         <div class="demo-box">
           <div>
             <div class="demo-head">
-              <strong>2. Medición de Compras y Carritos (`M-09` + `M-05`)</strong>
+              <strong>2. Campañas en Instagram y Facebook</strong>
               <div class="switch-pills">
-                <button id="btnPixOld" class="sw-btn active-red" onclick="setPixelDemo(false)">Hoy en su Tienda</button>
-                <button id="btnPixNew" class="sw-btn" onclick="setPixelDemo(true)">Con Puesta a Punto</button>
+                <button id="btnMetaOff" class="sw-btn active-red" onclick="setMetaDemo(false)">Sin Campañas</button>
+                <button id="btnMetaOn" class="sw-btn" onclick="setMetaDemo(true)">Campañas Publicadas</button>
               </div>
             </div>
-            <div class="flow-stage" id="pixelStage" style="margin-top:12px;"></div>
+            <div class="google-mock" style="margin-top:12px;" id="metaStage"></div>
           </div>
-          <p id="pixelCaption" style="font-size:13px; color:#F87171;"></p>
+          <p id="metaCaption" style="font-size:13px; color:#F87171;"></p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECCIÓN 04: INVERSIÓN Y MODALIDADES -->
+  <!-- SECCIÓN 03: INVERSIÓN Y PRESUPUESTO JUSTO -->
   <section class="section white" id="inversion">
     <div class="container">
       <div class="section-header">
-        <span class="section-kicker">04 · Inversión y Formas de Avance</span>
-        <h2 class="section-title">Presupuesto de Puesta a Punto</h2>
+        <span class="section-kicker">03 · Inversión Justa y Transparente</span>
+        <h2 class="section-title">Presupuesto Cerrado Llave en Mano</h2>
         <p class="section-sub">
-          Pago único de implementación sobre su Tiendanube actual ($0 de licencia mensual por usuario), con bonificación por paquete completo o avance en 2 etapas.
+          Tarifa directa ajustada para los 2 frentes necesarios. Cero costos fijos mensuales de software.
         </p>
       </div>
 
       <div class="pricing-layout">
-        <!-- TABLA PRINCIPAL DEL PAQUETE DE 3 MÓDULOS -->
+        <!-- TABLA PRINCIPAL -->
         <div class="price-card-main">
           <div class="price-card-head">
             <div>
-              <span
-                style="font-family:var(--font-mono);font-size:11.5px;color:var(--inox-yellow);font-weight:700;text-transform:uppercase;">Entrega
-                Funcionando · 1 a 3 Semanas</span>
-              <h3>Puesta a Punto Integral INOX (3 Módulos Integrados)</h3>
+              <span style="font-family:var(--font-mono);font-size:11.5px;color:var(--inox-yellow);font-weight:700;text-transform:uppercase;">Entrega Funcionando · 1 a 2 Semanas</span>
+              <h3>Puesta a Punto Directa: Catálogo Google + Campañas Meta</h3>
             </div>
             <div class="price-total-box">
-              <span class="price-old">Por separado: USD 1.250</span>
-              <span class="price-amount">USD 1.050</span>
+              <span class="price-old">Tarifa base: USD 450</span>
+              <span class="price-amount">USD 350</span>
             </div>
           </div>
 
-          <div class="table-responsive">
+          <div style="width:100%; overflow-x:auto;">
             <table class="price-breakdown">
               <thead>
                 <tr>
-                  <th>Módulo</th>
-                  <th>Alcance Incluido sobre su Tiendanube</th>
-                  <th style="text-align:right;white-space:nowrap;">Valor Individual</th>
+                  <th>Frente</th>
+                  <th>Alcance Incluido en sus Cuentas</th>
+                  <th style="text-align:right;white-space:nowrap;">Valor Base</th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="module-row">
-                  <td><strong><code>M-09</code></strong></td>
+                <tr>
+                  <td><strong>Frente 1</strong></td>
                   <td>
-                    <strong>Analítica GA4 + GTM y Píxel Meta CAPI por Servidor</strong><br>
-                    <span style="font-size:14px;color:var(--inox-muted);">Activación de GA4, contenedor GTM-WPP27H4P y conexión Server-Side para registrar el 100% de las compras en iPhone y medir carritos abandonados.</span>
+                    <strong>Catálogo de Productos en Google Shopping</strong><br>
+                    <span style="font-size:13.5px;color:var(--inox-muted);">Habilitación de catálogo, sincronización de precios directos y activación de vidriera comercial en Google.</span>
                   </td>
-                  <td style="text-align:right;white-space:nowrap;"><strong>USD 450</strong></td>
+                  <td style="text-align:right;white-space:nowrap;">USD 200</td>
                 </tr>
-                <tr class="module-row">
-                  <td><strong><code>M-10</code></strong></td>
+                <tr>
+                  <td><strong>Frente 2</strong></td>
                   <td>
-                    <strong>Normalización de Fichas en Tiendanube y Google Orgánico</strong><br>
-                    <span style="font-size:14px;color:var(--inox-muted);">Estructuración completa de las ~30 publicaciones y variantes (marcas, SKUs y Schema.org/Product) e indexación en Google Search Console.</span>
+                    <strong>Creación y Publicación de Campañas en Meta Ads</strong><br>
+                    <span style="font-size:13.5px;color:var(--inox-muted);">Estructuración, segmentación y publicación en vivo de campañas de anuncios en Instagram y Facebook.</span>
                   </td>
-                  <td style="text-align:right;white-space:nowrap;"><strong>USD 350</strong></td>
+                  <td style="text-align:right;white-space:nowrap;">USD 250</td>
                 </tr>
-                <tr class="module-row">
-                  <td><strong><code>M-05</code></strong></td>
-                  <td>
-                    <strong>Google Shopping + Catálogo en Meta Ads y Recupero de Carritos (DPA)</strong><br>
-                    <span style="font-size:14px;color:var(--inox-muted);">Conexión con Google Merchant Center y Meta Catalog + armado de campañas Shopping, retargeting dinámico de carritos (DPA) y empuje de kits destacados.</span>
-                  </td>
-                  <td style="text-align:right;white-space:nowrap;"><strong>USD 450</strong></td>
-                </tr>
-                <tr class="subtotal-row" style="background:#F8FAFC;color:#475569;font-size:14.5px;">
+                <tr style="background:#F8FAFC;font-size:14px;">
                   <td colspan="2">
-                    <strong>Subtotal contratando por separado</strong><br>
-                    <span style="color:#0D9488;font-weight:700;">Bonificación Paquete Completo Integrado (-16% · Ahorro USD 200)</span>
+                    <strong>Subtotal base por separado</strong><br>
+                    <span style="color:#0D9488;font-weight:700;">Bonificación Especial Paquete Directo (-22% · Ahorro USD 100)</span>
                   </td>
                   <td style="text-align:right;white-space:nowrap;font-family:var(--font-mono);">
-                    <span style="text-decoration:line-through;color:#94A3B8;display:block;font-size:13.5px;">USD 1.250</span>
-                    <span style="color:#0D9488;font-weight:700;font-size:14.5px;">- USD 200</span>
+                    <span style="text-decoration:line-through;color:#94A3B8;display:block;">USD 450</span>
+                    <span style="color:#0D9488;font-weight:700;">- USD 100</span>
                   </td>
                 </tr>
                 <tr class="total-row">
                   <td colspan="2">
-                    <strong>Inversión Final Puesta a Punto Completa</strong><br>
-                    <span style="font-size:14px;font-weight:500;color:var(--inox-body);">50% al iniciar (USD 525) · 50% contra entrega funcionando (USD 525).</span>
+                    <strong>Inversión Final Llave en Mano</strong><br>
+                    <span style="font-size:13.5px;font-weight:500;color:var(--inox-body);">50% al iniciar (USD 175) · 50% contra entrega funcionando y campañas publicadas (USD 175).</span>
                   </td>
-                  <td style="text-align:right;white-space:nowrap;font-family:var(--font-mono);font-size:21px;color:var(--mod-emerald-dark);">USD 1.050</td>
+                  <td style="text-align:right;white-space:nowrap;font-family:var(--font-mono);font-size:22px;color:var(--mod-emerald-dark);">USD 350</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
 
-        <!-- OPCIONES ALTERNATIVAS LATERALES -->
+        <!-- TARJETAS LATERALES -->
         <div class="price-side-stack">
-          <div class="side-option-card cyan-border">
-            <span
-              style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--mod-cyan-dark);text-transform:uppercase;">Avance
-              Modular en 2 Etapas (USD 1.250)</span>
-            <h4>Si prefiere avanzar paso a paso</h4>
-            <div style="font-size:14px;display:flex;flex-direction:column;gap:10px;color:var(--inox-body);">
-              <div style="background:#FFFFFF;border:1px solid var(--inox-border-light);border-radius:8px;padding:11px 13px;">
-                <strong style="color:var(--inox-dark);display:block;margin-bottom:3px;">Etapa 1 · Medición + Catálogos y Campañas:</strong>
-                • <code>M-09</code> + <code>M-05</code>: <strong>USD 900</strong> (Google Shopping, Catálogo Meta DPA y Píxel CAPI + GA4).
-              </div>
-              <div style="background:#FFFFFF;border:1px solid var(--inox-border-light);border-radius:8px;padding:11px 13px;">
-                <strong style="color:var(--inox-dark);display:block;margin-bottom:3px;">Etapa 2 · Fichas y Posicionamiento Orgánico:</strong>
-                • <code>M-10</code>: <strong>USD 350</strong> (Normalización de las ~30 fichas y Search Console).
-              </div>
-            </div>
+          <div class="side-option-card emerald-border">
+            <span style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--mod-emerald-dark);text-transform:uppercase;">Condición Oficial</span>
+            <h4>$0 de Alquiler Mensual</h4>
+            <p>Es un pago único de implementación. Todo queda instalado y funcionando en sus propias cuentas de Tiendanube, Google y Meta sin ninguna suscripción fija.</p>
           </div>
 
-          <div class="side-option-card emerald-border">
-            <span
-              style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--mod-emerald-dark);text-transform:uppercase;">Opcional
-              Post-Entrega y Próxima Fase</span>
-            <h4>Gestión Mensual de Campañas</h4>
-            <p style="margin-bottom:8px;">
-              Una vez entregada la puesta a punto, queda funcionando en sus cuentas con <strong>$0 de costo fijo mensual</strong>. Si desea que administremos y optimicemos sus campañas mes a mes: <strong>USD 350 / mes</strong>.
-            </p>
-            <p style="font-size:13.5px;color:var(--inox-muted);margin-bottom:0;">
-              <strong>Listo para su Fase 2:</strong> Más adelante, sobre esta misma base podrá sumar el radar automatizado de precios de competidores y automatizaciones de contenido.
-            </p>
+          <div class="side-option-card cyan-border">
+            <span style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--mod-cyan-dark);text-transform:uppercase;">Pauta Publicitaria</span>
+            <h4>Inversión en Anuncios Aparte</h4>
+            <p>El presupuesto que deseen destinar a anuncios de Meta Ads o Google se abona directo a las plataformas con la tarjeta de la empresa.</p>
           </div>
 
           <div class="side-option-card steel-border">
-            <span
-              style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--inox-dark);text-transform:uppercase;">Condiciones
-              Claras</span>
-            <h4>Moneda y Presupuesto de Pauta</h4>
-            <p style="font-size:14px;margin-bottom:0;">
-              Valores en USD o Pesos (ARS) al tipo de cambio del día de pago. La inversión publicitaria en anuncios se abona directo en las cuentas de Google Ads y Meta Ads de INOX.
-            </p>
+            <span style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--inox-dark);text-transform:uppercase;">Opcional Post-Entrega</span>
+            <h4>Gestión Mensual de Campañas</h4>
+            <p>Si una vez entregado desean que optimicemos sus campañas mes a mes: <strong>USD 250 / mes</strong> (100% opcional, sin permanencia mínima).</p>
           </div>
         </div>
       </div>
@@ -1521,182 +1053,133 @@
         <div class="trust-card steel-top">
           <span class="trust-num">COMPROMISO 01</span>
           <h4>Cero Licencias por Usuario</h4>
-          <p>Abona la configuración y puesta en marcha sobre sus propias cuentas, sin alquiler mensual por usuario.</p>
+          <p>Abona únicamente la puesta a punto técnica, sin costo de mantenimiento obligatorio.</p>
         </div>
         <div class="trust-card cyan-top">
           <span class="trust-num">COMPROMISO 02</span>
-          <h4>Listo en 1 a 3 Semanas</h4>
-          <p>En menos de 21 días su Tiendanube queda conectada a Google Shopping, Meta Catalog, GA4 y Píxel CAPI.</p>
+          <h4>Listo en 1 a 2 Semanas</h4>
+          <p>Puesta en marcha ágil con entregables claros y campañas publicadas en vivo.</p>
         </div>
         <div class="trust-card emerald-top">
           <span class="trust-num">COMPROMISO 03</span>
-          <h4>Sobre lo que Usted ya Usa</h4>
-          <p>Mejoramos el rendimiento de su Tiendanube actual sin requerir sistemas nuevos ni cambiar su forma de trabajar.</p>
+          <h4>Sobre lo que ya Utilizan</h4>
+          <p>Sin cambiar de sistema ni migrar la tienda: potenciamos las cuentas que ya tienen activas.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER CORPORATIVO CO-BRANDEADO -->
+  <!-- FOOTER -->
   <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <div>
-          <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap;">
-            <div class="inox-lockup" style="display:inline-flex;align-items:center;gap:8px;">
-              <img src="./logo-inox.png" alt="INOX" style="height:24px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';">
-              <span class="inox-fallback-lockup" style="display:none;align-items:center;gap:8px;font-family:var(--font-heading);font-weight:900;font-size:18px;letter-spacing:1px;color:#FFFFFF;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="12" y="1" width="15" height="15" rx="3" transform="rotate(45 12 1)" fill="#F8DC13"/><circle cx="12" cy="12" r="3" fill="#0A0A0A"/></svg>
-                INOX
-              </span>
-            </div>
-            <span style="color:var(--inox-steel-light);font-size:14px;">×</span>
-            <svg width="120" height="24" viewBox="0 0 250 52" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:20px;width:auto;display:block;">
-              <g id="isotipo-foot" transform="translate(2, 2)">
-                <path d="M6 10C6 8.89543 6.89543 8 8 8H19.5L16 14.5H13V21H20.5V27H13V38C13 39.1046 12.1046 40 11 40H8C6.89543 40 6 39.1046 6 38V10Z" fill="#00E5FF"/>
-                <path d="M21 8H39C40.1046 8 41 8.89543 41 10V12.5C41 13.6046 40.1046 14.5 39 14.5H34.5V38C34.5 39.1046 33.6046 40 32.5 40H29.5C28.3954 40 27.5 39.1046 27.5 38V14.5H17.5L21 8Z" fill="#FF6B35"/>
-              </g>
-              <text x="56" y="34" font-family="'Montserrat', system-ui, -apple-system, sans-serif" font-size="25" font-weight="800" letter-spacing="-0.5px">
-                <tspan fill="#FFFFFF">Futuriza</tspan><tspan fill="#FF6B35">Tech</tspan>
-              </text>
-            </svg>
-          </div>
-          <p style="color:#CBD5E1;max-width:620px;font-size:15px;">
-            Cuando usted lo disponga, coordinamos una breve <strong>videollamada de 15 minutos</strong> para despejar consultas y definir la fecha de inicio.
-          </p>
+    <div class="container footer-inner">
+      <div>
+        <div class="inox-lockup" style="display:inline-flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <img src="./logo-inox.png" alt="INOX" style="height:22px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';">
+          <span class="inox-fallback-lockup" style="display:none;align-items:center;gap:8px;font-family:var(--font-heading);font-weight:900;font-size:17px;color:#FFFFFF;">INOX</span>
         </div>
-        <div class="footer-actions">
-          <a href="https://api.whatsapp.com/send?phone=5493518046223&text=Hola%20Angel%2C%20nos%20comunicamos%20de%20INOX.%20Estuvimos%20revisando%20la%20propuesta%20de%20puesta%20a%20punto%20y%20queremos%20coordinar%20una%20videollamada."
-            target="_blank" rel="noopener" class="btn-cta whatsapp">Hablar por WhatsApp (+54 9 351 804 6223)</a>
-          <a href="mailto:info@futurizatech.com?subject=Propuesta%20Comercial%20INOX"
-            class="btn-cta dark">info@futurizatech.com</a>
-        </div>
+        <p style="font-size:13px;color:#64748B;">Propuesta Comercial FT-0108 · FuturizaTech × INOX (inoxar.com.ar) · Córdoba, Argentina</p>
       </div>
-      <div class="footer-copy">
-        <span>FuturizaTech: Ingeniería de Software, Sistemas de Gestión y Automatización Comercial (Córdoba, Argentina)</span>
-        <span>Propuesta confidencial preparada para INOX · Validez 7 días corridos (hasta el 23/11/2026).</span>
+
+      <div>
+        <a href="https://wa.me/5493518046223?text=Hola%20Angel,%20revisamos%20la%20propuesta%20de%20Google%20y%20Meta%20para%20INOX%20y%20queremos%20avanzar" target="_blank" rel="noopener noreferrer" class="btn-cta whatsapp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+          Aprobar Propuesta vía WhatsApp
+        </a>
       </div>
     </div>
   </footer>
 
+  <!-- INTERACTIVIDAD DEMO -->
   <script>
-    function setShoppingDemo(isActive) {
+    function setShoppingDemo(isOn) {
       const btnOff = document.getElementById('btnShopOff');
       const btnOn = document.getElementById('btnShopOn');
       const container = document.getElementById('shoppingResults');
       const caption = document.getElementById('shoppingCaption');
 
-      if (!isActive) {
+      if (isOn) {
+        btnOn.className = 'sw-btn active-green';
+        btnOff.className = 'sw-btn';
+        container.innerHTML = `
+          <div class="shop-card inox-winner">
+            <span style="background:#F8DC13;color:#0A0A0A;font-weight:800;font-size:9.5px;padding:2px 6px;border-radius:4px;display:inline-block;margin-bottom:4px;">RECOMENDADO</span>
+            <div style="font-weight:700;color:#FFF;line-height:1.2;">Bacha Acero 304 L75 Kit Completo</div>
+            <span class="shop-price">$385.000</span>
+            <span class="shop-store" style="color:#F8DC13;font-weight:700;">inoxar.com.ar · Envío Gratis</span>
+          </div>
+          <div class="shop-card">
+            <div style="font-weight:600;color:#CBD5E1;line-height:1.2;">Bacha Johnson Cuadra Max</div>
+            <span class="shop-price">$460.000</span>
+            <span class="shop-store">Distribuidor Sanitario</span>
+          </div>
+          <div class="shop-card">
+            <div style="font-weight:600;color:#CBD5E1;line-height:1.2;">Bacha Mi Pileta Acero 430</div>
+            <span class="shop-price">$340.000</span>
+            <span class="shop-store">Revendedor Online</span>
+          </div>
+        `;
+        caption.innerHTML = '✓ Con el catálogo de Google Shopping activo, INOX aparece arriba de todo con precio directo de fábrica.';
+        caption.style.color = '#34D399';
+      } else {
         btnOff.className = 'sw-btn active-red';
         btnOn.className = 'sw-btn';
         container.innerHTML = `
           <div class="shop-card">
-            <div style="height:72px; background:#0A0D12; border-radius:6px; display:flex; align-items:center; justify-content:center; color:#64748B; font-size:10px; margin-bottom:6px;">[Competidor 1]</div>
-            <span style="font-weight:600; display:block;">Bacha 75x43 304</span>
-            <span class="shop-price">$272.200</span>
-            <span class="shop-store">Competidor A</span>
+            <div style="font-weight:600;color:#CBD5E1;line-height:1.2;">Bacha Johnson Acero</div>
+            <span class="shop-price">$460.000</span>
+            <span class="shop-store">Cometidor A</span>
           </div>
           <div class="shop-card">
-            <div style="height:72px; background:#0A0D12; border-radius:6px; display:flex; align-items:center; justify-content:center; color:#64748B; font-size:10px; margin-bottom:6px;">[Competidor 2]</div>
-            <span style="font-weight:600; display:block;">Bacha Simple 304</span>
-            <span class="shop-price">$310.000</span>
-            <span class="shop-store">Sanitarios Web</span>
+            <div style="font-weight:600;color:#CBD5E1;line-height:1.2;">Bacha Mi Pileta Cuadrada</div>
+            <span class="shop-price">$340.000</span>
+            <span class="shop-store">Competidor B</span>
           </div>
-          <div class="shop-card" style="border:1px dashed #EF4444; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
-            <span style="font-size:16px;">🚫</span>
-            <strong style="color:#F87171; font-size:10.5px;">INOX AUSENTE</strong>
-            <span style="font-size:9.5px; color:#94A3B8;">Catálogo apagado</span>
+          <div class="shop-card">
+            <div style="font-weight:600;color:#CBD5E1;line-height:1.2;">Bacha Franke Acero 304</div>
+            <span class="shop-price">$510.000</span>
+            <span class="shop-store">Mercado Libre</span>
           </div>
         `;
+        caption.innerHTML = '🚨 Hoy INOX no tiene el catálogo activo en Google: las ventas se las llevan revendedores y distribuidores.';
         caption.style.color = '#F87171';
-        caption.innerHTML = '⚠️ <strong>Situación actual:</strong> Su tienda tiene la Aqua L75 a $204.990, pero no aparece en la vidriera de Google Shopping.';
-      } else {
-        btnOff.className = 'sw-btn';
+      }
+    }
+
+    function setMetaDemo(isOn) {
+      const btnOff = document.getElementById('btnMetaOff');
+      const btnOn = document.getElementById('btnMetaOn');
+      const stage = document.getElementById('metaStage');
+      const caption = document.getElementById('metaCaption');
+
+      if (isOn) {
         btnOn.className = 'sw-btn active-green';
-        container.innerHTML = `
-          <div class="shop-card inox-winner">
-            <img src="./assets/bacha-aqua-l75-acero-304-75x43x22cm-1.webp" alt="INOX Aqua L75" />
-            <span style="font-weight:700; color:#F8DC13; display:block;">Bacha Aqua L75 304</span>
-            <span class="shop-price">$204.990</span>
-            <span class="shop-store" style="color:#34D399;">✔ inoxar.com.ar · Envío gratis</span>
-          </div>
-          <div class="shop-card inox-winner">
-            <img src="./assets/bacha-aqua-l57-acero-304-57x43x22cm-1.webp" alt="INOX L65" />
-            <span style="font-weight:700; color:#F8DC13; display:block;">Bacha L65 Acero 304</span>
-            <span class="shop-price">$170.990</span>
-            <span class="shop-store" style="color:#34D399;">✔ inoxar.com.ar · Envío gratis</span>
-          </div>
-          <div class="shop-card">
-            <div style="height:72px; background:#0A0D12; border-radius:6px; display:flex; align-items:center; justify-content:center; color:#64748B; font-size:10px; margin-bottom:6px;">[Competidor]</div>
-            <span style="font-weight:600; display:block;">Bacha 75x43 304</span>
-            <span class="shop-price">$272.200</span>
-            <span class="shop-store">Competidor A</span>
-          </div>
-        `;
-        caption.style.color = '#34D399';
-        caption.innerHTML = '✔ <strong>Con la Puesta a Punto:</strong> Sus bachas aparecen primeras con foto, precio y clic directo al carrito de su Tiendanube.';
-      }
-    }
-
-    function setPixelDemo(isFixed) {
-      const btnOld = document.getElementById('btnPixOld');
-      const btnNew = document.getElementById('btnPixNew');
-      const stage = document.getElementById('pixelStage');
-      const caption = document.getElementById('pixelCaption');
-
-      if (!isFixed) {
-        btnOld.className = 'sw-btn active-red';
-        btnNew.className = 'sw-btn';
+        btnOff.className = 'sw-btn';
         stage.innerHTML = `
-          <div class="flow-row">
-            <span>🛒 <strong>Compras reales en su Tiendanube:</strong></span>
-            <span style="font-family:var(--font-mono); font-weight:700; color:#FFFFFF;">10 ventas</span>
+          <div style="color:#F8DC13;font-size:11px;font-weight:700;font-family:var(--font-mono);margin-bottom:6px;">PUBLICIDAD ACTIVA · INSTAGRAM & FACEBOOK</div>
+          <div style="color:#FFF;font-size:14.5px;font-weight:700;line-height:1.3;margin-bottom:6px;">Bacha Simple L75 Acero AISI 304 + Grifería Piazza en Kit Directo de Fábrica</div>
+          <div style="display:flex;gap:12px;font-family:var(--font-mono);font-size:12px;background:#161B22;padding:6px 10px;border-radius:6px;margin-bottom:8px;">
+            <span style="color:#34D399;">✓ Campaña Publicada</span>
+            <span style="color:#38BDF8;">Botón directo a WhatsApp / Tienda</span>
           </div>
-          <div class="flow-row" style="border-left:3px solid #F59E0B;">
-            <span>📱 <strong>Píxel Básico (Fuga en iPhone):</strong></span>
-            <span style="font-family:var(--font-mono); font-weight:700; color:#FBBF24;">Solo ve 6 de 10</span>
-          </div>
-          <div class="flow-row" style="border-left:3px solid #EF4444;">
-            <span>🔄 <strong>Recupero de Carritos en Instagram (DPA):</strong></span>
-            <span style="font-family:var(--font-mono); font-weight:700; color:#F87171;">Apagado</span>
-          </div>
-          <div class="flow-row" style="border-left:3px solid #EF4444;">
-            <span>📊 <strong>Embudo en Google Analytics 4:</strong></span>
-            <span style="font-family:var(--font-mono); font-weight:700; color:#F87171;">0 registradas</span>
-          </div>
+          <div style="font-size:12.5px;color:#94A3B8;">Anuncio impactando a clientes en obra, arquitectos y compradores buscando renovar su cocina.</div>
         `;
-        caption.style.color = '#F87171';
-        caption.innerHTML = '⚠️ <strong>Situación actual:</strong> Se pierden 4 de cada 10 compras en la medición y quien abandona el carrito no vuelve a ver el producto.';
+        caption.innerHTML = '✓ Campañas activas en Instagram y Facebook mostrando productos y derivando consultas comerciales.';
+        caption.style.color = '#34D399';
       } else {
-        btnOld.className = 'sw-btn';
-        btnNew.className = 'sw-btn active-green';
+        btnOff.className = 'sw-btn active-red';
+        btnOn.className = 'sw-btn';
         stage.innerHTML = `
-          <div class="flow-row">
-            <span>🛒 <strong>Compras reales en su Tiendanube:</strong></span>
-            <span style="font-family:var(--font-mono); font-weight:700; color:#FFFFFF;">10 ventas</span>
-          </div>
-          <div class="flow-row" style="border-left:3px solid #10B981;">
-            <span>🔒 <strong>Píxel + Servidor CAPI Activo:</strong></span>
-            <span style="font-family:var(--font-mono); font-weight:700; color:#34D399;">10 de 10 medidas</span>
-          </div>
-          <div class="flow-row" style="border-left:3px solid #10B981;">
-            <span>🔄 <strong>Recupero de Carritos en Instagram (DPA):</strong></span>
-            <span style="font-family:var(--font-mono); font-weight:700; color:#34D399;">Activo por SKU</span>
-          </div>
-          <div class="flow-row" style="border-left:3px solid #10B981;">
-            <span>📊 <strong>Embudo en Google Analytics 4 + GTM:</strong></span>
-            <span style="font-family:var(--font-mono); font-weight:700; color:#34D399;">100% visible</span>
-          </div>
+          <div style="color:#F87171;font-size:11px;font-weight:700;font-family:var(--font-mono);margin-bottom:6px;">SIN PUBLICIDAD EN REDES</div>
+          <div style="color:#94A3B8;font-size:13.5px;line-height:1.4;">La tienda depende únicamente de que el cliente recuerde entrar por su cuenta. Cero captación activa en Instagram o Facebook.</div>
         `;
-        caption.style.color = '#34D399';
-        caption.innerHTML = '✔ <strong>Con la Puesta a Punto:</strong> Sus campañas optimizan sobre el 100% de las ventas y persiguen automáticamente cada carrito abandonado.';
+        caption.innerHTML = '🚨 Sin campañas publicadas, la marca no genera compradores nuevos en redes sociales.';
+        caption.style.color = '#F87171';
       }
     }
 
+    // Inicializar demos
     setShoppingDemo(false);
-    setPixelDemo(false);
+    setMetaDemo(false);
   </script>
-
 </body>
-
 </html>
