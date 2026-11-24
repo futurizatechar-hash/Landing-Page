@@ -608,6 +608,10 @@
       border-collapse: collapse;
     }
 
+    .price-breakdown code {
+      white-space: nowrap;
+    }
+
     .price-breakdown th,
     .price-breakdown td {
       padding: 16px 24px;
@@ -753,6 +757,10 @@
     }
 
     @media (max-width: 640px) {
+      .price-breakdown thead { display: none; }
+      .price-breakdown tr { display: block; margin-bottom: 12px; border: 1px solid var(--inox-border-light); border-radius: var(--radius-md); }
+      .price-breakdown td { display: flex; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--inox-border-light); }
+      .price-breakdown td:last-child { border-bottom: none; }
       .client-logo-img { height: 22px; max-width: 165px; }
       .ft-logo-img { height: 18px; }
       .hero { padding: 34px 4% 38px; }
